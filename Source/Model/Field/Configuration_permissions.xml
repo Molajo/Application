@@ -1,0 +1,6 @@
+<field
+        name="configuration_permissions"
+        type="char"
+        null="0"
+        default="{{Permissions,access_*}}"
+        />

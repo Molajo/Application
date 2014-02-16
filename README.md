@@ -1,4 +1,4 @@
-Application
-===========
+Framework
+=========
 
-Molajo Application for creating Molajo Distributions
+Molajo Base Framework

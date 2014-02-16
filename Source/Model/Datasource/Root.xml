@@ -1,0 +1,17 @@
+<model name="Root">
+    <customfields>
+        <customfield name="metadata">
+            <include field="metadata_title"/>
+            <include field="metadata_description"/>
+            <include field="metadata_keywords"/>
+            <include field="metadata_robots"/>
+            <include field="metadata_author"/>
+            <include field="metadata_content_rights"/>
+        </customfield>
+
+        <customfield name="parameters">
+            <include name="ParametersCriteria"/>
+            <include name="ParametersCache"/>
+        </customfield>
+    </customfields>
+</model>

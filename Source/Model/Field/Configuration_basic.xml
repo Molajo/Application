@@ -1,0 +1,5 @@
+<field
+        name="configuration_basic"
+        type="char"
+        null="0"
+        default="{{Basics,criteria_*}}"/>

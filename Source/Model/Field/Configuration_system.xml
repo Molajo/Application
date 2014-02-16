@@ -1,0 +1,6 @@
+<field
+        name="configuration_system"
+        type="char"
+        null="0"
+        default="{{System,enable_system_*}}"
+        />

@@ -1,0 +1,1 @@
+<field name="edit_editor" type="char" null="0" default="{{EditEditor,edit_editor_*}}"/>

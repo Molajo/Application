@@ -1,0 +1,1 @@
+<field name="grid_display_pagination" type="char" null="0" default="{{Pagination,grid_pagination*}}"/>

@@ -1,0 +1,6 @@
+<field name="status"
+       type="status"
+       null="0"
+       default="0"
+       datalist="Status"
+        />

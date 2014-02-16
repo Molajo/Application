@@ -1,0 +1,6 @@
+<field
+        name="configuration_metadata"
+        type="char"
+        null="0"
+        default="{{Metadata,metadata_*}}"
+        />
