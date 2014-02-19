@@ -15,6 +15,7 @@ if (! defined('PHP_VERSION_ID')) {
 
 $base     = substr(__DIR__, 0, strlen(__DIR__) - 5);
 $classmap = array();
+
 $classmap = createClassMap($base . '/vendor/commonapi/controller', 'CommonApi\\Controller\\');
 
 $results  = createClassMap($base . '/vendor/commonapi/model', 'CommonApi\\Model\\');
@@ -47,7 +48,10 @@ $classmap = array_merge($classmap, $results);
 $results  = createClassMap($base . '/Source/Resource/Configuration', 'Molajo\\Resource\\Configuration\\');
 $classmap = array_merge($classmap, $results);
 
-$results  = createClassMap($base . '/Source/Resource/Handler', 'Molajo\\Resource\\Handler');
+$results  = createClassMap($base . '/Source/Resource/Factory', 'Molajo\\Resource\\Factory\\');
+$classmap = array_merge($classmap, $results);
+
+$results  = createClassMap($base . '/Source/Resource/Handler', 'Molajo\\Resource\\Handler\\');
 $classmap = array_merge($classmap, $results);
 
 ksort($classmap);

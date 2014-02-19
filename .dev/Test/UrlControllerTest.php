@@ -1,6 +1,6 @@
 <?php
 /**
- * Text Test
+ * UrlController Test
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -8,17 +8,17 @@
  */
 namespace Molajo\Controller\Test;
 
-use Molajo\Controller\TextController;
+use Molajo\Controller\UrlController;
 
 /**
- * Utilities Test
+ * UrlController Controller Test
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0
  */
-class TextTest extends \PHPUnit_Framework_TestCase
+class UrlControllerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Options
@@ -40,28 +40,32 @@ class TextTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Utilities Connection
+     * Test
+     * 1. Remove ending '/'
+     * 2. Find UrlController Base Path
+     * 3. Doesn't find UrlController -- sets default
+     * 4. verify name, id, base_path and path
      *
      * @return  $this
      * @since   1.0
      */
-    public function testGetText()
+    public function testSetUrlController()
     {
-        //date_default_timezone_set('America/Chicago');
+        $test = true;
 
-        $date = new TextController();
-        $test = $date->getPlaceHolderText(
-            $number_of_paragraphs = 3,
-            $words_per_paragraph = 7,
-            $markup_type = 'p',
-            $start_with_lorem_ipsum = true
-        );
-
-        echo '<pre>';
-        var_dump($test);
-
-        // $this->assertEquals(true, is_string($test));
+        $this->assertEquals(true, is_string($test));
 
         return $this;
+    }
+
+    /**
+     * Tear down
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function tearDown()
+    {
+
     }
 }

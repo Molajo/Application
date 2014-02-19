@@ -3,8 +3,8 @@
     "description": "Molajo Application for use in developing Molajo Distributions",
     "version": "1.0.0",
     "type": "molajo-package",
-    "keywords": ["framework", "commonapi", "molajo"],
-    "homepage": "http://github.com/Molajo/Framework",
+    "keywords": ["application", "commonapi", "molajo"],
+    "homepage": "http://github.com/Molajo/Application",
     "license": "MIT",
     "authors": [
         {
@@ -16,10 +16,10 @@
     ],
 
     "support": {
-        "issues": "https://github.com/Molajo/Framework/issues",
+        "issues": "https://github.com/Molajo/Application/issues",
         "forum": "https://groups.google.com/forum/#!forum/molajo",
         "irc": "irc://irc.freenode.org/molajo",
-        "source": "https://github.com/Molajo/Framework"
+        "source": "https://github.com/Molajo/Application"
     },
 
     "require": {

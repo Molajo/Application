@@ -18,7 +18,7 @@ use Molajo\Controller\ImageController;
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0
  */
-class ImageTest extends \PHPUnit_Framework_TestCase
+class ImageControllerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Setup testing

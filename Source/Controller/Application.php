@@ -168,7 +168,6 @@ class Application implements ApplicationInterface
             $xml_name = (string)$app->name;
 
             if (strtolower(trim($xml_name)) == strtolower(trim($applicationTest))) {
-
                 $this->name      = $app->name;
                 $this->id        = $app->id;
                 $this->base_path = $app->name . '/';
@@ -179,7 +178,6 @@ class Application implements ApplicationInterface
         }
 
         if ($this->name === null) {
-
             $this->name      = $this->applications->default->name;
             $this->id        = $this->applications->default->id;
             $this->base_path = '';
@@ -291,6 +289,7 @@ class Application implements ApplicationInterface
      *
      * @return  $this
      * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function verifySiteApplication($site_id)
     {
@@ -314,7 +313,7 @@ class Application implements ApplicationInterface
             return $this;
         }
 
-        die('Site accessing invalid application.');
+        throw new RuntimeException ('Application: Error executing getApplication Query');
     }
 
     /**
