@@ -166,7 +166,7 @@ class TemplateHandler extends AbstractHandler implements HandlerInterface
         } else {
 
             /** Default location */
-            $path = BASE_FOLDER . '/Source/View/Template/'
+            $path = BASE_FOLDER . '/Source/Views/Templates/'
                 . ucfirst(strtolower($this->extension->alias));
 
             $this->extension->include_path = $path . '/' . 'View';

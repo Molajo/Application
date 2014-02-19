@@ -3,8 +3,8 @@
        data_object="Datalist">
     <table>
         <values>
-            <value id="1" value="Featured"/>
-            <value id="0" value="Not Featured"/>
+            <value id="1" value="Matched"/>
+            <value id="0" value="Not Matched"/>
         </values>
     </table>
 </model>

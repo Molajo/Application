@@ -14,7 +14,7 @@ use CommonApi\Exception\RuntimeException;
 use Molajo\Resource\Api\ConfigurationInterface;
 
 /**
- * XMK Handler
+ * XML Handler
  *
  * @package    Molajo
  * @copyright  2014 Amy Stephen. All rights reserved.
@@ -38,60 +38,6 @@ class XmlHandler extends AbstractHandler implements HandlerInterface
      * @since  1.0
      */
     protected $dataobject_handler;
-
-    /**
-     * Model Name is a File
-     *
-     * Model Type = Folder
-     * Model Name = File . file_extension
-     *
-     * @var    string
-     * @since  1.0
-     */
-    private $file_type = array(
-        'Application',
-        'Datalist',
-        'Dataobject',
-        'Datasource',
-        'Field',
-        'Include'
-    );
-
-    /**
-     * Model Name is a Folder
-     *
-     * Model Type = Folder
-     * Model Name = Folder
-     * Configuration.xml
-     *
-     * @var    string
-     * @since  1.0
-     */
-    private $folder_type = array(
-        'Menuitem',
-        'Plugin',
-        'Resource',
-        'Service',
-        'System',
-        'Theme'
-    );
-
-    /**
-     * View followed by Folder Type
-     *
-     * View = Folder
-     * Model Type = Folder
-     * Model Name = Folder
-     * Configuration.xml
-     *
-     * @var    string
-     * @since  1.0
-     */
-    private $view_type = array(
-        'Page',
-        'Template',
-        'Wrap'
-    );
 
     /**
      * Constructor
@@ -199,20 +145,23 @@ class XmlHandler extends AbstractHandler implements HandlerInterface
         }
 
         try {
-
             $contents = file_get_contents($located_path);
 
             if ($scheme == 'query') {
                 $xml = simplexml_load_string($contents);
                 return $this->model_handler->getConfiguration($model_type, $model_name, $xml);
+
             } elseif ($model_type == 'Application') {
                 $xml = simplexml_load_string($contents);
                 return $xml;
-            } elseif ($model_type == 'Field' || $model_type == 'Include') {
+
+            } elseif ($model_type == 'Fields' || $model_type == 'Include') {
                 return $contents;
+
             } elseif ($model_type == 'Dataobject') {
                 $xml = simplexml_load_string($contents);
                 return $this->dataobject_handler->getConfiguration($model_type, $model_name, $xml);
+
             } else {
                 $xml = simplexml_load_string($contents);
                 return $this->model_handler->getConfiguration($model_type, $model_name, $xml);

@@ -275,7 +275,6 @@ class FrontController implements FrontControllerInterface
         $this->createScheduleEventCallback();
 
         foreach ($this->services as $service) {
-
             try {
                 $this->scheduleService($service);
 

@@ -8,12 +8,12 @@
  */
 namespace Molajo\Resource\Configuration;
 
-use stdClass;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\Resource\AdapterInterface;
 use Molajo\Resource\Api\ConfigurationDataInterface;
 use Molajo\Resource\Api\ConfigurationInterface;
 use Molajo\Resource\Api\RegistryInterface;
+use stdClass;
 
 /**
  * Abstract Handler for XML Configuration
@@ -112,39 +112,64 @@ abstract class AbstractHandler implements ConfigurationInterface
      */
     protected function getIncludeCode($xml)
     {
-        $xml_string = $xml->asXML();
-
-        $pattern = '/<include (.*)="(.*)"\/>/';
+        $pre_string = $xml->asXML();
 
         $done = false;
+
         while ($done === false) {
-
-            preg_match_all($pattern, $xml_string, $matches);
-            if (count($matches[1]) == 0) {
-                break;
-            }
-
-            $i = 0;
-            foreach ($matches[1] as $match) {
-
-                $replaceThis = $matches[0][$i];
-
-                $include = ucfirst(strtolower($matches[2][$i]));
-
-                if (trim(strtolower($matches[1][$i])) == 'field') {
-                    $withThis = $this->resource->get('xml:///Molajo//Model//Field//' . $include . '.xml');
-                } else {
-                    $withThis = $this->resource->get('xml:///Molajo//Model//Include//' . $include . '.xml');
-                }
-
-                $xml_string = str_replace($replaceThis, $withThis, $xml_string);
-
-                $i ++;
+            $post_string = $this->getIncludeCodeLoop($pre_string);
+            if ($post_string == $pre_string) {
+                $done = true;
+            } else {
+                $pre_string = $post_string;
             }
         }
 
-        return simplexml_load_string($xml_string);
+        return simplexml_load_string($post_string);
     }
+
+    /**
+     * Parse xml recursively, processing all include statements
+     *
+     * @param   string $xml
+     *
+     * @return  mixed
+     * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    protected function getIncludeCodeLoop($xml_string)
+    {
+        $pattern = '/<include (.*)="(.*)"\/>/';
+
+        preg_match_all($pattern, $xml_string, $matches);
+
+        $replace_this_array = $matches[0];
+        $type_array         = $matches[1];
+        $include_name_array = $matches[2];
+
+        if (count($replace_this_array) == 0) {
+            return $xml_string;
+        }
+
+        for ($i = 0; $i < count($replace_this_array); $i ++) {
+
+            $replace_this = $replace_this_array[$i];
+            $name         = $include_name_array[$i];
+
+            if (trim(strtolower($type_array[$i])) == 'field') {
+                $model_name = 'xml:///Molajo//Model//Fields//' . $name . '.xml';
+                $with_this  = $this->resource->get($model_name);
+            } else {
+                $model_name = 'xml:///Molajo//Model//Include//' . $name . '.xml';
+                $with_this  = $this->resource->get($model_name);
+            }
+
+            $xml_string = str_replace($replace_this, $with_this, $xml_string);
+        }
+
+        return $xml_string;
+    }
+
 
     /**
      * Define elements for Data Model to Registry
@@ -448,7 +473,6 @@ abstract class AbstractHandler implements ConfigurationInterface
         $fieldArray = array(),
         $fieldNames = array()
     ) {
-
         $available = $this->registry->get($model_registry, $name, array());
 
         if (count($available) > 0) {
@@ -493,6 +517,10 @@ abstract class AbstractHandler implements ConfigurationInterface
      */
     protected function inheritDefinition($model_registry, $xml)
     {
+//        echo 'MODELREGISTRY ' . $model_registry . '<br />';
+//        echo '<pre>';
+//        var_dump($xml);
+
         $extends = false;
 
         if (count($xml->attributes()) > 0) {
@@ -530,12 +558,16 @@ abstract class AbstractHandler implements ConfigurationInterface
             $extends_model_name = ucfirst(strtolower($extends));
             $extends_model_type = 'Datasource';
         }
-
+//echo $extends_model_name . ' ' . $extends_model_type . '<br />';
         $inheritModelRegistry = $extends_model_name . $extends_model_type;
 
         if ($this->registry->exists($inheritModelRegistry) === true) {
         } else {
-            $this->resource->get('xml:///Molajo//Model//Datasource//' . $extends_model_name . '.xml');
+            if ($extends_model_type == 'Datasource') {
+                $this->resource->get('xml:///Molajo//Model//Datasource//' . $extends_model_name . '.xml');
+            } else {
+                $this->resource->get('xml:///Molajo//' . $extends_model_name . '//Configuration.xml');
+            }
         }
 
         $this->registry->copy($inheritModelRegistry, $model_registry);

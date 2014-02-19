@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="System" version="1.0">
-    <name>ADMINISTRATION_LANGUAGES_NAME</name>
+<extension type="Resource" version="1.0">
+    <name>RESOURCE_AUDIO_NAME</name>
     <author>Amy Stephen</author>
     <create_date>January 2014</create_date>
     <copyright>Copyright (C) 2014 Amy Stephen. All rights reserved.</copyright>
@@ -8,22 +8,18 @@
     <author_email>hello@molajo.org</author_email>
     <author_url>http://molajo.org</author_url>
     <version>1.0</version>
-    <description>ADMINISTRATION_LANGUAGES_DESCRIPTION</description>
+    <description>RESOURCE_AUDIO_DESCRIPTION</description>
     <model
             name="Languages"
             criteria_catalog_type_id="6000"
-            criteria_extension_instance_id="6000"
-            extends="RenderDatasource">
-        <customfields>
-            <customfield name="parameters">
-                <field name="name" type="char" default="English (United Kingdom)" null="0"/>
-                <field name="tag" type="char" default="en-GB" null="0"/>
-                <field name="rtl" type="char" default="0" null="0"/>
-                <field name="locale" type="char"
-                       default="en_GB.utf8, en_GB.UTF-8, en_GB, eng_GB, en, english, english-uk, uk, gbr, britain, england, great britain, uk, united kingdom, united-kingdom"
-                       null="0"/>
-                <field name="first_day" type="integer" default="0" null="0" values="1,2,3,4,5,6,7"/>
-            </customfield>
-        </customfields>
-    </model>
+            criteria_extension_instance_id="0"
+            get_customfields="1"
+            get_item_children="1"
+            use_special_joins="1"
+            check_view_level_access="1"
+            process_events="1"
+            use_pagination="1"
+            extends="Render"
+            model_type="Resource"
+            data_object="Database"/>
 </extension>

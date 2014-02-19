@@ -38,9 +38,9 @@
             "Molajo\\": "Source/Extensions/",
             "Molajo\\Controller\\": "Source/Controller/",
             "Molajo\\Model\\": "Source/Model/",
-            "Molajo\\Plugin\\": "Source/Plugin/",
+            "Molajo\\Plugins\\": "Source/Plugins/",
             "Molajo\\Resource\\": "Source/Resource/",
-            "Molajo\\Service\\": "Service/"
+            "Molajo\\Services\\": "Services/"
         }
     },
 

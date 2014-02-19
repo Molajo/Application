@@ -175,6 +175,14 @@ class ModelHandler extends AbstractHandler implements ConfigurationInterface
             if (in_array($key, $modelArray)) {
                 $this->registry->set($model_registry, $key, (string)$value);
             } else {
+                echo '<pre>';
+                var_dump($key);
+
+                echo '<pre>';
+                var_dump($xml);
+
+                echo 'Going to throw Exception in ModelHandler setModelRegistry';
+                die;
                 throw new RuntimeException
                 ('Configuration: setModelRegistry encountered Invalid Model Attribute ' . $key);
             }

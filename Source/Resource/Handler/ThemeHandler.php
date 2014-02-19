@@ -161,7 +161,7 @@ class ThemeHandler extends AbstractHandler implements HandlerInterface
         } else {
 
             /** Default location */
-            $path = BASE_FOLDER . '/Source/Theme/'
+            $path = BASE_FOLDER . '/Source/Themes/'
                 . ucfirst(strtolower($this->extension->alias));
 
             $this->extension->include_path = $path . '/' . 'Index.phtml';

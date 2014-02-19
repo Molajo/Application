@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="System" version="1.0">
-    <name>ADMINISTRATION_MENUITEMS_NAME</name>
+<extension type="Resource" version="1.0">
+    <name>RESOURCE_AUDIO_NAME</name>
     <author>Amy Stephen</author>
     <create_date>January 2014</create_date>
     <copyright>Copyright (C) 2014 Amy Stephen. All rights reserved.</copyright>
@@ -8,23 +8,18 @@
     <author_email>hello@molajo.org</author_email>
     <author_url>http://molajo.org</author_url>
     <version>1.0</version>
-    <description>ADMINISTRATION_MENUITEMS_DESCRIPTION</description>
+    <description>RESOURCE_AUDIO_DESCRIPTION</description>
     <model
             name="Menuitems"
-            process_events="0"
-            criteria_extension_instance_id="11000"
             criteria_catalog_type_id="11000"
-            extends="ExtensionInstances">
-        <table>
-            <children>
-                <child name="Menuitems" type="Administration" join="parent_id"/>
-            </children>
-        </table>
-        <customfields>
-            <customfield name="parameters">
-                <include name="ParametersMenuitem"/>
-                <include name="ParametersMenuitemModel"/>
-            </customfield>
-        </customfields>
-    </model>
+            criteria_extension_instance_id="0"
+            get_customfields="1"
+            get_item_children="1"
+            use_special_joins="1"
+            check_view_level_access="1"
+            process_events="1"
+            use_pagination="1"
+            extends="Render"
+            model_type="Resource"
+            data_object="Database"/>
 </extension>

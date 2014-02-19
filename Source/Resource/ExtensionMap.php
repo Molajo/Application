@@ -8,10 +8,10 @@
  */
 namespace Molajo\Resource;
 
-use stdClass;
-use Exception;
 use CommonApi\Resource\ExtensionsInterface;
 use CommonApi\Exception\RuntimeException;
+use Exception;
+use stdClass;
 
 /**
  * Extensions
@@ -173,16 +173,7 @@ class ExtensionMap implements ExtensionsInterface
      */
     protected function getCatalogExtensions($catalog_type_id, $catalog_type_model_name, $model_type)
     {
-//echo 'TypeXXX: ' . $model_type . ' Name ' . $catalog_type_id . '<br />';
-
-//        if ($model_type == 'Resource') {
-//            if ($catalog_type_model_name == 'Groups') {
-//                return array();
-//            }
-//            $items = $this->getCatalogResourceExtensions($catalog_type_id);
-//        } else {
-            $items = $this->getCatalogSystemExtensions($catalog_type_id);
-//        }
+        $items = $this->getCatalogSystemExtensions($catalog_type_id);
 
         if (is_array($items) && count($items) > 0) {
         } else {
@@ -235,14 +226,15 @@ class ExtensionMap implements ExtensionsInterface
         foreach ($ids as $id => $alias) {
             $alias = ucfirst(strtolower($alias));
 
-            if ($catalog_type_model_name == 'Resource') {
-                $model_name = 'Molajo//' . $alias . '//Extension.xml';
+            if ($catalog_type_model_name == 'Resources' || $catalog_type_model_name == 'System') {
+
+                $model_name         = 'Molajo//' . $alias . '//Extension.xml';
                 $resource_indicator = true;
 
-                if ($alias == 'Groups' || $alias == 'Images') {
+                if ($alias == 'Groups') {
                     $extensions[$id] = array();
                 } else {
-                    $extensions[$id]    = $this->getExtension($id, $model_name, $resource_indicator);
+                    $extensions[$id] = $this->getExtension($id, $model_name, $resource_indicator);
                 }
 
             } else {
@@ -444,6 +436,8 @@ class ExtensionMap implements ExtensionsInterface
      */
     protected function getExtension($id, $model_name, $resource_indicator = false)
     {
+//echo 'ExtensionMap getExtension ' . $model_name. '<br />';
+
         $item_resource = $this->resource->get(
             'query:///' . $model_name,
             array('Runtimedata' => $this->runtime_data)

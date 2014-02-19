@@ -11,8 +11,8 @@
     <description>SYSTEM_THEMES_DESCRIPTION</description>
     <model
             name="Themes"
-            primary_key_value="7000"
-            criteria_catalog_type_id="7000"
+            primary_key_value="24000"
+            criteria_catalog_type_id="12000"
             get_customfields="1"
             get_item_children="0"
             use_special_joins="1"
@@ -21,4 +21,5 @@
             use_pagination="0"
             extends="Contentextension"
             data_object="Database"/>
+
 </extension>

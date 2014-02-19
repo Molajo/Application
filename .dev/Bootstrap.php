@@ -38,7 +38,7 @@ $classmap = array_merge($classmap, $results);
 $results  = createClassMap($base . '/Source/Model', 'Molajo\\Model\\');
 $classmap = array_merge($classmap, $results);
 
-$results  = createClassMap($base . '/Source/Plugin', 'Molajo\\Plugin\\');
+$results  = createClassMap($base . '/Source/Plugin', 'Molajo\\Plugins\\');
 $classmap = array_merge($classmap, $results);
 
 $results  = createClassMap($base . '/Source/Resource/Api', 'Molajo\\Resource\\Api\\');

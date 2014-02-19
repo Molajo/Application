@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="System" version="1.0">
-    <name>SYSTEM_PLUGINS_NAME</name>
+    <name>SYSTEM_AUDIO_NAME</name>
     <author>Amy Stephen</author>
     <create_date>January 2014</create_date>
     <copyright>Copyright (C) 2014 Amy Stephen. All rights reserved.</copyright>
@@ -8,11 +8,11 @@
     <author_email>hello@molajo.org</author_email>
     <author_url>http://molajo.org</author_url>
     <version>1.0</version>
-    <description>SYSTEM_PLUGINS_DESCRIPTION</description>
+    <description>SYSTEM_AUDIO_DESCRIPTION</description>
     <model
             name="Plugins"
-            primary_key_value="5000"
-            criteria_catalog_type_id="5000"
+            primary_key_value="24000"
+            criteria_catalog_type_id="12000"
             get_customfields="1"
             get_item_children="0"
             use_special_joins="1"

@@ -162,7 +162,7 @@ class WrapHandler extends AbstractHandler implements HandlerInterface
         } else {
 
             /** Default location */
-            $path = BASE_FOLDER . '/Source/View/Wrap/'
+            $path = BASE_FOLDER . '/Source/Views/Wraps/'
                 . ucfirst(strtolower($this->extension->alias));
 
             $this->extension->include_path = $path . '/' . 'View';

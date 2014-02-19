@@ -55,6 +55,8 @@
 
     <modelattributes>
         <modelattribute name="name" default=""/>
+        <modelattribute name="criteria_title" default=""/>
+
         <modelattribute name="data_object" default=" "/>
         <modelattribute name="class" default=""/>
         <modelattribute name="startup" default="0"/>

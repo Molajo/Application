@@ -60,7 +60,7 @@ class ErrorHandling implements ErrorHandlingInterface
      * @var    string
      * @since  1.0
      */
-    protected $error_theme = 'Molajo\\Theme\\System';
+    protected $error_theme = 'Molajo\\Themes\\System';
 
     /**
      * Page View for Offline Error
@@ -68,7 +68,7 @@ class ErrorHandling implements ErrorHandlingInterface
      * @var    string
      * @since  1.0
      */
-    protected $error_page_offline_view = 'Molajo\\View\\Page\\Offline';
+    protected $error_page_offline_view = 'Molajo\\Views\\Pages\\Offline';
 
     /**
      * Page View for Standard Error
@@ -76,7 +76,7 @@ class ErrorHandling implements ErrorHandlingInterface
      * @var    string
      * @since  1.0
      */
-    protected $error_page_view = 'Molajo\\View\\Page\\Error';
+    protected $error_page_view = 'Molajo\\Views\\Pages\\Error';
 
     /**
      * Class Constructor
@@ -93,13 +93,13 @@ class ErrorHandling implements ErrorHandlingInterface
      * @since  1.0
      */
     public function __construct(
-        $error_theme = 'Molajo\\Theme\\System',
-        $error_page_view = 'Molajo\\View\\Page\\Error',
+        $error_theme = 'Molajo\\Themes\\System',
+        $error_page_view = 'Molajo\\Views\\Pages\\Error',
         $error_message_not_authorised = 'Not Authorised',
         $error_message_not_found = 'Not Found',
         $error_message_internal_server_error = 'Internal Server Error',
-        $error_offline_theme = 'Molajo\\Theme\\System',
-        $error_page_offline_view = 'Molajo\\View\\Page\\Offline',
+        $error_offline_theme = 'Molajo\\Themes\\System',
+        $error_page_offline_view = 'Molajo\\Views\\Pages\\Offline',
         $error_message_offline_switch = 'This site is not available.\<\br /\>\ Please check back again soon.'
     ) {
         set_error_handler(array($this, 'setError'), 0);
