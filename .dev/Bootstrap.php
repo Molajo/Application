@@ -18,16 +18,18 @@ $classmap = array();
 
 $classmap = createClassMap($base . '/vendor/commonapi/controller', 'CommonApi\\Controller\\');
 
-$results  = createClassMap($base . '/vendor/commonapi/model', 'CommonApi\\Model\\');
+$results  = createClassMap($base . '/vendor/commonapi/database', 'CommonApi\\Database\\');
 $classmap = array_merge($classmap, $results);
 
 $results  = createClassMap($base . '/vendor/commonapi/event', 'CommonApi\\Event\\');
 $classmap = array_merge($classmap, $results);
 
-$results  = createClassMap($base . '/vendor/commonapi/resource', 'CommonApi\\Resource\\');
+$results  = createClassMap($base . '/vendor/commonapi/exception', 'CommonApi\\Exception\\');
+$classmap = array_merge($classmap, $results);
+$results  = createClassMap($base . '/vendor/commonapi/model', 'CommonApi\\Model\\');
 $classmap = array_merge($classmap, $results);
 
-$results  = createClassMap($base . '/vendor/commonapi/exception', 'CommonApi\\Exception\\');
+$results  = createClassMap($base . '/vendor/commonapi/resource', 'CommonApi\\Resource\\');
 $classmap = array_merge($classmap, $results);
 
 $results  = createClassMap($base . '/Source/Controller/Translations', 'Molajo\\Controller\\Translations\\');
@@ -39,7 +41,7 @@ $classmap = array_merge($classmap, $results);
 $results  = createClassMap($base . '/Source/Model', 'Molajo\\Model\\');
 $classmap = array_merge($classmap, $results);
 
-$results  = createClassMap($base . '/Source/Plugin', 'Molajo\\Plugins\\');
+$results  = createClassMap($base . '/Source/Plugins', 'Molajo\\Plugins\\');
 $classmap = array_merge($classmap, $results);
 
 $results  = createClassMap($base . '/Source/Resource/Api', 'Molajo\\Resource\\Api\\');

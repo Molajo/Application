@@ -9,8 +9,8 @@
 namespace Molajo\Controller;
 
 use Exception;
-use CommonApi\Database\DatabaseInterface;
 use CommonApi\Controller\ApplicationInterface;
+use CommonApi\Database\DatabaseInterface;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\Model\FieldhandlerInterface;
 use stdClass;
@@ -38,6 +38,22 @@ class Application implements ApplicationInterface
     protected $catalog_type_application_id = 2000;
 
     /**
+     * Applications
+     *
+     * @var    int
+     * @since  1.0
+     */
+    protected $applications = array();
+
+    /**
+     * Application Model Registry
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $model_registry = null;
+
+    /**
      * Database Instance
      *
      * @var    object
@@ -54,28 +70,20 @@ class Application implements ApplicationInterface
     protected $fieldhandler;
 
     /**
-     * Applications Instances XML
-     *
-     * @var    object
-     * @since  1.0
-     */
-    protected $applications = null;
-
-    /**
-     * Application Model Registry
-     *
-     * @var    object
-     * @since  1.0
-     */
-    protected $model_registry = null;
-
-    /**
      * Path
      *
      * @var    string
      * @since  1.0
      */
     protected $request_path = null;
+
+    /**
+     * Base Request URL
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $request_base_url = null;
 
     /**
      * Application Data
@@ -120,8 +128,8 @@ class Application implements ApplicationInterface
     /**
      * Constructor
      *
-     * @param object                $applications
-     * @param object                $model_registry
+     * @param array                 $applications
+     * @param null|object           $model_registry
      * @param DatabaseInterface     $database
      * @param FieldhandlerInterface $fieldhandler
      * @param string                $request_path
@@ -130,8 +138,8 @@ class Application implements ApplicationInterface
      * @since  1.0
      */
     public function __construct(
-        $applications,
-        $model_registry,
+        array $applications = array(),
+        $model_registry = null,
         DatabaseInterface $database,
         FieldhandlerInterface $fieldhandler,
         $request_path,
@@ -153,37 +161,40 @@ class Application implements ApplicationInterface
      */
     public function setApplication()
     {
-        if (strpos($this->request_path, '/') == 0) {
-            $this->request_path = substr($this->request_path, 1, 99999);
+        if (substr($this->request_path, - 1) == '/') {
+            $this->request_path = substr($this->request_path, 0, strlen($this->request_path) - 1);
         }
 
-        if (strpos($this->request_path, '/')) {
-            $applicationTest = substr($this->request_path, 0, strpos($this->request_path, '/'));
+        if (strpos($this->request_path, '/') == true) {
+            $application_test = substr($this->request_path, 0, strpos($this->request_path, '/'));
         } else {
-            $applicationTest = $this->request_path;
+            $application_test = $this->request_path;
         }
 
-        foreach ($this->applications as $app) {
+        $application_test = trim(strtolower($application_test));
 
-            $xml_name = (string)$app->name;
-
-            if (strtolower(trim($xml_name)) == strtolower(trim($applicationTest))) {
-                $this->name      = $app->name;
-                $this->id        = $app->id;
-                $this->base_path = $app->name . '/';
-                $this->path      = substr($this->request_path, strlen($this->base_path), 999);
-
-                break;
-            }
+        if (isset($this->applications[$application_test])) {
+            $app = $this->applications[$application_test];
+        } else {
+            $app = $this->applications['default'];
         }
 
-        if ($this->name === null) {
-            $this->name      = $this->applications->default->name;
-            $this->id        = $this->applications->default->id;
+        $this->name = $app->name;
+        $this->id   = $app->id;
+
+        if ($app->base_path == '') {
             $this->base_path = '';
             $this->path      = $this->request_path;
+        } else {
+            $this->base_path = $app->name;
+            $this->path      = substr($this->request_path, strlen(trim($this->base_path)), 999);
         }
 
+        if ($this->path === false) {
+            $this->path = '';
+        } elseif ($this->path === '/') {
+            $this->path = '';
+        }
         return $this;
     }
 
@@ -295,7 +306,7 @@ class Application implements ApplicationInterface
     {
         $query = $this->database->getQueryObject();
 
-        $query->select('*');
+        $query->select($this->database->qn('site_id'));
         $query->from($this->database->qn('#__site_applications'));
         $query->where(
             $this->database->qn('application_id')
@@ -303,13 +314,12 @@ class Application implements ApplicationInterface
         );
         $query->where(
             $this->database->qn('site_id')
-            . ' = ' . $this->database->q($site_id)
+            . ' = ' . (int) $site_id
         );
 
-        $valid = $this->database->loadObjectList();
+        $valid = $this->database->loadResult();
 
-        if ($valid === false) {
-        } else {
+        if ($valid === (int) $site_id) {
             return $this;
         }
 
@@ -320,8 +330,9 @@ class Application implements ApplicationInterface
      * Process Customfield Group
      *
      * @param   string $group
+     * @param   object $data
      *
-     * @return  mixed
+     * @return  stdClass
      * @since   1.0
      */
     protected function processCustomfieldGroup($group, $data)
@@ -411,6 +422,7 @@ class Application implements ApplicationInterface
 
         try {
             $value = $this->fieldhandler->filter($key, $value, $filter);
+
         } catch (Exception $e) {
             throw new RuntimeException
             ('Request: Filter class Failed for Key: ' . $key . ' Filter: ' . $filter . ' ' . $e->getMessage());

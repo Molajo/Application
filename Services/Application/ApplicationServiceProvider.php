@@ -8,9 +8,10 @@
  */
 namespace Molajo\Services\Application;
 
-use CommonApi\IoC\ServiceProviderInterface;
 use CommonApi\Exception\RuntimeException;
+use CommonApi\IoC\ServiceProviderInterface;
 use Molajo\IoC\AbstractServiceProvider;
+use stdClass;
 
 /**
  * Application Service Provider
@@ -69,9 +70,8 @@ class ApplicationServiceProvider extends AbstractServiceProvider implements Serv
     {
         parent::onBeforeInstantiation($dependency_values);
 
-        $this->dependencies['applications']     =
-            $this->dependencies['Resource']->get('xml:///Molajo//Model//Application//Instances.xml');
-        $this->dependencies['model_registry']   =
+        $this->dependencies['applications']   = $this->getApplicationInstances();
+        $this->dependencies['model_registry'] =
             $this->dependencies['Resource']->get('xml:///Molajo//Model//Datasource//Application.xml');
 
         $this->dependencies['request_path']     = $this->dependencies['Request']->path;
@@ -146,5 +146,28 @@ class ApplicationServiceProvider extends AbstractServiceProvider implements Serv
         $this->set_services['Runtimedata'] = $this->dependencies['Runtimedata'];
 
         return $this->set_services;
+    }
+
+    /**
+     * Service Provider Controller requests any Services (other than the current service) to be saved
+     *
+     * @return  array
+     * @since   1.0
+     */
+    public function getApplicationInstances()
+    {
+        $xml          = $this->dependencies['Resource']->get('xml:///Molajo//Model//Application//Instances.xml');
+        $applications = array();
+
+        foreach ($xml as $app) {
+            $row            = new stdClass();
+            $row->name      = trim(strtolower((string)$app->name));
+            $row->id        = $app->id;
+            $row->base_path = $app->name . '/';
+
+            $applications[$row->name] = $app;
+        }
+
+        return $applications;
     }
 }
