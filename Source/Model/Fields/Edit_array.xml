@@ -1,6 +1,0 @@
-<field
-        name="edit_array"
-        type="char"
-        null="0"
-        default="{{EditTitle,Edit_title}}{{EditEditor,Edit_editor}}{{EditAdditional,Edit_subeditor}}{{EditPublishing,Edit_sidebar1}}{{EditCategorization,Edit_sidebar2}}{{EditMetadata,Edit_sidebar3}}{{EditResponses,Edit_sidebar4}}{{EditAdvanced,Edit_footer}}"
-        />

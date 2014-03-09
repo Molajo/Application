@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<model
-        name="Profiler"
-        class="Profiler"
-        class_query_method="getProfiler"
-        class_query_method_parameter="'Template'"
-        process_events="0"/>
