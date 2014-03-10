@@ -50,6 +50,7 @@ class XmlHandler extends AbstractHandler implements HandlerInterface
      * @since  1.0
      */
     public function __construct(
+        $base_path,
         array $resource_map = array(),
         array $namespace_prefixes = array(),
         array $valid_file_extensions = array(),
@@ -57,6 +58,7 @@ class XmlHandler extends AbstractHandler implements HandlerInterface
         ConfigurationInterface $dataobject_handler = null
     ) {
         parent::__construct(
+            $base_path,
             $resource_map,
             $namespace_prefixes,
             $valid_file_extensions

@@ -91,13 +91,13 @@ class ThemeHandler extends AbstractHandler implements HandlerInterface
         $resource
     ) {
         parent::__construct(
+            $base_path,
             $resource_map,
             $namespace_prefixes,
             $valid_file_extensions,
             $resource
         );
 
-        $this->base_path  = $base_path;
         $this->extensions = $extensions;
         $this->resource   = $resource;
     }

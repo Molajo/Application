@@ -83,7 +83,7 @@ class MenuitemHandler extends AbstractHandler implements HandlerInterface
      * @since  1.0
      */
     public function __construct(
-        $base_path = null,
+        $base_path,
         array $resource_map = array(),
         array $namespace_prefixes = array(),
         array $valid_file_extensions = array(),

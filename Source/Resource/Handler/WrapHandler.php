@@ -23,14 +23,6 @@ use CommonApi\Exception\RuntimeException;
 class WrapHandler extends AbstractHandler implements HandlerInterface
 {
     /**
-     * Base Path
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $base_path = null;
-
-    /**
      * Rendering Extensions
      *
      * @var    object
