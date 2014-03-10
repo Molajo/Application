@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model
+        name="Assets"
+        class="Registry"
+        class_query_method="getData"
+        class_query_method_parameter="'Template'"
+        process_events="1"/>

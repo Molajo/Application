@@ -1,0 +1,6 @@
+<field name="configuration_toolbar_buttons"
+       type="char"
+       null="0"
+       default="save"
+       values="save"
+        />

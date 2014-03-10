@@ -1,0 +1,1 @@
+<field name="edit_footer" type="char" null="0" default="{{EditPermissions,edit_footer_*}}"/>

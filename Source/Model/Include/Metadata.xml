@@ -1,0 +1,6 @@
+<include field="Metadata_title"/>
+<include field="Metadata_description"/>
+<include field="Metadata_keywords"/>
+<include field="Metadata_robots"/>
+<include field="Metadata_author"/>
+<include field="Metadata_content_rights"/>
