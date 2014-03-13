@@ -1,1 +1,0 @@
-<field name="grid_toolbar_buttons" type="char" null="0" default="{{Toolbar,grid_toolbar_button_*}}"/>

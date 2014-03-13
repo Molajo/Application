@@ -1,1 +1,0 @@
-<field name="grid_display_filters" type="char" null="0" default="{{GridDisplayFilters,grid_filter_*}}"/>

@@ -1,5 +1,0 @@
-<field
-        name="configuration_broadcast"
-        type="char"
-        null="0"
-        default="{{Broadcast,enable_broadcast_*}}"/>

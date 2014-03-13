@@ -1,6 +1,0 @@
-<field
-        name="configuration_response"
-        type="char"
-        null="0"
-        default="{{Categorize,enable_response_*}}"
-        />
