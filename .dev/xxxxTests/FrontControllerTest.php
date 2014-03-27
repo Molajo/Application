@@ -77,28 +77,28 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Get a Service, recursively resolving dependencies
+     * Schedule Factory recursively resolving dependencies
      *
-     * @param   string $service_name
+     * @param   string $product_name
      * @param   array  $options
      *
      * @return  mixed
      * @since   1.0
      */
-    public function testScheduleService($service_name, array $options = array())
+    public function testScheduleService($product_name, array $options = array())
     {
         try {
-            return $this->iocc->scheduleService($service_name, $options);
+            return $this->iocc->scheduleFactoryMethod($product_name, $options);
 
         } catch (Exception $e) {
-            throw new RuntimeException ('Frontcontroller scheduleService Failed ' . $e->getMessage());
+            throw new RuntimeException ('Frontcontroller scheduleFactoryMethod Failed ' . $e->getMessage());
         }
     }
 
     /**
      * Store Instance in the Inversion of Control Container
      *
-     * @param   string $service_name
+     * @param   string $product_name
      * @param   object $value
      *
      * @return  $this
@@ -108,7 +108,7 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
     public function testSetContainerEntry()
     {
         try {
-            $this->iocc->set($service_name, $value);
+            $this->iocc->set($product_name, $value);
 
         } catch (Exception $e) {
             throw new RuntimeException ('Frontcontroller setContainerEntry Failed ' . $e->getMessage());
@@ -126,7 +126,7 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function testHandleErrors()
     {
-        //$this->scheduleService('ErrorHandling');
+        //$this->scheduleFactoryMethod('ErrorHandling');
         /**
          *
          * $this->redirect->set('url', $runtime_data->redirect_to_id);

@@ -1,0 +1,6 @@
+<field
+        name="configuration_customfields"
+        type="string"
+        null="0"
+        default="{{Customfields,customfields*}}"
+        />

@@ -1,0 +1,58 @@
+<include field="grid_toolbar_buttons"/>
+
+<include field="grid_toolbar_button_new"/>
+<include field="grid_toolbar_button_copy"/>
+<include field="grid_toolbar_button_filter"/>
+<include field="grid_toolbar_button_categories"/>
+<include field="grid_toolbar_button_tags"/>
+<include field="grid_toolbar_button_permissions"/>
+
+<include field="grid_actions"/>
+
+<include field="grid_action_archive"/>
+<include field="grid_action_checkin"/>
+<include field="grid_action_feature"/>
+<include field="grid_action_publish"/>
+<include field="grid_action_restore"/>
+<include field="grid_action_sticky"/>
+<include field="grid_action_trash"/>
+<include field="grid_action_delete"/>
+<include field="grid_action_unpublish"/>
+
+<include field="grid_batch"/>
+
+<include field="grid_batch_categories"/>
+<include field="grid_batch_permissions"/>
+<include field="grid_batch_tags"/>
+
+<include field="grid_display_columns"/>
+
+<include field="grid_column1"/>
+<include field="grid_column2"/>
+<include field="grid_column3"/>
+<include field="grid_column4"/>
+<include field="grid_column5"/>
+<include field="grid_column6"/>
+<include field="grid_column7"/>
+<include field="grid_column8"/>
+<include field="grid_column9"/>
+
+<include field="grid_display_filters"/>
+
+<include field="grid_filter_list1"/>
+<include field="grid_filter_list2"/>
+<include field="grid_filter_list3"/>
+<include field="grid_filter_list4"/>
+<include field="grid_filter_list5"/>
+<include field="grid_filter_list6"/>
+<include field="grid_filter_list7"/>
+<include field="grid_filter_list8"/>
+<include field="grid_filter_list9"/>
+<include field="grid_filter_search"/>
+
+<include field="grid_display_pagination"/>
+
+<include field="grid_pagination_use"/>
+<include field="grid_pagination_items_per_page"/>
+<include field="grid_pagination_ordering_column"/>
+<include field="grid_pagination_ordering_direction"/>

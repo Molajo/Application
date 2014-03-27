@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model name="Departments"
+       data_object="Datalist">
+    <table>
+        <values>
+            <value id="1" value="Department A College A"/>
+            <value id="1" value="Department B College A"/>
+            <value id="1" value="Department C College A"/>
+            <value id="1" value="Department A College B"/>
+            <value id="1" value="Department B College B"/>
+            <value id="1" value="Department C College B"/>
+            <value id="1" value="Department D College B"/>
+            <value id="1" value="Department E College B"/>
+            <value id="1" value="Department A College C"/>
+            <value id="1" value="Department B College C"/>
+            <value id="1" value="Department C College C"/>
+            <value id="1" value="Department D College C"/>
+            <value id="1" value="Department E College C"/>
+            <value id="1" value="Department F College C"/>
+        </values>
+    </table>
+</model>

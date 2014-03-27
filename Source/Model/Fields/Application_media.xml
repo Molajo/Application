@@ -1,0 +1,2 @@
+<field name="application_media" type="string" null="0"
+       default="{{Image Resizing,image*}}{{Asset Options,asset*}}{{Gravatar Settings,gravatar*}}"/>

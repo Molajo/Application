@@ -1,0 +1,5 @@
+<field name="alias"
+       type="string"
+       null="0"
+       default=" "
+        />

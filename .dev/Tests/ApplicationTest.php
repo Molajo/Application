@@ -99,8 +99,8 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
     {
         $this->model_registry = null;
 
-        $this->database       = new MockDatabase(new MockQuery);
-        $this->fieldhandler   = new MockFieldHandler();
+        $this->database     = new MockDatabase(new MockQuery);
+        $this->fieldhandler = new MockFieldHandler();
 
         $this->applications = $this->mockApplicationInstances();
 
@@ -238,7 +238,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      */
     public function testVerifySiteApplication()
     {
-// $query->from($this->database->qn('#__site_applications'));
+// $query->from('#__site_applications'));
     }
 
     /**
@@ -287,7 +287,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Service Provider Controller requests any Services (other than the current service) to be saved
+     * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
      * @since   1.0
@@ -325,6 +325,7 @@ class MockApplication extends Application implements ApplicationInterface
     {
         return $this->$key;
     }
+
     public function getData($key)
     {
         return $this->data->$key;
@@ -351,7 +352,7 @@ class MockDatabase implements DatabaseInterface
     public function __construct(
         $query
     ) {
-        $this->query     = $query;
+        $this->query = $query;
     }
 
     public function getQueryObject()

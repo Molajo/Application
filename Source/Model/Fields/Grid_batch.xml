@@ -1,0 +1,1 @@
+<field name="grid_batch" type="string" null="0" default="{{GridBatch,grid_batch_*}}"/>

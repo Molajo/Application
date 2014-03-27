@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sequence>
+    <include>assets</include>
+    <include>metadata</include>
+    <include>message</include>
+    <include>profiler</include>
+    <include>head</include>
+    <include>defer</include>
+</sequence>

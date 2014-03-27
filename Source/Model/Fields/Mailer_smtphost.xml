@@ -1,0 +1,1 @@
+<field name="mailer_smtphost" type="string" null="0" default=" "/>

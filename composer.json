@@ -1,0 +1,52 @@
+{
+    "name": "molajo/application",
+    "description": "Molajo Application for use in developing Molajo Distributions",
+    "version": "1.0.0",
+    "type": "molajo-package",
+    "keywords": ["application", "commonapi", "molajo"],
+    "homepage": "http://github.com/Molajo/Application",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Amy Stephen",
+            "email": "AmyStephen@molajo.org",
+            "homepage": "http://AmyStephen.com",
+            "role": "Developer"
+        }
+    ],
+
+    "support": {
+        "issues": "https://github.com/Molajo/Application/issues",
+        "forum": "https://groups.google.com/forum/#!forum/molajo",
+        "irc": "irc://irc.freenode.org/molajo",
+        "source": "https://github.com/Molajo/Application"
+    },
+
+    "require": {
+        "php": ">=5.4",
+        "commonapi/controller": "dev-master",
+        "commonapi/database": "dev-master",
+        "commonapi/model": "dev-master",
+        "commonapi/event": "dev-master",
+        "commonapi/resource": "dev-master",
+        "commonapi/exception": "dev-master"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Molajo\\": "Source/Extensions/",
+            "Molajo\\Controller\\": "Source/Controller/",
+            "Molajo\\Fieldhandler\\": "Source/Fieldhandler/",
+            "Molajo\\Model\\": "Source/Model/",
+            "Molajo\\Plugins\\": "Source/Plugins/",
+            "Molajo\\Resource\\": "Source/Resource/",
+            "Molajo\\Factories\\": "Factories/"
+        }
+    },
+
+    "archive": {
+        "exclude": ["/.dev"]
+    },
+
+    "minimum-stability": "dev"
+}

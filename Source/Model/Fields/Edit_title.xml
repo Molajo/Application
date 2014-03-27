@@ -1,0 +1,1 @@
+<field name="edit_title" type="string" null="0" default="{{EditTitle,edit_title_*}}"/>

@@ -53,7 +53,7 @@ $classmap = array_merge($classmap, $results);
 $results  = createClassMap($base . '/Source/Resource/Factory', 'Molajo\\Resource\\Factory\\');
 $classmap = array_merge($classmap, $results);
 
-$results  = createClassMap($base . '/Source/Resource/Handler', 'Molajo\\Resource\\Handler\\');
+$results  = createClassMap($base . '/Source/Resource/Handler', 'Molajo\\Resource\\Adapter\\');
 $classmap = array_merge($classmap, $results);
 
 ksort($classmap);
