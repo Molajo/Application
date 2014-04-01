@@ -8,6 +8,7 @@
  */
 namespace Molajo\Plugins\Csrftoken;
 
+use Molajo\Controller\RandomString;
 use Molajo\Plugins\AbstractPlugin;
 
 /**
@@ -28,7 +29,6 @@ class CsrftokenPlugin extends AbstractPlugin
     public function onBeforeResponse()
     {
         $rendered = $this->rendered_page;
-
         if ($rendered === null
             || trim($rendered) == ''
         ) {
@@ -43,6 +43,10 @@ class CsrftokenPlugin extends AbstractPlugin
             return $this;
         }
 
+        $random_string = new RandomString();
+
+        $formToken = $random_string->generateString();
+
         $replaceThis = array();
         $withThis    = array();
         $i           = 0;
@@ -51,11 +55,9 @@ class CsrftokenPlugin extends AbstractPlugin
 
         foreach ($distinct as $match) {
 
-            $formToken = serialize(rand(rand(50000, 500000), rand(500000, 50000000)));
-
             $withThis[] = $match
                 . chr(10)
-                . '<input name="info" type="hidden" value="">'
+                . '<input type="text" name="info" style="display: none;" autofill="off">'
                 . chr(10)
                 . '<input type="hidden" name="' . $formToken . '" value="token">';
 

@@ -125,7 +125,7 @@ class ApplicationPlugin extends SystemEventPlugin implements SystemInterface
 
         $controller->where(
             'column',
-            'a.status',
+            'status',
             '>',
             'integer',
             '0'
@@ -186,11 +186,9 @@ class ApplicationPlugin extends SystemEventPlugin implements SystemInterface
         $controller->setModelRegistry('query_object', 'list');
         $controller->setModelRegistry('use_pagination', 0);
 
-        $prefix = $controller->getModelRegistry('primary_prefix', 'a');
-
         $controller->where(
             'column',
-            $prefix . '.' . 'extension_id',
+            $controller->getModelRegistry('primary_prefix', 'a') . '.' . 'extension_id',
             '=',
             'integer',
             (int)$menu_id
@@ -198,7 +196,7 @@ class ApplicationPlugin extends SystemEventPlugin implements SystemInterface
 
         $controller->where(
             'column',
-            $prefix . '.' . 'status',
+            $controller->getModelRegistry('primary_prefix', 'a') . '.' . 'status',
             '>',
             'integer',
             0
@@ -212,8 +210,8 @@ class ApplicationPlugin extends SystemEventPlugin implements SystemInterface
             1
         );
 
-        $controller->orderBy($prefix . '.' . 'menu', 'ASC');
-        $controller->orderBy($prefix . '.' . 'lft', 'ASC');
+        $controller->orderBy($controller->getModelRegistry('primary_prefix', 'a') . '.' . 'menu', 'ASC');
+        $controller->orderBy($controller->getModelRegistry('primary_prefix', 'a') . '.' . 'lft', 'ASC');
 
         $rows = $controller->getData();
 

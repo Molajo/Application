@@ -119,6 +119,7 @@ class ResourcePlugin extends SystemEventPlugin implements SystemInterface
 //        echo '<pre>';
 //VAR_DUMP($this->plugin_data->resource);
 //        die;
+
         return $this;
     }
 
@@ -271,8 +272,6 @@ class ResourcePlugin extends SystemEventPlugin implements SystemInterface
      */
     protected function getResourceGridMenuItem()
     {
-        echo 'yes';
-        die;
         $x        = explode('/', $this->runtime_data->route->sef_request);
         $resource = ucfirst(strtolower($x[0]));
 
@@ -306,7 +305,7 @@ class ResourcePlugin extends SystemEventPlugin implements SystemInterface
             $grid_menuitem_parameters = $grid_menuitem->parameters;
             unset($grid_menuitem->parameters);
 
-            $grid_menuitem_model_registry = $controller->model->model_registry;
+            $grid_menuitem_model_registry = $controller->getModelRegistry('*');
 
         } catch (Exception $e) {
             throw new UnexpectedValueException ($e->getMessage());
@@ -369,7 +368,7 @@ class ResourcePlugin extends SystemEventPlugin implements SystemInterface
             $parameters = $data->parameters;
             unset($data->parameters);
 
-            $model_registry = $controller->model->model_registry;
+            $model_registry = $controller->getModelRegistry('*');
 
         } catch (Exception $e) {
             throw new UnexpectedValueException ($e->getMessage());

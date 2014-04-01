@@ -153,6 +153,11 @@ class PagetypedashboardPlugin extends DisplayEventPlugin implements DisplayInter
         }
 
         $lists = array();
+        $class = 'Molajo\\Controller\\Datalist';
+        $datalist = new $class($this->resource);
+        $options                 = array();
+        $options['runtime_data'] = $this->runtime_data;
+        $options['plugin_data']  = $this->plugin_data;
 
         if (is_array($dashboard_list) && count($dashboard_list) > 0) {
 
@@ -169,7 +174,7 @@ class PagetypedashboardPlugin extends DisplayEventPlugin implements DisplayInter
                     if (isset($this->plugin_data->datalists->$list)) {
                         $value = $this->plugin_data->datalists->$list;
                     } else {
-                        $value = $this->getFilter($list);
+                        $value = $datalist->getDatalist($list, $options);
                     }
 
                     if (is_array($value) && count($value) > 0) {

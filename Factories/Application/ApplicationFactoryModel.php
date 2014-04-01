@@ -122,7 +122,7 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
         $base_url  = $this->dependencies['Runtimedata']->request->data->base_url;
         $base_path = $this->dependencies['Runtimedata']->application->base_path;
 
-        $this->dependencies['Runtimedata']->application->base_url = $base_url . '/' . $base_path;
+        $this->dependencies['Runtimedata']->application->base_url = $base_url . $base_path . '/';
 
         return $this;
     }

@@ -359,7 +359,7 @@ class TextController implements TextInterface
             return $query_results;
         }
 
-        $query = $this->resource->get('query:///' . $model_type . '/' . $model_name);
+        $query = $this->resource->get('query:///' . $model_type . '//' . $model_name);
 
         $query->setModelRegistry('check_view_level_access', 0);
         $query->setModelRegistry('process_events', 1);
@@ -374,28 +374,10 @@ class TextController implements TextInterface
 
         $first = true;
         if (count($fields) < 2) {
-
-            $query->query->select(
-                'DISTINCT '
-                . $primary_prefix
-                . '.'
-                . $primary_key
-                . ' as id'
-            );
-
-            $query->query->select(
-                $primary_prefix
-                . '.'
-                . $name_key
-                . ' as value'
-            );
-
-            $query->query->order(
-                $primary_prefix
-                . '.'
-                . $name_key
-                . ' ASC'
-            );
+            $query->setDistinct(true);
+            $query->select($primary_prefix . '.' . $primary_key, 'id');
+            $query->select($primary_prefix . '.' . $name_key, 'value');
+            $query->orderBy($primary_prefix . '.' . $name_key, 'ASC');
         } else {
 
             $ordering = '';
@@ -403,9 +385,9 @@ class TextController implements TextInterface
             foreach ($fields as $field) {
 
                 if (isset($field['alias'])) {
-                    $alias = $field['alias'];
+                    $prefix = $field['alias'];
                 } else {
-                    $alias = $primary_prefix;
+                    $prefix = $primary_prefix;
                 }
 
                 $name = $field['name'];
@@ -417,39 +399,38 @@ class TextController implements TextInterface
                 } else {
                     $as       = 'value';
                     $distinct = '';
-                    $ordering = $alias . '.' . $name;
+                    $ordering = $prefix . '.' . $name;
                 }
 
-                $query->query->select(
-                    $distinct
-                    . ' '
-                    . $alias
-                    . '.'
-                    . $name
-                    . ' as ' . $as
-                );
+                if (trim($distinct) == 'distinct') {
+                    $query->setDistinct(true);
+                }
+                $query->select($primary_prefix . '.' . $primary_key, 'id');
+                $query->select($prefix . '.' . $name, $as);
             }
 
-            $query->query->order($ordering . ' ASC');
+            $query->orderBy($ordering, 'ASC');
         }
 
         if ($query->get('extension_instance_id', 0) == 0) {
         } else {
             $this->whereCriteria(
+                'column',
                 'extension_instance_id',
-                $query->get('extension_instance_id'),
-                $primary_prefix,
-                $query
+                '=',
+                'integer',
+                $query->get('extension_instance_id')
             );
         }
 
         if ($query->get('catalog_type_id', 0) == 0) {
         } else {
             $this->whereCriteria(
+                'column',
                 'catalog_type_id',
-                $query->get('catalog_type_id'),
-                $primary_prefix,
-                $query
+                '=',
+                'integer',
+                $query->get('catalog_type_id')
             );
         }
 
@@ -486,7 +467,7 @@ class TextController implements TextInterface
     protected function whereCriteria($field, $value, $alias, $query)
     {
         if (strrpos($value, ',') > 0) {
-            $query->query->where(
+            $query->where(
                 $alias
                 . '.'
                 . $field
@@ -494,7 +475,7 @@ class TextController implements TextInterface
             );
         } elseif ((int)$value == 0) {
         } else {
-            $query->query->where(
+            $query->where(
                 $alias
                 . '.'
                 . $field
@@ -517,7 +498,7 @@ class TextController implements TextInterface
      */
     protected function publishedStatus(array $query = array(), $primary_prefix = 'a')
     {
-        $query->query->where(
+        $query->where(
             $primary_prefix
             . '.'
             . 'status'
@@ -525,7 +506,7 @@ class TextController implements TextInterface
             . 0
         );
 
-        $query->query->where(
+        $query->where(
             '('
             . $primary_prefix
             . '.'
@@ -541,7 +522,7 @@ class TextController implements TextInterface
             . ')'
         );
 
-        $query->query->where(
+        $query->where(
             '('
             . $primary_prefix
             . '.'

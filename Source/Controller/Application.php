@@ -373,7 +373,7 @@ class Application implements ApplicationInterface
             if (isset($customfields['type'])) {
                 $data_type = $customfields['type'];
             } else {
-                $data_type = 'char';
+                $data_type = 'string';
             }
 
             $temp[$key] = $this->filter($key, $value, $data_type);

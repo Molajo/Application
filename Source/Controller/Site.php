@@ -232,9 +232,9 @@ class Site implements SiteInterface
 
         $this->site_base_path     = $this->base_path . '/Sites/' . $this->id;
         $this->sites_media_folder = $this->base_path . '/Sites/Public/Media';
-        $this->sites_media_url    = $this->base_url . '/Media';
+        $this->sites_media_url    = $this->base_url . 'Media';
         $this->site_media_folder  = $this->base_path . '/Sites/Public/Media/' . $this->id;
-        $this->site_media_url     = $this->base_url . '/Media/' . $this->id;
+        $this->site_media_url     = $this->base_url . 'Media/' . $this->id;
 
         return $this;
     }
@@ -276,14 +276,18 @@ class Site implements SiteInterface
         $query->select('id');
         $query->from('#__site_applications');
         $query->where(
-            'application_id'
-            . ' = '
-            . $this->id
+            'column',
+            'application_id',
+            '=',
+            'integer',
+            $this->id
         );
         $query->where(
-            'site_id'
-            . ' = '
-            . $site_id
+            'column',
+            'site_id',
+            '=',
+            'integer',
+            $site_id
         );
 
         $valid = $this->database->loadResult($query->getSQL());

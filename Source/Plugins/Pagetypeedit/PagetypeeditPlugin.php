@@ -9,6 +9,7 @@
 namespace Molajo\Plugins\Pagetypeedit;
 
 use CommonApi\Event\DisplayInterface;
+use Molajo\Controller\Form;
 use Molajo\Plugins\DisplayEventPlugin;
 
 /**
@@ -20,6 +21,14 @@ use Molajo\Plugins\DisplayEventPlugin;
  */
 class PagetypeeditPlugin extends DisplayEventPlugin implements DisplayInterface
 {
+    /**
+     * Form class
+     *
+     * @var    object  Molajo\Controller\Form;
+     * @since  1.0
+     */
+    protected $form;
+
     /**
      * Prepares Configuration Data
      *
@@ -40,12 +49,14 @@ class PagetypeeditPlugin extends DisplayEventPlugin implements DisplayInterface
         $customfieldgroups = $model_registry['customfieldgroups'];
         $section_array     = $parameters->edit_array;
 
-        $this->setFormSections($section_array);
-        $this->setFormSectionFieldsets($parameters);
-        $this->setFormFieldsetFields($parameters, $model_registry);
+        $this->form = new Form();
+
+        $this->form->setFormSections($section_array);
+        $form_section_fieldsets = $this->form->setFormSectionFieldsets($parameters);
+        $this->form->setFormFieldsetFields($parameters, $model_registry, false);
 
         $template_views = array();
-        foreach ($this->form_section_fieldsets as $key => $item) {
+        foreach ($form_section_fieldsets as $key => $item) {
             $template_views[] = $key;
         }
 
@@ -113,13 +124,20 @@ class PagetypeeditPlugin extends DisplayEventPlugin implements DisplayInterface
     {
         //@todo figure out selected value
         $selected = '';
+        $lists = array();
+
+        $class = 'Molajo\\Controller\\Datalist';
+        $datalist = new $class($this->resource);
+        $options                 = array();
+        $options['runtime_data'] = $this->runtime_data;
+        $options['plugin_data']  = $this->plugin_data;
 
         $list = strtolower($list);
 
         if (isset($this->plugin_data->datalists->$list)) {
             $value = $this->plugin_data->datalists->$list;
         } else {
-            $value = $this->getFilter($list);
+            $value = $datalist->getDatalist($list, $options);
         }
 
         if (is_array($value) && count($value) > 0) {

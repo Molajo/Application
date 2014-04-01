@@ -367,7 +367,6 @@ class ExtensionMap implements ExtensionsInterface
             . 'alias'
         );
 
-
         $extensions_controller->select(
             $extensions_controller->getModelRegistry('primary_prefix', 'a')
             . '.'

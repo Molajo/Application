@@ -14,8 +14,8 @@
         </fields>
         <criteria>
             <where name="a.protected"
-                   connector="!="
-                   value="2"/>
+                   connector="="
+                   value="0"/>
         </criteria>
     </table>
 </model>

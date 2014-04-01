@@ -292,8 +292,7 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
         );
 
         /** Status */
-//              $list = $parameters->grid_status;
-        $list = '';
+        $list = $parameters->grid_status;
         if ($list == '' || trim($list) == '' || $list === null) {
         } else {
             $grid->where(
@@ -361,9 +360,8 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
 
         if (count($results) > 0) {
             foreach ($results as $item) {
-                $temp_row = new stdClass();
                 $name     = $item->$name_key;
-                $temp_row = $item;
+                $temp_row = clone $item;
 
                 if (isset($item->lvl)) {
                 } else {
@@ -417,9 +415,12 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
             $grid_list_number = 'grid_filter_list' . $i;
 
             if (isset($parameters->$grid_list_number)) {
+
                 if (trim($parameters->$grid_list_number) == '') {
+
                 } else {
                     if (in_array($grid_list_number, $temp)) {
+
                     } else {
                         $temp[]         = $grid_list_number;
                         $row            = new stdClass();
@@ -430,7 +431,12 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
             }
         }
 
-        $lists = array();
+        $class = 'Molajo\\Controller\\Datalist';
+        $datalist = new $class($this->resource);
+
+        $options                 = array();
+        $options['runtime_data'] = $this->runtime_data;
+        $options['plugin_data']  = $this->plugin_data;
 
         if (is_array($grid_list) && count($grid_list) > 0) {
 
@@ -447,7 +453,7 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
                     if (isset($this->plugin_data->datalists->$list)) {
                         $value = $this->plugin_data->datalists->$list;
                     } else {
-                        $value = $this->getFilter($list);
+                        $value = $datalist->getDatalist($list, $options);
                     }
 
                     if (is_array($value) && count($value) > 0) {
@@ -574,14 +580,21 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
     {
         $parameters = $this->plugin_data->resource->menuitem->parameters;
 
+        $class = 'Molajo\\Controller\\Datalist';
+        $datalist = new $class($this->resource);
+
+        $options                 = array();
+        $options['runtime_data'] = $this->runtime_data;
+        $options['plugin_data']  = $this->plugin_data;
+
         if ((int)$parameters->grid_batch_categories == 1) {
-            $this->plugin_data->grid_batch_categories = $this->getFilter('Categories');
+            $this->plugin_data->grid_batch_categories = $datalist->getDatalist('Categories', $options);
         }
         if ((int)$parameters->grid_batch_tags == 1) {
-            $this->plugin_data->grid_batch_tags = $this->getFilter('Tags');
+            $this->plugin_data->grid_batch_tags = $datalist->getDatalist('Tags', $options);
         }
         if ((int)$parameters->grid_batch_permissions == 1) {
-            $this->plugin_data->grid_batch_groups = $this->getFilter('Groups');
+            $this->plugin_data->grid_batch_groups = $datalist->getDatalist('Groups', $options);
         }
 
         return $this;

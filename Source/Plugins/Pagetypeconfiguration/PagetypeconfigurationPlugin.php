@@ -9,6 +9,7 @@
 namespace Molajo\Plugins\Pagetypeconfiguration;
 
 use CommonApi\Event\DisplayInterface;
+use Molajo\Controller\Form;
 use Molajo\Plugins\DisplayEventPlugin;
 use stdClass;
 
@@ -21,6 +22,14 @@ use stdClass;
  */
 class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayInterface
 {
+    /**
+     * Form class
+     *
+     * @var    object  Molajo\Controller\Form;
+     * @since  1.0
+     */
+    protected $form;
+
     /**
      * Prepares data for the Administrator Grid
      *
@@ -43,6 +52,7 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
 
         $this->setFieldFilter();
         $this->setFormFields();
+        $this->setFormActions();
 
         return $this;
     }
@@ -118,25 +128,26 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
 
         $section_array = $parameters->configuration_array;
 
-        $this->setFormSections($section_array);
-        $this->setFormSectionFieldsets($parameters);
-        $this->setFormFieldsetFields($parameters, $model_registry, false);
+        $this->form = new Form();
+
+        $this->form->setFormSections($section_array);
+        $form_section_fieldsets       = $this->form->setFormSectionFieldsets($parameters);
+        $form_section_fieldset_fields = $this->form->setFormFieldsetFields($parameters, $model_registry, false);
 
         $template_views = array();
-        foreach ($this->form_section_fieldsets as $key => $item) {
+        foreach ($form_section_fieldsets as $key => $item) {
             $template_views[] = $key;
         }
 
         /** Set non-custom field views */
         foreach ($template_views as $template) {
             $temp = array();
-            foreach ($this->form_section_fieldset_fields as $item) {
+            foreach ($form_section_fieldset_fields as $item) {
                 if ($template == $item->template_view) {
                     $temp[$item->name] = $this->setFormFieldProperties($item, $parameters, $metadata);
                 }
             }
-            $template = strtolower($template);
-
+            $template                     = strtolower($template);
             $this->plugin_data->$template = $temp;
         }
 
@@ -190,7 +201,7 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
         } else {
             $field             = array();
             $field['name']     = 'none';
-            $field['type']     = 'char';
+            $field['type']     = 'string';
             $field['null']     = 0;
             $field['default']  = '';
             $item              = $this->setCustomfieldItem($field, 1, $customfield);
@@ -225,7 +236,7 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
         if (isset($field['type'])) {
             $item->type = $field['type'];
         } else {
-            $item->type = 'char';
+            $item->type = 'string';
         }
 
         if (isset($field['null'])) {
@@ -290,7 +301,7 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
 
         if (isset($item->type)) {
         } else {
-            $item->type = 'char';
+            $item->type = 'string';
         }
 
         return $item;
@@ -342,7 +353,7 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
 
         if (isset($item->type)) {
         } else {
-            $item->type = 'char';
+            $item->type = 'string';
         }
 
         return $item;
@@ -359,8 +370,14 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
     protected function getSelectlist($list)
     {
         //@todo figure out selected value
-
         $selected = '';
+
+        $class    = 'Molajo\\Controller\\Datalist';
+        $datalist = new $class($this->resource);
+
+        $options                 = array();
+        $options['runtime_data'] = $this->runtime_data;
+        $options['plugin_data']  = $this->plugin_data;
 
         $list = strtolower($list);
 
@@ -371,7 +388,7 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
             return $this;
 
         } else {
-            $value = $this->getFilter($list);
+            $value = $datalist->getDatalist($list, $options);
         }
 
         if (is_array($value) && count($value) > 0) {
@@ -390,5 +407,25 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
         $this->plugin_data->$list = $value;
 
         return $this;
+    }
+
+    /**
+     * Get Select List and save results in plugin data
+     *
+     * @param   string $list
+     *
+     * @return  $this
+     * @ince    1.0
+     */
+    protected function setFormActions()
+    {
+        $actions                                       = new stdClass();
+        $this->row->form_action                        = 'action="' . $this->plugin_data->page->urls['page'] . '"';
+        $this->row->form_method                        = ' method="get"';
+        $this->row->form_name                          = ' name="configuration';
+        $this->row->form_id                            = ' id="configuration';
+        $this->row->form_class                         = '';
+        $this->row->form_attributes                    = '';
+        $this->plugin_data->configuration_form_actions = $actions;
     }
 }
