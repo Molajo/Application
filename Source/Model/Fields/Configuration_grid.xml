@@ -1,6 +1,0 @@
-<field
-        name="configuration_grid"
-        type="string"
-        null="0"
-        default="{{Grid,grid_*}}"
-        />

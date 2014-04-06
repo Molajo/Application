@@ -45,7 +45,7 @@ class PlugindataFactoryMethod extends FactoryMethodBase implements FactoryInterf
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException;
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()
     {
@@ -53,11 +53,6 @@ class PlugindataFactoryMethod extends FactoryMethodBase implements FactoryInterf
         $plugin_data->page                     = new stdClass();
         $plugin_data->page->urls               = array();
         $plugin_data->datalists                = new stdClass();
-        $plugin_data->resource                 = new stdClass();
-        $plugin_data->resource->data           = new stdClass();
-        $plugin_data->resource->parameters     = new stdClass();
-        $plugin_data->resource->model_registry = new stdClass();
-        $plugin_data->render                   = new stdClass();
 
         $this->product_result = $plugin_data;
 

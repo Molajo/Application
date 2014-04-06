@@ -44,7 +44,7 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
      *
      * @return  array
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException;
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = null)
     {
@@ -65,7 +65,7 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
      *
      * @return  array
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException;
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function onBeforeInstantiation(array $dependency_values = null)
     {

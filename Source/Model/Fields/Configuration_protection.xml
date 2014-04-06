@@ -1,6 +1,0 @@
-<field
-        name="configuration_protection"
-        type="string"
-        null="0"
-        default="{{Protection,enable_protection*}}"
-        />

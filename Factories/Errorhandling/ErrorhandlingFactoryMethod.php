@@ -44,7 +44,7 @@ class ErrorhandlingFactoryMethod extends FactoryMethodBase implements FactoryInt
      *
      * @return  array
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException;
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = null)
     {

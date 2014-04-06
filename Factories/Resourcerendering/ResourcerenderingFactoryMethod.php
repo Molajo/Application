@@ -43,7 +43,7 @@ class ResourcerenderingFactoryMethod extends FactoryMethodBase implements Factor
      *
      * @return  array
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException;
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = null)
     {
@@ -61,7 +61,7 @@ class ResourcerenderingFactoryMethod extends FactoryMethodBase implements Factor
      *
      * @return  array
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException;
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function onBeforeInstantiation(array $dependency_values = null)
     {
@@ -127,7 +127,7 @@ class ResourcerenderingFactoryMethod extends FactoryMethodBase implements Factor
      *
      * @return  mixed
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException;
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function createHandler(
         $adapter,
@@ -162,7 +162,7 @@ class ResourcerenderingFactoryMethod extends FactoryMethodBase implements Factor
      *
      * @return  object
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException;
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function createScheme()
     {

@@ -1,4 +1,0 @@
-Framework
-=========
-
-Molajo Base Framework

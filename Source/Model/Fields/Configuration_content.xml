@@ -1,6 +1,0 @@
-<field
-        name="configuration_content"
-        type="string"
-        null="0"
-        default="{{Content,enable_content_*}}"
-        />

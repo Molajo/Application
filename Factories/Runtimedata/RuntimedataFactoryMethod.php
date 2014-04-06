@@ -49,19 +49,24 @@ class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInter
      */
     public function instantiateClass()
     {
-        $runtime_data                  = new stdClass();
-        $runtime_data->error_code      = 0;
-        $runtime_data->redirect_to_id  = 0;
-        $runtime_data->base_path       = $this->options['base_path'];
-        $runtime_data->request         = new stdClass();
-        $runtime_data->request->data   = new stdClass();
-        $runtime_data->request->client = new stdClass();
-        $runtime_data->request->server = new stdClass();
-        $runtime_data->site            = new stdClass();
-        $runtime_data->application     = new stdClass();
-        $runtime_data->route           = new stdClass();
-        $runtime_data->user            = new stdClass();
-        $runtime_data->reference_data  = new stdClass();
+        $runtime_data                           = new stdClass();
+        $runtime_data->error_code               = 0;
+        $runtime_data->redirect_to_id           = 0;
+        $runtime_data->base_path                = $this->options['base_path'];
+        $runtime_data->request                  = new stdClass();
+        $runtime_data->request->data            = new stdClass();
+        $runtime_data->request->client          = new stdClass();
+        $runtime_data->request->server          = new stdClass();
+        $runtime_data->site                     = new stdClass();
+        $runtime_data->application              = new stdClass();
+        $runtime_data->route                    = new stdClass();
+        $runtime_data->user                     = new stdClass();
+        $runtime_data->reference_data           = new stdClass();
+        $runtime_data->resource                 = new stdClass();
+        $runtime_data->resource->data           = new stdClass();
+        $runtime_data->resource->parameters     = new stdClass();
+        $runtime_data->resource->model_registry = new stdClass();
+        $runtime_data->render                   = new stdClass();
 
         $this->product_result = $runtime_data;
 
