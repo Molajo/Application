@@ -1,0 +1,6 @@
+<field
+        name="configuration_array"
+        type="string"
+        null="0"
+        default="{{Basic,Configuration_basic}}{{Extension Metadata,Configuration_metadata}}{{Enable Content,Configuration_content}}{{Broadcast,Configuration_broadcast}}{{Categorize,Configuration_categorize}}{{Protection,Configuration_protection}}{{Response,Configuration_response}}{{System,Configuration_system}}{{Custom Fields,Configuration_customfields}}{{EditToolbarNew,Edit_toolbar_buttons_new}}{{EditTitle,Edit_title}}{{EditEditor,Edit_editor}}{{EditAdditional,Edit_subeditor}}{{EditPublishing,Edit_sidebar1}}{{EditCategorization,Edit_sidebar2}}{{EditMetadata,Edit_sidebar3}}{{EditResponses,Edit_sidebar4}}{{EditAdvanced,Edit_footer}}{{GridActions,Grid_actions}}{{GridToolbar,Grid_toolbar_buttons}}{{GridBatch,Grid_batch}}{{GridDisplayColumns,Grid_display_columns}}{{GridDisplayFilters,Grid_display_filters}}{{GridDisplayPagination,Grid_display_pagination}}{{ViewForm,Configuration_form}}{{Permissions,Configuration_permissions}}"
+        />

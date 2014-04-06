@@ -1,0 +1,15 @@
+<include field="configuration_array"/>
+<include field="configuration_toolbar_buttons"/>
+<include field="configuration_basic"/>
+<include field="configuration_broadcast"/>
+<include field="configuration_categorize"/>
+<include field="configuration_customfields"/>
+<include field="configuration_content"/>
+<include field="configuration_metadata"/>
+<include field="configuration_permissions"/>
+<include field="configuration_protection"/>
+<include field="configuration_response"/>
+<include field="configuration_system"/>
+<include field="configuration_views"/>
+<include field="configuration_item"/>
+<include field="configuration_list"/>

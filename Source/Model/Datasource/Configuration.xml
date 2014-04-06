@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model
+        name="Configuration"
+        extends="Menuitem">
+    <customfields>
+        <customfield name="parameters">
+            <include name="ParametersConfiguration"/>
+            <include name="ParametersForm"/>
+            <include name="ParametersCache"/>
+        </customfield>
+    </customfields>
+</model>

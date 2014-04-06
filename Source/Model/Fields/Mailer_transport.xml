@@ -1,0 +1,1 @@
+<field name="mailer_transport" type="string" null="0" default="text" datalist="Mailertransport"/>

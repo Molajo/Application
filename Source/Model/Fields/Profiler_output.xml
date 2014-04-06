@@ -1,0 +1,3 @@
+<field name="profiler_output" type="html" null="0"
+       default="Actions,Application,Permissions,Queries,Rendering,Routing,Factories,Plugins"
+       values="Actions,Application,Permissions,Queries,Rendering,Routing,Factories,Plugins"/>

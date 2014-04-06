@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model
+        name="Render"
+        process_events="1"
+        extends="Extensioninstances">
+    <table>
+        <plugins>
+            <include name="Contentplugins"/>
+        </plugins>
+        <children>
+            <child name="Comments" type="Resources" join="parent_id"/>
+        </children>
+    </table>
+    <customfields>
+        <customfield name="customfields">
+            <include field="tags"/>
+            <include field="categories"/>
+            <include field="author_notes"/>
+        </customfield>
+        <customfield name="parameters">
+            <include name="ParametersNew"/>
+            <include name="ParametersItem"/>
+            <include name="ParametersItemModel"/>
+            <include name="ParametersList"/>
+            <include name="ParametersListModel"/>
+            <include name="ParametersEdit"/>
+            <include name="ParametersCriteria"/>
+            <include name="ParametersCache"/>
+        </customfield>
+    </customfields>
+</model>

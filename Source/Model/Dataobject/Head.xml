@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model
+        name="Head"
+        class="Resources"
+        class_query_method="getData"
+        class_query_method_parameter=""
+        process_events="1"/>
+
