@@ -19,7 +19,7 @@ use Exception;
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
- * @since      1.0
+ * @since      1.0.0
  */
 class FrontController implements FrontControllerInterface, ScheduleInterface
 {
@@ -55,12 +55,13 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      */
     protected $steps = array(
         'initialise',
+        'authenticate',
         'route',
+        'authorise',
         'resource',
         'execute',
         'response'
     );
-    //'authenticate', 'authorise'
 
     /**
      * Schedule Event Callback
@@ -312,6 +313,28 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
     }
 
     /**
+     * Authenticate
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function authenticate()
+    {
+        try {
+            $results = $this->scheduleFactoryMethod('User');
+
+        } catch (Exception $e) {
+            throw new RuntimeException ('Frontcontroller Authenticate Method Failed: ' . $e->getMessage());
+        }
+
+        if (isset($results->error_code) && (int)$results->error_code > 0) {
+            $this->handleErrors();
+        }
+
+        return $this;
+    }
+
+    /**
      * Route the Application
      *
      * @return  $this
@@ -325,6 +348,29 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
 
         } catch (Exception $e) {
             throw new RuntimeException ('Frontcontroller Route Method Failed: ' . $e->getMessage());
+        }
+
+        if (isset($results->error_code) && (int)$results->error_code > 0) {
+            $this->handleErrors();
+        }
+
+        return $this;
+    }
+
+    /**
+     * Authorise the Application
+     *
+     * @return  $this
+     * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    protected function authorise()
+    {
+        try {
+            $results = $this->scheduleFactoryMethod('Authorisation');
+
+        } catch (Exception $e) {
+            throw new RuntimeException ('Frontcontroller Authorise Method Failed: ' . $e->getMessage());
         }
 
         if (isset($results->error_code) && (int)$results->error_code > 0) {
@@ -376,7 +422,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
     {
         if ($this->scheduleFactoryMethod('Runtimedata')->route->method == 'GET') {
 
-            $proxy_driver = $this->scheduleFactoryMethod('Render');
+            $render_proxy = $this->scheduleFactoryMethod('Render');
             $plugin_data  = $this->scheduleFactoryMethod('Plugindata');
             $runtime_data = $this->scheduleFactoryMethod('Runtimedata');
             $include_file = $runtime_data->resource->extensions->theme->extension->path;
@@ -386,7 +432,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             $data['plugin_data']  = $plugin_data;
             $data['runtime_data'] = $runtime_data;
 
-            $proxy_driver->render($include_file, $data);
+            $render_proxy->render($include_file, $data);
         }
 
         // create

@@ -19,7 +19,7 @@ use Molajo\IoC\FactoryMethodBase;
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
- * @since      1.0
+ * @since      1.0.0
  */
 class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
 {
@@ -110,6 +110,20 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
         );
 
         return $this;
+    }
+
+    /**
+     * Request for array of Factory Methods to be Scheduled
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function scheduleFactories()
+    {
+        $options = array();
+        $this->schedule_factory_methods['Language'] = $options;
+
+        return $this->schedule_factory_methods;
     }
 
     /**
