@@ -1,6 +1,0 @@
-<field
-        name="configuration_categorize"
-        type="string"
-        null="0"
-        default="{{Categorize,enable_categorize_*}}"
-        />
