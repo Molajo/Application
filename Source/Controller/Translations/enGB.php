@@ -6,9 +6,7 @@
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
-namespace Molajo\Controller\NumberToText\Translations;
-
-use CommonApi\Controller\LoadTranslationInterface;
+namespace Molajo\Controller\Translations;
 
 /**
  * en-GB Translation
@@ -17,7 +15,7 @@ use CommonApi\Controller\LoadTranslationInterface;
  * @subpackage  NumberToText
  * @since       1.0
  */
-class enGB implements LoadTranslationInterface
+class enGB
 {
     /**
      * Translation Strings for Numbers

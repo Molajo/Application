@@ -36,7 +36,7 @@
         "psr-4": {
             "Molajo\\": "Source/Extensions/",
             "Molajo\\Controller\\": "Source/Controller/",
-            "Molajo\\Fieldhandler\\": "Source/Fieldhandler/",
+            "Molajo\\Fieldhandler\\Adapter\\": "Source/Fieldhandler/",
             "Molajo\\Model\\": "Source/Model/",
             "Molajo\\Plugins\\": "Source/Plugins/",
             "Molajo\\Resource\\": "Source/Resource/",

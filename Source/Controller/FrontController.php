@@ -300,6 +300,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
         $this->createScheduleEventCallback();
 
         foreach ($this->requests as $request) {
+
             try {
                 $this->scheduleFactoryMethod($request);
 

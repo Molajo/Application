@@ -18,7 +18,7 @@ use CommonApi\Exception\RuntimeException;
  * @subpackage  NumberToText
  * @since       1.0
  */
-class Controller implements TranslateInterface
+class Translate implements TranslateInterface
 {
     /**
      * Translation Strings for Numbers
@@ -43,7 +43,7 @@ class Controller implements TranslateInterface
 
         $locale = str_replace('-', '', $locale);
 
-        $class = 'Molajo\\NumberToText\\Translations\\' . $locale;
+        $class = 'Molajo\\Translations\\' . $locale;
 
         try {
             $translate                    = new $class();
