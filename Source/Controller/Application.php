@@ -403,13 +403,14 @@ class Application implements ApplicationInterface
     protected function filter($key, $value = null, $data_type)
     {
         try {
-            $value = $this->fieldhandler->filter($key, $value, $data_type);
+            $results = $this->fieldhandler->filter($key, $value, $data_type);
 
         } catch (Exception $e) {
             throw new RuntimeException
-            ('Request: Filter class Failed for Key: ' . $key . ' Filter: ' . $data_type . ' ' . $e->getMessage());
+            ('Application: Filter class Failed for Key: ' . $key
+                . ' Filter: ' . $data_type . ' ' . $e->getMessage());
         }
 
-        return $value;
+        return $results->getReturnValue();
     }
 }

@@ -266,7 +266,7 @@ class ResourceController implements ResourceInterface
      */
     protected function getResourceMenu()
     {
-       if ($this->page_type == 'Dashboard') {
+        if ($this->page_type == 'Dashboard') {
             return $this;
         }
 

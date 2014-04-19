@@ -80,6 +80,14 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
     protected $first_step = true;
 
     /**
+     * Normal Ending
+     *
+     * @var    boolean
+     * @since  1.0
+     */
+    protected $normal_ending = false;
+
+    /**
      * Constructor
      *
      * @param  ScheduleInterface $queue
@@ -128,7 +136,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             $this->first_step = false;
         }
 
-        define('NormalEnding', true);
+        $this->normal_ending = true;
 
         restore_error_handler();
 
@@ -154,7 +162,9 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
 
         } catch (Exception $e) {
             throw new RuntimeException
-            ('Frontcontroller scheduleEvent Get Event Factory Failed: ' . $e->getMessage());
+            (
+                'Frontcontroller scheduleEvent Get Event Factory Failed: ' . $e->getMessage()
+            );
         }
 
         try {
@@ -255,7 +265,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      */
     public function shutdown()
     {
-        if (defined('NormalEnding')) {
+        if ($this->normal_ending) {
         } else {
             echo 'Failed Run';
         }
@@ -305,8 +315,10 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
                 $this->scheduleFactoryMethod($request);
 
             } catch (Exception $e) {
-                throw new RuntimeException ('Frontcontroller Initialise Schedule Factory Failed for '
-                . $request . ' ' . $e->getMessage());
+                throw new RuntimeException (
+                    'Frontcontroller Initialise Schedule Factory Failed for '
+                    . $request . ' ' . $e->getMessage()
+                );
             }
         }
 
@@ -390,7 +402,9 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
     protected function resource()
     {
         try {
+
             $resource_instance = $this->scheduleFactoryMethod('Resourcecontroller');
+
             $resource = $resource_instance->getResource();
 
         } catch (Exception $e) {
@@ -402,7 +416,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
         }
 
         try {
-            $runtime_data = $this->scheduleFactoryMethod('Runtimedata');
+            $runtime_data           = $this->scheduleFactoryMethod('Runtimedata');
             $runtime_data->resource = $resource;
             $this->setContainerEntry('Runtimedata', $runtime_data);
 
@@ -432,8 +446,10 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             $data['page_name']    = $runtime_data->resource->extensions->page->extension->id;
             $data['plugin_data']  = $plugin_data;
             $data['runtime_data'] = $runtime_data;
+            $data['base_path']    = $this->base_path;
 
             $render_proxy->render($include_file, $data);
+
         }
 
         // create

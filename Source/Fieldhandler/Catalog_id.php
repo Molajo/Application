@@ -1,6 +1,6 @@
 <?php
 /**
- * Integer Fieldhandler
+ * Catalog_id Fieldhandler
  *
  * @package    Molajo
  * @copyright  2014 Amy Stephen. All rights reserved.
@@ -8,7 +8,6 @@
  */
 namespace Molajo\Fieldhandler\Adapter;
 
-use CommonApi\Exception\UnexpectedValueException;
 use CommonApi\Model\FieldhandlerAdapterInterface;
 
 /**
@@ -22,101 +21,59 @@ use CommonApi\Model\FieldhandlerAdapterInterface;
 class Catalog_id extends AbstractFieldhandler implements FieldhandlerAdapterInterface
 {
     /**
-     * Constructor
-     *
-     * @param   string $method
-     * @param   string $field_name
-     * @param   mixed  $field_value
-     * @param   array  $fieldhandler_type_chain
-     * @param   array  $options
-     *
-     * @since   1.0
-     */
-    public function __construct(
-        $method,
-        $field_name,
-        $field_value,
-        $fieldhandler_type_chain,
-        $options = array()
-    ) {
-        parent::__construct($method, $field_name, $field_value, $fieldhandler_type_chain, $options);
-    }
-
-    /**
      * Validate Input
      *
-     * @return  mixed
-     * @since   1.0
-     * @throws  \CommonApi\Exception\UnexpectedValueException
+     * @return  boolean
+     * @since   1.0.0
      */
     public function validate()
     {
-        parent::validate();
-
-        if ($this->getFieldValue() === null) {
-        } else {
-
-            $test = filter_var($this->getFieldValue(), FILTER_VALIDATE_INT, $this->setFlags());
-
-            if ($test == true) {
-            } else {
-                throw new UnexpectedValueException
-                ('Validate Catalog_id: Invalid Value');
-            }
+        if ($this->field_value === null) {
+            return true;
         }
 
-        return $this->getFieldValue();
+        if (filter_var($this->field_value, FILTER_VALIDATE_INT, $this->setFlags())) {
+            return true;
+        }
+
+        $this->setErrorMessage(2000);
+
+        return false;
     }
 
     /**
-     * Fieldhandler Input
+     * Filter Input
      *
      * @return  mixed
-     * @since   1.0
+     * @since   1.0.0
      */
     public function filter()
     {
-        parent::filter();
-
-        if ($this->getFieldValue() === null) {
+        if ($this->field_value === null) {
         } else {
-
-            $test = filter_var($this->getFieldValue(), FILTER_VALIDATE_INT, $this->setFlags());
-
-            if ($test == true) {
-            } else {
-                $this->setFieldValue(filter_var($this->getFieldValue(), FILTER_SANITIZE_NUMBER_INT));
-            }
+            $this->field_value = filter_var($this->field_value, FILTER_VALIDATE_INT, $this->setFlags());
         }
 
-        return $this->getFieldValue();
+        return $this->field_value;
     }
 
     /**
      * Escapes and formats output
      *
      * @return  mixed
-     * @since   1.0
+     * @since   1.0.0
+     * @throws  \CommonApi\Exception\UnexpectedValueException
      */
     public function escape()
     {
-        parent::escape();
-
-        $test = filter_var($this->getFieldValue(), FILTER_VALIDATE_INT, $this->setFlags());
-
-        if ($test == true) {
-        } else {
-            $this->setFieldValue(filter_var($this->getFieldValue(), FILTER_SANITIZE_NUMBER_INT));
-        }
-
-        return $this->getFieldValue();
+        return $this->filter();
     }
 
     /**
      * Flags can be set in options array
      *
      * @return  mixed
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setFlags()
     {

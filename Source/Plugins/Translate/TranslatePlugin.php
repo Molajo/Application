@@ -37,6 +37,9 @@ class TranslatePlugin extends DisplayEventPlugin implements DisplayInterface
      */
     public function onAfterRender()
     {
+
+        return $this;
+
         $tokens_to_translate = $this->parseTokens();
 
         if (count($tokens_to_translate[1]) == 0) {
