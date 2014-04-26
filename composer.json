@@ -31,7 +31,7 @@
         "commonapi/event": "dev-master",
         "commonapi/resource": "dev-master",
         "commonapi/exception": "dev-master",
-        "commonapi/query": "dev-master"
+        "molajo/ioc": "dev-master"
     },
 
     "autoload": {
