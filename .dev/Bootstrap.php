@@ -17,18 +17,16 @@ $base     = substr(__DIR__, 0, strlen(__DIR__) - 5);
 $classmap = array();
 
 $classmap = createClassMap($base . '/vendor/commonapi/controller', 'CommonApi\\Controller\\');
-
 $results  = createClassMap($base . '/vendor/commonapi/database', 'CommonApi\\Database\\');
 $classmap = array_merge($classmap, $results);
-
 $results  = createClassMap($base . '/vendor/commonapi/event', 'CommonApi\\Event\\');
 $classmap = array_merge($classmap, $results);
-
 $results  = createClassMap($base . '/vendor/commonapi/exception', 'CommonApi\\Exception\\');
+$classmap = array_merge($classmap, $results);
+$results  = createClassMap($base . '/vendor/commonapi/ioc', 'CommonApi\\IoC\\');
 $classmap = array_merge($classmap, $results);
 $results  = createClassMap($base . '/vendor/commonapi/model', 'CommonApi\\Model\\');
 $classmap = array_merge($classmap, $results);
-
 $results  = createClassMap($base . '/vendor/commonapi/resource', 'CommonApi\\Resource\\');
 $classmap = array_merge($classmap, $results);
 
@@ -50,7 +48,7 @@ $classmap = array_merge($classmap, $results);
 $results  = createClassMap($base . '/Source/Resource/Adapter', 'Molajo\\Resource\\Adapter\\');
 $classmap = array_merge($classmap, $results);
 
-$classmap['Molajo\\Reflection\\Source'] = $processing_base . '/Source/Resource/ExtensionMap.php';
+$classmap['Molajo\\Resource\\ExtensionMap'] = $base . '/Source/Resource/ExtensionMap.php';
 
 $results  = createClassMap($base . '/Factories', 'Molajo\\Factories\\');
 $classmap = array_merge($classmap, $results);
