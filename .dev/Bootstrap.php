@@ -32,6 +32,9 @@ $classmap = array_merge($classmap, $results);
 $results  = createClassMap($base . '/vendor/commonapi/resource', 'CommonApi\\Resource\\');
 $classmap = array_merge($classmap, $results);
 
+$results  = createClassMap($base . '/vendor/commonapi/query', 'CommonApi\\Query\\');
+$classmap = array_merge($classmap, $results);
+
 $results  = createClassMap($base . '/Source/Controller/Translations', 'Molajo\\Controller\\Translations\\');
 $classmap = array_merge($classmap, $results);
 
@@ -44,16 +47,12 @@ $classmap = array_merge($classmap, $results);
 $results  = createClassMap($base . '/Source/Plugins', 'Molajo\\Plugins\\');
 $classmap = array_merge($classmap, $results);
 
-$results  = createClassMap($base . '/Source/Resource/Api', 'Molajo\\Resource\\Api\\');
+$results  = createClassMap($base . '/Source/Resource/Adapter', 'Molajo\\Resource\\Adapter\\');
 $classmap = array_merge($classmap, $results);
 
-$results  = createClassMap($base . '/Source/Resource/Configuration', 'Molajo\\Resource\\Configuration\\');
-$classmap = array_merge($classmap, $results);
+$classmap['Molajo\\Reflection\\Source'] = $processing_base . '/Source/Resource/ExtensionMap.php';
 
-$results  = createClassMap($base . '/Source/Resource/Factory', 'Molajo\\Resource\\Factory\\');
-$classmap = array_merge($classmap, $results);
-
-$results  = createClassMap($base . '/Source/Resource/Handler', 'Molajo\\Resource\\Adapter\\');
+$results  = createClassMap($base . '/Factories', 'Molajo\\Factories\\');
 $classmap = array_merge($classmap, $results);
 
 ksort($classmap);

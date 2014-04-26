@@ -376,7 +376,7 @@ class Application implements ApplicationInterface
                 $data_type = 'string';
             }
 
-            $temp[$key] = $this->filter($key, $value, $data_type);
+            $temp[$key] = $this->sanitize($key, $value, $data_type);
         }
 
         ksort($temp);
@@ -400,14 +400,14 @@ class Application implements ApplicationInterface
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    protected function filter($key, $value = null, $data_type)
+    protected function sanitize($key, $value = null, $data_type)
     {
         try {
-            $results = $this->fieldhandler->filter($key, $value, $data_type);
+            $results = $this->fieldhandler->sanitize($key, $value, $data_type);
 
         } catch (Exception $e) {
             throw new RuntimeException
-            ('Application: Filter class Failed for Key: ' . $key
+            ('Application: Fieldhandler Sanitize class Failed for Key: ' . $key
                 . ' Filter: ' . $data_type . ' ' . $e->getMessage());
         }
 
