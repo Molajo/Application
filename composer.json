@@ -26,6 +26,7 @@
         "php": ">=5.4",
         "commonapi/controller": "dev-master",
         "commonapi/database": "dev-master",
+        "commonapi/ioc": "dev-master",
         "commonapi/model": "dev-master",
         "commonapi/event": "dev-master",
         "commonapi/resource": "dev-master",
