@@ -136,8 +136,9 @@ class ExtensionMap implements ExtensionsInterface
             $results = $catalog_type_controller->getData();
 
         } catch (Exception $e) {
-            throw new RuntimeException
-            ('ExtensionMap:getCatalogTypes Query Failed' . $e->getMessage());
+            throw new RuntimeException(
+                'ExtensionMap:getCatalogTypes Query Failed' . $e->getMessage()
+            );
         }
 
         $names       = array();
@@ -327,7 +328,7 @@ class ExtensionMap implements ExtensionsInterface
             return $extensions_controller->getData();
 
         } catch (Exception $e) {
-            throw new RuntimeException ($e->getMessage());
+            throw new RuntimeException($e->getMessage());
         }
     }
 
@@ -419,7 +420,7 @@ class ExtensionMap implements ExtensionsInterface
             return $extensions_controller->getData();
 
         } catch (Exception $e) {
-            throw new RuntimeException ($e->getMessage());
+            throw new RuntimeException($e->getMessage());
         }
     }
 
@@ -460,7 +461,7 @@ class ExtensionMap implements ExtensionsInterface
 
         } catch (Exception $e) {
             echo 'RenderingExtensionsFactoryMethod: Extension not found: ' . $model_name;
-            throw new RuntimeException ($e->getMessage());
+            throw new RuntimeException($e->getMessage());
         }
 
         $model_registry = $item_resource->getModelRegistry('*');

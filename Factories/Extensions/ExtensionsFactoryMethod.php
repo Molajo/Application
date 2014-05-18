@@ -104,8 +104,9 @@ class ExtensionsFactoryMethod extends FactoryMethodBase implements FactoryInterf
                     $this->dependencies['extensions_filename']
                 );
             } catch (Exception $e) {
-                throw new RuntimeException
-                ('Render: Could not instantiate Handler: ' . $this->product_namespace);
+                throw new RuntimeException(
+                    'Render: Could not instantiate Handler: ' . $this->product_namespace
+                );
             }
 
             $extensions           = $this->product_result->createMap();

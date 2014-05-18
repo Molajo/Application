@@ -257,13 +257,13 @@ class Application implements ApplicationInterface
         $x = $this->database->loadObjectList($this->query->getSQL());
 
         if ($x === false) {
-            throw new RuntimeException ('Application: Error executing getApplication Query');
+            throw new RuntimeException('Application: Error executing getApplication Query');
         } else {
             $data = $x[0];
         }
 
         if ($this->model_registry === null) {
-            throw new RuntimeException ('Application: Model Registry for Application Configuration missing');
+            throw new RuntimeException('Application: Model Registry for Application Configuration missing');
         }
 
         $this->data->id              = (int)$data->id;
@@ -326,8 +326,9 @@ class Application implements ApplicationInterface
             return $this;
         }
 
-        throw new RuntimeException
-        ('Application::verifySiteApplication Site: ' . $site_id . ' not authorised for Application: ' . $this->id);
+        throw new RuntimeException(
+            'Application::verifySiteApplication Site: ' . $site_id . ' not authorised for Application: ' . $this->id
+        );
     }
 
     /**
@@ -406,11 +407,12 @@ class Application implements ApplicationInterface
             $results = $this->fieldhandler->sanitize($key, $value, $data_type);
 
         } catch (Exception $e) {
-            throw new RuntimeException
-            ('Application: Fieldhandler Sanitize class Failed for Key: ' . $key
-                . ' Filter: ' . $data_type . ' ' . $e->getMessage());
+            throw new RuntimeException(
+                'Application: Fieldhandler Sanitize class Failed for Key: ' . $key
+                . ' Filter: ' . $data_type . ' ' . $e->getMessage()
+            );
         }
 
-        return $results->getReturnValue();
+        return $results->getFieldValue();
     }
 }

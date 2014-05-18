@@ -49,8 +49,9 @@ class Translate implements TranslateInterface
             $translate                    = new $class();
             $this->number_translate_array = $translate->loadTranslation();
         } catch (RuntimeException $e) {
-            throw new RuntimeException
-            ('NumberToText Translate Error Loading ' . $class . ' ' . $e->getMessage());
+            throw new RuntimeException(
+                'NumberToText Translate Error Loading ' . $class . ' ' . $e->getMessage()
+            );
         }
     }
 

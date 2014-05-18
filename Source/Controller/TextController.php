@@ -437,7 +437,7 @@ class TextController implements TextInterface
         try {
             $values = $query->getData();
         } catch (Exception $e) {
-            throw new RuntimeException ($e->getMessage());
+            throw new RuntimeException($e->getMessage());
         }
 
         $query_results = array();
@@ -623,7 +623,9 @@ class TextController implements TextInterface
     ) {
         $count_lorem_set = count($this->lorem_set) - 1;
         if ($count_lorem_set < 10) {
-            throw new RuntimeException ('Text Utility: getPlaceHolderText requires more than 10 lorem_set words.');
+            throw new RuntimeException(
+                'Text Utility: getPlaceHolderText requires more than 10 lorem_set words.'
+            );
         }
 
         if ((int)$number_of_paragraphs === 0) {

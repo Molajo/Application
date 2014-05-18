@@ -364,13 +364,14 @@ abstract class AbstractPlugin
     protected function filter($key, $value = null, $filter, $filter_options = array())
     {
         try {
-            $results = $this->fieldhandler->filter($key, $value, $filter, $filter_options);
+            $results = $this->fieldhandler->sanitize($key, $value, $filter, $filter_options);
 
         } catch (Exception $e) {
-            throw new RuntimeException
-            ('Request: Filter class Failed for Key: ' . $key . ' Filter: ' . $filter . ' ' . $e->getMessage());
+            throw new RuntimeException(
+                'Request: Filter class Failed for Key: ' . $key . ' Filter: ' . $filter . ' ' . $e->getMessage()
+            );
         }
 
-        return $results->getReturnValue();;
+        return $results->getFieldValue();
     }
 }

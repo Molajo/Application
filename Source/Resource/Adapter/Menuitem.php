@@ -213,8 +213,9 @@ class Menuitem extends AbstractAdapter implements AdapterInterface
             $this->resource->get('Css:///' . $this->extension->resource_namespace, $options);
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            ('Resource Menuitem Handler: Get Menuitem CSS failed: ' . $this->extension->resource_namespace);
+            throw new RuntimeException(
+                'Resource Menuitem Handler: Get Menuitem CSS failed: ' . $this->extension->resource_namespace
+            );
         }
 
         try {
@@ -224,8 +225,9 @@ class Menuitem extends AbstractAdapter implements AdapterInterface
             $this->resource->get('Js:///' . $this->extension->resource_namespace, $options);
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            ('Resource Menuitem Handler: Get Menuitem Js failed: ' . $this->extension->resource_namespace);
+            throw new RuntimeException(
+                'Resource Menuitem Handler: Get Menuitem Js failed: ' . $this->extension->resource_namespace
+            );
         }
 
         return $this->extension;

@@ -128,7 +128,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
                 $this->$step();
 
             } catch (Exception $e) {
-                throw new RuntimeException ($e->getMessage());
+                throw new RuntimeException($e->getMessage());
             }
 
             $this->scheduleEvent($event_name = 'onAfter' . ucfirst(strtolower($step)));
@@ -161,8 +161,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             $event_instance = $this->scheduleFactoryMethod('Event', $options);
 
         } catch (Exception $e) {
-            throw new RuntimeException
-            (
+            throw new RuntimeException(
                 'Frontcontroller scheduleEvent Get Event Factory Failed: ' . $e->getMessage()
             );
         }
@@ -171,7 +170,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             $results = $this->scheduleFactoryMethod('Dispatcher')->scheduleEvent($event_name, $event_instance);
 
         } catch (Exception $e) {
-            throw new RuntimeException ('Frontcontroller scheduleEvent Failed ' . $e->getMessage());
+            throw new RuntimeException('Frontcontroller scheduleEvent Failed ' . $e->getMessage());
         }
 
         if (count($results) > 0) {
@@ -200,7 +199,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             return $this->queue->scheduleFactoryMethod($product_name, $options);
 
         } catch (Exception $e) {
-            throw new RuntimeException ('Frontcontroller scheduleFactoryMethod Failed ' . $e->getMessage());
+            throw new RuntimeException('Frontcontroller scheduleFactoryMethod Failed ' . $e->getMessage());
         }
     }
 
@@ -224,7 +223,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             $this->queue->scheduleFactoryMethod($product_name, $options);
 
         } catch (Exception $e) {
-            throw new RuntimeException ('Frontcontroller setContainerEntry Failed ' . $e->getMessage());
+            throw new RuntimeException('Frontcontroller setContainerEntry Failed ' . $e->getMessage());
         }
 
         return $this;
@@ -315,7 +314,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
                 $this->scheduleFactoryMethod($request);
 
             } catch (Exception $e) {
-                throw new RuntimeException (
+                throw new RuntimeException(
                     'Frontcontroller Initialise Schedule Factory Failed for '
                     . $request . ' ' . $e->getMessage()
                 );
@@ -337,7 +336,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             $results = $this->scheduleFactoryMethod('User');
 
         } catch (Exception $e) {
-            throw new RuntimeException ('Frontcontroller Authenticate Method Failed: ' . $e->getMessage());
+            throw new RuntimeException('Frontcontroller Authenticate Method Failed: ' . $e->getMessage());
         }
 
         if (isset($results->error_code) && (int)$results->error_code > 0) {
@@ -360,7 +359,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             $results = $this->scheduleFactoryMethod('Route');
 
         } catch (Exception $e) {
-            throw new RuntimeException ('Frontcontroller Route Method Failed: ' . $e->getMessage());
+            throw new RuntimeException('Frontcontroller Route Method Failed: ' . $e->getMessage());
         }
 
         if (isset($results->error_code) && (int)$results->error_code > 0) {
@@ -383,7 +382,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             $results = $this->scheduleFactoryMethod('Authorisation');
 
         } catch (Exception $e) {
-            throw new RuntimeException ('Frontcontroller Authorise Method Failed: ' . $e->getMessage());
+            throw new RuntimeException('Frontcontroller Authorise Method Failed: ' . $e->getMessage());
         }
 
         if (isset($results->error_code) && (int)$results->error_code > 0) {
@@ -408,7 +407,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             $resource = $resource_instance->getResource();
 
         } catch (Exception $e) {
-            throw new RuntimeException ('Frontcontroller Resource Controller Method Failed: ' . $e->getMessage());
+            throw new RuntimeException('Frontcontroller Resource Controller Method Failed: ' . $e->getMessage());
         }
 
         if (isset($resource->error_code) && (int)$resource->error_code > 0) {
@@ -421,7 +420,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             $this->setContainerEntry('Runtimedata', $runtime_data);
 
         } catch (Exception $e) {
-            throw new RuntimeException ('Frontcontroller Resource Controller Method Failed: ' . $e->getMessage());
+            throw new RuntimeException('Frontcontroller Resource Controller Method Failed: ' . $e->getMessage());
         }
 
         return $this;

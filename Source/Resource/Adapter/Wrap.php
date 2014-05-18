@@ -203,7 +203,7 @@ class Wrap extends AbstractAdapter implements AdapterInterface
     {
         if (file_exists($located_path)) {
         } else {
-            throw new RuntimeException ('ResourceController: Wrapview not found.');
+            throw new RuntimeException('ResourceController: Wrapview not found.');
         }
 
         try {
@@ -213,8 +213,9 @@ class Wrap extends AbstractAdapter implements AdapterInterface
             $this->resource->get('Css:///' . $this->extension->resource_namespace, $options);
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            ('Resource Wrapview Handler: Get Wrapview CSS failed: ' . $this->extension->resource_namespace);
+            throw new RuntimeException(
+                'Resource Wrapview Handler: Get Wrapview CSS failed: ' . $this->extension->resource_namespace
+            );
         }
 
         try {
@@ -224,8 +225,9 @@ class Wrap extends AbstractAdapter implements AdapterInterface
             $this->resource->get('Js:///' . $this->extension->resource_namespace, $options);
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            ('Resource Wrapview Handler: Get Wrapview Js failed: ' . $this->extension->resource_namespace);
+            throw new RuntimeException(
+                'Resource Wrapview Handler: Get Wrapview Js failed: ' . $this->extension->resource_namespace
+            );
         }
 
         return $this->extension;

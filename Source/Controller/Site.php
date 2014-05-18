@@ -171,8 +171,9 @@ class Site implements SiteInterface
 
         if (in_array($key, $this->property_array)) {
         } else {
-            throw new RuntimeException
-            ('Site Service: attempting to get value for unknown property: ' . $key);
+            throw new RuntimeException(
+                'Site Service: attempting to get value for unknown property: ' . $key
+            );
         }
 
         if ($this->$key === null) {
@@ -226,8 +227,7 @@ class Site implements SiteInterface
         }
 
         if ($this->base_path === null) {
-            throw new RuntimeException
-            ('Sites Service: Cannot identify site for: ' . $this->base_url);
+            throw new RuntimeException('Sites Service: Cannot identify site for: ' . $this->base_url);
         }
 
         $this->site_base_path     = $this->base_path . '/Sites/' . $this->id;

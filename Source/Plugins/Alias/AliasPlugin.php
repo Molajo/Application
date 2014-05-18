@@ -57,14 +57,14 @@ class AliasPlugin extends CreateEventPlugin implements CreateInterface, UpdateIn
         }
 
         if ($this->row->alias == '') {
-            $this->row->alias = $this->fieldhandler->filter(
+            $this->row->alias = $this->fieldhandler->sanitize(
                 'alias',
                 $this->row->alias,
                 'alias',
                 array()
             );
         } else {
-            $this->row->alias = $this->fieldhandler->filter(
+            $this->row->alias = $this->fieldhandler->sanitize(
                 'title',
                 $this->row->title,
                 'alias',

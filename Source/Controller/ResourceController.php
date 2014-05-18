@@ -195,11 +195,11 @@ class ResourceController implements ResourceInterface
             $model_registry = $resource->getModelRegistry('*');
 
         } catch (Exception $e) {
-            throw new UnexpectedValueException ($e->getMessage());
+            throw new UnexpectedValueException($e->getMessage());
         }
 
         if (count($item) == 0) {
-            throw new UnexpectedValueException ('Resource Item not found.');
+            throw new UnexpectedValueException('Resource Item not found.');
         }
 
         if (isset($item->parameters->theme_id) && (int)$item->parameters->theme_id > 0) {
@@ -241,11 +241,11 @@ class ResourceController implements ResourceInterface
         try {
             $item = $this->resource_instance->getData();
         } catch (Exception $e) {
-            throw new UnexpectedValueException ($e->getMessage());
+            throw new UnexpectedValueException($e->getMessage());
         }
 
         if (count($item) == 0) {
-            throw new UnexpectedValueException ('Resource Data not found.');
+            throw new UnexpectedValueException('Resource Data not found.');
         }
 
         $this->resource->data = new stdClass();
@@ -294,11 +294,11 @@ class ResourceController implements ResourceInterface
             $menuitem = $controller->getData();
 
         } catch (Exception $e) {
-            throw new UnexpectedValueException ($e->getMessage());
+            throw new UnexpectedValueException($e->getMessage());
         }
 
         if (count($menuitem) == 0) {
-            throw new UnexpectedValueException ('Resource Plugin: Resource Menu Item not found.');
+            throw new UnexpectedValueException('Resource Plugin: Resource Menu Item not found.');
         }
 
         if (isset($menuitem->parameters->theme_id)
@@ -378,12 +378,11 @@ class ResourceController implements ResourceInterface
             $grid_menuitem_model_registry = $controller->getModelRegistry('*');
 
         } catch (Exception $e) {
-            throw new UnexpectedValueException ($e->getMessage());
+            throw new UnexpectedValueException($e->getMessage());
         }
 
         if (count($grid_menuitem) == 0) {
-            throw new UnexpectedValueException
-            (
+            throw new UnexpectedValueException(
                 'Resource Plugin getResourceGridMenuItem: Resource Grid Menu Item not found.'
             );
         }
@@ -443,7 +442,7 @@ class ResourceController implements ResourceInterface
             $model_registry = $controller->getModelRegistry('*');
 
         } catch (Exception $e) {
-            throw new UnexpectedValueException ($e->getMessage());
+            throw new UnexpectedValueException($e->getMessage());
         }
 
         $parameter_keys = array();

@@ -131,7 +131,9 @@ class ErrorHandling implements ErrorHandlingInterface
         } elseif ($error_code == 503) {
             $error_message = $this->error_message_offline_switch;
         } else {
-            throw new ErrorThrownAsException ($error_message, 0, $error_code, $file, $line);
+            throw new ErrorThrownAsException(
+                $error_message, 0, $error_code, $file, $line
+            );
         }
 
         $error_object->error_code    = $error_code;

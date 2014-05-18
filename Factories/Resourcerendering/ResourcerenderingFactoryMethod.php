@@ -148,8 +148,9 @@ class ResourcerenderingFactoryMethod extends FactoryMethodBase implements Factor
                 $this->dependencies['Resource']
             );
         } catch (Exception $e) {
-            throw new RuntimeException ('Resources Handler ' . $adapter
-            . ' Exception during Instantiation: ' . $e->getMessage());
+            throw new RuntimeException('Resources Handler ' . $adapter
+            . ' Exception during Instantiation: ' . $e->getMessage()
+            );
         }
 
         $this->dependencies['Resource']->setAdapterInstance($adapter, $adapter_instance);
@@ -173,8 +174,9 @@ class ResourcerenderingFactoryMethod extends FactoryMethodBase implements Factor
         try {
             $scheme = new $class ($input);
         } catch (Exception $e) {
-            throw new RuntimeException ('Resources Scheme ' . $class
-            . ' Exception during Instantiation: ' . $e->getMessage());
+            throw new RuntimeException('Resources Scheme ' . $class
+            . ' Exception during Instantiation: ' . $e->getMessage()
+            );
         }
 
         return $scheme;

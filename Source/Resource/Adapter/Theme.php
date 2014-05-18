@@ -204,7 +204,7 @@ class Theme extends AbstractAdapter implements AdapterInterface
     {
         if (file_exists($located_path)) {
         } else {
-            throw new RuntimeException ('ResourceController: Theme not found.');
+            throw new RuntimeException('ResourceController: Theme not found.');
         }
 
         try {
@@ -214,8 +214,9 @@ class Theme extends AbstractAdapter implements AdapterInterface
             $this->resource->get('Css:///' . $this->extension->resource_namespace, $options);
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            ('Resource Theme Handler: Get Theme CSS failed: ' . $this->extension->resource_namespace);
+            throw new RuntimeException(
+                'Resource Theme Handler: Get Theme CSS failed: ' . $this->extension->resource_namespace
+            );
         }
 
         try {
@@ -225,8 +226,9 @@ class Theme extends AbstractAdapter implements AdapterInterface
             $this->resource->get('Js:///' . $this->extension->resource_namespace, $options);
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            ('Resource Theme Handler: Get Theme JS failed: ' . $this->extension->resource_namespace);
+            throw new RuntimeException(
+                'Resource Theme Handler: Get Theme JS failed: ' . $this->extension->resource_namespace
+            );
         }
 
         return $this->extension;

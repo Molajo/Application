@@ -203,7 +203,7 @@ class Page extends AbstractAdapter implements AdapterInterface
     {
         if (file_exists($located_path)) {
         } else {
-            throw new RuntimeException ('ResourceController: Pageview not found.');
+            throw new RuntimeException('ResourceController: Pageview not found.');
         }
 
         try {
@@ -213,8 +213,9 @@ class Page extends AbstractAdapter implements AdapterInterface
             $this->resource->get('Css:///' . $this->extension->resource_namespace, $options);
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            ('Resource Pageview Handler: Get Pageview CSS failed: ' . $this->extension->resource_namespace);
+            throw new RuntimeException(
+                'Resource Pageview Handler: Get Pageview CSS failed: ' . $this->extension->resource_namespace
+            );
         }
 
         try {
@@ -224,8 +225,9 @@ class Page extends AbstractAdapter implements AdapterInterface
             $this->resource->get('Js:///' . $this->extension->resource_namespace, $options);
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            ('Resource Pageview Handler: Get Pageview Js failed: ' . $this->extension->resource_namespace);
+            throw new RuntimeException(
+                'Resource Pageview Handler: Get Pageview Js failed: ' . $this->extension->resource_namespace
+            );
         }
 
         return $this->extension;

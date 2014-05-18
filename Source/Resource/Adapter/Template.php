@@ -207,7 +207,7 @@ class Template extends AbstractAdapter implements AdapterInterface
     {
         if (file_exists($located_path)) {
         } else {
-            throw new RuntimeException ('ResourceController: Templateview not found.');
+            throw new RuntimeException('ResourceController: Templateview not found.');
         }
 
         try {
@@ -215,10 +215,12 @@ class Template extends AbstractAdapter implements AdapterInterface
             $options['located_path'] = $this->extension->path . '/Css';
             $options['priority']     = $this->catalog_type_priority;
             $this->resource->get('Css:///' . $this->extension->resource_namespace, $options);
+
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            ('Resource Templateview Handler: Get Templateview CSS failed: ' . $this->extension->resource_namespace);
+            throw new RuntimeException(
+                'Resource Templateview Handler: Get Templateview CSS failed: ' . $this->extension->resource_namespace
+            );
         }
 
         try {
@@ -228,8 +230,9 @@ class Template extends AbstractAdapter implements AdapterInterface
             $this->resource->get('Js:///' . $this->extension->resource_namespace, $options);
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            ('Resource Templateview Handler: Get Templateview Js failed: ' . $this->extension->resource_namespace);
+            throw new RuntimeException(
+                'Resource Templateview Handler: Get Templateview Js failed: ' . $this->extension->resource_namespace
+            );
         }
 
         return $this->extension;

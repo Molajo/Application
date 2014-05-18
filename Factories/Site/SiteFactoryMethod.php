@@ -87,8 +87,9 @@ class SiteFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
             );
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            ('IoC instantiateClass Failed: ' . $this->product_namespace . '  ' . $e->getMessage());
+            throw new RuntimeException('IoC instantiateClass Failed: '
+                . $this->product_namespace . '  ' . $e->getMessage()
+            );
         }
 
         return;

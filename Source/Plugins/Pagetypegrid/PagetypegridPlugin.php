@@ -333,7 +333,7 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
             $results = $grid->getData();
 
         } catch (Exception $e) {
-            throw new RuntimeException ($e->getMessage());
+            throw new RuntimeException($e->getMessage());
         }
 
         $name_key = $grid->getModelRegistry('name_key');

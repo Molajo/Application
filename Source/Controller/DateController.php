@@ -164,8 +164,9 @@ class DateController extends DateTime implements DateInterface
 
         if (isset($this->$key)) {
         } else {
-            throw new RuntimeException
-            ('Date Controller: Attempting to get value for unknown property: ' . $key);
+            throw new RuntimeException(
+                'Date Controller: Attempting to get value for unknown property: ' . $key
+            );
         }
 
         if ($this->$key === null) {
@@ -191,8 +192,9 @@ class DateController extends DateTime implements DateInterface
 
         if (isset($this->$key)) {
         } else {
-            throw new RuntimeException
-            ('Date Controller: Attempting to set value for unknown property: ' . $key);
+            throw new RuntimeException(
+                'Date Controller: Attempting to set value for unknown property: ' . $key
+            );
         }
 
         $this->$key = $value;

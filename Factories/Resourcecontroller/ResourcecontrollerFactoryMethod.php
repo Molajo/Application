@@ -88,9 +88,8 @@ class ResourcecontrollerFactoryMethod extends FactoryMethodBase implements Facto
             );
         } catch (Exception $e) {
 
-            throw new RuntimeException
-            (
-                'IoC instantiateClass Failed: ' . $this->product_namespace . '  ' . $e->getMessage()
+            throw new RuntimeException('IoC instantiateClass Failed: '
+                . $this->product_namespace . '  ' . $e->getMessage()
             );
         }
 

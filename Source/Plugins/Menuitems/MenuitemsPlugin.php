@@ -76,7 +76,7 @@ class MenuitemsPlugin extends SystemEventPlugin implements SystemInterface
             $temp_row = $menuitem->getData();
 
         } catch (Exception $e) {
-            throw new RuntimeException ($e->getMessage());
+            throw new RuntimeException($e->getMessage());
         }
 
         if (count($temp_row) == 0) {
