@@ -39,19 +39,19 @@ class StatusPlugin extends ReadEventPlugin implements ReadInterface
                 $status = $this->getFieldValue($field);
 
                 if ($status == '2') {
-                    $status_name = $this->language_controller->translate('Archived');
+                    $status_name = $this->language_controller->translateString('Archived');
                 } elseif ($status == '1') {
-                    $status_name = $this->language_controller->translate('Published');
+                    $status_name = $this->language_controller->translateString('Published');
                 } elseif ($status == '-1') {
-                    $status_name = $this->language_controller->translate('Trashed');
+                    $status_name = $this->language_controller->translateString('Trashed');
                 } elseif ($status == '-2') {
-                    $status_name = $this->language_controller->translate('Spammed');
+                    $status_name = $this->language_controller->translateString('Spammed');
                 } elseif ($status == '-5') {
-                    $status_name = $this->language_controller->translate('Draft');
+                    $status_name = $this->language_controller->translateString('Draft');
                 } elseif ($status == '-10') {
-                    $status_name = $this->language_controller->translate('Version');
+                    $status_name = $this->language_controller->translateString('Version');
                 } else {
-                    $status_name = $this->language_controller->translate('Unpublished');
+                    $status_name = $this->language_controller->translateString('Unpublished');
                 }
 
                 $this->setField($field, $name . '_name', $status_name);

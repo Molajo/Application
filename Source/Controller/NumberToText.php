@@ -103,7 +103,7 @@ class NumberToText implements NumberToTextInterface
             if ($onesDigit == 0 && $tensDigit == 0 && $hundredsDigit == 0) {
             } else {
 
-                $temp_word_value = $this->convertPlaceValueOnes($onesDigit);
+                $temp_word_value = $this->setWord($onesDigit);
                 $temp_word_value = $this->convertPlaceValueTens($tensDigit, $onesDigit, $temp_word_value);
                 $temp_word_value = $this->convertPlaceValueHundreds(
                     $hundredsDigit,
@@ -142,43 +142,6 @@ class NumberToText implements NumberToTextInterface
     }
 
     /**
-     * Convert the ones place value to a word
-     *
-     * @param   string $digit
-     *
-     * @return  bool
-     * @since   1.0
-     */
-    protected function convertPlaceValueOnes($digit)
-    {
-        switch ($digit) {
-
-            case   '0':
-                return '';
-            case '1':
-                return $this->locale_instance->translate('number_one');
-            case '2':
-                return $this->locale_instance->translate('number_two');
-            case '3':
-                return $this->locale_instance->translate('number_three');
-            case '4':
-                return $this->locale_instance->translate('number_four');
-            case '5':
-                return $this->locale_instance->translate('number_five');
-            case '6':
-                return $this->locale_instance->translate('number_six');
-            case '7':
-                return $this->locale_instance->translate('number_seven');
-            case '8':
-                return $this->locale_instance->translate('number_eight');
-            case '9':
-                return $this->locale_instance->translate('number_nine');
-        }
-
-        return false;
-    }
-
-    /**
      * Convert the tens placeholder to a word, combining with the ones placeholder word
      *
      * @param   string $tensDigit
@@ -191,30 +154,8 @@ class NumberToText implements NumberToTextInterface
     protected function convertPlaceValueTens($tensDigit, $onesDigit, $onesWord)
     {
         if ($onesDigit == 0) {
+            $this->setWord($tensDigit, 'ten');
 
-            switch ($tensDigit) {
-
-                case 0:
-                    return '';
-                case 1:
-                    return $this->locale_instance->translate('number_ten');
-                case 2:
-                    return $this->locale_instance->translate('number_twenty');
-                case 3:
-                    return $this->locale_instance->translate('number_thirty');
-                case 4:
-                    return $this->locale_instance->translate('number_forty');
-                case 5:
-                    return $this->locale_instance->translate('number_fifty');
-                case 6:
-                    return $this->locale_instance->translate('number_sixty');
-                case 7:
-                    return $this->locale_instance->translate('number_seventy');
-                case 8:
-                    return $this->locale_instance->translate('number_eighty');
-                case 9:
-                    return $this->locale_instance->translate('number_ninety');
-            }
         } elseif ($tensDigit == 0) {
             return $onesWord;
         } elseif ($tensDigit == 1) {
@@ -324,6 +265,95 @@ class NumberToText implements NumberToTextInterface
         }
 
         return $temp . ' ' . $this->locale_instance->translate('number_and') . ' ' . $tensWord;
+    }
+
+    /**
+     * Set word for number
+     *
+     * @param   integer  $digit
+     * @param   integer  $digit_position
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function setWord($digit, $digit_position = 0)
+    {
+        $temp = '';
+
+        switch ($digit) {
+
+            case 0:
+                return $this->digit_array[$digit_position][0];
+                break;
+            case 1:
+                $temp = $this->locale_instance->translate($this->number_array[$digit_position][1]);
+                break;
+            case 2:
+                $temp = $this->locale_instance->translate($this->number_array[$digit_position][2]);
+                break;
+            case 3:
+                $temp = $this->locale_instance->translate($this->number_array[$digit_position][3]);
+                break;
+            case 4:
+                $temp = $this->locale_instance->translate($this->number_array[$digit_position][4]);
+                break;
+            case 5:
+                $temp = $this->locale_instance->translate($this->number_array[$digit_position][5]);
+                break;
+            case 6:
+                $temp = $this->locale_instance->translate($this->number_array[$digit_position][6]);
+                break;
+            case 7:
+                $temp = $this->locale_instance->translate($this->number_array[$digit_position][7]);
+                break;
+            case 8:
+                $temp = $this->locale_instance->translate($this->number_array[$digit_position][8]);
+                break;
+            case 9:
+                $temp = $this->locale_instance->translate($this->number_array[$digit_position][9]);
+                break;
+        }
+
+        $this->number_array = array();
+
+        $this->number_array[0][0] = 'number_zero';
+        $this->number_array[0][1] = 'number_one';
+        $this->number_array[0][2] = 'number_two';
+        $this->number_array[0][3] = 'number_three';
+        $this->number_array[0][4] = 'number_four';
+        $this->number_array[0][5] = 'number_five';
+        $this->number_array[0][6] = 'number_six';
+        $this->number_array[0][7] = 'number_seven';
+        $this->number_array[0][8] = 'number_eight';
+        $this->number_array[0][9] = 'number_nine';
+
+        $this->number_array[10][0] = 'number_ten';
+        $this->number_array[10][1] = 'number_twenty';
+        $this->number_array[10][2] = 'number_thirty';
+        $this->number_array[10][3] = 'number_three';
+        $this->number_array[10][4] = 'number_forty';
+        $this->number_array[10][5] = 'number_fifty';
+        $this->number_array[10][6] = 'number_sixty';
+        $this->number_array[10][7] = 'number_seventy';
+        $this->number_array[10][8] = 'number_eighty';
+        $this->number_array[10][9] = 'number_ninety';
+
+        $this->number_array[10][0] = 'number_ten';
+        $this->number_array[10][1] = 'number_twenty';
+        $this->number_array[10][2] = 'number_thirty';
+        $this->number_array[10][3] = 'number_three';
+        $this->number_array[10][4] = 'number_forty';
+        $this->number_array[10][5] = 'number_fifty';
+        $this->number_array[10][6] = 'number_sixty';
+        $this->number_array[10][7] = 'number_seventy';
+        $this->number_array[10][8] = 'number_eighty';
+        $this->number_array[10][9] = 'number_ninety';
+
+
+        $this->digit_position_array[0] = '';
+        $this->digit_position_array[10] = '';
+
+        return $temp;
     }
 
     /**

@@ -15,7 +15,7 @@ if (function_exists('CreateClassMap')) {
 
 $classmap = array();
 
-$results  = createClassMap($base . '/Source/Controller/Translations', 'Molajo\\Controller\\Translations\\');
+$results  = createClassMap($base . '/Source/Controller/NumberToText', 'Molajo\\Controller\\NumberToText\\');
 $classmap = array_merge($classmap, $results);
 
 $results  = createClassMap($base . '/Source/Controller', 'Molajo\\Controller\\');

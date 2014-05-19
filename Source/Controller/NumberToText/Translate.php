@@ -6,10 +6,9 @@
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
-namespace Molajo\Controller\Translations;
+namespace Molajo\Controller\NumberToText;
 
-use CommonApi\Controller\TranslateInterface;
-use CommonApi\Exception\RuntimeException;
+use CommonApi\Language\TranslateInterface;
 
 /**
  * Translate requested string for specified locale
@@ -41,18 +40,10 @@ class Translate implements TranslateInterface
             $locale = 'enGB';
         }
 
-        $locale = str_replace('-', '', $locale);
-
-        $class = 'Molajo\\Translations\\' . $locale;
-
-        try {
-            $translate                    = new $class();
-            $this->number_translate_array = $translate->loadTranslation();
-        } catch (RuntimeException $e) {
-            throw new RuntimeException(
-                'NumberToText Translate Error Loading ' . $class . ' ' . $e->getMessage()
-            );
-        }
+        $locale                       = str_replace('-', '', $locale);
+        $class                        = 'Molajo\\Controller\\NumberToText\\' . $locale;
+        $translate                    = new $class();
+        $this->number_translate_array = $translate->loadTranslation();
     }
 
     /**
@@ -63,7 +54,7 @@ class Translate implements TranslateInterface
      * @return  string
      * @since   1.0
      */
-    public function translate($string)
+    public function translateString($string)
     {
         if (isset($this->number_translate_array[$string])) {
             return $this->number_translate_array[$string];

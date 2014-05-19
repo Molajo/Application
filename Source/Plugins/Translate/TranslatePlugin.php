@@ -90,7 +90,7 @@ class TranslatePlugin extends DisplayEventPlugin implements DisplayInterface
      */
     public function translateToken($string)
     {
-        return $this->language_controller->translate($string);
+        return $this->language_controller->translateString($string);
     }
 
     /**

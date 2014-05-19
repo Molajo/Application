@@ -99,7 +99,7 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
                 $temp->selected     = '';
                 $temp->no_selection = 1;
                 $temp->first        = $first;
-                $temp->list_name    = $this->language_controller->translate('Fields');
+                $temp->list_name    = $this->language_controller->translateString('Fields');
                 $temp_array[]       = $temp;
                 $first              = 0;
             }

@@ -102,7 +102,7 @@ class PagetypedashboardPlugin extends DisplayEventPlugin implements DisplayInter
 
                     $temp_row = new stdClass();
 
-                    $temp_row->name   = $this->language_controller->translate(
+                    $temp_row->name   = $this->language_controller->translateString(
                         strtoupper('TASK_' . strtoupper($button) . '_BUTTON')
                     );
                     $temp_row->action = $button;
@@ -227,7 +227,7 @@ class PagetypedashboardPlugin extends DisplayEventPlugin implements DisplayInter
                 $temp->selected     = '';
                 $temp->no_selection = 1;
                 $temp->first        = $first;
-                $temp->list_name    = $this->language_controller->translate('Fields');
+                $temp->list_name    = $this->language_controller->translateString('Fields');
                 $temp_array[]       = $temp;
                 $first              = 0;
             }

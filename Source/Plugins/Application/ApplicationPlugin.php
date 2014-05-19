@@ -316,7 +316,7 @@ class ApplicationPlugin extends SystemEventPlugin implements SystemInterface
 
         $title = $this->runtime_data->application->name;
         if ($title == '') {
-            $title = $this->language_controller->translate('Molajo Application');
+            $title = $this->language_controller->translateString('Molajo Application');
         }
 
         $this->plugin_data->page->header_title = $title;
@@ -345,7 +345,7 @@ class ApplicationPlugin extends SystemEventPlugin implements SystemInterface
             $list_current = 1;
         }
 
-        $display_page_type = $this->language_controller->translate(
+        $display_page_type = $this->language_controller->translateString(
             strtoupper($this->plugin_data->page->page_type)
         );
 

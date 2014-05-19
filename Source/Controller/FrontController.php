@@ -53,15 +53,16 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      * @var    array
      * @since  1.0
      */
-    protected $steps = array(
-        'initialise',
-        'authenticate',
-        'route',
-        'authorise',
-        'resource',
-        'execute',
-        'response'
-    );
+    protected $steps
+        = array(
+            'initialise',
+            'authenticate',
+            'route',
+            'authorise',
+            'resource',
+            'execute',
+            'response'
+        );
 
     /**
      * Schedule Event Callback
@@ -435,20 +436,9 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
     protected function execute()
     {
         if ($this->scheduleFactoryMethod('Runtimedata')->route->method == 'GET') {
-
             $render_proxy = $this->scheduleFactoryMethod('Render');
-            $plugin_data  = $this->scheduleFactoryMethod('Plugindata');
-            $runtime_data = $this->scheduleFactoryMethod('Runtimedata');
-            $include_file = $runtime_data->resource->extensions->theme->extension->path;
-
-            $data                 = array();
-            $data['page_name']    = $runtime_data->resource->extensions->page->extension->id;
-            $data['plugin_data']  = $plugin_data;
-            $data['runtime_data'] = $runtime_data;
-            $data['base_path']    = $this->base_path;
-
-            $render_proxy->render($include_file, $data);
-
+            $include_file = $this->scheduleFactoryMethod('Runtimedata')->resource->extensions->theme->extension->path;
+            $render_proxy->renderOutput($include_file);
         }
 
         // create
