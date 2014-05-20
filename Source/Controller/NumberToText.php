@@ -37,6 +37,33 @@ class NumberToText implements NumberToTextInterface
     protected $number_array = array();
 
     /**
+     * Grouping number words
+     *
+     * @var    array
+     * @since  1.0
+     */
+    protected $grouping_number
+        = array(
+            0  => 'number_hundred',
+            1  => 'number_thousand',
+            2  => 'number_million',
+            3  => 'number_billion',
+            4  => 'number_trillion',
+            5  => 'number_quadrillion',
+            6  => 'number_quintillion',
+            7  => 'number_sextillion',
+            8  => 'number_septillion',
+            9  => 'number_octillion',
+            10 => 'number_nonillion',
+            11 => 'number_decillion',
+            12 => 'number_undecillion',
+            13 => 'number_duodecillion',
+            14 => 'number_tredecillion',
+            15 => 'number_quattuordecillion',
+            16 => 'number_quinquadecillion'
+        );
+
+    /**
      * Constructor
      *
      * @param  TranslateInterface $locale_instance
@@ -305,41 +332,7 @@ class NumberToText implements NumberToTextInterface
      */
     protected function setWord($digit, $digit_position = 0)
     {
-        switch ($digit) {
-
-            case 0:
-                $string = $this->locale_instance->translateString($this->number_array[$digit_position][0]);
-                break;
-            case 1:
-                $string = $this->locale_instance->translateString($this->number_array[$digit_position][1]);
-                break;
-            case 2:
-                $string = $this->locale_instance->translateString($this->number_array[$digit_position][2]);
-                break;
-            case 3:
-                $string = $this->locale_instance->translateString($this->number_array[$digit_position][3]);
-                break;
-            case 4:
-                $string = $this->locale_instance->translateString($this->number_array[$digit_position][4]);
-                break;
-            case 5:
-                $string = $this->locale_instance->translateString($this->number_array[$digit_position][5]);
-                break;
-            case 6:
-                $string = $this->locale_instance->translateString($this->number_array[$digit_position][6]);
-                break;
-            case 7:
-                $string = $this->locale_instance->translateString($this->number_array[$digit_position][7]);
-                break;
-            case 8:
-                $string = $this->locale_instance->translateString($this->number_array[$digit_position][8]);
-                break;
-            case 9:
-                $string = $this->locale_instance->translateString($this->number_array[$digit_position][9]);
-                break;
-        }
-
-        return $string;
+        return $this->locale_instance->translateString($this->number_array[$digit_position][$digit]);
     }
 
     /**
@@ -358,66 +351,14 @@ class NumberToText implements NumberToTextInterface
      * @return  string
      * @since   1.0
      */
-    protected function convertGrouping($number)
+    protected function convertGrouping($number = 0)
     {
-        $string = '';
-
-        switch ((int)$number) {
-
-            case 0:
-                $string = $this->locale_instance->translateString('number_hundred');
-                break;
-            case 1:
-                $string = $this->locale_instance->translateString('number_thousand');
-                break;
-            case 2:
-                $string = $this->locale_instance->translateString('number_million');
-                break;
-            case 3:
-                $string = $this->locale_instance->translateString('number_billion');
-                break;
-            case 4:
-                $string = $this->locale_instance->translateString('number_trillion');
-                break;
-            case 5:
-                $string = $this->locale_instance->translateString('number_quadrillion');
-                break;
-            case 6:
-                $string = $this->locale_instance->translateString('number_quintillion');
-                break;
-            case 7:
-                $string = $this->locale_instance->translateString('number_sextillion');
-                break;
-            case 8:
-                $string = $this->locale_instance->translateString('number_septillion');
-                break;
-            case 9:
-                $string = $this->locale_instance->translateString('number_octillion');
-                break;
-            case 10:
-                $string = $this->locale_instance->translateString('number_nonillion');
-                break;
-            case 11:
-                $string = $this->locale_instance->translateString('number_decillion');
-                break;
-            case 12:
-                $string = $this->locale_instance->translateString('number_undecillion');
-                break;
-            case 13:
-                $string = $this->locale_instance->translateString('number_duodecillion');
-                break;
-            case 14:
-                $string = $this->locale_instance->translateString('number_tredecillion');
-                break;
-            case 15:
-                $string = $this->locale_instance->translateString('number_quattuordecillion');
-                break;
-            case 16:
-                $string = $this->locale_instance->translateString('number_quinquadecillion');
-                break;
+        if ($number > 0 && $number < 17) {
+        } else {
+            $number = 0;
         }
 
-        return $string;
+        return $this->locale_instance->translateString($this->grouping_number[$number]);
     }
 
     /**

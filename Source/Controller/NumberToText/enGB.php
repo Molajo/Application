@@ -15,7 +15,7 @@ namespace Molajo\Controller\NumberToText;
  * @subpackage  NumberToText
  * @since       1.0
  */
-class enGB
+class Engb
 {
     /**
      * Translation Strings for Numbers

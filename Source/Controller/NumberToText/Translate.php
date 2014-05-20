@@ -37,10 +37,11 @@ class Translate implements TranslateInterface
     public function __construct($locale = 'en-GB')
     {
         if ($locale === '') {
-            $locale = 'enGB';
+            $locale = 'Engb';
         }
 
         $locale                       = str_replace('-', '', $locale);
+        $locale = ucfirst(strtolower($locale));
         $class                        = 'Molajo\\Controller\\NumberToText\\' . $locale;
         $translate                    = new $class();
         $this->number_translate_array = $translate->loadTranslation();
