@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1400562754">
-  <project timestamp="1400562754">
+<coverage generated="1400562908">
+  <project timestamp="1400562908">
     <file name="/Users/amystephen/Sites/Molajo/Application/.dev/Bootstrap.php">
       <line num="86" type="stmt" count="0"/>
       <line num="87" type="stmt" count="0"/>
@@ -245,39 +245,44 @@
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/ErrorHandling.php">
         <class name="ErrorHandling" namespace="Molajo\Controller">
-          <metrics methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="29" coveredelements="29"/>
+          <metrics methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="30" coveredstatements="29" elements="34" coveredelements="33"/>
         </class>
         <line num="95" type="method" name="__construct" crap="1" count="5"/>
         <line num="105" type="stmt" count="5"/>
         <line num="106" type="stmt" count="5"/>
-        <line num="121" type="method" name="setError" crap="1" count="5"/>
+        <line num="121" type="method" name="setError" crap="2.00" count="5"/>
         <line num="123" type="stmt" count="5"/>
         <line num="124" type="stmt" count="5"/>
         <line num="125" type="stmt" count="5"/>
+        <line num="126" type="stmt" count="5"/>
         <line num="127" type="stmt" count="4"/>
-        <line num="129" type="stmt" count="4"/>
-        <line num="144" type="method" name="setErrorMessage" crap="5" count="5"/>
-        <line num="146" type="stmt" count="5"/>
-        <line num="147" type="stmt" count="1"/>
+        <line num="128" type="stmt" count="0"/>
+        <line num="130" type="stmt" count="4"/>
+        <line num="131" type="stmt" count="4"/>
+        <line num="133" type="stmt" count="4"/>
+        <line num="135" type="stmt" count="4"/>
+        <line num="147" type="method" name="setErrorMessage" crap="5" count="5"/>
         <line num="149" type="stmt" count="5"/>
         <line num="150" type="stmt" count="1"/>
-        <line num="152" type="stmt" count="4"/>
+        <line num="152" type="stmt" count="5"/>
         <line num="153" type="stmt" count="1"/>
-        <line num="155" type="stmt" count="3"/>
+        <line num="155" type="stmt" count="4"/>
         <line num="156" type="stmt" count="1"/>
-        <line num="158" type="stmt" count="1"/>
+        <line num="158" type="stmt" count="3"/>
         <line num="159" type="stmt" count="1"/>
-        <line num="162" type="stmt" count="4"/>
-        <line num="174" type="method" name="setThemePageView" crap="2" count="4"/>
-        <line num="176" type="stmt" count="4"/>
-        <line num="177" type="stmt" count="1"/>
-        <line num="178" type="stmt" count="1"/>
-        <line num="179" type="stmt" count="1"/>
-        <line num="180" type="stmt" count="3"/>
-        <line num="181" type="stmt" count="3"/>
-        <line num="184" type="stmt" count="4"/>
-        <line num="187" type="stmt" count="0"/>
-        <metrics loc="186" ncloc="81" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="29" coveredelements="29"/>
+        <line num="161" type="stmt" count="1"/>
+        <line num="162" type="stmt" count="1"/>
+        <line num="165" type="stmt" count="4"/>
+        <line num="177" type="method" name="setThemePageView" crap="2" count="4"/>
+        <line num="179" type="stmt" count="4"/>
+        <line num="180" type="stmt" count="1"/>
+        <line num="181" type="stmt" count="1"/>
+        <line num="182" type="stmt" count="1"/>
+        <line num="183" type="stmt" count="3"/>
+        <line num="184" type="stmt" count="3"/>
+        <line num="187" type="stmt" count="4"/>
+        <line num="190" type="stmt" count="0"/>
+        <metrics loc="189" ncloc="87" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="30" coveredstatements="29" elements="34" coveredelements="32"/>
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/ImageController.php">
         <class name="ImageController" namespace="Molajo\Controller" fullPackage="Molajo" package="Molajo">
@@ -1078,6 +1083,6 @@
       <line num="26" type="stmt" count="0"/>
       <metrics loc="30" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="2" coveredelements="0"/>
     </file>
-    <metrics files="19" loc="3353" ncloc="2171" classes="11" methods="77" coveredmethods="21" conditionals="0" coveredconditionals="0" statements="890" coveredstatements="439" elements="967" coveredelements="460"/>
+    <metrics files="19" loc="3356" ncloc="2177" classes="11" methods="77" coveredmethods="20" conditionals="0" coveredconditionals="0" statements="895" coveredstatements="443" elements="972" coveredelements="463"/>
   </project>
 </coverage>

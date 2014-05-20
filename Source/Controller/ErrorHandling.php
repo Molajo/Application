@@ -120,9 +120,15 @@ class ErrorHandling implements ErrorHandlingInterface
      */
     public function setError($error_code = 0, $error_message = '', $file = '', $line = '')
     {
-        $error_object = new stdClass();
-        $error_object->error_code    = $error_code;
-        $error_object->error_message = $this->setErrorMessage($error_code, $error_message, $file, $line);
+        $error_object             = new stdClass();
+        $error_object->error_code = $error_code;
+        if ($error_message === '') {
+            $error_object->error_message = $this->setErrorMessage($error_code);
+        } else {
+            $error_object->error_message = $error_message;
+        }
+        $error_object->file = $file;
+        $error_object->line = $line;
 
         $error_object = $this->setThemePageView($error_code, $error_object);
 
@@ -132,16 +138,13 @@ class ErrorHandling implements ErrorHandlingInterface
     /**
      * Set Error Message
      *
-     * @param   integer  $error_code
-     * @param   string   $error_message
-     * @param   string   $file
-     * @param   string   $line
+     * @param   integer $error_code
      *
      * @returns string
      * @since   1.0.0
      * @throws  \CommonApi\Exception\ErrorThrownAsException
      */
-    protected function setErrorMessage($error_code, $error_message, $file, $line)
+    protected function setErrorMessage($error_code)
     {
         if ($error_code == 403) {
             $error_message = $this->error_message_not_authorised;
@@ -165,8 +168,8 @@ class ErrorHandling implements ErrorHandlingInterface
     /**
      * Set Theme and Page View
      *
-     * @param   integer  $error_code
-     * @param   object   $error_object
+     * @param   integer $error_code
+     * @param   object  $error_object
      *
      * @returns object
      * @since   1.0.0
