@@ -288,8 +288,8 @@ class DateController extends DateTime implements DateInterface
     /**
      * Get the number of days between two dates
      *
-     * @param   string $date1 expressed as CCYY-MM-DD
-     * @param   string $date2 expressed as CCYY-MM-DD
+     * @param   string $date1
+     * @param   string $date2
      *
      * @since   1.0
      * @return  integer
@@ -300,21 +300,25 @@ class DateController extends DateTime implements DateInterface
             $date2 = $this->convertCCYYMMDD($this->getDate());
         }
 
-        $date1mm   = substr($date1, 5, 2);
-        $date1dd   = substr($date1, 8, 2);
-        $date1ccyy = substr($date1, 0, 4);
-
-        $date1 = new DateTime($date1mm . '/' . $date1dd . '/' . $date1ccyy);
-
-        $date2mm   = substr($date2, 5, 2);
-        $date2dd   = substr($date2, 8, 2);
-        $date2ccyy = substr($date2, 0, 4);
-
-        $date2 = new DateTime($date2mm . '/' . $date2dd . '/' . $date2ccyy);
+        $date1 = $this->formatDate($date1);
+        $date2 = $this->formatDate($date2);
 
         $day_object = $date1->diff($date2);
 
         return $day_object->days;
+    }
+
+    /**
+     * Format Date
+     *
+     * @param   string $date
+     *
+     * @return  Datetime
+     * @since   1.0
+     */
+    protected function formatDate($date)
+    {
+        return new DateTime(substr($date, 5, 2) . '/' . substr($date, 8, 2) . '/' . substr($date, 0, 4));
     }
 
     /**
@@ -387,7 +391,6 @@ class DateController extends DateTime implements DateInterface
      */
     public function getNameTranslated($type, $index, $abbreviation)
     {
-
         if ($type === 'day') {
             $value = $this->day_names[$index];
         } else {
@@ -442,12 +445,12 @@ class DateController extends DateTime implements DateInterface
     {
         if ($interval->h > 0) {
             $pretty_date = $interval->h . ' '
-                . $this->translatePrettyDate($interval->h, 'DATE_HOUR_SINGULAR', 'DATE_HOUR_PLURAL')
+                . $this->translatePrettyDate($interval->h, 'hour')
                 . ' ' . $this->translate('AGO');
 
         } elseif ($interval->i > 0) {
             $pretty_date = $interval->i . ' '
-                . $this->translatePrettyDate($interval->i, 'DATE_MINUTE_SINGULAR', 'DATE_MINUTE_PLURAL')
+                . $this->translatePrettyDate($interval->i, 'minute')
                 . ' ' . $this->translate('AGO');
 
         } else {
@@ -468,48 +471,42 @@ class DateController extends DateTime implements DateInterface
     protected function getPrettyDateNotToday($interval)
     {
         if ($interval->y > 0) {
-            $pretty_date = $interval->y . ' '
-                . $this->translatePrettyDate($interval->y, 'DATE_YEAR_SINGULAR', 'DATE_YEAR_PLURAL')
-                . ' ' . $this->translate('AGO');
+            $pretty_date = $interval->y . ' ' . $this->translatePrettyDate($interval->y, 'year');
 
         } elseif ($interval->m > 0) {
-            $pretty_date = $interval->m . ' '
-                . $this->translatePrettyDate($interval->m, 'DATE_MONTH_SINGULAR', 'DATE_MONTH_PLURAL')
-                . ' ' . $this->translate('AGO');
+            $pretty_date = $interval->m . ' ' . $this->translatePrettyDate($interval->m, 'month');
 
         } elseif ($interval->d > 1) {
-            $pretty_date = $interval->d . ' '
-                . $this->translatePrettyDate($interval->d, 'DATE_DAY_SINGULAR', 'DATE_DAY_SINGULAR')
-                . ' ' . $this->translate('AGO');
+            $pretty_date = $interval->d . ' ' . $this->translatePrettyDate($interval->d, 'day');
 
         } else {
             $pretty_date = $this->translate('YESTERDAY');
+            return $pretty_date;
         }
 
-        return $pretty_date;
+        return $pretty_date . ' ' . $this->translate('AGO');
     }
 
     /**
      * translate Pretty Date
      *
      * @param   integer $numeric_value
-     * @param   string  $singular_literal
-     * @param   string  $plural_literal
+     * @param   string  $type
      *
      * @return  mixed
      * @since   1.0
      */
-    protected function translatePrettyDate($numeric_value, $singular_literal, $plural_literal)
+    protected function translatePrettyDate($numeric_value, $type)
     {
         if ($numeric_value == 0) {
             return '';
         }
 
         if ($numeric_value == 1) {
-            return strtolower($this->translate($singular_literal));
+            return strtolower($this->translate('DATE_' . strtoupper($type) . '_SINGULAR'));
         }
 
-        return strtolower($this->translate($plural_literal));
+        return strtolower($this->translate('DATE_' . strtoupper($type) . '_PLURAL'));
     }
 
     /**

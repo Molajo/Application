@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1400594610">
-  <project timestamp="1400594610">
+<coverage generated="1400597854">
+  <project timestamp="1400597854">
     <file name="/Users/amystephen/Sites/Molajo/Application/.dev/Bootstrap.php">
       <line num="86" type="stmt" count="0"/>
       <line num="87" type="stmt" count="0"/>
@@ -37,7 +37,7 @@
     <package name="Molajo\Controller">
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/DateController.php">
         <class name="DateController" namespace="Molajo\Controller">
-          <metrics methods="15" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="116" coveredstatements="78" elements="131" coveredelements="92"/>
+          <metrics methods="16" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="106" coveredstatements="71" elements="122" coveredelements="85"/>
         </class>
         <line num="170" type="method" name="__construct" crap="5.02" count="9"/>
         <line num="175" type="stmt" count="9"/>
@@ -83,95 +83,86 @@
         <line num="272" type="stmt" count="5"/>
         <line num="283" type="method" name="convertCCYYMMDD" crap="1" count="1"/>
         <line num="285" type="stmt" count="1"/>
-        <line num="297" type="method" name="getNumberofDaysAgo" crap="2.01" count="1"/>
+        <line num="297" type="method" name="getNumberofDaysAgo" crap="2.09" count="1"/>
         <line num="299" type="stmt" count="1"/>
         <line num="300" type="stmt" count="0"/>
         <line num="301" type="stmt" count="0"/>
         <line num="303" type="stmt" count="1"/>
         <line num="304" type="stmt" count="1"/>
-        <line num="305" type="stmt" count="1"/>
-        <line num="307" type="stmt" count="1"/>
-        <line num="309" type="stmt" count="1"/>
-        <line num="310" type="stmt" count="1"/>
-        <line num="311" type="stmt" count="1"/>
-        <line num="313" type="stmt" count="1"/>
-        <line num="315" type="stmt" count="1"/>
-        <line num="317" type="stmt" count="1"/>
-        <line num="329" type="method" name="getPrettyDate" crap="3.04" count="1"/>
-        <line num="331" type="stmt" count="1"/>
-        <line num="333" type="stmt" count="1"/>
-        <line num="334" type="stmt" count="0"/>
-        <line num="335" type="stmt" count="0"/>
-        <line num="336" type="stmt" count="1"/>
-        <line num="339" type="stmt" count="1"/>
+        <line num="306" type="stmt" count="1"/>
+        <line num="308" type="stmt" count="1"/>
+        <line num="319" type="method" name="formatDate" crap="2" count="0"/>
+        <line num="321" type="stmt" count="0"/>
+        <line num="333" type="method" name="getPrettyDate" crap="3.04" count="1"/>
+        <line num="335" type="stmt" count="1"/>
+        <line num="337" type="stmt" count="1"/>
+        <line num="338" type="stmt" count="0"/>
+        <line num="339" type="stmt" count="0"/>
         <line num="340" type="stmt" count="1"/>
-        <line num="342" type="stmt" count="1"/>
         <line num="343" type="stmt" count="1"/>
         <line num="344" type="stmt" count="1"/>
-        <line num="345" type="stmt" count="1"/>
+        <line num="346" type="stmt" count="1"/>
+        <line num="347" type="stmt" count="1"/>
         <line num="348" type="stmt" count="1"/>
-        <line num="360" type="method" name="getDayName" crap="1" count="1"/>
-        <line num="362" type="stmt" count="1"/>
-        <line num="374" type="method" name="getMonthName" crap="1" count="1"/>
-        <line num="376" type="stmt" count="1"/>
-        <line num="388" type="method" name="getNameTranslated" crap="12" count="0"/>
-        <line num="391" type="stmt" count="0"/>
-        <line num="392" type="stmt" count="0"/>
-        <line num="393" type="stmt" count="0"/>
+        <line num="349" type="stmt" count="1"/>
+        <line num="352" type="stmt" count="1"/>
+        <line num="364" type="method" name="getDayName" crap="1" count="1"/>
+        <line num="366" type="stmt" count="1"/>
+        <line num="378" type="method" name="getMonthName" crap="1" count="1"/>
+        <line num="380" type="stmt" count="1"/>
+        <line num="392" type="method" name="getNameTranslated" crap="12" count="0"/>
         <line num="394" type="stmt" count="0"/>
+        <line num="395" type="stmt" count="0"/>
+        <line num="396" type="stmt" count="0"/>
         <line num="397" type="stmt" count="0"/>
-        <line num="398" type="stmt" count="0"/>
+        <line num="400" type="stmt" count="0"/>
         <line num="401" type="stmt" count="0"/>
-        <line num="419" type="method" name="buildCalendar" crap="1" count="1"/>
-        <line num="421" type="stmt" count="1"/>
-        <line num="422" type="stmt" count="1"/>
-        <line num="423" type="stmt" count="1"/>
+        <line num="404" type="stmt" count="0"/>
+        <line num="422" type="method" name="buildCalendar" crap="1" count="1"/>
         <line num="424" type="stmt" count="1"/>
         <line num="425" type="stmt" count="1"/>
         <line num="426" type="stmt" count="1"/>
         <line num="427" type="stmt" count="1"/>
         <line num="428" type="stmt" count="1"/>
+        <line num="429" type="stmt" count="1"/>
         <line num="430" type="stmt" count="1"/>
-        <line num="441" type="method" name="getPrettyDateToday" crap="3.43" count="1"/>
-        <line num="443" type="stmt" count="1"/>
-        <line num="444" type="stmt" count="0"/>
-        <line num="445" type="stmt" count="0"/>
-        <line num="446" type="stmt" count="0"/>
-        <line num="448" type="stmt" count="1"/>
-        <line num="449" type="stmt" count="1"/>
-        <line num="450" type="stmt" count="1"/>
+        <line num="431" type="stmt" count="1"/>
+        <line num="433" type="stmt" count="1"/>
+        <line num="444" type="method" name="getPrettyDateToday" crap="3.43" count="1"/>
+        <line num="446" type="stmt" count="1"/>
+        <line num="447" type="stmt" count="0"/>
+        <line num="448" type="stmt" count="0"/>
+        <line num="449" type="stmt" count="0"/>
         <line num="451" type="stmt" count="1"/>
+        <line num="452" type="stmt" count="1"/>
         <line num="453" type="stmt" count="1"/>
-        <line num="454" type="stmt" count="0"/>
-        <line num="457" type="stmt" count="1"/>
-        <line num="468" type="method" name="getPrettyDateNotToday" crap="5.63" count="1"/>
-        <line num="470" type="stmt" count="1"/>
-        <line num="471" type="stmt" count="1"/>
-        <line num="472" type="stmt" count="1"/>
+        <line num="454" type="stmt" count="1"/>
+        <line num="456" type="stmt" count="1"/>
+        <line num="457" type="stmt" count="0"/>
+        <line num="460" type="stmt" count="1"/>
+        <line num="471" type="method" name="getPrettyDateNotToday" crap="4.43" count="1"/>
         <line num="473" type="stmt" count="1"/>
-        <line num="475" type="stmt" count="1"/>
-        <line num="476" type="stmt" count="0"/>
+        <line num="474" type="stmt" count="1"/>
+        <line num="476" type="stmt" count="1"/>
         <line num="477" type="stmt" count="0"/>
-        <line num="478" type="stmt" count="0"/>
-        <line num="480" type="stmt" count="1"/>
-        <line num="481" type="stmt" count="0"/>
+        <line num="479" type="stmt" count="1"/>
+        <line num="480" type="stmt" count="0"/>
         <line num="482" type="stmt" count="0"/>
-        <line num="483" type="stmt" count="0"/>
-        <line num="485" type="stmt" count="0"/>
-        <line num="486" type="stmt" count="1"/>
-        <line num="489" type="stmt" count="1"/>
-        <line num="502" type="method" name="translatePrettyDate" crap="3.07" count="1"/>
-        <line num="504" type="stmt" count="1"/>
-        <line num="505" type="stmt" count="0"/>
-        <line num="508" type="stmt" count="1"/>
+        <line num="483" type="stmt" count="1"/>
+        <line num="484" type="stmt" count="1"/>
+        <line num="487" type="stmt" count="1"/>
+        <line num="499" type="method" name="translatePrettyDate" crap="3.07" count="1"/>
+        <line num="501" type="stmt" count="1"/>
+        <line num="502" type="stmt" count="0"/>
+        <line num="505" type="stmt" count="1"/>
+        <line num="506" type="stmt" count="1"/>
         <line num="509" type="stmt" count="1"/>
-        <line num="512" type="stmt" count="1"/>
-        <line num="523" type="method" name="translate" crap="2.15" count="3"/>
-        <line num="525" type="stmt" count="3"/>
-        <line num="526" type="stmt" count="3"/>
+        <line num="520" type="method" name="translate" crap="2.15" count="3"/>
+        <line num="522" type="stmt" count="3"/>
+        <line num="523" type="stmt" count="3"/>
+        <line num="526" type="stmt" count="0"/>
         <line num="529" type="stmt" count="0"/>
-        <line num="532" type="stmt" count="0"/>
-        <metrics loc="531" ncloc="339" classes="1" methods="15" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="116" coveredstatements="78" elements="131" coveredelements="83"/>
+        <metrics loc="528" ncloc="329" classes="1" methods="16" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="106" coveredstatements="71" elements="122" coveredelements="76"/>
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/ErrorHandling.php">
         <class name="ErrorHandling" namespace="Molajo\Controller">
@@ -661,11 +652,20 @@
       </file>
     </package>
     <package name="Molajo\Controller\NumberToText">
+      <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/NumberToText/Engb.php">
+        <class name="Engb" namespace="Molajo\Controller\NumberToText" fullPackage="Molajo.NumberToText" package="Molajo" subpackage="NumberToText">
+          <metrics methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+        </class>
+        <line num="85" type="method" name="loadTranslation" crap="1" count="19"/>
+        <line num="87" type="stmt" count="19"/>
+        <line num="90" type="stmt" count="0"/>
+        <metrics loc="89" ncloc="63" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/NumberToText/Translate.php">
         <class name="Translate" namespace="Molajo\Controller\NumberToText" fullPackage="Molajo.NumberToText" package="Molajo" subpackage="NumberToText">
-          <metrics methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="9" elements="13" coveredelements="11"/>
+          <metrics methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="10" elements="14" coveredelements="12"/>
         </class>
-        <line num="37" type="method" name="__construct" crap="2.06" count="19"/>
+        <line num="37" type="method" name="__construct" crap="2.04" count="19"/>
         <line num="39" type="stmt" count="19"/>
         <line num="40" type="stmt" count="0"/>
         <line num="41" type="stmt" count="0"/>
@@ -674,21 +674,13 @@
         <line num="45" type="stmt" count="19"/>
         <line num="46" type="stmt" count="19"/>
         <line num="47" type="stmt" count="19"/>
-        <line num="57" type="method" name="translateString" crap="2" count="19"/>
-        <line num="59" type="stmt" count="19"/>
-        <line num="60" type="stmt" count="18"/>
-        <line num="63" type="stmt" count="1"/>
-        <line num="66" type="stmt" count="0"/>
-        <metrics loc="65" ncloc="30" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="9" elements="13" coveredelements="10"/>
-      </file>
-      <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/NumberToText/enGB.php">
-        <class name="enGB" namespace="Molajo\Controller\NumberToText" fullPackage="Molajo.NumberToText" package="Molajo" subpackage="NumberToText">
-          <metrics methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="85" type="method" name="loadTranslation" crap="1" count="19"/>
-        <line num="87" type="stmt" count="19"/>
-        <line num="90" type="stmt" count="0"/>
-        <metrics loc="89" ncloc="63" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+        <line num="48" type="stmt" count="19"/>
+        <line num="58" type="method" name="translateString" crap="2" count="19"/>
+        <line num="60" type="stmt" count="19"/>
+        <line num="61" type="stmt" count="18"/>
+        <line num="64" type="stmt" count="1"/>
+        <line num="67" type="stmt" count="0"/>
+        <metrics loc="66" ncloc="31" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="10" elements="14" coveredelements="11"/>
       </file>
     </package>
     <file name="/Users/amystephen/Sites/Molajo/Application/vendor/commonapi/controller/DateInterface.php">
@@ -966,6 +958,6 @@
       <line num="26" type="stmt" count="0"/>
       <metrics loc="30" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="2" coveredelements="0"/>
     </file>
-    <metrics files="21" loc="3374" ncloc="2093" classes="12" methods="81" coveredmethods="24" conditionals="0" coveredconditionals="0" statements="763" coveredstatements="409" elements="844" coveredelements="433"/>
+    <metrics files="21" loc="3372" ncloc="2084" classes="12" methods="82" coveredmethods="24" conditionals="0" coveredconditionals="0" statements="754" coveredstatements="403" elements="836" coveredelements="427"/>
   </project>
 </coverage>
