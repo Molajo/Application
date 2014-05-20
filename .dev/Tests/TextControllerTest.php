@@ -21,25 +21,6 @@ use Molajo\Controller\TextController;
 class TextControllerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Options
-     *
-     * @var    array
-     * @since  1.0
-     */
-    protected $options;
-
-    /**
-     * Setup testing
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setUp()
-    {
-        return $this;
-    }
-
-    /**
      * Test Utilities Connection
      *
      * @return  $this
@@ -47,20 +28,16 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetText()
     {
-        //date_default_timezone_set('America/Chicago');
+        $text_instance = new TextController();
 
-        $date = new TextController();
-        $test = $date->getPlaceHolderText(
+        $test = $text_instance->getPlaceHolderText(
             $number_of_paragraphs = 3,
             $words_per_paragraph = 7,
             $markup_type = 'p',
             $start_with_lorem_ipsum = true
         );
 
-        echo '<pre>';
-        var_dump($test);
-
-        // $this->assertEquals(true, is_string($test));
+        $this->assertEquals(true, is_string($test));
 
         return $this;
     }
