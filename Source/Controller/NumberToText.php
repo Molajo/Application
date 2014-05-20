@@ -47,7 +47,6 @@ class NumberToText implements NumberToTextInterface
     {
         $this->locale_instance = $locale_instance;
 
-
         $this->number_array = array();
 
         $this->number_array[0][0] = 'number_zero';
@@ -443,8 +442,8 @@ class NumberToText implements NumberToTextInterface
     /**
      * Assign Sign
      *
-     * @param   string  $sign
-     * @param   string  $word_value
+     * @param   string $sign
+     * @param   string $word_value
      *
      * @return  mixed
      * @since   1.0
