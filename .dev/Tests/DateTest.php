@@ -29,7 +29,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
     protected $options;
 
     /**
-     * Setup testing
+     * @covers  Molajo\Controller\DateController::__construct
      *
      * @return  $this
      * @since   1.0
@@ -40,7 +40,18 @@ class DateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Utilities Connection
+     * @covers  Molajo\Controller\DateController::__construct
+     * @covers  Molajo\Controller\DateController::get
+     * @covers  Molajo\Controller\DateController::set
+     * @covers  Molajo\Controller\DateController::getDate
+     * @covers  Molajo\Controller\DateController::convertCCYYMMDD
+     * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
+     * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getDayName
+     * @covers  Molajo\Controller\DateController::getMonthName
+     * @covers  Molajo\Controller\DateController::buildCalendar
+     * @covers  Molajo\Controller\DateController::translatePrettyDate
+     * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
      * @since   1.0
@@ -56,7 +67,18 @@ class DateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests the Getter and Setter
+     * @covers  Molajo\Controller\DateController::__construct
+     * @covers  Molajo\Controller\DateController::get
+     * @covers  Molajo\Controller\DateController::set
+     * @covers  Molajo\Controller\DateController::getDate
+     * @covers  Molajo\Controller\DateController::convertCCYYMMDD
+     * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
+     * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getDayName
+     * @covers  Molajo\Controller\DateController::getMonthName
+     * @covers  Molajo\Controller\DateController::buildCalendar
+     * @covers  Molajo\Controller\DateController::translatePrettyDate
+     * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
      * @since   1.0
@@ -76,7 +98,18 @@ class DateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Utilities Connection
+     * @covers  Molajo\Controller\DateController::__construct
+     * @covers  Molajo\Controller\DateController::get
+     * @covers  Molajo\Controller\DateController::set
+     * @covers  Molajo\Controller\DateController::getDate
+     * @covers  Molajo\Controller\DateController::convertCCYYMMDD
+     * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
+     * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getDayName
+     * @covers  Molajo\Controller\DateController::getMonthName
+     * @covers  Molajo\Controller\DateController::buildCalendar
+     * @covers  Molajo\Controller\DateController::translatePrettyDate
+     * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
      * @since   1.0
@@ -93,7 +126,18 @@ class DateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Utilities Connection
+     * @covers  Molajo\Controller\DateController::__construct
+     * @covers  Molajo\Controller\DateController::get
+     * @covers  Molajo\Controller\DateController::set
+     * @covers  Molajo\Controller\DateController::getDate
+     * @covers  Molajo\Controller\DateController::convertCCYYMMDD
+     * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
+     * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getDayName
+     * @covers  Molajo\Controller\DateController::getMonthName
+     * @covers  Molajo\Controller\DateController::buildCalendar
+     * @covers  Molajo\Controller\DateController::translatePrettyDate
+     * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
      * @since   1.0
@@ -112,7 +156,18 @@ class DateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *  Get the number of days between two dates
+     * @covers  Molajo\Controller\DateController::__construct
+     * @covers  Molajo\Controller\DateController::get
+     * @covers  Molajo\Controller\DateController::set
+     * @covers  Molajo\Controller\DateController::getDate
+     * @covers  Molajo\Controller\DateController::convertCCYYMMDD
+     * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
+     * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getDayName
+     * @covers  Molajo\Controller\DateController::getMonthName
+     * @covers  Molajo\Controller\DateController::buildCalendar
+     * @covers  Molajo\Controller\DateController::translatePrettyDate
+     * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
      * @since   1.0
@@ -132,7 +187,18 @@ class DateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *  Get the number of days between two dates
+     * @covers  Molajo\Controller\DateController::__construct
+     * @covers  Molajo\Controller\DateController::get
+     * @covers  Molajo\Controller\DateController::set
+     * @covers  Molajo\Controller\DateController::getDate
+     * @covers  Molajo\Controller\DateController::convertCCYYMMDD
+     * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
+     * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getDayName
+     * @covers  Molajo\Controller\DateController::getMonthName
+     * @covers  Molajo\Controller\DateController::buildCalendar
+     * @covers  Molajo\Controller\DateController::translatePrettyDate
+     * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
      * @since   1.0
@@ -170,7 +236,18 @@ class DateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *  Get the name of the day
+     * @covers  Molajo\Controller\DateController::__construct
+     * @covers  Molajo\Controller\DateController::get
+     * @covers  Molajo\Controller\DateController::set
+     * @covers  Molajo\Controller\DateController::getDate
+     * @covers  Molajo\Controller\DateController::convertCCYYMMDD
+     * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
+     * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getDayName
+     * @covers  Molajo\Controller\DateController::getMonthName
+     * @covers  Molajo\Controller\DateController::buildCalendar
+     * @covers  Molajo\Controller\DateController::translatePrettyDate
+     * @covers  Molajo\Controller\DateController::translate
      *
      *  Tests translate and getDayName
      *
@@ -195,7 +272,18 @@ class DateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *  Get the number of days between two dates
+     * @covers  Molajo\Controller\DateController::__construct
+     * @covers  Molajo\Controller\DateController::get
+     * @covers  Molajo\Controller\DateController::set
+     * @covers  Molajo\Controller\DateController::getDate
+     * @covers  Molajo\Controller\DateController::convertCCYYMMDD
+     * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
+     * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getDayName
+     * @covers  Molajo\Controller\DateController::getMonthName
+     * @covers  Molajo\Controller\DateController::buildCalendar
+     * @covers  Molajo\Controller\DateController::translatePrettyDate
+     * @covers  Molajo\Controller\DateController::translate
      *
      * Tests translate and getMonthName
      *
@@ -220,7 +308,18 @@ class DateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *  Get the number of days between two dates
+     * @covers  Molajo\Controller\DateController::__construct
+     * @covers  Molajo\Controller\DateController::get
+     * @covers  Molajo\Controller\DateController::set
+     * @covers  Molajo\Controller\DateController::getDate
+     * @covers  Molajo\Controller\DateController::convertCCYYMMDD
+     * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
+     * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getDayName
+     * @covers  Molajo\Controller\DateController::getMonthName
+     * @covers  Molajo\Controller\DateController::buildCalendar
+     * @covers  Molajo\Controller\DateController::translatePrettyDate
+     * @covers  Molajo\Controller\DateController::translate
      *
      * Tests translate and getMonthName
      *
