@@ -238,6 +238,7 @@ class DateController extends DateTime implements DateInterface
         if ($date_format == null) {
             $date_format = 'Y-m-d H:i:s';
         }
+
         if ($date_format == 'd-m-YY') {
             $date = strtotime($date_time->format('d-m-YY'));
         } else {

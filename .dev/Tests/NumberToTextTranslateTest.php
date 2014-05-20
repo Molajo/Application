@@ -6,9 +6,8 @@
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
  */
-namespace Molajo\Controller\Translate\Test;
+namespace Molajo\Controller\NumberToText\Test;
 
-use Molajo\Controller\NumberToText;
 use Molajo\Controller\NumberToText\Translate;
 
 /**
@@ -19,7 +18,7 @@ use Molajo\Controller\NumberToText\Translate;
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
+class NumberToTextTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Locale Instance
@@ -27,39 +26,32 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @var    object
      * @since  1.0
      */
-    protected $numbertotext;
+    protected $locale_instance;
 
     /**
-     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText\Translate::__construct
      * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
      *
      * @return  $this
      * @since   1.0
      */
     protected function setUp()
     {
-        $translate_instance = new Translate('en-GB');
-        $this->numbertotext = new MockNumberToText($translate_instance);
+        $this->locale_instance = new Translate('en-GB');
     }
 
     /**
      * @covers  Molajo\Controller\NumberToText\Translate::__construct
      * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
      * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
      *
      * @return  $this
      * @since   1.0
      */
-    public function testExtractDecimal()
+    public function testTranslateString()
     {
-        $results = $this->numbertotext->convert(2.1);
-
-        $this->assertEquals(2, $this->numbertotext->propertyExtractDecimal[0]);
-        $this->assertEquals(1, $this->numbertotext->propertyExtractDecimal[1]);
+        $results = $this->locale_instance->translateString('number_one');
+        $this->assertEquals('one', $results);
 
         return $this;
     }
@@ -68,412 +60,15 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText\Translate::__construct
      * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
      * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
      *
      * @return  $this
      * @since   1.0
      */
-    public function testExtractNoSign()
+    public function testTranslateStringNotFound()
     {
-        $results = $this->numbertotext->convert('2');
-
-        $this->assertEquals('', $this->numbertotext->propertyExtractSign[0]);
-        $this->assertEquals('2', $this->numbertotext->propertyExtractSign[1]);
+        $results = $this->locale_instance->translateString('not_found');
+        $this->assertEquals('not_found', $results);
 
         return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testExtractNegativeSign()
-    {
-        $results = $this->numbertotext->convert('-2');
-
-        $this->assertEquals('-', $this->numbertotext->propertyExtractSign[0]);
-        $this->assertEquals('2', $this->numbertotext->propertyExtractSign[1]);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testExtractPlusSign()
-    {
-        $results = $this->numbertotext->convert('+2');
-
-        $this->assertEquals('+', $this->numbertotext->propertyExtractSign[0]);
-        $this->assertEquals('2', $this->numbertotext->propertyExtractSign[1]);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testExtractDigits()
-    {
-        $results = $this->numbertotext->convert('+2');
-
-        $this->assertEquals('200', $this->numbertotext->propertyExtractDigits);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testExtractDigitsThousand()
-    {
-        $results = $this->numbertotext->convert('1000');
-
-        $this->assertEquals('000100', $this->numbertotext->propertyExtractDigits);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testGroups()
-    {
-        $results = $this->numbertotext->convert('1000');
-
-        $this->assertEquals(array('000', '100'), $this->numbertotext->propertyCreateGroups);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testProcessGroupsZero()
-    {
-        $results = $this->numbertotext->convert('0');
-
-        $this->assertEquals('zero', $this->numbertotext->propertyConvert);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testProcessGroupsOne()
-    {
-        $results = $this->numbertotext->convert('1');
-
-        $this->assertEquals('one', $this->numbertotext->propertyProcessGroups);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testProcessGroupsEight()
-    {
-        $results = $this->numbertotext->convert('8');
-
-        $this->assertEquals('eight', $this->numbertotext->propertyProcessGroups);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testProcessGroups100()
-    {
-        $results = $this->numbertotext->convert('100');
-
-        $this->assertEquals('one hundred', $this->numbertotext->propertyProcessGroups);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testProcessGroups1000()
-    {
-        $results = $this->numbertotext->convert('1000');
-
-        $this->assertEquals('one thousand', $this->numbertotext->propertyProcessGroups);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testProcessGroups1002()
-    {
-        $results = $this->numbertotext->convert('1002');
-
-        $this->assertEquals('one thousand two', $this->numbertotext->propertyProcessGroups);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testProcessGroupsOneMillion()
-    {
-        $results = $this->numbertotext->convert('100000000');
-
-        $this->assertEquals('one million', $this->numbertotext->propertyProcessGroups);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testProcessGroupsOneMillionOneHundred()
-    {
-        $results = $this->numbertotext->convert('100000100');
-
-        $this->assertEquals('one million one hundred', $this->numbertotext->propertyProcessGroups);
-
-        return $this;
-    }
-
-    /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
-     * @covers  Molajo\Controller\NumberToText::convert
-     * @covers  Molajo\Controller\NumberToText::extractDecimal
-     * @covers  Molajo\Controller\NumberToText::extractSign
-     * @covers  Molajo\Controller\NumberToText::extractDigits
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testDigit()
-    {
-        $results = $this->numbertotext->convert('100000100.01');
-
-        $this->assertEquals('one million one hundred . 01', $results);
-
-        return $this;
-    }
-}
-
-/**
- * Number to Text Utility: Converts a numeric value up to a 999 quattuordecillion to translatable term.
- *
- * @package     Molajo
- * @subpackage  NumberToText
- * @since       1.0
- */
-class MockNumberToText extends NumberToText
-{
-    public $propertyConvert;
-    public $propertyExtractDecimal;
-    public $propertyExtractSign;
-    public $propertyExtractDigits;
-    public $propertyCreateGroups;
-    public $propertyProcessGroups;
-    public $propertyTranslateGroup;
-    public $propertySetWordTens;
-    public $propertySetWordHundreds;
-    public $propertySetWord;
-
-    public function convert($number, $remove_spaces = false)
-    {
-        $this->propertyConvert = parent::convert($number, $remove_spaces);
-
-        return $this->propertyConvert;
-    }
-
-    protected function extractDecimal($number)
-    {
-        $this->propertyExtractDecimal = parent::extractDecimal($number);
-
-        return $this->propertyExtractDecimal;
-    }
-
-    protected function extractSign($digit)
-    {
-        $this->propertyExtractSign = parent::extractSign($digit);
-
-        return $this->propertyExtractSign;
-    }
-
-    protected function extractDigits($number)
-    {
-        $this->propertyExtractDigits = parent::extractDigits($number);
-
-        return $this->propertyExtractDigits;
-    }
-
-    protected function createGroups($number)
-    {
-        $this->propertyCreateGroups = parent::createGroups($number);
-
-        return $this->propertyCreateGroups;
-    }
-
-    protected function processGroups(array $groups = array())
-    {
-        $this->propertyProcessGroups = parent::processGroups($groups);
-
-        return $this->propertyProcessGroups;
-    }
-
-    protected function translateGroup($digits, $i)
-    {
-        $this->propertyTranslateGroup = parent::translateGroup($digits, $i);
-
-        return $this->propertyTranslateGroup;
-    }
-
-    protected function setWordTens($tens_digit, $ones_digit, $onesWord)
-    {
-        $this->propertySetWordTens = parent::setWordTens($tens_digit, $ones_digit, $onesWord);
-
-        return $this->propertySetWordTens;
-    }
-
-    protected function setWordHundreds($hundreds_digit, $tens_word)
-    {
-        $this->propertySetWordHundreds = parent::setWordHundreds($hundreds_digit, $tens_word);
-
-        return $this->propertySetWordHundreds;
-    }
-
-    protected function setWord($digit, $digit_position = 0)
-    {
-        $this->propertySetWord = parent::setWord($digit, $digit_position = 0);
-
-        return $this->propertySetWord;
-    }
-
-    protected function convertGrouping($number)
-    {
-        $this->propertySetWord = parent::convertGrouping($number);
-
-        return $this->propertySetWord;
     }
 }

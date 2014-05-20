@@ -28,6 +28,12 @@ class NumberToText implements NumberToTextInterface
      */
     protected $locale_instance;
 
+    /**
+     * Assigning words
+     *
+     * @var    array
+     * @since  1.0
+     */
     protected $number_array = array();
 
     /**
@@ -74,11 +80,6 @@ class NumberToText implements NumberToTextInterface
         $this->number_array[2][7] = 'number_seventy';
         $this->number_array[2][8] = 'number_eighty';
         $this->number_array[2][9] = 'number_ninety';
-
-        $this->number_array[3][0] = 'number_hundred';
-
-        $this->digit_position_array[0]  = '';
-        $this->digit_position_array[10] = '';
     }
 
     /**
@@ -97,6 +98,7 @@ class NumberToText implements NumberToTextInterface
         $groups     = $this->createGroups($digits);
         $word_value = $this->processGroups($groups);
         $word_value = $this->setDecimal($decimal, $word_value);
+        $word_value = $this->setSign($sign, $word_value);
 
         return trim($word_value);
     }
@@ -439,18 +441,18 @@ class NumberToText implements NumberToTextInterface
     }
 
     /**
-     * Remove spaces
+     * Assign Sign
      *
-     * @param   boolean $remove_spaces
+     * @param   string  $sign
      * @param   string  $word_value
      *
      * @return  mixed
      * @since   1.0
      */
-    protected function removeSpaces($remove_spaces, $word_value)
+    protected function setSign($sign, $word_value)
     {
-        if ((int)$remove_spaces == 1) {
-            $word_value = str_replace(' ', '', $word_value);
+        if (trim($sign) === '-') {
+            $word_value = $this->locale_instance->translateString('number_negative') . $word_value;
         }
 
         return $word_value;
