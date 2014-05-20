@@ -341,23 +341,13 @@ class TextController implements TextInterface
         $start_with_lorem_ipsum = true,
         $valid_markup = array('p', 'h1', 'h2', 'h3', 'h4', 'h5', 'ul', 'ol', 'blockquote')
     ) {
-        $count_lorem_set        = $this->editCountLoremSet();
-        $number_of_paragraphs   = $this->editNumberOfParagraphs($number_of_paragraphs);
-        $lines_per_paragraphs   = $this->editLinesPerParagraph($lines_per_paragraphs);
-        $words_per_line         = $this->editWordsPerLine($words_per_line);
-        $valid                  = $this->editValidMarkup();
-
-        $markup_type            = $this->editMarkupType($markup_type, $valid);
-
-        $start_with_lorem_ipsum = $this->editStartWithLoremIpsum($start_with_lorem_ipsum);
-
         $output = $this->createParagraphs(
-            $number_of_paragraphs,
-            $lines_per_paragraphs,
-            $words_per_line,
-            $markup_type,
-            $start_with_lorem_ipsum,
-            $count_lorem_set
+            $this->editNumberOfParagraphs($number_of_paragraphs),
+            $this->editLinesPerParagraph($lines_per_paragraphs),
+            $this->editWordsPerLine($words_per_line),
+            $this->editMarkupType($markup_type, $this->editValidMarkup()),
+            $this->editStartWithLoremIpsum($start_with_lorem_ipsum),
+            $this->editCountLoremSet()
         );
 
         if ($markup_type === 'ul' || $markup_type === 'ol') {
@@ -598,17 +588,7 @@ class TextController implements TextInterface
     {
         for ($word_count = 0; $word_count < $words_per_line; $word_count++) {
 
-            if ($word_count === 0 && $start_with_lorem_ipsum === true) {
-                $word = 'Lorem';
-            } elseif ($word_count === 1 && $start_with_lorem_ipsum === true) {
-                $word = 'ipsum';
-            } else {
-                $word = $this->lorem_set[rand(0, $count_lorem_set)];
-            }
-
-            if ($word_count === 0) {
-                $word = ucfirst(strtolower($word));
-            }
+            $word = $this->createWord($start_with_lorem_ipsum, $count_lorem_set, $word_count);
 
             $output .= ' ' . $word;
 
@@ -619,5 +599,32 @@ class TextController implements TextInterface
         }
 
         return $output;
+    }
+
+    /**
+     * Create a single word
+     *
+     * @param  boolean  $start_with_lorem_ipsum
+     * @param  integer  $count_lorem_set
+     * @param  integer  $word_count
+     *
+     * @return string
+     * @since  1.0.0
+     */
+    protected function createWord($start_with_lorem_ipsum, $count_lorem_set, $word_count)
+    {
+        if ($word_count === 0 && $start_with_lorem_ipsum === true) {
+            $word = 'Lorem';
+        } elseif ($word_count === 1 && $start_with_lorem_ipsum === true) {
+            $word = 'ipsum';
+        } else {
+            $word = $this->lorem_set[rand(0, $count_lorem_set)];
+        }
+
+        if ($word_count === 0) {
+            $word = ucfirst(strtolower($word));
+        }
+
+        return $word;
     }
 }

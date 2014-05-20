@@ -79,6 +79,19 @@ class ErrorHandling implements ErrorHandlingInterface
     protected $error_page_view = 'Molajo\\Views\\Pages\\Error';
 
     /**
+     * Error Code to Message Array
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $error_code_to_message = array(
+        403 => 'error_message_not_authorised',
+        404 => 'error_message_not_found',
+        500 => 'error_message_internal_server_error',
+        503 => 'error_message_offline_switch'
+    );
+
+    /**
      * Class Constructor
      *
      * @param  string $error_theme
@@ -155,23 +168,14 @@ class ErrorHandling implements ErrorHandlingInterface
      */
     protected function setErrorMessage($error_code)
     {
-        if ($error_code == 403) {
-            $error_message = $this->error_message_not_authorised;
-
-        } elseif ($error_code == 404) {
-            $error_message = $this->error_message_not_found;
-
-        } elseif ($error_code == 500) {
-            $error_message = $this->error_message_internal_server_error;
-
-        } elseif ($error_code == 503) {
-            $error_message = $this->error_message_offline_switch;
-
+        if (isset($this->error_code_to_message[$error_code])) {
         } else {
-            throw new ErrorThrownAsException($this->error_message_internal_server_error);
+            throw new ErrorThrownAsException($this->error_message_internal_server_error, $error_code);
         }
 
-        return $error_message;
+        $value = $this->error_code_to_message[$error_code];
+
+        return $this->$value;
     }
 
     /**

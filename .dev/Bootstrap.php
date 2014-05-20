@@ -68,8 +68,6 @@ $results  = createClassMap($base . '/Source/Plugins/Sites', 'Molajo\\Plugins\\Si
 $classmap = array_merge($classmap, $results);
 $results  = createClassMap($base . '/Source/Plugins/Status', 'Molajo\\Plugins\\Status\\');
 $classmap = array_merge($classmap, $results);
-$results  = createClassMap($base . '/Source/Plugins/Translate', 'Molajo\\Plugins\\Translate\\');
-$classmap = array_merge($classmap, $results);
 ksort($classmap);
 
 $results  = createClassMap($base . '/Source/Resource/Adapter', 'Molajo\\Resource\\Adapter\\');

@@ -281,7 +281,7 @@ class DateController extends DateTime implements DateInterface
      *
      * @return  string
      */
-    protected function getDateFormatDate($date_time, $date_format)
+    protected function getDateFormatDate(Datetime $date_time, $date_format)
     {
         if ($date_format == null) {
             $date_format = 'Y-m-d H:i:s';

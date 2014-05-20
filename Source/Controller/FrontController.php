@@ -125,12 +125,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
                 $this->scheduleEvent($event_name = 'onBefore' . ucfirst(strtolower($step)));
             }
 
-            try {
-                $this->$step();
-
-            } catch (Exception $e) {
-                throw new RuntimeException($e->getMessage());
-            }
+            $this->$step();
 
             $this->scheduleEvent($event_name = 'onAfter' . ucfirst(strtolower($step)));
 
@@ -158,29 +153,69 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
     {
         $options['event_name'] = $event_name;
 
+        $event_instance = $this->scheduleEventCreateScheduled($options);
+
+        $event_results = $this->scheduleDispatcher($event_name, $event_instance);
+
+        $this->scheduleEventSaveResults($event_results);
+
+        return $this;
+    }
+
+    /**
+     * Create Event Scheduled Instance
+     *
+     * @param   array $options
+     *
+     * @return  object
+     * @since   1.0
+     */
+    protected function scheduleEventCreateScheduled(array $options)
+    {
         try {
-            $event_instance = $this->scheduleFactoryMethod('Event', $options);
+            return $this->scheduleFactoryMethod('Event', $options);
 
         } catch (Exception $e) {
             throw new RuntimeException(
                 'Frontcontroller scheduleEvent Get Event Factory Failed: ' . $e->getMessage()
             );
         }
+    }
 
+    /**
+     * Create Event Scheduled Instance
+     *
+     * @param   string $event_name
+     * @param   object $event_instance
+     *
+     * @return  array
+     * @since   1.0
+     */
+    protected function scheduleDispatcher($event_name, $event_instance)
+    {
         try {
-            $results = $this->scheduleFactoryMethod('Dispatcher')->scheduleEvent($event_name, $event_instance);
+            return $this->scheduleFactoryMethod('Dispatcher')->scheduleEvent($event_name, $event_instance);
 
         } catch (Exception $e) {
             throw new RuntimeException('Frontcontroller scheduleEvent Failed ' . $e->getMessage());
         }
+    }
 
-        if (count($results) > 0) {
-            foreach ($results as $key => $value) {
-                $this->setContainerEntry($key, $results[$key]);
-            }
+    /**
+     * Retrieve Data from Event and save to container
+     *
+     * @param   array $options
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function scheduleEventSaveResults(array $options = array())
+    {
+        foreach ($options as $key => $value) {
+            $this->setContainerEntry($key, $options[$key]);
         }
 
-        return $results;
+        return $this;
     }
 
     /**
@@ -239,7 +274,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      */
     public function handleErrors()
     {
-        //$this->scheduleFactoryMethod('ErrorHandling');
+        $this->scheduleFactoryMethod('ErrorHandling');
         /**
          *
          * $this->redirect->set('url', $runtime_data->redirect_to_id);
@@ -361,6 +396,8 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
     /**
      * Run step for $factory_method
      *
+     * @param   string $factory_method
+     *
      * @return  $this
      * @since   1.0
      */
@@ -389,7 +426,6 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
     protected function resource()
     {
         try {
-
             $resource_instance = $this->scheduleFactoryMethod('Resourcecontroller');
 
             $resource = $resource_instance->getResource();

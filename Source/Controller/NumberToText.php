@@ -34,7 +34,42 @@ class NumberToText implements NumberToTextInterface
      * @var    array
      * @since  1.0
      */
-    protected $number_array = array();
+    protected $number_array = array(
+        0 => array(
+            0 => 'number_zero',
+            1 => 'number_one',
+            2 => 'number_two',
+            3 => 'number_three',
+            4 => 'number_four',
+            5 => 'number_five',
+            6 => 'number_six',
+            7 => 'number_seven',
+            8 => 'number_eight',
+            0 => 'number_nine'
+        ),
+        1 => array(
+            0 => 'number_ten',
+            1 => 'number_eleven',
+            2 => 'number_twelve',
+            3 => 'number_thirteen',
+            4 => 'number_fourteen',
+            5 => 'number_fifteen',
+            6 => 'number_sixteen',
+            7 => 'number_seventeen',
+            8 => 'number_eighteen',
+            0 => 'number_nineteen'
+        ),
+        2 => array(
+            2 => 'number_twenty',
+            3 => 'number_thirty',
+            4 => 'number_forty',
+            5 => 'number_fifty',
+            6 => 'number_sixty',
+            7 => 'number_seventy',
+            8 => 'number_eighty',
+            0 => 'number_ninety'
+        )
+    );
 
     /**
      * Grouping number words
@@ -73,39 +108,6 @@ class NumberToText implements NumberToTextInterface
     public function __construct(TranslateInterface $locale_instance)
     {
         $this->locale_instance = $locale_instance;
-
-        $this->number_array = array();
-
-        $this->number_array[0][0] = 'number_zero';
-        $this->number_array[0][1] = 'number_one';
-        $this->number_array[0][2] = 'number_two';
-        $this->number_array[0][3] = 'number_three';
-        $this->number_array[0][4] = 'number_four';
-        $this->number_array[0][5] = 'number_five';
-        $this->number_array[0][6] = 'number_six';
-        $this->number_array[0][7] = 'number_seven';
-        $this->number_array[0][8] = 'number_eight';
-        $this->number_array[0][9] = 'number_nine';
-
-        $this->number_array[1][0] = 'number_ten';
-        $this->number_array[1][1] = 'number_eleven';
-        $this->number_array[1][2] = 'number_twelve';
-        $this->number_array[1][3] = 'number_thirteen';
-        $this->number_array[1][4] = 'number_fourteen';
-        $this->number_array[1][5] = 'number_fifteen';
-        $this->number_array[1][6] = 'number_sixteen';
-        $this->number_array[1][7] = 'number_seventeen';
-        $this->number_array[1][8] = 'number_eighteen';
-        $this->number_array[1][9] = 'number_nineteen';
-
-        $this->number_array[2][2] = 'number_twenty';
-        $this->number_array[2][3] = 'number_thirty';
-        $this->number_array[2][4] = 'number_forty';
-        $this->number_array[2][5] = 'number_fifty';
-        $this->number_array[2][6] = 'number_sixty';
-        $this->number_array[2][7] = 'number_seventy';
-        $this->number_array[2][8] = 'number_eighty';
-        $this->number_array[2][9] = 'number_ninety';
     }
 
     /**
@@ -225,20 +227,35 @@ class NumberToText implements NumberToTextInterface
         $word_value = '';
 
         foreach ($groups as $digits) {
-
-            $temp_word_value = $this->translateGroup($digits, $i);
-
-            if (trim($word_value) === '') {
-                $word_value = $temp_word_value;
-            } else {
-                $word_value = trim($temp_word_value) . ' ' . trim($word_value);
-            }
-
+            $word_value = $this->processGroupDigits($digits, $i, $word_value);
             $i++;
         }
 
         if (trim($word_value) === '') {
             $word_value = $this->locale_instance->translateString('number_zero');
+        }
+
+        return $word_value;
+    }
+
+    /**
+     * Process digits for the group
+     *
+     * @param   string  $digits
+     * @param   integer $i
+     * @param   string  $word_value
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function processGroupDigits($digits, $i, $word_value)
+    {
+        $temp_word_value = $this->translateGroup($digits, $i);
+
+        if (trim($word_value) === '') {
+            $word_value = $temp_word_value;
+        } else {
+            $word_value = trim($temp_word_value) . ' ' . trim($word_value);
         }
 
         return $word_value;
@@ -255,11 +272,7 @@ class NumberToText implements NumberToTextInterface
      */
     protected function translateGroup($digits, $i)
     {
-        $digit = str_split($digits);
-
-        $ones_digit     = (int)$digit[0];
-        $tens_digit     = (int)$digit[1];
-        $hundreds_digit = (int)$digit[2];
+        list($ones_digit, $tens_digit, $hundreds_digit) = $this->getGroupDigits($digits);
 
         if ($ones_digit === 0 && $tens_digit === 0 && $hundreds_digit === 0) {
             return '';
@@ -274,6 +287,25 @@ class NumberToText implements NumberToTextInterface
         }
 
         return $temp_word_value;
+    }
+
+    /**
+     * Get Group Digits
+     *
+     * @param   string  $digits
+     *
+     * @return  array
+     * @since   1.0.0
+     */
+    protected function getGroupDigits($digits)
+    {
+        $digit = str_split($digits);
+
+        $ones_digit     = (int)$digit[0];
+        $tens_digit     = (int)$digit[1];
+        $hundreds_digit = (int)$digit[2];
+
+        return array($ones_digit, $tens_digit, $hundreds_digit);
     }
 
     /**
