@@ -247,13 +247,7 @@ class DateController extends DateTime implements DateInterface
             $time = 'now';
         }
 
-        if ($timezone === null) {
-            if ($server_or_user_timezone == 'server') {
-                $timezone = $this->timezone_server;
-            } else {
-                $timezone = $this->timezone_user;
-            }
-        }
+        $timezone = $this->getDateTimezone($timezone, $server_or_user_timezone);
 
         $tz        = new DateTimeZone($timezone);
         $date_time = new DateTime($time);
@@ -270,6 +264,27 @@ class DateController extends DateTime implements DateInterface
         }
 
         return (string)$date;
+    }
+
+    /**
+     * Get Timezone
+     *
+     * @param   string  $timezone
+     * @param   string  $server_or_user_timezone
+     *
+     * @return  string
+     */
+    protected function getDateTimezone($timezone = null, $server_or_user_timezone = 'server')
+    {
+        if ($timezone === null) {
+            if ($server_or_user_timezone == 'server') {
+                $timezone = $this->timezone_server;
+            } else {
+                $timezone = $this->timezone_user;
+            }
+        }
+
+        return $timezone;
     }
 
     /**

@@ -120,7 +120,6 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\Application::runConfigurationQuery
      * @covers Molajo\Controller\Application::setCustomFields
      * @covers Molajo\Controller\Application::processCustomfieldGroup
-     * @covers Molajo\Controller\Application::setDefault
      * @covers Molajo\Controller\Application::getCustomfieldGroupData
      * @covers Molajo\Controller\Application::createCustomFieldGroup
      * @covers Molajo\Controller\Application::sanitize

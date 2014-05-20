@@ -649,7 +649,7 @@ class MockNumberToText extends NumberToText
         return $this->propertySetWord;
     }
 
-    protected function convertGrouping($number)
+    protected function convertGrouping($number = 0)
     {
         $this->propertySetWord = parent::convertGrouping($number);
 

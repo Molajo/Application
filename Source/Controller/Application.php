@@ -267,13 +267,7 @@ class Application implements ApplicationInterface
     {
         $this->data = new stdClass();
 
-        if ($this->name == 'installation') {
-            $this->data->id          = 0;
-            $this->data->name        = $this->name;
-            $this->data->description = $this->name;
-
-            return $this;
-        }
+        $this->getConfigurationInstallation();
 
         $data = $this->runConfigurationQuery();
 
@@ -285,11 +279,30 @@ class Application implements ApplicationInterface
         $this->data->catalog_id      = (int)$data->catalog_id;
         $this->data->catalog_type_id = (int)$data->catalog_type_id;
 
-        $this->setCustomFields($this->model_registry['customfieldgroups'], $data);
+        $this->setCustomFields($data, $this->model_registry['customfieldgroups']);
 
         $this->getConfigurationLineEnd();
 
         return $this->data;
+    }
+
+
+    /**
+     * Installation Application, only
+     *
+     * @return  $this
+     * @since   1.0.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    protected function getConfigurationInstallation()
+    {
+        if ($this->name == 'installation') {
+            $this->data->id          = 0;
+            $this->data->name        = $this->name;
+            $this->data->description = $this->name;
+        }
+
+        return $this;
     }
 
     /**
@@ -331,13 +344,13 @@ class Application implements ApplicationInterface
     /**
      * Set Custom Fields
      *
-     * @param   array  $custom_field_types
      * @param   object $data
+     * @param   array  $custom_field_types
      *
      * @return  $this
      * @since   1.0.0
      */
-    protected function setCustomFields(array $custom_field_types = array(), $data)
+    protected function setCustomFields($data, array $custom_field_types = array())
     {
         foreach ($custom_field_types as $group) {
             unset($this->data->$group);
