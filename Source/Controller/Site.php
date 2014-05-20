@@ -113,20 +113,21 @@ class Site implements SiteInterface
     /**
      * List of Properties
      *
-     * @var    object
+     * @var    array
      * @since  1.0
      */
-    protected $property_array = array(
-        'id',
-        'name',
-        'base_url',
-        'base_path',
-        'site_base_path',
-        'site_media_folder',
-        'site_media_url',
-        'sites_media_folder',
-        'sites_media_url'
-    );
+    protected $property_array
+        = array(
+            'id',
+            'name',
+            'base_url',
+            'base_path',
+            'site_base_path',
+            'site_media_folder',
+            'site_media_url',
+            'sites_media_folder',
+            'sites_media_url'
+        );
 
     /**
      * Constructor
@@ -212,15 +213,11 @@ class Site implements SiteInterface
         foreach ($this->sites as $single) {
 
             if (strtolower((string)$single->site_base_url) == strtolower($this->host)) {
-
                 $this->id             = $single->id;
                 $this->name           = $single->name;
                 $this->site_base_path = $this->base_path . $single->site_base_path;
-
-                if (substr($this->path, 0, strlen('installation')) == 'installation') {
-                } else {
-                    $this->installCheck();
-                }
+                
+                $this->installCheck();
 
                 break;
             }
@@ -230,6 +227,20 @@ class Site implements SiteInterface
             throw new RuntimeException('Sites Service: Cannot identify site for: ' . $this->base_url);
         }
 
+        $this->setSitePaths();
+
+        return $this;
+    }
+
+    /**
+     * Set Site Paths
+     *
+     * return  $this
+     *
+     * @since  1.0
+     */
+    protected function setSitePaths()
+    {
         $this->site_base_path     = $this->base_path . '/Sites/' . $this->id;
         $this->sites_media_folder = $this->base_path . '/Sites/Public/Media';
         $this->sites_media_url    = $this->base_url . 'Media';
@@ -248,6 +259,10 @@ class Site implements SiteInterface
      */
     public function installCheck()
     {
+        if (substr($this->path, 0, strlen('installation')) == 'installation') {
+            return $this;
+        }
+
         if (defined('SKIP_INSTALL_CHECK')) {
             return $this;
         }
@@ -259,44 +274,5 @@ class Site implements SiteInterface
         $redirect = $this->host . 'installation/';
         header('Location: ' . $redirect);
         exit();
-    }
-
-    /**
-     * Check if the Site has permission to utilise this Application
-     *
-     * @param   int $site_id
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function verifySiteApplication($site_id)
-    {
-        $query = $this->database->getQueryObject();
-
-        $query->select('id');
-        $query->from('#__site_applications');
-        $query->where(
-            'column',
-            'application_id',
-            '=',
-            'integer',
-            $this->id
-        );
-        $query->where(
-            'column',
-            'site_id',
-            '=',
-            'integer',
-            $site_id
-        );
-
-        $valid = $this->database->loadResult($query->getSQL());
-
-        if ($valid === false) {
-        } else {
-            return $this;
-        }
-
-        die('Site accessing invalid application.');
     }
 }
