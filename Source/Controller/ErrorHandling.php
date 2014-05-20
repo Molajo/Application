@@ -121,24 +121,58 @@ class ErrorHandling implements ErrorHandlingInterface
     public function setError($error_code = 0, $error_message = '', $file = '', $line = '')
     {
         $error_object = new stdClass();
+        $error_object->error_code    = $error_code;
+        $error_object->error_message = $this->setErrorMessage($error_code, $error_message, $file, $line);
 
+        $error_object = $this->setThemePageView($error_code, $error_object);
+
+        return $error_object;
+    }
+
+    /**
+     * Set Error Message
+     *
+     * @param   integer  $error_code
+     * @param   string   $error_message
+     * @param   string   $file
+     * @param   string   $line
+     *
+     * @returns string
+     * @since   1.0.0
+     * @throws  \CommonApi\Exception\ErrorThrownAsException
+     */
+    protected function setErrorMessage($error_code, $error_message, $file, $line)
+    {
         if ($error_code == 403) {
             $error_message = $this->error_message_not_authorised;
+
         } elseif ($error_code == 404) {
             $error_message = $this->error_message_not_found;
+
         } elseif ($error_code == 500) {
             $error_message = $this->error_message_internal_server_error;
+
         } elseif ($error_code == 503) {
             $error_message = $this->error_message_offline_switch;
+
         } else {
-            throw new ErrorThrownAsException(
-                $error_message, 0, $error_code, $file, $line
-            );
+            throw new ErrorThrownAsException($this->error_message_internal_server_error);
         }
 
-        $error_object->error_code    = $error_code;
-        $error_object->error_message = $error_message;
+        return $error_message;
+    }
 
+    /**
+     * Set Theme and Page View
+     *
+     * @param   integer  $error_code
+     * @param   object   $error_object
+     *
+     * @returns object
+     * @since   1.0.0
+     */
+    protected function setThemePageView($error_code, $error_object)
+    {
         if ($error_code == 503) {
             $error_object->theme_namespace = $this->error_theme;
             $error_object->page_namespace  = $this->error_page_offline_view;

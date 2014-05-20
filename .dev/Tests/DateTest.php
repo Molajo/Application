@@ -47,6 +47,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::convertCCYYMMDD
      * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
      * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getPrettyDateToday
+     * @covers  Molajo\Controller\DateController::getPrettyDateNotToday
      * @covers  Molajo\Controller\DateController::getDayName
      * @covers  Molajo\Controller\DateController::getMonthName
      * @covers  Molajo\Controller\DateController::buildCalendar
@@ -74,6 +76,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::convertCCYYMMDD
      * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
      * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getPrettyDateToday
+     * @covers  Molajo\Controller\DateController::getPrettyDateNotToday
      * @covers  Molajo\Controller\DateController::getDayName
      * @covers  Molajo\Controller\DateController::getMonthName
      * @covers  Molajo\Controller\DateController::buildCalendar
@@ -105,6 +109,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::convertCCYYMMDD
      * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
      * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getPrettyDateToday
+     * @covers  Molajo\Controller\DateController::getPrettyDateNotToday
      * @covers  Molajo\Controller\DateController::getDayName
      * @covers  Molajo\Controller\DateController::getMonthName
      * @covers  Molajo\Controller\DateController::buildCalendar
@@ -133,6 +139,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::convertCCYYMMDD
      * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
      * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getPrettyDateToday
+     * @covers  Molajo\Controller\DateController::getPrettyDateNotToday
      * @covers  Molajo\Controller\DateController::getDayName
      * @covers  Molajo\Controller\DateController::getMonthName
      * @covers  Molajo\Controller\DateController::buildCalendar
@@ -163,6 +171,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::convertCCYYMMDD
      * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
      * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getPrettyDateToday
+     * @covers  Molajo\Controller\DateController::getPrettyDateNotToday
      * @covers  Molajo\Controller\DateController::getDayName
      * @covers  Molajo\Controller\DateController::getMonthName
      * @covers  Molajo\Controller\DateController::buildCalendar
@@ -194,6 +204,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::convertCCYYMMDD
      * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
      * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getPrettyDateToday
+     * @covers  Molajo\Controller\DateController::getPrettyDateNotToday
      * @covers  Molajo\Controller\DateController::getDayName
      * @covers  Molajo\Controller\DateController::getMonthName
      * @covers  Molajo\Controller\DateController::buildCalendar
@@ -243,6 +255,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::convertCCYYMMDD
      * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
      * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getPrettyDateToday
+     * @covers  Molajo\Controller\DateController::getPrettyDateNotToday
      * @covers  Molajo\Controller\DateController::getDayName
      * @covers  Molajo\Controller\DateController::getMonthName
      * @covers  Molajo\Controller\DateController::buildCalendar
@@ -279,6 +293,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::convertCCYYMMDD
      * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
      * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getPrettyDateToday
+     * @covers  Molajo\Controller\DateController::getPrettyDateNotToday
      * @covers  Molajo\Controller\DateController::getDayName
      * @covers  Molajo\Controller\DateController::getMonthName
      * @covers  Molajo\Controller\DateController::buildCalendar
@@ -315,6 +331,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::convertCCYYMMDD
      * @covers  Molajo\Controller\DateController::getNumberofDaysAgo
      * @covers  Molajo\Controller\DateController::getPrettyDate
+     * @covers  Molajo\Controller\DateController::getPrettyDateToday
+     * @covers  Molajo\Controller\DateController::getPrettyDateNotToday
      * @covers  Molajo\Controller\DateController::getDayName
      * @covers  Molajo\Controller\DateController::getMonthName
      * @covers  Molajo\Controller\DateController::buildCalendar

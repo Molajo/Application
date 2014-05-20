@@ -9,7 +9,6 @@
 namespace Molajo\Controller;
 
 use CommonApi\Controller\DateInterface;
-use CommonApi\Exception\RuntimeException;
 use DateTime;
 use DateTimeZone;
 use stdClass;
@@ -64,60 +63,61 @@ class DateController extends DateTime implements DateInterface
      * @var    array
      * @since  1.0
      */
-    protected $date_translate_array = array
-    (
-        'AGO'                  => 'ago',
-        'DATE_MINUTE_SINGULAR' => 'minute',
-        'DATE_MINUTE_PLURAL'   => 'minutes',
-        'DATE_HOUR_SINGULAR'   => 'hour',
-        'DATE_HOUR_PLURAL'     => 'hours',
-        'DATE_DAY_SINGULAR'    => 'day',
-        'DATE_DAY_PLURAL'      => 'days',
-        'DATE_WEEK_SINGULAR'   => 'week',
-        'DATE_WEEK_PLURAL'     => 'weeks',
-        'DATE_MONTH_SINGULAR'  => 'month',
-        'DATE_MONTH_PLURAL'    => 'months',
-        'DATE_YEAR_SINGULAR'   => 'year',
-        'DATE_YEAR_PLURAL'     => 'years',
-        'DATE_MON'             => 'Mon',
-        'DATE_MONDAY'          => 'Monday',
-        'DATE_TUE'             => 'Tue',
-        'DATE_TUESDAY'         => 'Tuesday',
-        'DATE_WED'             => 'Wed',
-        'DATE_WEDNESDAY'       => 'Wednesday',
-        'DATE_THU'             => 'Thu',
-        'DATE_THURSDAY'        => 'Thursday',
-        'DATE_FRI'             => 'Fri',
-        'DATE_FRIDAY'          => 'Friday',
-        'DATE_SAT'             => 'Sat',
-        'DATE_SATURDAY'        => 'Saturday',
-        'DATE_SUN'             => 'Sun',
-        'DATE_SUNDAY'          => 'Sunday',
-        'DATE_JAN'             => 'Jan',
-        'DATE_JANUARY'         => 'January',
-        'DATE_FEB'             => 'Feb',
-        'DATE_FEBRUARY'        => 'February',
-        'DATE_MAR'             => 'Mar',
-        'DATE_MARCH'           => 'March',
-        'DATE_APR'             => 'Apr',
-        'DATE_APRIL'           => 'April',
-        'DATE_MAY'             => 'May',
-        'DATE_JUN'             => 'Jun',
-        'DATE_JUNE'            => 'June',
-        'DATE_JUL'             => 'Jul',
-        'DATE_JULY'            => 'July',
-        'DATE_AUG'             => 'Aug',
-        'DATE_AUGUST'          => 'August',
-        'DATE_SEP'             => 'Sep',
-        'DATE_SEPTEMBER'       => 'September',
-        'DATE_OCT'             => 'Oct',
-        'DATE_OCTOBER'         => 'October',
-        'DATE_NOV'             => 'Nov',
-        'DATE_NOVEMBER'        => 'November',
-        'DATE_DEC'             => 'Dec',
-        'DATE_DECEMBER'        => 'December',
-        'YESTERDAY'            => 'Yesterday'
-    );
+    protected $date_translate_array
+        = array
+        (
+            'AGO'                  => 'ago',
+            'DATE_MINUTE_SINGULAR' => 'minute',
+            'DATE_MINUTE_PLURAL'   => 'minutes',
+            'DATE_HOUR_SINGULAR'   => 'hour',
+            'DATE_HOUR_PLURAL'     => 'hours',
+            'DATE_DAY_SINGULAR'    => 'day',
+            'DATE_DAY_PLURAL'      => 'days',
+            'DATE_WEEK_SINGULAR'   => 'week',
+            'DATE_WEEK_PLURAL'     => 'weeks',
+            'DATE_MONTH_SINGULAR'  => 'month',
+            'DATE_MONTH_PLURAL'    => 'months',
+            'DATE_YEAR_SINGULAR'   => 'year',
+            'DATE_YEAR_PLURAL'     => 'years',
+            'DATE_MON'             => 'Mon',
+            'DATE_MONDAY'          => 'Monday',
+            'DATE_TUE'             => 'Tue',
+            'DATE_TUESDAY'         => 'Tuesday',
+            'DATE_WED'             => 'Wed',
+            'DATE_WEDNESDAY'       => 'Wednesday',
+            'DATE_THU'             => 'Thu',
+            'DATE_THURSDAY'        => 'Thursday',
+            'DATE_FRI'             => 'Fri',
+            'DATE_FRIDAY'          => 'Friday',
+            'DATE_SAT'             => 'Sat',
+            'DATE_SATURDAY'        => 'Saturday',
+            'DATE_SUN'             => 'Sun',
+            'DATE_SUNDAY'          => 'Sunday',
+            'DATE_JAN'             => 'Jan',
+            'DATE_JANUARY'         => 'January',
+            'DATE_FEB'             => 'Feb',
+            'DATE_FEBRUARY'        => 'February',
+            'DATE_MAR'             => 'Mar',
+            'DATE_MARCH'           => 'March',
+            'DATE_APR'             => 'Apr',
+            'DATE_APRIL'           => 'April',
+            'DATE_MAY'             => 'May',
+            'DATE_JUN'             => 'Jun',
+            'DATE_JUNE'            => 'June',
+            'DATE_JUL'             => 'Jul',
+            'DATE_JULY'            => 'July',
+            'DATE_AUG'             => 'Aug',
+            'DATE_AUGUST'          => 'August',
+            'DATE_SEP'             => 'Sep',
+            'DATE_SEPTEMBER'       => 'September',
+            'DATE_OCT'             => 'Oct',
+            'DATE_OCTOBER'         => 'October',
+            'DATE_NOV'             => 'Nov',
+            'DATE_NOVEMBER'        => 'November',
+            'DATE_DEC'             => 'Dec',
+            'DATE_DECEMBER'        => 'December',
+            'YESTERDAY'            => 'Yesterday'
+        );
 
     /**
      * Constructor
@@ -156,18 +156,10 @@ class DateController extends DateTime implements DateInterface
      *
      * @return  mixed
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function get($key = null, $default = null)
     {
         $key = strtolower($key);
-
-        if (isset($this->$key)) {
-        } else {
-            throw new RuntimeException(
-                'Date Controller: Attempting to get value for unknown property: ' . $key
-            );
-        }
 
         if ($this->$key === null) {
             $this->$key = $default;
@@ -189,13 +181,6 @@ class DateController extends DateTime implements DateInterface
     public function set($key, $value = null)
     {
         $key = strtolower($key);
-
-        if (isset($this->$key)) {
-        } else {
-            throw new RuntimeException(
-                'Date Controller: Attempting to set value for unknown property: ' . $key
-            );
-        }
 
         $this->$key = $value;
 
@@ -304,55 +289,21 @@ class DateController extends DateTime implements DateInterface
      */
     public function getPrettyDate($date, $compare_to_date = null)
     {
-        $source_date = new \Datetime ($date);
+        $source_date = new Datetime($date);
 
         if ($compare_to_date === null) {
-            $compare_to_date = new \Datetime ();
+            $compare_to_date = new Datetime();
         } else {
-            $compare_to_date = new \Datetime ($compare_to_date);
+            $compare_to_date = new Datetime($compare_to_date);
         }
 
         $interval       = $source_date->diff($compare_to_date);
         $day_difference = $interval->days;
 
         if ($day_difference == 0) {
-
-            if ($interval->h > 0) {
-                $pretty_date = $interval->h . ' '
-                    . $this->translatePrettyDate($interval->h, 'DATE_HOUR_SINGULAR', 'DATE_HOUR_PLURAL')
-                    . ' ' . $this->translate('AGO');
-
-            } elseif ($interval->i > 0) {
-                $pretty_date = $interval->i . ' '
-                    . $this->translatePrettyDate($interval->i, 'DATE_MINUTE_SINGULAR', 'DATE_MINUTE_PLURAL')
-                    . ' ' . $this->translate('AGO');
-
-            } else {
-                $pretty_date = $this->translate('JUST_NOW');
-
-            }
-
+            $pretty_date = $this->getPrettyDateToday($interval);
         } else {
-
-            if ($interval->y > 0) {
-                $pretty_date = $interval->y . ' '
-                    . $this->translatePrettyDate($interval->y, 'DATE_YEAR_SINGULAR', 'DATE_YEAR_PLURAL')
-                    . ' ' . $this->translate('AGO');
-
-            } elseif ($interval->m > 0) {
-                $pretty_date = $interval->m . ' '
-                    . $this->translatePrettyDate($interval->m, 'DATE_MONTH_SINGULAR', 'DATE_MONTH_PLURAL')
-                    . ' ' . $this->translate('AGO');
-
-            } elseif ($interval->d > 1) {
-                $pretty_date = $interval->d . ' '
-                    . $this->translatePrettyDate($interval->d, 'DATE_DAY_SINGULAR', 'DATE_DAY_SINGULAR')
-                    . ' ' . $this->translate('AGO');
-
-            } else {
-                $pretty_date = $this->translate('YESTERDAY');
-            }
-
+            $pretty_date = $this->getPrettyDateNotToday($interval);
         }
 
         return $pretty_date;
@@ -361,10 +312,10 @@ class DateController extends DateTime implements DateInterface
     /**
      * Provides translated name of day in abbreviated or full format, given day number
      *
-     * @param string $day_number
-     * @param bool   $abbreviation
+     * @param   string $day_number
+     * @param   bool   $abbreviation
      *
-     * @return string
+     * @return  string
      * @since   1.0
      */
     public function getDayName($day_number, $abbreviation = false)
@@ -512,9 +463,9 @@ class DateController extends DateTime implements DateInterface
     /**
      * buildCalendar
      *
-     * $d = getDate();
+     * $d     = getDate();
      * $month = $d['mon'];
-     * $year = $d['year'];
+     * $year  = $d['year'];
      *
      * $calendar = $this->date->buildCalendar ($month, $year);
      *
@@ -536,6 +487,65 @@ class DateController extends DateTime implements DateInterface
         $temp_row->day_of_week_name   = $temp_row->date_resources['weekday'];
 
         return array($temp_row);
+    }
+
+    /**
+     * Get Pretty Date: Day is Today
+     *
+     * @param   object $interval
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function getPrettyDateToday($interval)
+    {
+        if ($interval->h > 0) {
+            $pretty_date = $interval->h . ' '
+                . $this->translatePrettyDate($interval->h, 'DATE_HOUR_SINGULAR', 'DATE_HOUR_PLURAL')
+                . ' ' . $this->translate('AGO');
+
+        } elseif ($interval->i > 0) {
+            $pretty_date = $interval->i . ' '
+                . $this->translatePrettyDate($interval->i, 'DATE_MINUTE_SINGULAR', 'DATE_MINUTE_PLURAL')
+                . ' ' . $this->translate('AGO');
+
+        } else {
+            $pretty_date = $this->translate('JUST_NOW');
+        }
+
+        return $pretty_date;
+    }
+
+    /**
+     * Get Pretty Date: Day is NOT Today
+     *
+     * @param   object $interval
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function getPrettyDateNotToday($interval)
+    {
+        if ($interval->y > 0) {
+            $pretty_date = $interval->y . ' '
+                . $this->translatePrettyDate($interval->y, 'DATE_YEAR_SINGULAR', 'DATE_YEAR_PLURAL')
+                . ' ' . $this->translate('AGO');
+
+        } elseif ($interval->m > 0) {
+            $pretty_date = $interval->m . ' '
+                . $this->translatePrettyDate($interval->m, 'DATE_MONTH_SINGULAR', 'DATE_MONTH_PLURAL')
+                . ' ' . $this->translate('AGO');
+
+        } elseif ($interval->d > 1) {
+            $pretty_date = $interval->d . ' '
+                . $this->translatePrettyDate($interval->d, 'DATE_DAY_SINGULAR', 'DATE_DAY_SINGULAR')
+                . ' ' . $this->translate('AGO');
+
+        } else {
+            $pretty_date = $this->translate('YESTERDAY');
+        }
+
+        return $pretty_date;
     }
 
     /**

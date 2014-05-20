@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1400560476">
-  <project timestamp="1400560476">
+<coverage generated="1400562754">
+  <project timestamp="1400562754">
     <file name="/Users/amystephen/Sites/Molajo/Application/.dev/Bootstrap.php">
       <line num="86" type="stmt" count="0"/>
       <line num="87" type="stmt" count="0"/>
@@ -37,7 +37,7 @@
     <package name="Molajo\Controller">
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/DateController.php">
         <class name="DateController" namespace="Molajo\Controller">
-          <metrics methods="12" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="191" coveredstatements="101" elements="203" coveredelements="113"/>
+          <metrics methods="14" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="187" coveredstatements="101" elements="201" coveredelements="115"/>
         </class>
         <line num="131" type="method" name="__construct" crap="5.02" count="9"/>
         <line num="136" type="stmt" count="9"/>
@@ -50,200 +50,234 @@
         <line num="147" type="stmt" count="0"/>
         <line num="148" type="stmt" count="0"/>
         <line num="149" type="stmt" count="9"/>
-        <line num="161" type="method" name="get" crap="3.79" count="1"/>
-        <line num="163" type="stmt" count="1"/>
-        <line num="165" type="stmt" count="1"/>
-        <line num="166" type="stmt" count="1"/>
-        <line num="167" type="stmt" count="0"/>
-        <line num="169" type="stmt" count="0"/>
-        <line num="172" type="stmt" count="1"/>
-        <line num="173" type="stmt" count="0"/>
-        <line num="174" type="stmt" count="0"/>
-        <line num="176" type="stmt" count="1"/>
-        <line num="189" type="method" name="set" crap="2.09" count="1"/>
-        <line num="191" type="stmt" count="1"/>
-        <line num="193" type="stmt" count="1"/>
-        <line num="194" type="stmt" count="1"/>
-        <line num="195" type="stmt" count="0"/>
-        <line num="197" type="stmt" count="0"/>
-        <line num="200" type="stmt" count="1"/>
-        <line num="202" type="stmt" count="1"/>
-        <line num="216" type="method" name="getDate" crap="8.30" count="5"/>
-        <line num="222" type="stmt" count="5"/>
-        <line num="223" type="stmt" count="0"/>
+        <line num="160" type="method" name="get" crap="2.26" count="1"/>
+        <line num="162" type="stmt" count="1"/>
+        <line num="164" type="stmt" count="1"/>
+        <line num="165" type="stmt" count="0"/>
+        <line num="166" type="stmt" count="0"/>
+        <line num="168" type="stmt" count="1"/>
+        <line num="181" type="method" name="set" crap="1" count="1"/>
+        <line num="183" type="stmt" count="1"/>
+        <line num="185" type="stmt" count="1"/>
+        <line num="187" type="stmt" count="1"/>
+        <line num="201" type="method" name="getDate" crap="8.30" count="5"/>
+        <line num="207" type="stmt" count="5"/>
+        <line num="208" type="stmt" count="0"/>
+        <line num="209" type="stmt" count="0"/>
+        <line num="211" type="stmt" count="5"/>
+        <line num="212" type="stmt" count="5"/>
+        <line num="213" type="stmt" count="0"/>
+        <line num="214" type="stmt" count="0"/>
+        <line num="215" type="stmt" count="5"/>
+        <line num="217" type="stmt" count="5"/>
+        <line num="219" type="stmt" count="5"/>
+        <line num="220" type="stmt" count="5"/>
+        <line num="221" type="stmt" count="5"/>
+        <line num="223" type="stmt" count="5"/>
         <line num="224" type="stmt" count="0"/>
-        <line num="226" type="stmt" count="5"/>
+        <line num="225" type="stmt" count="0"/>
         <line num="227" type="stmt" count="5"/>
         <line num="228" type="stmt" count="0"/>
         <line num="229" type="stmt" count="0"/>
         <line num="230" type="stmt" count="5"/>
-        <line num="232" type="stmt" count="5"/>
-        <line num="234" type="stmt" count="5"/>
-        <line num="235" type="stmt" count="5"/>
-        <line num="236" type="stmt" count="5"/>
-        <line num="238" type="stmt" count="5"/>
-        <line num="239" type="stmt" count="0"/>
-        <line num="240" type="stmt" count="0"/>
-        <line num="242" type="stmt" count="5"/>
-        <line num="243" type="stmt" count="0"/>
-        <line num="244" type="stmt" count="0"/>
-        <line num="245" type="stmt" count="5"/>
-        <line num="248" type="stmt" count="5"/>
-        <line num="259" type="method" name="convertCCYYMMDD" crap="1" count="1"/>
-        <line num="261" type="stmt" count="1"/>
-        <line num="273" type="method" name="getNumberofDaysAgo" crap="2.01" count="1"/>
-        <line num="275" type="stmt" count="1"/>
-        <line num="276" type="stmt" count="0"/>
-        <line num="277" type="stmt" count="0"/>
-        <line num="279" type="stmt" count="1"/>
-        <line num="280" type="stmt" count="1"/>
-        <line num="281" type="stmt" count="1"/>
-        <line num="283" type="stmt" count="1"/>
-        <line num="285" type="stmt" count="1"/>
-        <line num="286" type="stmt" count="1"/>
-        <line num="287" type="stmt" count="1"/>
-        <line num="289" type="stmt" count="1"/>
-        <line num="291" type="stmt" count="1"/>
-        <line num="293" type="stmt" count="1"/>
-        <line num="305" type="method" name="getPrettyDate" crap="11.58" count="1"/>
-        <line num="307" type="stmt" count="1"/>
+        <line num="233" type="stmt" count="5"/>
+        <line num="244" type="method" name="convertCCYYMMDD" crap="1" count="1"/>
+        <line num="246" type="stmt" count="1"/>
+        <line num="258" type="method" name="getNumberofDaysAgo" crap="2.01" count="1"/>
+        <line num="260" type="stmt" count="1"/>
+        <line num="261" type="stmt" count="0"/>
+        <line num="262" type="stmt" count="0"/>
+        <line num="264" type="stmt" count="1"/>
+        <line num="265" type="stmt" count="1"/>
+        <line num="266" type="stmt" count="1"/>
+        <line num="268" type="stmt" count="1"/>
+        <line num="270" type="stmt" count="1"/>
+        <line num="271" type="stmt" count="1"/>
+        <line num="272" type="stmt" count="1"/>
+        <line num="274" type="stmt" count="1"/>
+        <line num="276" type="stmt" count="1"/>
+        <line num="278" type="stmt" count="1"/>
+        <line num="290" type="method" name="getPrettyDate" crap="3.04" count="1"/>
+        <line num="292" type="stmt" count="1"/>
+        <line num="294" type="stmt" count="1"/>
+        <line num="295" type="stmt" count="0"/>
+        <line num="296" type="stmt" count="0"/>
+        <line num="297" type="stmt" count="1"/>
+        <line num="300" type="stmt" count="1"/>
+        <line num="301" type="stmt" count="1"/>
+        <line num="303" type="stmt" count="1"/>
+        <line num="304" type="stmt" count="1"/>
+        <line num="305" type="stmt" count="1"/>
+        <line num="306" type="stmt" count="1"/>
         <line num="309" type="stmt" count="1"/>
-        <line num="310" type="stmt" count="0"/>
-        <line num="311" type="stmt" count="0"/>
-        <line num="312" type="stmt" count="1"/>
-        <line num="315" type="stmt" count="1"/>
-        <line num="316" type="stmt" count="1"/>
-        <line num="318" type="stmt" count="1"/>
-        <line num="320" type="stmt" count="1"/>
-        <line num="321" type="stmt" count="0"/>
-        <line num="322" type="stmt" count="0"/>
-        <line num="323" type="stmt" count="0"/>
+        <line num="321" type="method" name="getDayName" crap="49.66" count="1"/>
+        <line num="323" type="stmt" count="1"/>
+        <line num="324" type="stmt" count="1"/>
         <line num="325" type="stmt" count="1"/>
-        <line num="326" type="stmt" count="1"/>
-        <line num="327" type="stmt" count="1"/>
+        <line num="326" type="stmt" count="0"/>
         <line num="328" type="stmt" count="1"/>
-        <line num="330" type="stmt" count="1"/>
-        <line num="331" type="stmt" count="0"/>
-        <line num="335" type="stmt" count="1"/>
-        <line num="337" type="stmt" count="1"/>
+        <line num="331" type="stmt" count="1"/>
+        <line num="332" type="stmt" count="0"/>
+        <line num="333" type="stmt" count="0"/>
+        <line num="335" type="stmt" count="0"/>
         <line num="338" type="stmt" count="1"/>
-        <line num="339" type="stmt" count="1"/>
-        <line num="340" type="stmt" count="1"/>
-        <line num="342" type="stmt" count="1"/>
-        <line num="343" type="stmt" count="0"/>
-        <line num="344" type="stmt" count="0"/>
-        <line num="345" type="stmt" count="0"/>
-        <line num="347" type="stmt" count="1"/>
-        <line num="348" type="stmt" count="0"/>
+        <line num="339" type="stmt" count="0"/>
+        <line num="340" type="stmt" count="0"/>
+        <line num="342" type="stmt" count="0"/>
+        <line num="345" type="stmt" count="1"/>
+        <line num="346" type="stmt" count="0"/>
+        <line num="347" type="stmt" count="0"/>
         <line num="349" type="stmt" count="0"/>
-        <line num="350" type="stmt" count="0"/>
-        <line num="352" type="stmt" count="0"/>
-        <line num="353" type="stmt" count="1"/>
-        <line num="358" type="stmt" count="1"/>
-        <line num="370" type="method" name="getDayName" crap="49.66" count="1"/>
-        <line num="372" type="stmt" count="1"/>
+        <line num="352" type="stmt" count="1"/>
+        <line num="353" type="stmt" count="0"/>
+        <line num="354" type="stmt" count="0"/>
+        <line num="356" type="stmt" count="0"/>
+        <line num="359" type="stmt" count="1"/>
+        <line num="360" type="stmt" count="0"/>
+        <line num="361" type="stmt" count="0"/>
+        <line num="363" type="stmt" count="0"/>
+        <line num="366" type="stmt" count="1"/>
+        <line num="367" type="stmt" count="1"/>
+        <line num="368" type="stmt" count="1"/>
+        <line num="370" type="stmt" count="0"/>
         <line num="373" type="stmt" count="1"/>
-        <line num="374" type="stmt" count="1"/>
-        <line num="375" type="stmt" count="0"/>
-        <line num="377" type="stmt" count="1"/>
-        <line num="380" type="stmt" count="1"/>
-        <line num="381" type="stmt" count="0"/>
-        <line num="382" type="stmt" count="0"/>
-        <line num="384" type="stmt" count="0"/>
+        <line num="385" type="method" name="getMonthName" crap="276.85" count="1"/>
         <line num="387" type="stmt" count="1"/>
-        <line num="388" type="stmt" count="0"/>
-        <line num="389" type="stmt" count="0"/>
-        <line num="391" type="stmt" count="0"/>
+        <line num="388" type="stmt" count="1"/>
+        <line num="389" type="stmt" count="1"/>
+        <line num="390" type="stmt" count="0"/>
+        <line num="392" type="stmt" count="1"/>
         <line num="394" type="stmt" count="1"/>
         <line num="395" type="stmt" count="0"/>
         <line num="396" type="stmt" count="0"/>
         <line num="398" type="stmt" count="0"/>
-        <line num="401" type="stmt" count="1"/>
+        <line num="400" type="stmt" count="1"/>
+        <line num="401" type="stmt" count="0"/>
         <line num="402" type="stmt" count="0"/>
-        <line num="403" type="stmt" count="0"/>
-        <line num="405" type="stmt" count="0"/>
-        <line num="408" type="stmt" count="1"/>
-        <line num="409" type="stmt" count="0"/>
+        <line num="404" type="stmt" count="0"/>
+        <line num="406" type="stmt" count="1"/>
+        <line num="407" type="stmt" count="0"/>
+        <line num="408" type="stmt" count="0"/>
         <line num="410" type="stmt" count="0"/>
-        <line num="412" type="stmt" count="0"/>
-        <line num="415" type="stmt" count="1"/>
-        <line num="416" type="stmt" count="1"/>
-        <line num="417" type="stmt" count="1"/>
+        <line num="412" type="stmt" count="1"/>
+        <line num="413" type="stmt" count="0"/>
+        <line num="414" type="stmt" count="0"/>
+        <line num="416" type="stmt" count="0"/>
+        <line num="418" type="stmt" count="1"/>
         <line num="419" type="stmt" count="0"/>
-        <line num="422" type="stmt" count="1"/>
-        <line num="434" type="method" name="getMonthName" crap="276.85" count="1"/>
-        <line num="436" type="stmt" count="1"/>
-        <line num="437" type="stmt" count="1"/>
-        <line num="438" type="stmt" count="1"/>
-        <line num="439" type="stmt" count="0"/>
-        <line num="441" type="stmt" count="1"/>
-        <line num="443" type="stmt" count="1"/>
+        <line num="420" type="stmt" count="0"/>
+        <line num="422" type="stmt" count="0"/>
+        <line num="424" type="stmt" count="1"/>
+        <line num="425" type="stmt" count="1"/>
+        <line num="426" type="stmt" count="1"/>
+        <line num="428" type="stmt" count="0"/>
+        <line num="430" type="stmt" count="0"/>
+        <line num="431" type="stmt" count="0"/>
+        <line num="432" type="stmt" count="0"/>
+        <line num="434" type="stmt" count="0"/>
+        <line num="436" type="stmt" count="0"/>
+        <line num="437" type="stmt" count="0"/>
+        <line num="438" type="stmt" count="0"/>
+        <line num="440" type="stmt" count="0"/>
+        <line num="442" type="stmt" count="0"/>
+        <line num="443" type="stmt" count="0"/>
         <line num="444" type="stmt" count="0"/>
-        <line num="445" type="stmt" count="0"/>
-        <line num="447" type="stmt" count="0"/>
-        <line num="449" type="stmt" count="1"/>
+        <line num="446" type="stmt" count="0"/>
+        <line num="448" type="stmt" count="0"/>
+        <line num="449" type="stmt" count="0"/>
         <line num="450" type="stmt" count="0"/>
-        <line num="451" type="stmt" count="0"/>
-        <line num="453" type="stmt" count="0"/>
-        <line num="455" type="stmt" count="1"/>
+        <line num="452" type="stmt" count="0"/>
+        <line num="454" type="stmt" count="0"/>
+        <line num="455" type="stmt" count="0"/>
         <line num="456" type="stmt" count="0"/>
-        <line num="457" type="stmt" count="0"/>
-        <line num="459" type="stmt" count="0"/>
-        <line num="461" type="stmt" count="1"/>
-        <line num="462" type="stmt" count="0"/>
-        <line num="463" type="stmt" count="0"/>
-        <line num="465" type="stmt" count="0"/>
-        <line num="467" type="stmt" count="1"/>
-        <line num="468" type="stmt" count="0"/>
-        <line num="469" type="stmt" count="0"/>
-        <line num="471" type="stmt" count="0"/>
-        <line num="473" type="stmt" count="1"/>
-        <line num="474" type="stmt" count="1"/>
-        <line num="475" type="stmt" count="1"/>
-        <line num="477" type="stmt" count="0"/>
-        <line num="479" type="stmt" count="0"/>
-        <line num="480" type="stmt" count="0"/>
-        <line num="481" type="stmt" count="0"/>
-        <line num="483" type="stmt" count="0"/>
-        <line num="485" type="stmt" count="0"/>
-        <line num="486" type="stmt" count="0"/>
-        <line num="487" type="stmt" count="0"/>
-        <line num="489" type="stmt" count="0"/>
-        <line num="491" type="stmt" count="0"/>
-        <line num="492" type="stmt" count="0"/>
-        <line num="493" type="stmt" count="0"/>
-        <line num="495" type="stmt" count="0"/>
-        <line num="497" type="stmt" count="0"/>
-        <line num="498" type="stmt" count="0"/>
-        <line num="499" type="stmt" count="0"/>
-        <line num="501" type="stmt" count="0"/>
+        <line num="458" type="stmt" count="0"/>
+        <line num="460" type="stmt" count="0"/>
+        <line num="478" type="method" name="buildCalendar" crap="1" count="1"/>
+        <line num="480" type="stmt" count="1"/>
+        <line num="481" type="stmt" count="1"/>
+        <line num="482" type="stmt" count="1"/>
+        <line num="483" type="stmt" count="1"/>
+        <line num="484" type="stmt" count="1"/>
+        <line num="485" type="stmt" count="1"/>
+        <line num="486" type="stmt" count="1"/>
+        <line num="487" type="stmt" count="1"/>
+        <line num="489" type="stmt" count="1"/>
+        <line num="500" type="method" name="getPrettyDateToday" crap="3.43" count="1"/>
+        <line num="502" type="stmt" count="1"/>
         <line num="503" type="stmt" count="0"/>
         <line num="504" type="stmt" count="0"/>
         <line num="505" type="stmt" count="0"/>
-        <line num="507" type="stmt" count="0"/>
-        <line num="509" type="stmt" count="0"/>
-        <line num="527" type="method" name="buildCalendar" crap="1" count="1"/>
+        <line num="507" type="stmt" count="1"/>
+        <line num="508" type="stmt" count="1"/>
+        <line num="509" type="stmt" count="1"/>
+        <line num="510" type="stmt" count="1"/>
+        <line num="512" type="stmt" count="1"/>
+        <line num="513" type="stmt" count="0"/>
+        <line num="516" type="stmt" count="1"/>
+        <line num="527" type="method" name="getPrettyDateNotToday" crap="5.63" count="1"/>
         <line num="529" type="stmt" count="1"/>
         <line num="530" type="stmt" count="1"/>
         <line num="531" type="stmt" count="1"/>
         <line num="532" type="stmt" count="1"/>
-        <line num="533" type="stmt" count="1"/>
         <line num="534" type="stmt" count="1"/>
-        <line num="535" type="stmt" count="1"/>
-        <line num="536" type="stmt" count="1"/>
-        <line num="538" type="stmt" count="1"/>
-        <line num="551" type="method" name="translatePrettyDate" crap="3.07" count="1"/>
-        <line num="553" type="stmt" count="1"/>
-        <line num="554" type="stmt" count="0"/>
-        <line num="557" type="stmt" count="1"/>
-        <line num="558" type="stmt" count="1"/>
-        <line num="561" type="stmt" count="1"/>
-        <line num="572" type="method" name="translate" crap="2.15" count="3"/>
-        <line num="574" type="stmt" count="3"/>
-        <line num="575" type="stmt" count="3"/>
-        <line num="578" type="stmt" count="0"/>
-        <line num="581" type="stmt" count="0"/>
-        <metrics loc="580" ncloc="424" classes="1" methods="12" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="191" coveredstatements="101" elements="203" coveredelements="103"/>
+        <line num="535" type="stmt" count="0"/>
+        <line num="536" type="stmt" count="0"/>
+        <line num="537" type="stmt" count="0"/>
+        <line num="539" type="stmt" count="1"/>
+        <line num="540" type="stmt" count="0"/>
+        <line num="541" type="stmt" count="0"/>
+        <line num="542" type="stmt" count="0"/>
+        <line num="544" type="stmt" count="0"/>
+        <line num="545" type="stmt" count="1"/>
+        <line num="548" type="stmt" count="1"/>
+        <line num="561" type="method" name="translatePrettyDate" crap="3.07" count="1"/>
+        <line num="563" type="stmt" count="1"/>
+        <line num="564" type="stmt" count="0"/>
+        <line num="567" type="stmt" count="1"/>
+        <line num="568" type="stmt" count="1"/>
+        <line num="571" type="stmt" count="1"/>
+        <line num="582" type="method" name="translate" crap="2.15" count="3"/>
+        <line num="584" type="stmt" count="3"/>
+        <line num="585" type="stmt" count="3"/>
+        <line num="588" type="stmt" count="0"/>
+        <line num="591" type="stmt" count="0"/>
+        <metrics loc="590" ncloc="419" classes="1" methods="14" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="187" coveredstatements="101" elements="201" coveredelements="104"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/ErrorHandling.php">
+        <class name="ErrorHandling" namespace="Molajo\Controller">
+          <metrics methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="29" coveredelements="29"/>
+        </class>
+        <line num="95" type="method" name="__construct" crap="1" count="5"/>
+        <line num="105" type="stmt" count="5"/>
+        <line num="106" type="stmt" count="5"/>
+        <line num="121" type="method" name="setError" crap="1" count="5"/>
+        <line num="123" type="stmt" count="5"/>
+        <line num="124" type="stmt" count="5"/>
+        <line num="125" type="stmt" count="5"/>
+        <line num="127" type="stmt" count="4"/>
+        <line num="129" type="stmt" count="4"/>
+        <line num="144" type="method" name="setErrorMessage" crap="5" count="5"/>
+        <line num="146" type="stmt" count="5"/>
+        <line num="147" type="stmt" count="1"/>
+        <line num="149" type="stmt" count="5"/>
+        <line num="150" type="stmt" count="1"/>
+        <line num="152" type="stmt" count="4"/>
+        <line num="153" type="stmt" count="1"/>
+        <line num="155" type="stmt" count="3"/>
+        <line num="156" type="stmt" count="1"/>
+        <line num="158" type="stmt" count="1"/>
+        <line num="159" type="stmt" count="1"/>
+        <line num="162" type="stmt" count="4"/>
+        <line num="174" type="method" name="setThemePageView" crap="2" count="4"/>
+        <line num="176" type="stmt" count="4"/>
+        <line num="177" type="stmt" count="1"/>
+        <line num="178" type="stmt" count="1"/>
+        <line num="179" type="stmt" count="1"/>
+        <line num="180" type="stmt" count="3"/>
+        <line num="181" type="stmt" count="3"/>
+        <line num="184" type="stmt" count="4"/>
+        <line num="187" type="stmt" count="0"/>
+        <metrics loc="186" ncloc="81" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="29" coveredelements="29"/>
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/ImageController.php">
         <class name="ImageController" namespace="Molajo\Controller" fullPackage="Molajo" package="Molajo">
@@ -777,9 +811,31 @@
       <line num="112" type="stmt" count="0"/>
       <metrics loc="111" ncloc="26" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
+    <file name="/Users/amystephen/Sites/Molajo/Application/vendor/commonapi/controller/ErrorHandlingInterface.php">
+      <line num="35" type="stmt" count="0"/>
+      <metrics loc="34" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
     <file name="/Users/amystephen/Sites/Molajo/Application/vendor/commonapi/controller/ImageInterface.php">
       <line num="44" type="stmt" count="1"/>
       <metrics loc="43" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="CommonApi\Exception">
+      <file name="/Users/amystephen/Sites/Molajo/Application/vendor/commonapi/exception/ErrorThrownAsException.php">
+        <class name="ErrorThrownAsException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
+        </class>
+        <line num="33" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="44" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <metrics loc="48" ncloc="17" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
+      </file>
+    </package>
+    <file name="/Users/amystephen/Sites/Molajo/Application/vendor/commonapi/exception/ExceptionInterface.php">
+      <line num="23" type="stmt" count="0"/>
+      <metrics loc="22" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
     <file name="/Users/amystephen/Sites/Molajo/Application/vendor/commonapi/language/TranslateInterface.php">
       <line num="31" type="stmt" count="0"/>
@@ -1022,6 +1078,6 @@
       <line num="26" type="stmt" count="0"/>
       <metrics loc="30" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="2" coveredelements="0"/>
     </file>
-    <metrics files="15" loc="3053" ncloc="2064" classes="9" methods="69" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="866" coveredstatements="414" elements="935" coveredelements="430"/>
+    <metrics files="19" loc="3353" ncloc="2171" classes="11" methods="77" coveredmethods="21" conditionals="0" coveredconditionals="0" statements="890" coveredstatements="439" elements="967" coveredelements="460"/>
   </project>
 </coverage>
