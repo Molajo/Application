@@ -154,7 +154,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, $this->instance->get('id'));
         $this->assertEquals('example.com', $this->instance->get('path'));
         $this->assertEquals($this->applications, $this->instance->get('applications'));
-die;
+
         return $this;
     }
 

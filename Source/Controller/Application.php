@@ -163,9 +163,8 @@ class Application implements ApplicationInterface
     {
         $application_test = $this->setApplicationPath();
         $app              = $this->getApplicationArrayEntry($application_test);
-
-        $this->id   = $app->id;
-        $this->name = $app->name;
+        $this->id         = $app->id;
+        $this->name       = $app->name;
 
         if ($app->base_path == '') {
             $this->base_path = '';
@@ -201,9 +200,9 @@ class Application implements ApplicationInterface
         }
 
         if (strpos($this->request_path, '/') == true) {
-            $application_test = substr($this->request_path, 0, strpos($this->request_path, '/'));
+            $application_test = substr($this->request_path, strpos($this->request_path, '/') + 1, 99999);
         } else {
-            $application_test = $this->request_path;
+            $application_test = 'default';
         }
 
         return trim(strtolower($application_test));
