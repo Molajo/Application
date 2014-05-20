@@ -22,6 +22,14 @@ use CommonApi\Exception\RuntimeException;
 class UrlController implements UrlInterface
 {
     /**
+     * Resource
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $resource = null;
+
+    /**
      * Base Path
      *
      * @var    string

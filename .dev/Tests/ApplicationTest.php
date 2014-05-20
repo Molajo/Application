@@ -108,28 +108,30 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Recognizes Installation Needed
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testSetApplicationInstallationRequired()
-    {
-        return $this;
-    }
-
-    /**
      * 1. Remove ending slash
      * 2. Matches Installation in the Path
+     *
+     * @covers Molajo\Controller\Application::__construct
+     * @covers Molajo\Controller\Application::setApplication
+     * @covers Molajo\Controller\Application::setApplicationPath
+     * @covers Molajo\Controller\Application::processRequestPath
+     * @covers Molajo\Controller\Application::getApplicationArrayEntry
+     * @covers Molajo\Controller\Application::getConfiguration
+     * @covers Molajo\Controller\Application::runConfigurationQuery
+     * @covers Molajo\Controller\Application::setCustomFields
+     * @covers Molajo\Controller\Application::processCustomfieldGroup
+     * @covers Molajo\Controller\Application::setDefault
+     * @covers Molajo\Controller\Application::getCustomfieldGroupData
+     * @covers Molajo\Controller\Application::createCustomFieldGroup
+     * @covers Molajo\Controller\Application::sanitize
+     * @covers Molajo\Controller\Application::verifySiteApplication
      *
      * @return  $this
      * @since   1.0
      */
     public function testSetApplicationInstallation()
     {
-        $this->request_path     = 'installation/';
-        $this->request_base_url = '';
-        $this->instantiateClass();
+
 /**
         $this->instance->setApplication();
 
@@ -139,124 +141,6 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $this->instance->get('path'));
 */
         return $this;
-    }
-
-    /**
-     * 1. No ending '/'
-     * 2. Matches 'admin' in path
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testSetApplicationAdmin()
-    {
-        $this->request_path     = 'admin';
-        $this->request_base_url = '';
-        $this->instantiateClass();
-/**
-        $this->instance->setApplication();
-
-        $this->assertEquals('admin', $this->instance->get('name'));
-        $this->assertEquals(1, $this->instance->get('id'));
-        $this->assertEquals('admin', $this->instance->get('base_path'));
-        $this->assertEquals('', $this->instance->get('path'));
-*/
-        return $this;
-    }
-
-    /**
-     * Sets to default application
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testSetApplicationDefault()
-    {
-        $this->request_path     = '/';
-        $this->request_base_url = '/';
-        $this->instantiateClass();
-/**
-        $this->instance->setApplication();
-
-        $this->assertEquals('default', $this->instance->get('name'));
-        $this->assertEquals(2, $this->instance->get('id'));
-        $this->assertEquals('', $this->instance->get('base_path'));
-        $this->assertEquals('', $this->instance->get('path'));
-*/
-        return $this;
-    }
-
-    /**
-     * Retrieve Configuration Data
-     * 1. Find installation needed
-     * 2. retrieve data
-     * 3. RuntimeException - query error
-     * 4. RuntimeException - No Model Registry
-     * 5. Verify appropriate data returns
-     *
-     * @return  $this
-     * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
-     */
-    public function testGetConfigurationInstallation()
-    {
-        $this->request_path     = 'installation/';
-        $this->request_base_url = '';
-        $this->instantiateClass();
-/**
-        $this->instance->setApplication();
-
-        $this->instance->getConfiguration();
-
-        $this->assertEquals(0, $this->instance->getData('id'));
-        $this->assertEquals('installation', $this->instance->getData('name'));
-        $this->assertEquals('installation', $this->instance->getData('description'));
- */
-        return $this;
-    }
-
-    /**
-     * Retrieve Configuration Data
-     * 1. Find installation needed
-     * 2. retrieve data
-     * 3. RuntimeException - query error
-     * 4. RuntimeException - No Model Registry
-     * 5. Verify appropriate data returns
-     *
-     * @return  $this
-     * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
-     */
-    public function testGetConfigurationNormal()
-    {
-
-    }
-
-    /**
-     * Verifies that the Site has permission to utilise this Application
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function testVerifySiteApplication()
-    {
-// $query->from('#__site_applications'));
-    }
-
-    /**
-     * Throws exception because the Site does NOT have permission to utilise this Application
-     *
-     * @expectedException RuntimeException
-     */
-    public function testVerifySiteApplicationFailure()
-    {
-        $this->request_path     = '/';
-        $this->request_base_url = '/';
-        $this->instantiateClass();
-
-        //$this->instance->setApplication();
-
-       // $this->instance->verifySiteApplication(1);
     }
 
     /**

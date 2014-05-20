@@ -100,9 +100,18 @@ class ErrorHandling implements ErrorHandlingInterface
         $error_message_internal_server_error = 'Internal Server Error',
         $error_offline_theme = 'Molajo\\Themes\\System',
         $error_page_offline_view = 'Molajo\\Views\\Pages\\Offline',
-        $error_message_offline_switch = 'This site is not available.\<\br /\>\ Please check back again soon.'
+        $error_message_offline_switch = 'Site is Offline.'
     ) {
         set_error_handler(array($this, 'setError'), 0);
+
+        $this->error_theme                         = $error_theme;
+        $this->error_page_view                     = $error_page_view;
+        $this->error_message_not_authorised        = $error_message_not_authorised;
+        $this->error_message_not_found             = $error_message_not_found;
+        $this->error_message_internal_server_error = $error_message_internal_server_error;
+        $this->error_offline_theme                 = $error_offline_theme;
+        $this->error_page_offline_view             = $error_page_offline_view;
+        $this->error_message_offline_switch        = $error_message_offline_switch;
     }
 
     /**

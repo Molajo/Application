@@ -333,57 +333,44 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      */
     protected function authenticate()
     {
-        try {
-            $results = $this->scheduleFactoryMethod('User');
-
-        } catch (Exception $e) {
-            throw new RuntimeException('Frontcontroller Authenticate Method Failed: ' . $e->getMessage());
-        }
-
-        if (isset($results->error_code) && (int)$results->error_code > 0) {
-            $this->handleErrors();
-        }
-
-        return $this;
+        return $this->runStep('User');
     }
 
     /**
-     * Route the Application
+     * Route
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function route()
     {
-        try {
-            $results = $this->scheduleFactoryMethod('Route');
-
-        } catch (Exception $e) {
-            throw new RuntimeException('Frontcontroller Route Method Failed: ' . $e->getMessage());
-        }
-
-        if (isset($results->error_code) && (int)$results->error_code > 0) {
-            $this->handleErrors();
-        }
-
-        return $this;
+        return $this->runStep('Route');
     }
 
     /**
-     * Authorise the Application
+     * Authorise
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function authorise()
     {
+        return $this->runStep('Authorisation');
+    }
+
+    /**
+     * Run step for $factory_method
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function runStep($factory_method)
+    {
         try {
-            $results = $this->scheduleFactoryMethod('Authorisation');
+            $results = $this->scheduleFactoryMethod($factory_method);
 
         } catch (Exception $e) {
-            throw new RuntimeException('Frontcontroller Authorise Method Failed: ' . $e->getMessage());
+            throw new RuntimeException('Frontcontroller ' . $factory_method . ' Method Failed: ' . $e->getMessage());
         }
 
         if (isset($results->error_code) && (int)$results->error_code > 0) {

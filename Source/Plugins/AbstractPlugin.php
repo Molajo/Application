@@ -161,9 +161,9 @@ abstract class AbstractPlugin
     /**
      * Constructor
      *
-     * @param  string  $plugin_name
-     * @param  string  $event_name
-     * @param  array   $data
+     * @param  string $plugin_name
+     * @param  string $event_name
+     * @param  array  $data
      *
      * @since  1.0
      */
@@ -361,16 +361,9 @@ abstract class AbstractPlugin
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    protected function filter($key, $value = null, $filter, $filter_options = array())
+    protected function filter($key, $value = null, $filter = 'String', $filter_options = array())
     {
-        try {
-            $results = $this->fieldhandler->sanitize($key, $value, $filter, $filter_options);
-
-        } catch (Exception $e) {
-            throw new RuntimeException(
-                'Request: Filter class Failed for Key: ' . $key . ' Filter: ' . $filter . ' ' . $e->getMessage()
-            );
-        }
+        $results = $this->fieldhandler->sanitize($key, $value, $filter, $filter_options);
 
         return $results->getFieldValue();
     }

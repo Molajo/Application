@@ -186,7 +186,8 @@ class NumberToText implements NumberToTextInterface
     protected function extractDigits($number)
     {
         $reverseDigits = str_split($number, 1);
-        $number        = implode(array_reverse($reverseDigits));
+        $temp          = array_reverse($reverseDigits);
+        $number        = implode($temp);
 
         if ((strlen($number) % 3) == 0) {
             $padToSetsOfThree = strlen($number);
