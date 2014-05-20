@@ -137,32 +137,33 @@ class Application implements ApplicationInterface
     /**
      * Constructor
      *
-     * @param array                 $applications
-     * @param null|object           $model_registry
      * @param DatabaseInterface     $database
      * @param QueryInterface        $query
      * @param FieldhandlerInterface $fieldhandler
      * @param string                $request_path
      * @param string                $request_base_url
+     * @param array                 $applications
+     * @param null|object           $model_registry
      *
      * @since  1.0
      */
     public function __construct(
-        array $applications = array(),
-        $model_registry = null,
         DatabaseInterface $database,
         QueryInterface $query,
         FieldhandlerInterface $fieldhandler,
         $request_path,
-        $request_base_url
+        $request_base_url,
+        array $applications = array(),
+        $model_registry = null
     ) {
-        $this->applications     = $applications;
-        $this->model_registry   = $model_registry;
         $this->database         = $database;
         $this->query            = $query;
         $this->fieldhandler     = $fieldhandler;
         $this->request_path     = $request_path;
         $this->request_base_url = $request_base_url;
+        $this->applications     = $applications;
+        $this->model_registry   = $model_registry;
+
     }
 
     /**
@@ -401,7 +402,7 @@ class Application implements ApplicationInterface
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    protected function sanitize($key, $value = null, $data_type)
+    protected function sanitize($key, $value = null, $data_type = 'string')
     {
         try {
             $results = $this->fieldhandler->sanitize($key, $value, $data_type);

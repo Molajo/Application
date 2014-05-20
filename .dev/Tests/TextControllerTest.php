@@ -39,6 +39,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::editMarkupType
      * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
      * @covers Molajo\Controller\TextController::createParagraphs
+     * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
      *
@@ -60,6 +61,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::editMarkupType
      * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
      * @covers Molajo\Controller\TextController::createParagraphs
+     * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
      *
@@ -92,6 +94,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::editMarkupType
      * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
      * @covers Molajo\Controller\TextController::createParagraphs
+     * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
      *
@@ -122,6 +125,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::editMarkupType
      * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
      * @covers Molajo\Controller\TextController::createParagraphs
+     * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
      *
@@ -152,6 +156,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::editMarkupType
      * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
      * @covers Molajo\Controller\TextController::createParagraphs
+     * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
      *
@@ -182,6 +187,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::editMarkupType
      * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
      * @covers Molajo\Controller\TextController::createParagraphs
+     * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
      *
@@ -212,6 +218,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::editMarkupType
      * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
      * @covers Molajo\Controller\TextController::createParagraphs
+     * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
      *
@@ -243,6 +250,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::editMarkupType
      * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
      * @covers Molajo\Controller\TextController::createParagraphs
+     * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
      *
@@ -273,6 +281,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::editMarkupType
      * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
      * @covers Molajo\Controller\TextController::createParagraphs
+     * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
      *

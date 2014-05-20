@@ -507,15 +507,7 @@ class TextController implements TextInterface
         $start_with_lorem_ipsum,
         $count_lorem_set
     ) {
-        if ($markup_type == 'ul' || $markup_type == 'ol') {
-            $output = '<' . $markup_type . '>';
-            $begin  = '<li>';
-            $end    = '</li>';
-        } else {
-            $output = '';
-            $begin  = '<' . $markup_type . '>';
-            $end    = '</' . $markup_type . '>';
-        }
+        list($output, $begin, $end) = $this->setMarkupRequirements($markup_type);
 
         for ($paragraph_count = 0; $paragraph_count < $number_of_paragraphs; $paragraph_count++) {
 
@@ -534,6 +526,29 @@ class TextController implements TextInterface
         }
 
         return $output;
+    }
+
+    /**
+     * Establish the output pattern
+     *
+     * @param   string  $markup_type
+     *
+     * @return  array
+     * @since   1.0
+     */
+    protected function setMarkupRequirements($markup_type)
+    {
+        if ($markup_type == 'ul' || $markup_type == 'ol') {
+            $output = '<' . $markup_type . '>';
+            $begin  = '<li>';
+            $end    = '</li>';
+        } else {
+            $output = '';
+            $begin  = '<' . $markup_type . '>';
+            $end    = '</' . $markup_type . '>';
+        }
+
+        return array($output, $begin, $end);
     }
 
     /**

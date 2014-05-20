@@ -120,6 +120,45 @@ class DateController extends DateTime implements DateInterface
         );
 
     /**
+     * Month Names
+     *
+     * @var    array
+     * @since  1.0
+     */
+    protected $month_names
+        = array(
+            1  => array('abbreviation' => 'JAN', 'name' => 'JANUARY'),
+            2  => array('abbreviation' => 'FEB', 'name' => 'FEBRUARY'),
+            3  => array('abbreviation' => 'MAR', 'name' => 'MARCH'),
+            4  => array('abbreviation' => 'APR', 'name' => 'APRIL'),
+            5  => array('abbreviation' => 'MAY', 'name' => 'MAY'),
+            6  => array('abbreviation' => 'JUN', 'name' => 'JUNE'),
+            7  => array('abbreviation' => 'JUL', 'name' => 'JULY'),
+            8  => array('abbreviation' => 'AUG', 'name' => 'AUGUST'),
+            9  => array('abbreviation' => 'SEP', 'name' => 'SEPTEMBER'),
+            10 => array('abbreviation' => 'OCT', 'name' => 'OCTOBER'),
+            11 => array('abbreviation' => 'NOV', 'name' => 'NOVEMBER'),
+            12 => array('abbreviation' => 'DEC', 'name' => 'DECEMBER')
+        );
+
+    /**
+     * Day names
+     *
+     * @var    array
+     * @since  1.0
+     */
+    protected $day_names
+        = array(
+            1 => array('abbreviation' => 'MON', 'name' => 'MONDAY'),
+            2 => array('abbreviation' => 'TUE', 'name' => 'TUESDAY'),
+            3 => array('abbreviation' => 'WED', 'name' => 'WEDNESDAY'),
+            4 => array('abbreviation' => 'THU', 'name' => 'THURSDAY'),
+            5 => array('abbreviation' => 'FRI', 'name' => 'FRIDAY'),
+            6 => array('abbreviation' => 'SAT', 'name' => 'SATURDAY'),
+            7 => array('abbreviation' => 'SUN', 'name' => 'SUNDAY')
+        );
+
+    /**
      * Constructor
      *
      * @param  null  $timezone_user
@@ -320,57 +359,7 @@ class DateController extends DateTime implements DateInterface
      */
     public function getDayName($day_number, $abbreviation = false)
     {
-        switch ((int)$day_number) {
-            case 1:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_MON');
-                } else {
-                    return $this->translate('DATE_MONDAY');
-                }
-                break;
-            case 2:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_TUE');
-                } else {
-                    return $this->translate('DATE_TUESDAY');
-                }
-                break;
-            case 3:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_WED');
-                } else {
-                    return $this->translate('DATE_WEDNESDAY');
-                }
-                break;
-            case 4:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_THU');
-                } else {
-                    return $this->translate('DATE_THURSDAY');
-                }
-                break;
-            case 5:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_FRI');
-                } else {
-                    return $this->translate('DATE_FRIDAY');
-                }
-                break;
-            case 6:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_SAT');
-                } else {
-                    return $this->translate('DATE_SATURDAY');
-                }
-                break;
-            default:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_SUN');
-                } else {
-                    return $this->translate('DATE_SUNDAY');
-                }
-                break;
-        }
+        return $this->getNameTranslated('day', $day_number, $abbreviation);
     }
 
     /**
@@ -384,80 +373,32 @@ class DateController extends DateTime implements DateInterface
      */
     public function getMonthName($month_number, $abbreviation = false)
     {
-        switch ((int)$month_number) {
-            case 1:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_JAN');
-                } else {
-                    return $this->translate('DATE_JANUARY');
-                }
-            case 2:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_FEB');
-                } else {
-                    return $this->translate('DATE_FEBRUARY');
-                }
-            case 3:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_MAR');
-                } else {
-                    return $this->translate('DATE_MARCH');
-                }
-            case 4:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_APR');
-                } else {
-                    return $this->translate('DATE_APRIL');
-                }
-            case 5:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_MAY');
-                } else {
-                    return $this->translate('DATE_MAY');
-                }
-            case 6:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_JUN');
-                } else {
-                    return $this->translate('DATE_JUNE');
-                }
-            case 7:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_JUL');
-                } else {
-                    return $this->translate('DATE_JULY');
-                }
-            case 8:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_AUG');
-                } else {
-                    return $this->translate('DATE_AUGUST');
-                }
-            case 9:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_SEP');
-                } else {
-                    return $this->translate('DATE_SEPTEMBER');
-                }
-            case 10:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_OCT');
-                } else {
-                    return $this->translate('DATE_OCTOBER');
-                }
-            case 11:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_NOV');
-                } else {
-                    return $this->translate('DATE_NOVEMBER');
-                }
-            default:
-                if ($abbreviation === true) {
-                    return $this->translate('DATE_DEC');
-                } else {
-                    return $this->translate('DATE_DECEMBER');
-                }
+        return $this->getNameTranslated('month', $month_number, $abbreviation);
+    }
+
+    /**
+     * Provides translated name of month in abbreviated or full format, given month number
+     *
+     * @param   string $month_number
+     * @param   bool   $abbreviation
+     *
+     * @return  string
+     * @since   1.0
+     */
+    public function getNameTranslated($type, $index, $abbreviation)
+    {
+
+        if ($type === 'day') {
+            $value = $this->day_names[$index];
+        } else {
+            $value = $this->month_names[$index];
         }
+
+        if ($abbreviation === true) {
+            return $this->translate('DATE_' . $value['abbreviation']);
+        }
+
+        return $this->translate('DATE_' . $value['name']);
     }
 
     /**
