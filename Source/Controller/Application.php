@@ -13,7 +13,6 @@ use CommonApi\Database\DatabaseInterface;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\Model\FieldhandlerInterface;
 use CommonApi\Query\QueryInterface;
-use Exception;
 use stdClass;
 
 /**
@@ -221,18 +220,24 @@ class Application implements ApplicationInterface
     /**
      * Process the Request Path
      *
-     * @return  string
+     * @param   integer  $start
+     *
+     * @return  $this
      * @since   1.0
      */
     protected function processRequestPath($start)
     {
         $this->request_path = substr($this->request_path, $start, strlen($this->request_path) - 1);
+
+        return $this;
     }
 
     /**
      * Get Application Array Entry
      *
-     * @return  object
+     * @param   $application_test
+     *
+     * @return  stdClass
      * @since   1.0
      */
     protected function getApplicationArrayEntry($application_test)
@@ -280,16 +285,9 @@ class Application implements ApplicationInterface
         $this->data->catalog_id      = (int)$data->catalog_id;
         $this->data->catalog_type_id = (int)$data->catalog_type_id;
 
-        $this->setCustomFields($data);
+        $this->setCustomFields($this->model_registry['customfieldgroups'], $data);
 
-        if (isset($this->data->parameters->application_html5)
-            && $this->data->parameters->application_html5 == 1
-        ) {
-            $this->data->parameters->application_line_end = '>' . chr(10);
-        } else {
-            $this->data->parameters->application_html5    = 0;
-            $this->data->parameters->application_line_end = '/>' . chr(10);
-        }
+        $this->getConfigurationLineEnd();
 
         return $this->data;
     }
@@ -325,38 +323,25 @@ class Application implements ApplicationInterface
 
         if ($x === false) {
             throw new RuntimeException('Application: Error executing getApplication Query');
-        } else {
-            $data = $x[0];
         }
 
-        if ($this->model_registry === null) {
-            throw new RuntimeException('Application: Model Registry for Application Configuration missing');
-        }
-        return $data;
+        return $x[0];
     }
 
     /**
      * Set Custom Fields
      *
+     * @param   array  $custom_field_types
+     * @param   object $data
+     *
      * @return  $this
      * @since   1.0.0
      */
-    protected function setCustomFields($data)
+    protected function setCustomFields(array $custom_field_types = array(), $data)
     {
-        $custom_field_types = $this->model_registry['customfieldgroups'];
-
-        if (is_array($custom_field_types)) {
-        } else {
-            $custom_field_types = array();
-        }
-
-        if (count($custom_field_types) > 0) {
-            if (is_array($custom_field_types) && count($custom_field_types) > 0) {
-                foreach ($custom_field_types as $group) {
-                    unset($this->data->$group);
-                    $this->data->$group = $this->processCustomfieldGroup($group, $data);
-                }
-            }
+        foreach ($custom_field_types as $group) {
+            unset($this->data->$group);
+            $this->data->$group = $this->processCustomfieldGroup($group, $data);
         }
 
         return $this;
@@ -379,19 +364,12 @@ class Application implements ApplicationInterface
 
         foreach ($this->model_registry[$group] as $customfields) {
 
-            $key = $customfields['name'];
+            $key       = $this->getCustomfieldsDataElement($customfields, 'name');
+            $default   = $this->getCustomfieldsDataElement($customfields, 'default');
+            $value     = $this->setCustomFieldValue($group_data, $key, $default);
+            $data_type = $this->getCustomfieldsDataElement($customfields, 'type');
 
-            $value = null;
-
-            if (isset($group_data->$key)) {
-                $value = $group_data->$key;
-            }
-
-            list($customfields, $value) = $this->setDefault($value, $customfields);
-
-            if (isset($customfields['type'])) {
-                $data_type = $customfields['type'];
-            } else {
+            if ($data_type === null) {
                 $data_type = 'string';
             }
 
@@ -402,55 +380,69 @@ class Application implements ApplicationInterface
     }
 
     /**
-     * Set Default for Custom Field
+     * Get Customfield Group Data
      *
-     * @param   mixed  $value
-     * @param   object  $customfields
+     * @param   object $customfields
+     * @param   string $key
      *
-     * @return  array
-     * @since   1.0
+     * @return  mixed|stdClass
      */
-    protected function setDefault($value, $customfields)
+    protected function getCustomfieldsDataElement($customfields, $key)
     {
-        if ($value === null
-            || trim($value) === ''
-            || $value === ' ') {
+        if (isset($customfields[$key])) {
+            $value = $customfields[$key];
+        } else {
+            $value = null;
+        }
 
-            if (isset($customfields['default'])) {
-                $default = $customfields['default'];
-            } else {
-                $default = false;
-            }
+        return $value;
+    }
 
+    /**
+     * Set Value for Custom Field
+     *
+     * @param   object      $group_data
+     * @param   string      $key
+     * @param   null|string $default
+     *
+     * @return  mixed|stdClass
+     */
+    protected function setCustomFieldValue($group_data, $key, $default = null)
+    {
+        $value = null;
+
+        if (isset($group_data->$key)) {
+            $value = $group_data->$key;
+        }
+
+        if ($value === null) {
             $value = $default;
         }
 
-        return array($customfields, $value);
+        return $value;
     }
 
     /**
      * Get Customfield Group Data
      *
-     * @param   string  $group
-     * @param   object  $data
+     * @param   string $group
+     * @param   object $data
      *
      * @return  mixed|stdClass
      */
     protected function getCustomfieldGroupData($group, $data)
     {
         if (isset($data->$group)) {
-            $group_data = json_decode($data->$group);
-        } else {
-            $group_data = new stdClass();
+            return json_decode($data->$group);
         }
 
-        return $group_data;
+        return new stdClass();
     }
 
     /**
      * Create Custom Field Group
      *
-     * @param   string  $temp
+     * @param   array $temp
      *
      * @return  stdClass
      * @since   1.0.0
@@ -460,11 +452,32 @@ class Application implements ApplicationInterface
         ksort($temp);
 
         $group_name = new stdClass();
+
         foreach ($temp as $key => $value) {
             $group_name->$key = $value;
         }
 
         return $group_name;
+    }
+
+    /**
+     * Get Configuration Line End and HTML 5 data
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function getConfigurationLineEnd()
+    {
+        if (isset($this->data->parameters->application_html5)
+            && $this->data->parameters->application_html5 == 1
+        ) {
+            $this->data->parameters->application_line_end = '>' . chr(10);
+        } else {
+            $this->data->parameters->application_html5    = 0;
+            $this->data->parameters->application_line_end = '/>' . chr(10);
+        }
+
+        return $this;
     }
 
     /**
