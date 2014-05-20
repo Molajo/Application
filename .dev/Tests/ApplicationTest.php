@@ -122,6 +122,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Application::__construct
      * @covers  Molajo\Controller\Application::setApplication
      * @covers  Molajo\Controller\Application::setApplicationPath
+     * @covers  Molajo\Controller\Application::setApplicationBasePath
      * @covers  Molajo\Controller\Application::processRequestPath
      * @covers  Molajo\Controller\Application::getApplicationArrayEntry
      * @covers  Molajo\Controller\Application::getConfiguration
@@ -162,6 +163,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Application::__construct
      * @covers  Molajo\Controller\Application::setApplication
      * @covers  Molajo\Controller\Application::setApplicationPath
+     * @covers  Molajo\Controller\Application::setApplicationBasePath
      * @covers  Molajo\Controller\Application::processRequestPath
      * @covers  Molajo\Controller\Application::getApplicationArrayEntry
      * @covers  Molajo\Controller\Application::getConfiguration
@@ -202,6 +204,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Application::__construct
      * @covers  Molajo\Controller\Application::setApplication
      * @covers  Molajo\Controller\Application::setApplicationPath
+     * @covers  Molajo\Controller\Application::setApplicationBasePath
      * @covers  Molajo\Controller\Application::processRequestPath
      * @covers  Molajo\Controller\Application::getApplicationArrayEntry
      * @covers  Molajo\Controller\Application::getConfiguration
@@ -242,6 +245,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Application::__construct
      * @covers  Molajo\Controller\Application::setApplication
      * @covers  Molajo\Controller\Application::setApplicationPath
+     * @covers  Molajo\Controller\Application::setApplicationBasePath
      * @covers  Molajo\Controller\Application::processRequestPath
      * @covers  Molajo\Controller\Application::getApplicationArrayEntry
      * @covers  Molajo\Controller\Application::getConfiguration
@@ -262,6 +266,47 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * @since   1.0
      */
     public function testSetApplicationNoTrailSlashAdmin()
+    {
+        $this->request_path     = 'example.com/admin';
+
+        $this->instantiateClass();
+
+        $this->instance->setApplication();
+
+        $this->assertEquals('admin', $this->instance->get('base_path'));
+        $this->assertEquals('admin', $this->instance->get('name'));
+        $this->assertEquals(1, $this->instance->get('id'));
+        $this->assertEquals('example.com/', $this->instance->get('path'));
+        $this->assertEquals($this->applications, $this->instance->get('applications'));
+
+        return $this;
+    }
+
+    /**
+     * @covers  Molajo\Controller\Application::__construct
+     * @covers  Molajo\Controller\Application::setApplication
+     * @covers  Molajo\Controller\Application::setApplicationPath
+     * @covers  Molajo\Controller\Application::setApplicationBasePath
+     * @covers  Molajo\Controller\Application::processRequestPath
+     * @covers  Molajo\Controller\Application::getApplicationArrayEntry
+     * @covers  Molajo\Controller\Application::getConfiguration
+     * @covers  Molajo\Controller\Application::getConfigurationInstallation
+     * @covers  Molajo\Controller\Application::runConfigurationQuery
+     * @covers  Molajo\Controller\Application::createConfigurationQuery
+     * @covers  Molajo\Controller\Application::setCustomFields
+     * @covers  Molajo\Controller\Application::processCustomfieldGroup
+     * @covers  Molajo\Controller\Application::getCustomfieldsDataElement
+     * @covers  Molajo\Controller\Application::setCustomFieldValue
+     * @covers  Molajo\Controller\Application::getCustomfieldGroupData
+     * @covers  Molajo\Controller\Application::createCustomFieldGroup
+     * @covers  Molajo\Controller\Application::getConfigurationLineEnd
+     * @covers  Molajo\Controller\Application::sanitize
+     * @covers  Molajo\Controller\Application::verifySiteApplication
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function testGetConfiguration()
     {
         $this->request_path     = 'example.com/admin';
 
@@ -346,6 +391,36 @@ class MockDatabase extends Joomla implements DatabaseInterface
 
     public function loadObjectList($offset = null, $limit = null)
     {
+        $data = new stdClass();
+        $data->id              = 1;
+        $data->base_path       = 'admin';
+        $data->path            = 'admin';
+        $data->name            = 'Administrator';
+        $data->description     = 'Administrator';
+        $data->catalog_id      = 1;
+        $data->catalog_type_id = 2;
+
+        $data->custom_fields = array();
+
+
+        $group = array();
+
+        $field = array();
+        $field['name'] = 'food';
+        $field['default'] = 'ice cream';
+        $field['type'] = 'string';
+
+        $group[] = $field;
+
+        $field = array();
+        $field['name'] = 'animal';
+        $field['default'] = 'dog';
+        $field['type'] = 'string';
+
+        $group[] = $field;
+
+        $model_registry = array();
+        $model_registry['custom_fields'] = $group;
 
     }
 }

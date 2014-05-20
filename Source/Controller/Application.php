@@ -166,6 +166,21 @@ class Application implements ApplicationInterface
         $this->id         = $app->id;
         $this->name       = $app->name;
 
+        $this->setApplicationBasePath($app);
+
+        return $this;
+    }
+
+    /**
+     * Set application base path
+     *
+     * @param   $app
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setApplicationBasePath($app)
+    {
         if ($app->base_path == '') {
             $this->base_path = '';
             $this->path      = $this->request_path;
@@ -382,17 +397,18 @@ class Application implements ApplicationInterface
         $temp = array();
 
         foreach ($this->model_registry[$group] as $customfields) {
+            foreach ($customfields as $field) {
+                $key       = $this->getCustomfieldsDataElement($field, 'name');
+                $default   = $this->getCustomfieldsDataElement($field, 'default');
+                $value     = $this->setCustomFieldValue($group_data, $key, $default);
+                $data_type = $this->getCustomfieldsDataElement($field, 'type');
 
-            $key       = $this->getCustomfieldsDataElement($customfields, 'name');
-            $default   = $this->getCustomfieldsDataElement($customfields, 'default');
-            $value     = $this->setCustomFieldValue($group_data, $key, $default);
-            $data_type = $this->getCustomfieldsDataElement($customfields, 'type');
+                if ($data_type === null) {
+                    $data_type = 'string';
+                }
 
-            if ($data_type === null) {
-                $data_type = 'string';
+                $temp[$key] = $this->sanitize($key, $value, $data_type);
             }
-
-            $temp[$key] = $this->sanitize($key, $value, $data_type);
         }
 
         return $this->createCustomFieldGroup($temp);

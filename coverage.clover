@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1400625606">
-  <project timestamp="1400625606">
+<coverage generated="1400626794">
+  <project timestamp="1400626794">
     <file name="/Users/amystephen/Sites/Molajo/Application/.dev/Bootstrap.php">
       <line num="86" type="stmt" count="0"/>
       <line num="87" type="stmt" count="0"/>
@@ -37,175 +37,180 @@
     <package name="Molajo\Controller">
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/Application.php">
         <class name="Application" namespace="Molajo\Controller">
-          <metrics methods="18" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="148" coveredstatements="36" elements="166" coveredelements="41"/>
+          <metrics methods="19" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="152" coveredstatements="38" elements="171" coveredelements="44"/>
         </class>
-        <line num="140" type="method" name="__construct" crap="1" count="4"/>
-        <line num="148" type="stmt" count="4"/>
-        <line num="149" type="stmt" count="4"/>
-        <line num="150" type="stmt" count="4"/>
-        <line num="151" type="stmt" count="4"/>
-        <line num="152" type="stmt" count="4"/>
-        <line num="153" type="stmt" count="4"/>
-        <line num="154" type="stmt" count="4"/>
-        <line num="162" type="method" name="setApplication" crap="4.11" count="4"/>
-        <line num="164" type="stmt" count="4"/>
-        <line num="165" type="stmt" count="4"/>
-        <line num="166" type="stmt" count="4"/>
-        <line num="167" type="stmt" count="4"/>
-        <line num="169" type="stmt" count="4"/>
-        <line num="170" type="stmt" count="2"/>
-        <line num="171" type="stmt" count="2"/>
-        <line num="172" type="stmt" count="2"/>
-        <line num="173" type="stmt" count="2"/>
-        <line num="174" type="stmt" count="2"/>
-        <line num="177" type="stmt" count="4"/>
-        <line num="178" type="stmt" count="0"/>
-        <line num="179" type="stmt" count="4"/>
-        <line num="180" type="stmt" count="0"/>
-        <line num="181" type="stmt" count="0"/>
-        <line num="183" type="stmt" count="4"/>
-        <line num="192" type="method" name="setApplicationPath" crap="4.10" count="4"/>
-        <line num="194" type="stmt" count="4"/>
-        <line num="195" type="stmt" count="2"/>
-        <line num="196" type="stmt" count="2"/>
-        <line num="198" type="stmt" count="4"/>
-        <line num="199" type="stmt" count="0"/>
-        <line num="200" type="stmt" count="0"/>
-        <line num="202" type="stmt" count="4"/>
-        <line num="203" type="stmt" count="2"/>
-        <line num="204" type="stmt" count="2"/>
-        <line num="205" type="stmt" count="2"/>
-        <line num="208" type="stmt" count="4"/>
-        <line num="219" type="method" name="processRequestPath" crap="1" count="2"/>
-        <line num="221" type="stmt" count="2"/>
-        <line num="223" type="stmt" count="2"/>
-        <line num="234" type="method" name="getApplicationArrayEntry" crap="6.00" count="4"/>
-        <line num="236" type="stmt" count="4"/>
-        <line num="238" type="stmt" count="4"/>
-        <line num="239" type="stmt" count="4"/>
-        <line num="241" type="stmt" count="4"/>
-        <line num="242" type="stmt" count="0"/>
-        <line num="243" type="stmt" count="0"/>
-        <line num="244" type="stmt" count="0"/>
-        <line num="245" type="stmt" count="0"/>
-        <line num="247" type="stmt" count="0"/>
-        <line num="250" type="stmt" count="4"/>
-        <line num="259" type="method" name="getConfiguration" crap="2" count="0"/>
-        <line num="261" type="stmt" count="0"/>
-        <line num="263" type="stmt" count="0"/>
-        <line num="265" type="stmt" count="0"/>
-        <line num="267" type="stmt" count="0"/>
-        <line num="268" type="stmt" count="0"/>
-        <line num="269" type="stmt" count="0"/>
-        <line num="270" type="stmt" count="0"/>
-        <line num="271" type="stmt" count="0"/>
-        <line num="272" type="stmt" count="0"/>
-        <line num="273" type="stmt" count="0"/>
-        <line num="275" type="stmt" count="0"/>
-        <line num="277" type="stmt" count="0"/>
-        <line num="279" type="stmt" count="0"/>
-        <line num="289" type="method" name="getConfigurationInstallation" crap="6" count="0"/>
-        <line num="291" type="stmt" count="0"/>
+        <line num="140" type="method" name="__construct" crap="1" count="5"/>
+        <line num="148" type="stmt" count="5"/>
+        <line num="149" type="stmt" count="5"/>
+        <line num="150" type="stmt" count="5"/>
+        <line num="151" type="stmt" count="5"/>
+        <line num="152" type="stmt" count="5"/>
+        <line num="153" type="stmt" count="5"/>
+        <line num="154" type="stmt" count="5"/>
+        <line num="162" type="method" name="setApplication" crap="1" count="5"/>
+        <line num="164" type="stmt" count="5"/>
+        <line num="165" type="stmt" count="5"/>
+        <line num="166" type="stmt" count="5"/>
+        <line num="167" type="stmt" count="5"/>
+        <line num="169" type="stmt" count="5"/>
+        <line num="171" type="stmt" count="5"/>
+        <line num="182" type="method" name="setApplicationBasePath" crap="4.25" count="5"/>
+        <line num="184" type="stmt" count="5"/>
+        <line num="185" type="stmt" count="2"/>
+        <line num="186" type="stmt" count="2"/>
+        <line num="187" type="stmt" count="2"/>
+        <line num="188" type="stmt" count="3"/>
+        <line num="189" type="stmt" count="3"/>
+        <line num="192" type="stmt" count="5"/>
+        <line num="193" type="stmt" count="0"/>
+        <line num="194" type="stmt" count="5"/>
+        <line num="195" type="stmt" count="0"/>
+        <line num="196" type="stmt" count="0"/>
+        <line num="198" type="stmt" count="5"/>
+        <line num="207" type="method" name="setApplicationPath" crap="4.10" count="5"/>
+        <line num="209" type="stmt" count="5"/>
+        <line num="210" type="stmt" count="2"/>
+        <line num="211" type="stmt" count="2"/>
+        <line num="213" type="stmt" count="5"/>
+        <line num="214" type="stmt" count="0"/>
+        <line num="215" type="stmt" count="0"/>
+        <line num="217" type="stmt" count="5"/>
+        <line num="218" type="stmt" count="3"/>
+        <line num="219" type="stmt" count="3"/>
+        <line num="220" type="stmt" count="2"/>
+        <line num="223" type="stmt" count="5"/>
+        <line num="234" type="method" name="processRequestPath" crap="1" count="2"/>
+        <line num="236" type="stmt" count="2"/>
+        <line num="238" type="stmt" count="2"/>
+        <line num="249" type="method" name="getApplicationArrayEntry" crap="6.00" count="5"/>
+        <line num="251" type="stmt" count="5"/>
+        <line num="253" type="stmt" count="5"/>
+        <line num="254" type="stmt" count="5"/>
+        <line num="256" type="stmt" count="5"/>
+        <line num="257" type="stmt" count="0"/>
+        <line num="258" type="stmt" count="0"/>
+        <line num="259" type="stmt" count="0"/>
+        <line num="260" type="stmt" count="0"/>
+        <line num="262" type="stmt" count="0"/>
+        <line num="265" type="stmt" count="5"/>
+        <line num="274" type="method" name="getConfiguration" crap="2" count="0"/>
+        <line num="276" type="stmt" count="0"/>
+        <line num="278" type="stmt" count="0"/>
+        <line num="280" type="stmt" count="0"/>
+        <line num="282" type="stmt" count="0"/>
+        <line num="283" type="stmt" count="0"/>
+        <line num="284" type="stmt" count="0"/>
+        <line num="285" type="stmt" count="0"/>
+        <line num="286" type="stmt" count="0"/>
+        <line num="287" type="stmt" count="0"/>
+        <line num="288" type="stmt" count="0"/>
+        <line num="290" type="stmt" count="0"/>
         <line num="292" type="stmt" count="0"/>
-        <line num="293" type="stmt" count="0"/>
         <line num="294" type="stmt" count="0"/>
-        <line num="295" type="stmt" count="0"/>
-        <line num="297" type="stmt" count="0"/>
-        <line num="307" type="method" name="runConfigurationQuery" crap="6" count="0"/>
+        <line num="304" type="method" name="getConfigurationInstallation" crap="6" count="0"/>
+        <line num="306" type="stmt" count="0"/>
+        <line num="307" type="stmt" count="0"/>
+        <line num="308" type="stmt" count="0"/>
         <line num="309" type="stmt" count="0"/>
-        <line num="311" type="stmt" count="0"/>
-        <line num="313" type="stmt" count="0"/>
-        <line num="314" type="stmt" count="0"/>
-        <line num="317" type="stmt" count="0"/>
-        <line num="327" type="method" name="createConfigurationQuery" crap="2" count="0"/>
+        <line num="310" type="stmt" count="0"/>
+        <line num="312" type="stmt" count="0"/>
+        <line num="322" type="method" name="runConfigurationQuery" crap="6" count="0"/>
+        <line num="324" type="stmt" count="0"/>
+        <line num="326" type="stmt" count="0"/>
+        <line num="328" type="stmt" count="0"/>
         <line num="329" type="stmt" count="0"/>
-        <line num="331" type="stmt" count="0"/>
         <line num="332" type="stmt" count="0"/>
-        <line num="333" type="stmt" count="0"/>
-        <line num="334" type="stmt" count="0"/>
-        <line num="335" type="stmt" count="0"/>
-        <line num="336" type="stmt" count="0"/>
-        <line num="337" type="stmt" count="0"/>
-        <line num="338" type="stmt" count="0"/>
-        <line num="339" type="stmt" count="0"/>
-        <line num="340" type="stmt" count="0"/>
-        <line num="341" type="stmt" count="0"/>
-        <line num="342" type="stmt" count="0"/>
-        <line num="343" type="stmt" count="0"/>
+        <line num="342" type="method" name="createConfigurationQuery" crap="2" count="0"/>
         <line num="344" type="stmt" count="0"/>
-        <line num="345" type="stmt" count="0"/>
+        <line num="346" type="stmt" count="0"/>
         <line num="347" type="stmt" count="0"/>
-        <line num="359" type="method" name="setCustomFields" crap="6" count="0"/>
-        <line num="361" type="stmt" count="0"/>
+        <line num="348" type="stmt" count="0"/>
+        <line num="349" type="stmt" count="0"/>
+        <line num="350" type="stmt" count="0"/>
+        <line num="351" type="stmt" count="0"/>
+        <line num="352" type="stmt" count="0"/>
+        <line num="353" type="stmt" count="0"/>
+        <line num="354" type="stmt" count="0"/>
+        <line num="355" type="stmt" count="0"/>
+        <line num="356" type="stmt" count="0"/>
+        <line num="357" type="stmt" count="0"/>
+        <line num="358" type="stmt" count="0"/>
+        <line num="359" type="stmt" count="0"/>
+        <line num="360" type="stmt" count="0"/>
         <line num="362" type="stmt" count="0"/>
-        <line num="363" type="stmt" count="0"/>
-        <line num="364" type="stmt" count="0"/>
-        <line num="366" type="stmt" count="0"/>
-        <line num="378" type="method" name="processCustomfieldGroup" crap="12" count="0"/>
-        <line num="380" type="stmt" count="0"/>
-        <line num="382" type="stmt" count="0"/>
-        <line num="384" type="stmt" count="0"/>
-        <line num="386" type="stmt" count="0"/>
-        <line num="387" type="stmt" count="0"/>
-        <line num="388" type="stmt" count="0"/>
-        <line num="389" type="stmt" count="0"/>
-        <line num="391" type="stmt" count="0"/>
-        <line num="392" type="stmt" count="0"/>
-        <line num="393" type="stmt" count="0"/>
+        <line num="374" type="method" name="setCustomFields" crap="6" count="0"/>
+        <line num="376" type="stmt" count="0"/>
+        <line num="377" type="stmt" count="0"/>
+        <line num="378" type="stmt" count="0"/>
+        <line num="379" type="stmt" count="0"/>
+        <line num="381" type="stmt" count="0"/>
+        <line num="393" type="method" name="processCustomfieldGroup" crap="20" count="0"/>
         <line num="395" type="stmt" count="0"/>
-        <line num="396" type="stmt" count="0"/>
-        <line num="398" type="stmt" count="0"/>
-        <line num="409" type="method" name="getCustomfieldsDataElement" crap="6" count="0"/>
+        <line num="397" type="stmt" count="0"/>
+        <line num="399" type="stmt" count="0"/>
+        <line num="400" type="stmt" count="0"/>
+        <line num="401" type="stmt" count="0"/>
+        <line num="402" type="stmt" count="0"/>
+        <line num="403" type="stmt" count="0"/>
+        <line num="404" type="stmt" count="0"/>
+        <line num="406" type="stmt" count="0"/>
+        <line num="407" type="stmt" count="0"/>
+        <line num="408" type="stmt" count="0"/>
+        <line num="410" type="stmt" count="0"/>
         <line num="411" type="stmt" count="0"/>
         <line num="412" type="stmt" count="0"/>
-        <line num="413" type="stmt" count="0"/>
         <line num="414" type="stmt" count="0"/>
-        <line num="417" type="stmt" count="0"/>
-        <line num="429" type="method" name="setCustomFieldValue" crap="12" count="0"/>
-        <line num="431" type="stmt" count="0"/>
+        <line num="425" type="method" name="getCustomfieldsDataElement" crap="6" count="0"/>
+        <line num="427" type="stmt" count="0"/>
+        <line num="428" type="stmt" count="0"/>
+        <line num="429" type="stmt" count="0"/>
+        <line num="430" type="stmt" count="0"/>
         <line num="433" type="stmt" count="0"/>
-        <line num="434" type="stmt" count="0"/>
-        <line num="435" type="stmt" count="0"/>
-        <line num="437" type="stmt" count="0"/>
-        <line num="438" type="stmt" count="0"/>
-        <line num="439" type="stmt" count="0"/>
-        <line num="441" type="stmt" count="0"/>
-        <line num="452" type="method" name="getCustomfieldGroupData" crap="6" count="0"/>
+        <line num="445" type="method" name="setCustomFieldValue" crap="12" count="0"/>
+        <line num="447" type="stmt" count="0"/>
+        <line num="449" type="stmt" count="0"/>
+        <line num="450" type="stmt" count="0"/>
+        <line num="451" type="stmt" count="0"/>
+        <line num="453" type="stmt" count="0"/>
         <line num="454" type="stmt" count="0"/>
         <line num="455" type="stmt" count="0"/>
-        <line num="458" type="stmt" count="0"/>
-        <line num="469" type="method" name="createCustomFieldGroup" crap="6" count="0"/>
+        <line num="457" type="stmt" count="0"/>
+        <line num="468" type="method" name="getCustomfieldGroupData" crap="6" count="0"/>
+        <line num="470" type="stmt" count="0"/>
         <line num="471" type="stmt" count="0"/>
-        <line num="473" type="stmt" count="0"/>
-        <line num="475" type="stmt" count="0"/>
-        <line num="476" type="stmt" count="0"/>
-        <line num="477" type="stmt" count="0"/>
-        <line num="479" type="stmt" count="0"/>
-        <line num="488" type="method" name="getConfigurationLineEnd" crap="12" count="0"/>
-        <line num="490" type="stmt" count="0"/>
+        <line num="474" type="stmt" count="0"/>
+        <line num="485" type="method" name="createCustomFieldGroup" crap="6" count="0"/>
+        <line num="487" type="stmt" count="0"/>
+        <line num="489" type="stmt" count="0"/>
         <line num="491" type="stmt" count="0"/>
         <line num="492" type="stmt" count="0"/>
         <line num="493" type="stmt" count="0"/>
-        <line num="494" type="stmt" count="0"/>
         <line num="495" type="stmt" count="0"/>
-        <line num="496" type="stmt" count="0"/>
-        <line num="499" type="stmt" count="0"/>
-        <line num="512" type="method" name="sanitize" crap="2" count="0"/>
-        <line num="514" type="stmt" count="0"/>
-        <line num="516" type="stmt" count="0"/>
-        <line num="528" type="method" name="verifySiteApplication" crap="6" count="0"/>
+        <line num="504" type="method" name="getConfigurationLineEnd" crap="12" count="0"/>
+        <line num="506" type="stmt" count="0"/>
+        <line num="507" type="stmt" count="0"/>
+        <line num="508" type="stmt" count="0"/>
+        <line num="509" type="stmt" count="0"/>
+        <line num="510" type="stmt" count="0"/>
+        <line num="511" type="stmt" count="0"/>
+        <line num="512" type="stmt" count="0"/>
+        <line num="515" type="stmt" count="0"/>
+        <line num="528" type="method" name="sanitize" crap="2" count="0"/>
         <line num="530" type="stmt" count="0"/>
         <line num="532" type="stmt" count="0"/>
-        <line num="533" type="stmt" count="0"/>
-        <line num="534" type="stmt" count="0"/>
-        <line num="535" type="stmt" count="0"/>
-        <line num="537" type="stmt" count="0"/>
-        <line num="539" type="stmt" count="0"/>
-        <line num="540" type="stmt" count="0"/>
-        <line num="543" type="stmt" count="0"/>
-        <line num="544" type="stmt" count="0"/>
-        <line num="545" type="stmt" count="0"/>
-        <metrics loc="547" ncloc="313" classes="1" methods="18" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="148" coveredstatements="36" elements="166" coveredelements="38"/>
+        <line num="544" type="method" name="verifySiteApplication" crap="6" count="0"/>
+        <line num="546" type="stmt" count="0"/>
+        <line num="548" type="stmt" count="0"/>
+        <line num="549" type="stmt" count="0"/>
+        <line num="550" type="stmt" count="0"/>
+        <line num="551" type="stmt" count="0"/>
+        <line num="553" type="stmt" count="0"/>
+        <line num="555" type="stmt" count="0"/>
+        <line num="556" type="stmt" count="0"/>
+        <line num="559" type="stmt" count="0"/>
+        <line num="560" type="stmt" count="0"/>
+        <line num="561" type="stmt" count="0"/>
+        <metrics loc="563" ncloc="321" classes="1" methods="19" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="152" coveredstatements="38" elements="171" coveredelements="41"/>
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/DateController.php">
         <class name="DateController" namespace="Molajo\Controller">
@@ -2100,6 +2105,6 @@
       <line num="26" type="stmt" count="0"/>
       <metrics loc="30" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="2" coveredelements="0"/>
     </file>
-    <metrics files="30" loc="7398" ncloc="4091" classes="19" methods="201" coveredmethods="26" conditionals="0" coveredconditionals="0" statements="1680" coveredstatements="442" elements="1881" coveredelements="468"/>
+    <metrics files="30" loc="7414" ncloc="4099" classes="19" methods="202" coveredmethods="27" conditionals="0" coveredconditionals="0" statements="1684" coveredstatements="444" elements="1886" coveredelements="471"/>
   </project>
 </coverage>
