@@ -12,6 +12,7 @@ use CommonApi\Controller\ApplicationInterface;
 use CommonApi\Database\DatabaseInterface;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\Model\FieldhandlerInterface;
+use CommonApi\Query\QueryInterface;
 use Molajo\Controller\Application;
 use stdClass;
 
@@ -34,7 +35,39 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
     protected $instance;
 
     /**
-     * Options
+     * Database
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $database;
+
+    /**
+     * Query
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $query;
+
+    /**
+     * Fieldhandler
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $fieldhandler;
+
+    /**
+     * Request Path
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $request_path;
+
+    /**
+     * Applications
      *
      * @var    array
      * @since  1.0
@@ -42,52 +75,12 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
     protected $applications;
 
     /**
-     * Options
+     * Model Registry
      *
      * @var    array
      * @since  1.0
      */
     protected $model_registry;
-
-    /**
-     * Options
-     *
-     * @var    array
-     * @since  1.0
-     */
-    protected $database;
-
-    /**
-     * Options
-     *
-     * @var    array
-     * @since  1.0
-     */
-    protected $options;
-
-    /**
-     * Options
-     *
-     * @var    array
-     * @since  1.0
-     */
-    protected $fieldhandler;
-
-    /**
-     * Options
-     *
-     * @var    array
-     * @since  1.0
-     */
-    protected $request_path;
-
-    /**
-     * Options
-     *
-     * @var    array
-     * @since  1.0
-     */
-    protected $request_base_url;
 
     /**
      * Setup testing
@@ -97,48 +90,191 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->model_registry = null;
-
-        $this->database     = new MockDatabase(new MockQuery);
-        $this->fieldhandler = new MockFieldHandler();
-
-        $this->applications = $this->mockApplicationInstances();
+        $this->database         = new MockDatabase();
+        $this->query            = new MockQuery(new stdClass());
+        $this->fieldhandler     = new MockFieldHandler();
+        $this->request_path     = 'example.com/admin/';
+        $this->applications     = $this->mockApplicationInstances();
+        $this->model_registry   = null;
 
         return $this;
     }
 
     /**
-     * 1. Remove ending slash
-     * 2. Matches Installation in the Path
+     * Instantiate the class to test
      *
-     * @covers Molajo\Controller\Application::__construct
-     * @covers Molajo\Controller\Application::setApplication
-     * @covers Molajo\Controller\Application::setApplicationPath
-     * @covers Molajo\Controller\Application::processRequestPath
-     * @covers Molajo\Controller\Application::getApplicationArrayEntry
-     * @covers Molajo\Controller\Application::getConfiguration
-     * @covers Molajo\Controller\Application::runConfigurationQuery
-     * @covers Molajo\Controller\Application::setCustomFields
-     * @covers Molajo\Controller\Application::processCustomfieldGroup
-     * @covers Molajo\Controller\Application::getCustomfieldGroupData
-     * @covers Molajo\Controller\Application::createCustomFieldGroup
-     * @covers Molajo\Controller\Application::sanitize
-     * @covers Molajo\Controller\Application::verifySiteApplication
+     * @return  array
+     * @since   1.0
+     */
+    public function instantiateClass()
+    {
+        $this->instance = new MockApplication(
+            $this->database,
+            $this->query,
+            $this->fieldhandler,
+            $this->request_path,
+            $this->applications,
+            $this->model_registry
+        );
+    }
+
+    /**
+     * @covers  Molajo\Controller\Application::__construct
+     * @covers  Molajo\Controller\Application::setApplication
+     * @covers  Molajo\Controller\Application::setApplicationPath
+     * @covers  Molajo\Controller\Application::processRequestPath
+     * @covers  Molajo\Controller\Application::getApplicationArrayEntry
+     * @covers  Molajo\Controller\Application::getConfiguration
+     * @covers  Molajo\Controller\Application::getConfigurationInstallation
+     * @covers  Molajo\Controller\Application::runConfigurationQuery
+     * @covers  Molajo\Controller\Application::createConfigurationQuery
+     * @covers  Molajo\Controller\Application::setCustomFields
+     * @covers  Molajo\Controller\Application::processCustomfieldGroup
+     * @covers  Molajo\Controller\Application::getCustomfieldsDataElement
+     * @covers  Molajo\Controller\Application::setCustomFieldValue
+     * @covers  Molajo\Controller\Application::getCustomfieldGroupData
+     * @covers  Molajo\Controller\Application::createCustomFieldGroup
+     * @covers  Molajo\Controller\Application::getConfigurationLineEnd
+     * @covers  Molajo\Controller\Application::sanitize
+     * @covers  Molajo\Controller\Application::verifySiteApplication
      *
      * @return  $this
      * @since   1.0
      */
-    public function testSetApplicationInstallation()
+    public function testSetApplicationTrailSlashSite()
     {
+        $this->request_path     = 'example.com/';
 
-/**
+        $this->instantiateClass();
+
         $this->instance->setApplication();
 
-        $this->assertEquals('installation', $this->instance->get('name'));
-        $this->assertEquals(0, $this->instance->get('id'));
-        $this->assertEquals('installation', $this->instance->get('base_path'));
-        $this->assertEquals('', $this->instance->get('path'));
-*/
+        $this->assertEquals('', $this->instance->get('base_path'));
+        $this->assertEquals('default', $this->instance->get('name'));
+        $this->assertEquals(2, $this->instance->get('id'));
+        $this->assertEquals('example.com', $this->instance->get('path'));
+        $this->assertEquals($this->applications, $this->instance->get('applications'));
+die;
+        return $this;
+    }
+
+    /**
+     * @covers  Molajo\Controller\Application::__construct
+     * @covers  Molajo\Controller\Application::setApplication
+     * @covers  Molajo\Controller\Application::setApplicationPath
+     * @covers  Molajo\Controller\Application::processRequestPath
+     * @covers  Molajo\Controller\Application::getApplicationArrayEntry
+     * @covers  Molajo\Controller\Application::getConfiguration
+     * @covers  Molajo\Controller\Application::getConfigurationInstallation
+     * @covers  Molajo\Controller\Application::runConfigurationQuery
+     * @covers  Molajo\Controller\Application::createConfigurationQuery
+     * @covers  Molajo\Controller\Application::setCustomFields
+     * @covers  Molajo\Controller\Application::processCustomfieldGroup
+     * @covers  Molajo\Controller\Application::getCustomfieldsDataElement
+     * @covers  Molajo\Controller\Application::setCustomFieldValue
+     * @covers  Molajo\Controller\Application::getCustomfieldGroupData
+     * @covers  Molajo\Controller\Application::createCustomFieldGroup
+     * @covers  Molajo\Controller\Application::getConfigurationLineEnd
+     * @covers  Molajo\Controller\Application::sanitize
+     * @covers  Molajo\Controller\Application::verifySiteApplication
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function testSetApplicationNoTrailSlashSite()
+    {
+        $this->request_path     = 'example.com';
+
+        $this->instantiateClass();
+
+        $this->instance->setApplication();
+
+        $this->assertEquals('', $this->instance->get('base_path'));
+        $this->assertEquals('default', $this->instance->get('name'));
+        $this->assertEquals(2, $this->instance->get('id'));
+        $this->assertEquals('example.com', $this->instance->get('path'));
+        $this->assertEquals($this->applications, $this->instance->get('applications'));
+
+        return $this;
+    }
+
+    /**
+     * @covers  Molajo\Controller\Application::__construct
+     * @covers  Molajo\Controller\Application::setApplication
+     * @covers  Molajo\Controller\Application::setApplicationPath
+     * @covers  Molajo\Controller\Application::processRequestPath
+     * @covers  Molajo\Controller\Application::getApplicationArrayEntry
+     * @covers  Molajo\Controller\Application::getConfiguration
+     * @covers  Molajo\Controller\Application::getConfigurationInstallation
+     * @covers  Molajo\Controller\Application::runConfigurationQuery
+     * @covers  Molajo\Controller\Application::createConfigurationQuery
+     * @covers  Molajo\Controller\Application::setCustomFields
+     * @covers  Molajo\Controller\Application::processCustomfieldGroup
+     * @covers  Molajo\Controller\Application::getCustomfieldsDataElement
+     * @covers  Molajo\Controller\Application::setCustomFieldValue
+     * @covers  Molajo\Controller\Application::getCustomfieldGroupData
+     * @covers  Molajo\Controller\Application::createCustomFieldGroup
+     * @covers  Molajo\Controller\Application::getConfigurationLineEnd
+     * @covers  Molajo\Controller\Application::sanitize
+     * @covers  Molajo\Controller\Application::verifySiteApplication
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function testSetApplicationTrailSlashAdmin()
+    {
+        $this->request_path     = 'example.com/admin/';
+
+        $this->instantiateClass();
+
+        $this->instance->setApplication();
+
+        $this->assertEquals('admin', $this->instance->get('base_path'));
+        $this->assertEquals('admin', $this->instance->get('name'));
+        $this->assertEquals(1, $this->instance->get('id'));
+        $this->assertEquals('example.com/', $this->instance->get('path'));
+        $this->assertEquals($this->applications, $this->instance->get('applications'));
+
+        return $this;
+    }
+
+    /**
+     * @covers  Molajo\Controller\Application::__construct
+     * @covers  Molajo\Controller\Application::setApplication
+     * @covers  Molajo\Controller\Application::setApplicationPath
+     * @covers  Molajo\Controller\Application::processRequestPath
+     * @covers  Molajo\Controller\Application::getApplicationArrayEntry
+     * @covers  Molajo\Controller\Application::getConfiguration
+     * @covers  Molajo\Controller\Application::getConfigurationInstallation
+     * @covers  Molajo\Controller\Application::runConfigurationQuery
+     * @covers  Molajo\Controller\Application::createConfigurationQuery
+     * @covers  Molajo\Controller\Application::setCustomFields
+     * @covers  Molajo\Controller\Application::processCustomfieldGroup
+     * @covers  Molajo\Controller\Application::getCustomfieldsDataElement
+     * @covers  Molajo\Controller\Application::setCustomFieldValue
+     * @covers  Molajo\Controller\Application::getCustomfieldGroupData
+     * @covers  Molajo\Controller\Application::createCustomFieldGroup
+     * @covers  Molajo\Controller\Application::getConfigurationLineEnd
+     * @covers  Molajo\Controller\Application::sanitize
+     * @covers  Molajo\Controller\Application::verifySiteApplication
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function testSetApplicationNoTrailSlashAdmin()
+    {
+        $this->request_path     = 'example.com/admin';
+
+        $this->instantiateClass();
+
+        $this->instance->setApplication();
+
+        $this->assertEquals('admin', $this->instance->get('base_path'));
+        $this->assertEquals('admin', $this->instance->get('name'));
+        $this->assertEquals(1, $this->instance->get('id'));
+        $this->assertEquals('example.com/', $this->instance->get('path'));
+        $this->assertEquals($this->applications, $this->instance->get('applications'));
+
         return $this;
     }
 
@@ -151,24 +287,6 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
 
-    }
-
-    /**
-     * Instantiate the class to test
-     *
-     * @return  array
-     * @since   1.0
-     */
-    public function instantiateClass()
-    {
-        $this->instance = new MockApplication(
-            $this->applications,
-            $this->model_registry,
-            $this->database,
-            $this->fieldhandler,
-            $this->request_path,
-            $this->request_base_url
-        );
     }
 
     /**
@@ -217,74 +335,10 @@ class MockApplication extends Application implements ApplicationInterface
     }
 }
 
-class MockDatabase implements DatabaseInterface
+use Molajo\Database\Adapter\Joomla;
+
+class MockDatabase extends Joomla implements DatabaseInterface
 {
-    /**
-     * Query
-     *
-     * @var    object
-     * @since  1.0
-     */
-    protected $query = null;
-
-    /**
-     * Constructor
-     *
-     * @param null|object $query
-     *
-     * @since  1.0
-     */
-    public function __construct(
-        $query
-    ) {
-        $this->query = $query;
-    }
-
-    public function getQueryObject()
-    {
-        return $this->query;
-    }
-
-    public function getDateFormat()
-    {
-
-    }
-
-    public function getDate()
-    {
-
-    }
-
-    public function getNullDate()
-    {
-
-    }
-
-    public function quote($value)
-    {
-
-    }
-
-    public function quoteName($name)
-    {
-
-    }
-
-    public function q($value)
-    {
-        return $this->quote($value);
-    }
-
-    public function qn($name)
-    {
-        return $this->quoteName($name);
-    }
-
-    public function escape($text)
-    {
-
-    }
-
     public function loadResult($sql)
     {
 
@@ -294,31 +348,101 @@ class MockDatabase implements DatabaseInterface
     {
 
     }
-
-    public function execute($sql = null)
-    {
-
-    }
-
-    public function getInsertId()
-    {
-
-    }
 }
 
-class MockQuery
+use Molajo\Query\Driver;
+
+class MockQuery extends Driver implements QueryInterface
 {
-    public function select($field)
+    protected $adapter;
+
+    /**
+     * Constructor
+     *
+     * @param  QueryInterface $adapter
+     *
+     * @since  1.0
+     */
+    public function __construct($adapter)
+    {
+        $this->adapter = $adapter;
+    }
+
+    public function clearQuery()
     {
 
     }
 
-    public function from($table)
+    /**
+     * Used for select, insert, and update to specify column name, alias (optional)
+     *  For Insert and Update, only, value and data_type
+     *
+     * @param   string      $column_name
+     * @param   null|string $alias
+     * @param   null|string $value
+     * @param   null|string $data_type
+     *
+     * @return  $this
+     * @since   1.0
+     * @throws \CommonApi\Exception\RuntimeException
+     */
+    public function select($column_name, $alias = null, $value = null, $data_type = null)
     {
 
     }
 
-    public function where($clause)
+    /**
+     * Set From table name and optional value for alias
+     *
+     * @param   string      $table_name
+     * @param   null|string $alias
+     *
+     * @return  $this
+     * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    public function from($table_name, $alias = null)
+    {
+
+    }
+
+    /**
+     * Set Where Conditions for Query
+     *
+     * @param   string      $left_filter
+     * @param   string      $left
+     * @param   string      $condition
+     * @param   string      $right_filter
+     * @param   string      $right
+     * @param   string      $connector
+     * @param   null|string $group
+     *
+     * @return  $this
+     * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    public function where(
+        $left_filter = 'column',
+        $left,
+        $condition,
+        $right_filter = 'column',
+        $right,
+        $connector = 'and',
+        $group = ''
+    ) {
+
+    }
+
+    /**
+     * Get SQL (optionally setting the SQL)
+     *
+     * @param   null|string $sql
+     *
+     * @return  string
+     * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    public function getSQL($sql = null)
     {
 
     }

@@ -86,14 +86,6 @@ class Application implements ApplicationInterface
     protected $request_path = null;
 
     /**
-     * Base Request URL
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $request_base_url = null;
-
-    /**
      * Application Data
      *
      * @var    array
@@ -126,7 +118,7 @@ class Application implements ApplicationInterface
     protected $base_path = null;
 
     /**
-     * Application Base Path
+     * Application Path
      *
      * @var    string
      * @since  1.0
@@ -140,7 +132,6 @@ class Application implements ApplicationInterface
      * @param QueryInterface        $query
      * @param FieldhandlerInterface $fieldhandler
      * @param string                $request_path
-     * @param string                $request_base_url
      * @param array                 $applications
      * @param null|object           $model_registry
      *
@@ -151,17 +142,15 @@ class Application implements ApplicationInterface
         QueryInterface $query,
         FieldhandlerInterface $fieldhandler,
         $request_path,
-        $request_base_url,
         array $applications = array(),
         $model_registry = null
     ) {
-        $this->database         = $database;
-        $this->query            = $query;
-        $this->fieldhandler     = $fieldhandler;
-        $this->request_path     = $request_path;
-        $this->request_base_url = $request_base_url;
-        $this->applications     = $applications;
-        $this->model_registry   = $model_registry;
+        $this->database       = $database;
+        $this->query          = $query;
+        $this->fieldhandler   = $fieldhandler;
+        $this->request_path   = $request_path;
+        $this->applications   = $applications;
+        $this->model_registry = $model_registry;
     }
 
     /**
@@ -175,12 +164,15 @@ class Application implements ApplicationInterface
         $application_test = $this->setApplicationPath();
         $app              = $this->getApplicationArrayEntry($application_test);
 
+        $this->id   = $app->id;
+        $this->name = $app->name;
+
         if ($app->base_path == '') {
             $this->base_path = '';
             $this->path      = $this->request_path;
         } else {
-            $this->base_path = $app->name;
-            $this->path      = substr($this->request_path, strlen(trim($this->base_path)), 999);
+            $this->base_path = $app->base_path;
+            $this->path      = substr($this->request_path, 0, -strlen(trim($this->base_path)));
         }
 
         if ($this->path === false) {
@@ -220,7 +212,7 @@ class Application implements ApplicationInterface
     /**
      * Process the Request Path
      *
-     * @param   integer  $start
+     * @param   integer $start
      *
      * @return  $this
      * @since   1.0
@@ -248,9 +240,11 @@ class Application implements ApplicationInterface
             $app = $this->applications[$application_test];
 
         } else {
-            foreach ($this->applications as $application) {
-                $app = $application;
-                break;
+            foreach ($this->applications as $key => $application) {
+                if ($key === 'default') {
+                    $app = $application;
+                    break;
+                }
             }
         }
 
@@ -286,7 +280,6 @@ class Application implements ApplicationInterface
         return $this->data;
     }
 
-
     /**
      * Installation Application, only
      *
@@ -314,6 +307,26 @@ class Application implements ApplicationInterface
      */
     protected function runConfigurationQuery()
     {
+        $this->createConfigurationQuery();
+
+        $x = $this->database->loadObjectList($this->query->getSQL());
+
+        if ($x === false) {
+            throw new RuntimeException('Application: Error executing getApplication Query');
+        }
+
+        return $x[0];
+    }
+
+    /**
+     * Create Configuration Query
+     *
+     * @return  $this
+     * @since   1.0.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    protected function createConfigurationQuery()
+    {
         $this->query->clearQuery();
 
         $this->query->select('a.*');
@@ -332,13 +345,7 @@ class Application implements ApplicationInterface
         $this->query->where('column', 'b.application_id', '=', 'column', 'a.id');
         $this->query->where('column', 'b.enabled', '=', 'integer', (int)1);
 
-        $x = $this->database->loadObjectList($this->query->getSQL());
-
-        if ($x === false) {
-            throw new RuntimeException('Application: Error executing getApplication Query');
-        }
-
-        return $x[0];
+        return $this;
     }
 
     /**

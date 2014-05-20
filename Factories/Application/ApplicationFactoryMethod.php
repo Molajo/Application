@@ -76,7 +76,6 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
             $this->dependencies['Resource']->get('xml:///Molajo//Model//Datasource//Application.xml');
 
         $this->dependencies['request_path']     = $this->dependencies['Request']->path;
-        $this->dependencies['request_base_url'] = $this->dependencies['Request']->base_url;
 
         return $this->dependencies;
     }

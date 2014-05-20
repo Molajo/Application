@@ -23,24 +23,6 @@ use stdClass;
  */
 class DateController extends DateTime implements DateInterface
 {
-    /** minute in seconds */
-    const MINUTE = 60;
-
-    /** hour in seconds */
-    const HOUR = 3600;
-
-    /** day in seconds */
-    const DAY = 86400;
-
-    /** week in seconds */
-    const WEEK = 604800;
-
-    /** average month in seconds */
-    const MONTH = 2629800;
-
-    /** average year in seconds */
-    const YEAR = 31557600;
-
     /**
      * Offset for User Time zone
      *
@@ -158,6 +140,20 @@ class DateController extends DateTime implements DateInterface
             7 => array('abbreviation' => 'SUN', 'name' => 'SUNDAY')
         );
 
+
+    /**
+     * Second Constants
+     *
+     * @var    array
+     * @since  1.0
+     */
+    const MINUTE = 60;
+    const HOUR = 3600;
+    const DAY = 86400;
+    const WEEK = 604800;
+    const MONTH = 2629800;
+    const YEAR = 31557600;
+
     /**
      * Constructor
      *
@@ -253,24 +249,14 @@ class DateController extends DateTime implements DateInterface
         $date_time = new DateTime($time);
         $date_time->setTimezone($tz);
 
-        if ($date_format == null) {
-            $date_format = 'Y-m-d H:i:s';
-        }
-
-        if ($date_format == 'd-m-YY') {
-            $date = strtotime($date_time->format('d-m-YY'));
-        } else {
-            $date = $date_time->format($date_format);
-        }
-
-        return (string)$date;
+        return $this->getDateFormatDate($date_time, $date_format);
     }
 
     /**
      * Get Timezone
      *
-     * @param   string  $timezone
-     * @param   string  $server_or_user_timezone
+     * @param   string $timezone
+     * @param   string $server_or_user_timezone
      *
      * @return  string
      */
@@ -285,6 +271,29 @@ class DateController extends DateTime implements DateInterface
         }
 
         return $timezone;
+    }
+
+    /**
+     * Format Date
+     *
+     * @param   Datetime $date_time
+     * @param   string   $date_format
+     *
+     * @return  string
+     */
+    protected function getDateFormatDate($date_time, $date_format)
+    {
+        if ($date_format == null) {
+            $date_format = 'Y-m-d H:i:s';
+        }
+
+        if ($date_format == 'd-m-YY') {
+            $date = strtotime($date_time->format('d-m-YY'));
+        } else {
+            $date = $date_time->format($date_format);
+        }
+
+        return (string)$date;
     }
 
     /**
@@ -398,8 +407,9 @@ class DateController extends DateTime implements DateInterface
     /**
      * Provides translated name of month in abbreviated or full format, given month number
      *
-     * @param   string $month_number
-     * @param   bool   $abbreviation
+     * @param   string  $type
+     * @param   integer $index
+     * @param   string  $abbreviation
      *
      * @return  string
      * @since   1.0
