@@ -9,7 +9,7 @@
 namespace Molajo\Controller;
 
 use CommonApi\Controller\NumberToTextInterface;
-use CommonApi\Controller\TranslateInterface;
+use CommonApi\Language\TranslateInterface;
 
 /**
  * Number to Text Utility: Converts a numeric value up to a 999 quattuordecillion to translatable term.
@@ -28,6 +28,8 @@ class NumberToText implements NumberToTextInterface
      */
     protected $locale_instance;
 
+    protected $number_array = array();
+
     /**
      * Constructor
      *
@@ -38,281 +40,7 @@ class NumberToText implements NumberToTextInterface
     public function __construct(TranslateInterface $locale_instance)
     {
         $this->locale_instance = $locale_instance;
-    }
 
-    /**
-     * Converts a numeric value, with or without a decimal, up to a 999 quattuordecillion to words
-     *
-     * @param   string $number
-     * @param   bool   $remove_spaces default false
-     *
-     * @return  string
-     * @since   1.0
-     */
-    public function convert($number, $remove_spaces = false)
-    {
-        $split = explode('.', $number);
-        if (count($split) > 1) {
-            $decimal = $split[1];
-        } else {
-            $decimal = null;
-        }
-
-        $sign = '';
-        if (substr($split[0], 0, 1) == '+') {
-            $split[0] = substr($split[0], 1, strlen($split[0]) - 1);
-        }
-        if (substr($split[0], 0, 1) == '-') {
-            $split[0] = substr($split[0], 1, strlen($split[0]) - 1);
-            $sign     = $this->locale_instance->translate('number_negative') . ' ';
-        }
-
-        if ((int)$number == 0) {
-            return $this->locale_instance->translate('number_zero');
-        }
-
-        $word_value = $sign;
-
-        $reverseDigits = str_split($number, 1);
-        $number        = implode(array_reverse($reverseDigits));
-
-        if ((strlen($number) % 3) == 0) {
-            $padToSetsOfThree = strlen($number);
-        } else {
-            $padToSetsOfThree = 3 - (strlen($number) % 3) + strlen($number);
-        }
-
-        $number = str_pad($number, $padToSetsOfThree, 0, STR_PAD_RIGHT);
-        $groups = str_split($number, 3);
-
-        $onesDigit     = null;
-        $tensDigit     = null;
-        $hundredsDigit = null;
-
-        $temp_word_value = '';
-
-        $i = 0;
-        foreach ($groups as $digits) {
-
-            $digit = str_split($digits, 1);
-
-            $onesDigit     = $digit[0];
-            $tensDigit     = $digit[1];
-            $hundredsDigit = $digit[2];
-
-            if ($onesDigit == 0 && $tensDigit == 0 && $hundredsDigit == 0) {
-            } else {
-
-                $temp_word_value = $this->setWord($onesDigit);
-                $temp_word_value = $this->convertPlaceValueTens($tensDigit, $onesDigit, $temp_word_value);
-                $temp_word_value = $this->convertPlaceValueHundreds(
-                    $hundredsDigit,
-                    $tensDigit,
-                    $temp_word_value,
-                    $onesDigit
-                );
-
-                $temp_word_value .= ' ' . $this->convertGrouping($i);
-            }
-
-            $onesDigit     = null;
-            $tensDigit     = null;
-            $hundredsDigit = null;
-
-            if (trim($word_value) == '') {
-                $word_value = trim($temp_word_value);
-            } elseif (trim($temp_word_value) == '') {
-            } else {
-                $word_value = trim($temp_word_value) . ', ' . $word_value;
-            }
-            $temp_word_value = '';
-            $i ++;
-        }
-
-        if ($decimal === null) {
-        } else {
-            $word_value .= ' ' . $this->locale_instance->translate('number_point') . ' ' . $decimal;
-        }
-
-        if ((int)$remove_spaces == 1) {
-            $word_value = str_replace(' ', '', $word_value);
-        }
-
-        return trim($word_value);
-    }
-
-    /**
-     * Convert the tens placeholder to a word, combining with the ones placeholder word
-     *
-     * @param   string $tensDigit
-     * @param   string $onesDigit
-     * @param   string $onesWord
-     *
-     * @return  string
-     * @since   1.0
-     */
-    protected function convertPlaceValueTens($tensDigit, $onesDigit, $onesWord)
-    {
-        if ($onesDigit == 0) {
-            $this->setWord($tensDigit, 'ten');
-
-        } elseif ($tensDigit == 0) {
-            return $onesWord;
-        } elseif ($tensDigit == 1) {
-
-            switch ($onesDigit) {
-
-                case 1:
-                    return $this->locale_instance->translate('number_eleven');
-                case 2:
-                    return $this->locale_instance->translate('number_twelve');
-                case 3:
-                    return $this->locale_instance->translate('number_thirteen');
-                case 4:
-                    return $this->locale_instance->translate('number_fourteen');
-                case 5:
-                    return $this->locale_instance->translate('number_fifteen');
-                case 6:
-                    return $this->locale_instance->translate('number_sixteen');
-                case 7:
-                    return $this->locale_instance->translate('number_seventeen');
-                case 8:
-                    return $this->locale_instance->translate('number_eighteen');
-                case 9:
-                    return $this->locale_instance->translate('number_nineteen');
-            }
-        } else {
-
-            switch ($tensDigit) {
-
-                case 2:
-                    return $this->locale_instance->translate('number_twenty') . ' ' . $onesWord;
-                case 3:
-                    return $this->locale_instance->translate('number_thirty') . ' ' . $onesWord;
-                case 4:
-                    return $this->locale_instance->translate('number_forty') . ' ' . $onesWord;
-                case 5:
-                    return $this->locale_instance->translate('number_fifty') . ' ' . $onesWord;
-                case 6:
-                    return $this->locale_instance->translate('number_sixty') . ' ' . $onesWord;
-                case 7:
-                    return $this->locale_instance->translate('number_seventy') . ' ' . $onesWord;
-                case 8:
-                    return $this->locale_instance->translate('number_eighty') . ' ' . $onesWord;
-                case 9:
-                    return $this->locale_instance->translate('number_ninety') . ' ' . $onesWord;
-            }
-        }
-
-        return '';
-    }
-
-    /**
-     * Creates words for Hundreds Digit, combining previously determined tens digit word
-     *
-     * @param   string $hundredsDigit
-     * @param   string $tensDigit
-     * @param   string $tensWord
-     * @param   string $onesDigit
-     *
-     * @return  string
-     * @since   1.0
-     */
-    protected function convertPlaceValueHundreds($hundredsDigit, $tensDigit, $tensWord, $onesDigit)
-    {
-        $temp = '';
-
-        switch ($hundredsDigit) {
-
-            case 0:
-                return $tensWord;
-                break;
-            case 1:
-                $temp = $this->locale_instance->translate('number_one');
-                break;
-            case 2:
-                $temp = $this->locale_instance->translate('number_two');
-                break;
-            case 3:
-                $temp = $this->locale_instance->translate('number_three');
-                break;
-            case 4:
-                $temp = $this->locale_instance->translate('number_four');
-                break;
-            case 5:
-                $temp = $this->locale_instance->translate('number_five');
-                break;
-            case 6:
-                $temp = $this->locale_instance->translate('number_six');
-                break;
-            case 7:
-                $temp = $this->locale_instance->translate('number_seven');
-                break;
-            case 8:
-                $temp = $this->locale_instance->translate('number_eight');
-                break;
-            case 9:
-                $temp = $this->locale_instance->translate('number_nine');
-                break;
-        }
-
-        $temp .= ' ' . $this->locale_instance->translate('number_hundred');
-
-        if ($tensDigit == 0 && $onesDigit == 0) {
-            return $temp;
-        } elseif ($tensDigit == 0) {
-            return $temp . ' ' . $tensWord;
-        }
-
-        return $temp . ' ' . $this->locale_instance->translate('number_and') . ' ' . $tensWord;
-    }
-
-    /**
-     * Set word for number
-     *
-     * @param   integer  $digit
-     * @param   integer  $digit_position
-     *
-     * @return  string
-     * @since   1.0
-     */
-    protected function setWord($digit, $digit_position = 0)
-    {
-        $temp = '';
-
-        switch ($digit) {
-
-            case 0:
-                return $this->digit_array[$digit_position][0];
-                break;
-            case 1:
-                $temp = $this->locale_instance->translate($this->number_array[$digit_position][1]);
-                break;
-            case 2:
-                $temp = $this->locale_instance->translate($this->number_array[$digit_position][2]);
-                break;
-            case 3:
-                $temp = $this->locale_instance->translate($this->number_array[$digit_position][3]);
-                break;
-            case 4:
-                $temp = $this->locale_instance->translate($this->number_array[$digit_position][4]);
-                break;
-            case 5:
-                $temp = $this->locale_instance->translate($this->number_array[$digit_position][5]);
-                break;
-            case 6:
-                $temp = $this->locale_instance->translate($this->number_array[$digit_position][6]);
-                break;
-            case 7:
-                $temp = $this->locale_instance->translate($this->number_array[$digit_position][7]);
-                break;
-            case 8:
-                $temp = $this->locale_instance->translate($this->number_array[$digit_position][8]);
-                break;
-            case 9:
-                $temp = $this->locale_instance->translate($this->number_array[$digit_position][9]);
-                break;
-        }
 
         $this->number_array = array();
 
@@ -327,33 +55,290 @@ class NumberToText implements NumberToTextInterface
         $this->number_array[0][8] = 'number_eight';
         $this->number_array[0][9] = 'number_nine';
 
-        $this->number_array[10][0] = 'number_ten';
-        $this->number_array[10][1] = 'number_twenty';
-        $this->number_array[10][2] = 'number_thirty';
-        $this->number_array[10][3] = 'number_three';
-        $this->number_array[10][4] = 'number_forty';
-        $this->number_array[10][5] = 'number_fifty';
-        $this->number_array[10][6] = 'number_sixty';
-        $this->number_array[10][7] = 'number_seventy';
-        $this->number_array[10][8] = 'number_eighty';
-        $this->number_array[10][9] = 'number_ninety';
+        $this->number_array[1][0] = 'number_ten';
+        $this->number_array[1][1] = 'number_eleven';
+        $this->number_array[1][2] = 'number_twelve';
+        $this->number_array[1][3] = 'number_thirteen';
+        $this->number_array[1][4] = 'number_fourteen';
+        $this->number_array[1][5] = 'number_fifteen';
+        $this->number_array[1][6] = 'number_sixteen';
+        $this->number_array[1][7] = 'number_seventeen';
+        $this->number_array[1][8] = 'number_eighteen';
+        $this->number_array[1][9] = 'number_nineteen';
 
-        $this->number_array[10][0] = 'number_ten';
-        $this->number_array[10][1] = 'number_twenty';
-        $this->number_array[10][2] = 'number_thirty';
-        $this->number_array[10][3] = 'number_three';
-        $this->number_array[10][4] = 'number_forty';
-        $this->number_array[10][5] = 'number_fifty';
-        $this->number_array[10][6] = 'number_sixty';
-        $this->number_array[10][7] = 'number_seventy';
-        $this->number_array[10][8] = 'number_eighty';
-        $this->number_array[10][9] = 'number_ninety';
+        $this->number_array[2][2] = 'number_twenty';
+        $this->number_array[2][3] = 'number_thirty';
+        $this->number_array[2][4] = 'number_forty';
+        $this->number_array[2][5] = 'number_fifty';
+        $this->number_array[2][6] = 'number_sixty';
+        $this->number_array[2][7] = 'number_seventy';
+        $this->number_array[2][8] = 'number_eighty';
+        $this->number_array[2][9] = 'number_ninety';
 
+        $this->number_array[3][0] = 'number_hundred';
 
-        $this->digit_position_array[0] = '';
+        $this->digit_position_array[0]  = '';
         $this->digit_position_array[10] = '';
+    }
 
-        return $temp;
+    /**
+     * Converts a numeric value, with or without a decimal, up to a 999 quattuordecillion to words
+     *
+     * @param   string $number
+     *
+     * @return  string
+     * @since   1.0
+     */
+    public function convert($number)
+    {
+        list($digit, $decimal) = $this->extractDecimal($number);
+        list($sign, $digit) = $this->extractSign($digit);
+        $digits     = $this->extractDigits($digit);
+        $groups     = $this->createGroups($digits);
+        $word_value = $this->processGroups($groups);
+        $word_value = $this->setDecimal($decimal, $word_value);
+
+        return trim($word_value);
+    }
+
+    /**
+     * Extract out the decimal
+     *
+     * @param   $number
+     *
+     * @return  array
+     * @since   1.0.0
+     */
+    protected function extractDecimal($number)
+    {
+        $digit = explode('.', $number);
+
+        if (count($digit) > 1) {
+            return array($digit[0], $digit[1]);
+        }
+
+        return array($number, null);
+    }
+
+    /**
+     * Separate out digits from whole digits
+     *
+     * @param   $digit
+     *
+     * @return  array
+     * @since   1.0.0
+     */
+    protected function extractSign($digit)
+    {
+        $sign = '';
+
+        if (substr($digit, 0, 1) === '+') {
+            $sign = '+';
+
+        } elseif (substr($digit, 0, 1) === '-') {
+            $sign = '-';
+
+        } else {
+            return array($sign, $digit);
+        }
+
+        $digit = substr($digit, 1, strlen($digit) - 1);
+
+        return array($sign, $digit);
+    }
+
+    /**
+     * Extract each digit into reverse order and sets of three (ex 1,000 = 000100)
+     *
+     * @param  string $number
+     *
+     * @return string
+     * @since  1.0.0
+     */
+    protected function extractDigits($number)
+    {
+        $reverseDigits = str_split($number, 1);
+        $number        = implode(array_reverse($reverseDigits));
+
+        if ((strlen($number) % 3) == 0) {
+            $padToSetsOfThree = strlen($number);
+        } else {
+            $padToSetsOfThree = 3 - (strlen($number) % 3) + strlen($number);
+        }
+
+        return str_pad($number, $padToSetsOfThree, 0, STR_PAD_RIGHT);
+    }
+
+    /**
+     * Create groups of three for further processing
+     *
+     * @param  string $number
+     *
+     * @return string
+     * @since  1.0.0
+     */
+    protected function createGroups($number)
+    {
+        return str_split($number, 3);
+    }
+
+    /**
+     * Translate Groups of three digit, one group at a time
+     *
+     * @param  array $groups
+     *
+     * @return string
+     * @since  1.0.0
+     */
+    protected function processGroups(array $groups = array())
+    {
+        $i          = 0;
+        $word_value = '';
+
+        foreach ($groups as $digits) {
+
+            $temp_word_value = $this->translateGroup($digits, $i);
+
+            if (trim($word_value) === '') {
+                $word_value = $temp_word_value;
+            } else {
+                $word_value = trim($temp_word_value) . ' ' . trim($word_value);
+            }
+
+            $i++;
+        }
+
+        if (trim($word_value) === '') {
+            $word_value = $this->locale_instance->translateString('number_zero');
+        }
+
+        return $word_value;
+    }
+
+    /**
+     * Translate Group of three digits
+     *
+     * @param   string  $digits
+     * @param   integer $i
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function translateGroup($digits, $i)
+    {
+        $digit = str_split($digits);
+
+        $ones_digit     = (int)$digit[0];
+        $tens_digit     = (int)$digit[1];
+        $hundreds_digit = (int)$digit[2];
+
+        if ($ones_digit === 0 && $tens_digit === 0 && $hundreds_digit === 0) {
+            return '';
+        }
+
+        $temp_word_value = $this->setWord($ones_digit);
+        $temp_word_value = $this->setWordTens($tens_digit, $ones_digit, $temp_word_value);
+        $temp_word_value = $this->setWordHundreds($hundreds_digit, $temp_word_value);
+
+        if ($i > 0 || $hundreds_digit > 0) {
+            $temp_word_value .= ' ' . $this->convertGrouping($i);
+        }
+
+        return $temp_word_value;
+    }
+
+    /**
+     * Convert the tens placeholder to a word, combining with the ones placeholder word
+     *
+     * @param   string $tens_digit
+     * @param   string $ones_digit
+     * @param   string $ones_word
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function setWordTens($tens_digit, $ones_digit, $ones_word)
+    {
+        if ($tens_digit === 0) {
+            $string = $ones_word;
+
+        } elseif ($tens_digit === 1) { // 18 = eighteen - use the ones digit
+            $string = $this->setWord($ones_digit, 1);
+
+        } else {
+            $string = $this->setWord($tens_digit, 2) . ' ' . $ones_word; // 21: twenty + one
+        }
+
+        return $string;
+    }
+
+    /**
+     * Creates words for hundred digit, combining previously determined tens and one digit words
+     *
+     * @param   string $hundreds_digit
+     * @param   string $tens_word
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function setWordHundreds($hundreds_digit, $tens_word)
+    {
+        if ($hundreds_digit === 0) {
+            $string = $tens_word;
+
+        } else {
+            $string = $this->setWord($hundreds_digit, 0);
+        }
+
+        return $string;
+    }
+
+    /**
+     * Set word for number
+     *
+     * @param   integer $digit
+     * @param   integer $digit_position
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function setWord($digit, $digit_position = 0)
+    {
+        switch ($digit) {
+
+            case 0:
+                $string = $this->locale_instance->translateString($this->number_array[$digit_position][0]);
+                break;
+            case 1:
+                $string = $this->locale_instance->translateString($this->number_array[$digit_position][1]);
+                break;
+            case 2:
+                $string = $this->locale_instance->translateString($this->number_array[$digit_position][2]);
+                break;
+            case 3:
+                $string = $this->locale_instance->translateString($this->number_array[$digit_position][3]);
+                break;
+            case 4:
+                $string = $this->locale_instance->translateString($this->number_array[$digit_position][4]);
+                break;
+            case 5:
+                $string = $this->locale_instance->translateString($this->number_array[$digit_position][5]);
+                break;
+            case 6:
+                $string = $this->locale_instance->translateString($this->number_array[$digit_position][6]);
+                break;
+            case 7:
+                $string = $this->locale_instance->translateString($this->number_array[$digit_position][7]);
+                break;
+            case 8:
+                $string = $this->locale_instance->translateString($this->number_array[$digit_position][8]);
+                break;
+            case 9:
+                $string = $this->locale_instance->translateString($this->number_array[$digit_position][9]);
+                break;
+        }
+
+        return $string;
     }
 
     /**
@@ -374,42 +359,100 @@ class NumberToText implements NumberToTextInterface
      */
     protected function convertGrouping($number)
     {
-        switch ($number) {
+        $string = '';
+
+        switch ((int)$number) {
 
             case 0:
-                return '';
+                $string = $this->locale_instance->translateString('number_hundred');
+                break;
             case 1:
-                return $this->locale_instance->translate('number_thousand');
+                $string = $this->locale_instance->translateString('number_thousand');
+                break;
             case 2:
-                return $this->locale_instance->translate('number_million');
+                $string = $this->locale_instance->translateString('number_million');
+                break;
             case 3:
-                return $this->locale_instance->translate('number_billion');
+                $string = $this->locale_instance->translateString('number_billion');
+                break;
             case 4:
-                return $this->locale_instance->translate('number_trillion');
+                $string = $this->locale_instance->translateString('number_trillion');
+                break;
             case 5:
-                return $this->locale_instance->translate('number_quadrillion');
+                $string = $this->locale_instance->translateString('number_quadrillion');
+                break;
             case 6:
-                return $this->locale_instance->translate('number_quintillion');
+                $string = $this->locale_instance->translateString('number_quintillion');
+                break;
             case 7:
-                return $this->locale_instance->translate('number_sextillion');
+                $string = $this->locale_instance->translateString('number_sextillion');
+                break;
             case 8:
-                return $this->locale_instance->translate('number_septillion');
+                $string = $this->locale_instance->translateString('number_septillion');
+                break;
             case 9:
-                return $this->locale_instance->translate('number_octillion');
+                $string = $this->locale_instance->translateString('number_octillion');
+                break;
             case 10:
-                return $this->locale_instance->translate('number_nonillion');
+                $string = $this->locale_instance->translateString('number_nonillion');
+                break;
             case 11:
-                return $this->locale_instance->translate('number_decillion');
+                $string = $this->locale_instance->translateString('number_decillion');
+                break;
             case 12:
-                return $this->locale_instance->translate('number_undecillion');
+                $string = $this->locale_instance->translateString('number_undecillion');
+                break;
             case 13:
-                return $this->locale_instance->translate('number_duodecillion');
+                $string = $this->locale_instance->translateString('number_duodecillion');
+                break;
             case 14:
-                return $this->locale_instance->translate('number_tredecillion');
+                $string = $this->locale_instance->translateString('number_tredecillion');
+                break;
             case 15:
-                return $this->locale_instance->translate('number_quattuordecillion');
+                $string = $this->locale_instance->translateString('number_quattuordecillion');
+                break;
+            case 16:
+                $string = $this->locale_instance->translateString('number_quinquadecillion');
+                break;
         }
 
-        return $this->locale_instance->translate('number_quinquadecillion');
+        return $string;
+    }
+
+    /**
+     * Set Decimal
+     *
+     * @param   string $decimal
+     * @param   string $word_value
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function setDecimal($decimal, $word_value)
+    {
+        if ($decimal === null) {
+        } else {
+            $word_value .= ' ' . $this->locale_instance->translateString('number_point') . ' ' . $decimal;
+        }
+
+        return $word_value;
+    }
+
+    /**
+     * Remove spaces
+     *
+     * @param   boolean $remove_spaces
+     * @param   string  $word_value
+     *
+     * @return  mixed
+     * @since   1.0
+     */
+    protected function removeSpaces($remove_spaces, $word_value)
+    {
+        if ((int)$remove_spaces == 1) {
+            $word_value = str_replace(' ', '', $word_value);
+        }
+
+        return $word_value;
     }
 }

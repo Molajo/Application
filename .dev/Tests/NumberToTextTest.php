@@ -18,7 +18,7 @@ use Molajo\Controller\NumberToText\Translate;
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class NumberTranslateTest extends \PHPUnit_Framework_TestCase
+class NumberToTextTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Locale Instance
