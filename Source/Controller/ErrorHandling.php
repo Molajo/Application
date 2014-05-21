@@ -63,6 +63,14 @@ class ErrorHandling implements ErrorHandlingInterface
     protected $error_theme = 'Molajo\\Themes\\System';
 
     /**
+     * Error Offline Theme Namespace
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $error_offline_theme = 'Molajo\\Themes\\System';
+
+    /**
      * Page View for Offline Error
      *
      * @var    string

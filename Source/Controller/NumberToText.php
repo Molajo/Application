@@ -34,42 +34,43 @@ class NumberToText implements NumberToTextInterface
      * @var    array
      * @since  1.0
      */
-    protected $number_array = array(
-        0 => array(
-            0 => 'number_zero',
-            1 => 'number_one',
-            2 => 'number_two',
-            3 => 'number_three',
-            4 => 'number_four',
-            5 => 'number_five',
-            6 => 'number_six',
-            7 => 'number_seven',
-            8 => 'number_eight',
-            0 => 'number_nine'
-        ),
-        1 => array(
-            0 => 'number_ten',
-            1 => 'number_eleven',
-            2 => 'number_twelve',
-            3 => 'number_thirteen',
-            4 => 'number_fourteen',
-            5 => 'number_fifteen',
-            6 => 'number_sixteen',
-            7 => 'number_seventeen',
-            8 => 'number_eighteen',
-            0 => 'number_nineteen'
-        ),
-        2 => array(
-            2 => 'number_twenty',
-            3 => 'number_thirty',
-            4 => 'number_forty',
-            5 => 'number_fifty',
-            6 => 'number_sixty',
-            7 => 'number_seventy',
-            8 => 'number_eighty',
-            0 => 'number_ninety'
-        )
-    );
+    protected $number_array
+        = array(
+            0 => array(
+                0 => 'number_zero',
+                1 => 'number_one',
+                2 => 'number_two',
+                3 => 'number_three',
+                4 => 'number_four',
+                5 => 'number_five',
+                6 => 'number_six',
+                7 => 'number_seven',
+                8 => 'number_eight',
+                0 => 'number_nine'
+            ),
+            1 => array(
+                0 => 'number_ten',
+                1 => 'number_eleven',
+                2 => 'number_twelve',
+                3 => 'number_thirteen',
+                4 => 'number_fourteen',
+                5 => 'number_fifteen',
+                6 => 'number_sixteen',
+                7 => 'number_seventeen',
+                8 => 'number_eighteen',
+                0 => 'number_nineteen'
+            ),
+            2 => array(
+                2 => 'number_twenty',
+                3 => 'number_thirty',
+                4 => 'number_forty',
+                5 => 'number_fifty',
+                6 => 'number_sixty',
+                7 => 'number_seventy',
+                8 => 'number_eighty',
+                0 => 'number_ninety'
+            )
+        );
 
     /**
      * Grouping number words
@@ -189,7 +190,7 @@ class NumberToText implements NumberToTextInterface
     {
         $reverseDigits = str_split($number, 1);
         $temp          = array_reverse($reverseDigits);
-        $number        = implode($temp);
+        $number        = implode('', $temp);
 
         if ((strlen($number) % 3) == 0) {
             $padToSetsOfThree = strlen($number);
@@ -292,7 +293,7 @@ class NumberToText implements NumberToTextInterface
     /**
      * Get Group Digits
      *
-     * @param   string  $digits
+     * @param   string $digits
      *
      * @return  integer[]
      * @since   1.0.0

@@ -54,6 +54,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -85,6 +87,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -116,6 +120,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -147,6 +153,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -178,6 +186,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -208,6 +218,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -238,6 +250,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -268,6 +282,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -298,6 +314,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -328,6 +346,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -358,6 +378,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -388,6 +410,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -418,6 +442,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -448,6 +474,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -478,6 +506,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -508,6 +538,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
@@ -538,6 +570,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::extractDigits
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds

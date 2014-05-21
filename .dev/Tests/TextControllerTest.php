@@ -30,6 +30,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     protected $text_instance;
 
     /**
+     * @covers Molajo\Controller\TextController::__construct
      * @covers Molajo\Controller\TextController::getPlaceHolderText
      * @covers Molajo\Controller\TextController::editCountLoremSet
      * @covers Molajo\Controller\TextController::editNumberOfParagraphs
@@ -42,6 +43,8 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
+     * @covers Molajo\Controller\TextController::createWord
+     * @covers Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -52,6 +55,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Molajo\Controller\TextController::__construct
      * @covers Molajo\Controller\TextController::getPlaceHolderText
      * @covers Molajo\Controller\TextController::editCountLoremSet
      * @covers Molajo\Controller\TextController::editNumberOfParagraphs
@@ -64,6 +68,8 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
+     * @covers Molajo\Controller\TextController::createWord
+     * @covers Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -85,6 +91,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Molajo\Controller\TextController::__construct
      * @covers Molajo\Controller\TextController::getPlaceHolderText
      * @covers Molajo\Controller\TextController::editCountLoremSet
      * @covers Molajo\Controller\TextController::editNumberOfParagraphs
@@ -97,6 +104,8 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
+     * @covers Molajo\Controller\TextController::createWord
+     * @covers Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -116,6 +125,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Molajo\Controller\TextController::__construct
      * @covers Molajo\Controller\TextController::getPlaceHolderText
      * @covers Molajo\Controller\TextController::editCountLoremSet
      * @covers Molajo\Controller\TextController::editNumberOfParagraphs
@@ -128,6 +138,8 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
+     * @covers Molajo\Controller\TextController::createWord
+     * @covers Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -147,6 +159,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Molajo\Controller\TextController::__construct
      * @covers Molajo\Controller\TextController::getPlaceHolderText
      * @covers Molajo\Controller\TextController::editCountLoremSet
      * @covers Molajo\Controller\TextController::editNumberOfParagraphs
@@ -159,6 +172,8 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
+     * @covers Molajo\Controller\TextController::createWord
+     * @covers Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -178,6 +193,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Molajo\Controller\TextController::__construct
      * @covers Molajo\Controller\TextController::getPlaceHolderText
      * @covers Molajo\Controller\TextController::editCountLoremSet
      * @covers Molajo\Controller\TextController::editNumberOfParagraphs
@@ -190,6 +206,8 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
+     * @covers Molajo\Controller\TextController::createWord
+     * @covers Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -209,6 +227,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Molajo\Controller\TextController::__construct
      * @covers Molajo\Controller\TextController::getPlaceHolderText
      * @covers Molajo\Controller\TextController::editCountLoremSet
      * @covers Molajo\Controller\TextController::editNumberOfParagraphs
@@ -221,6 +240,8 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
+     * @covers Molajo\Controller\TextController::createWord
+     * @covers Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -241,6 +262,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Molajo\Controller\TextController::__construct
      * @covers Molajo\Controller\TextController::getPlaceHolderText
      * @covers Molajo\Controller\TextController::editCountLoremSet
      * @covers Molajo\Controller\TextController::editNumberOfParagraphs
@@ -253,6 +275,8 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
+     * @covers Molajo\Controller\TextController::createWord
+     * @covers Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -272,6 +296,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Molajo\Controller\TextController::__construct
      * @covers Molajo\Controller\TextController::getPlaceHolderText
      * @covers Molajo\Controller\TextController::editCountLoremSet
      * @covers Molajo\Controller\TextController::editNumberOfParagraphs
@@ -284,6 +309,8 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Controller\TextController::setMarkupRequirements
      * @covers Molajo\Controller\TextController::createLines
      * @covers Molajo\Controller\TextController::createWords
+     * @covers Molajo\Controller\TextController::createWord
+     * @covers Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0

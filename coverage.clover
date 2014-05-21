@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1400631404">
-  <project timestamp="1400631404">
+<coverage generated="1400633071">
+  <project timestamp="1400633071">
     <file name="/Users/amystephen/Sites/Molajo/Application/.dev/Bootstrap.php">
       <line num="84" type="stmt" count="0"/>
       <line num="85" type="stmt" count="0"/>
@@ -214,7 +214,7 @@
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/DateController.php">
         <class name="DateController" namespace="Molajo\Controller">
-          <metrics methods="18" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="109" coveredstatements="65" elements="127" coveredelements="79"/>
+          <metrics methods="18" coveredmethods="18" conditionals="0" coveredconditionals="0" statements="109" coveredstatements="82" elements="127" coveredelements="100"/>
         </class>
         <line num="166" type="method" name="__construct" crap="5.02" count="9"/>
         <line num="171" type="stmt" count="9"/>
@@ -246,23 +246,23 @@
         <line num="249" type="stmt" count="5"/>
         <line num="250" type="stmt" count="5"/>
         <line num="252" type="stmt" count="5"/>
-        <line num="263" type="method" name="getDateTimezone" crap="12" count="0"/>
-        <line num="265" type="stmt" count="0"/>
-        <line num="266" type="stmt" count="0"/>
+        <line num="263" type="method" name="getDateTimezone" crap="3.21" count="4"/>
+        <line num="265" type="stmt" count="4"/>
+        <line num="266" type="stmt" count="4"/>
         <line num="267" type="stmt" count="0"/>
         <line num="268" type="stmt" count="0"/>
-        <line num="269" type="stmt" count="0"/>
-        <line num="271" type="stmt" count="0"/>
-        <line num="273" type="stmt" count="0"/>
-        <line num="284" type="method" name="getDateFormatDate" crap="12" count="0"/>
-        <line num="286" type="stmt" count="0"/>
+        <line num="269" type="stmt" count="4"/>
+        <line num="271" type="stmt" count="4"/>
+        <line num="273" type="stmt" count="4"/>
+        <line num="284" type="method" name="getDateFormatDate" crap="4.12" count="4"/>
+        <line num="286" type="stmt" count="4"/>
         <line num="287" type="stmt" count="0"/>
         <line num="288" type="stmt" count="0"/>
-        <line num="290" type="stmt" count="0"/>
+        <line num="290" type="stmt" count="4"/>
         <line num="291" type="stmt" count="0"/>
         <line num="292" type="stmt" count="0"/>
-        <line num="293" type="stmt" count="0"/>
-        <line num="296" type="stmt" count="0"/>
+        <line num="293" type="stmt" count="4"/>
+        <line num="296" type="stmt" count="4"/>
         <line num="307" type="method" name="convertCCYYMMDD" crap="1" count="1"/>
         <line num="309" type="stmt" count="1"/>
         <line num="321" type="method" name="getNumberofDaysAgo" crap="2.09" count="1"/>
@@ -273,8 +273,8 @@
         <line num="328" type="stmt" count="1"/>
         <line num="330" type="stmt" count="1"/>
         <line num="332" type="stmt" count="1"/>
-        <line num="343" type="method" name="formatDate" crap="2" count="0"/>
-        <line num="345" type="stmt" count="0"/>
+        <line num="343" type="method" name="formatDate" crap="1" count="1"/>
+        <line num="345" type="stmt" count="1"/>
         <line num="357" type="method" name="getPrettyDate" crap="3.04" count="1"/>
         <line num="359" type="stmt" count="1"/>
         <line num="361" type="stmt" count="1"/>
@@ -292,14 +292,14 @@
         <line num="390" type="stmt" count="1"/>
         <line num="402" type="method" name="getMonthName" crap="1" count="1"/>
         <line num="404" type="stmt" count="1"/>
-        <line num="417" type="method" name="getNameTranslated" crap="12" count="0"/>
-        <line num="419" type="stmt" count="0"/>
-        <line num="420" type="stmt" count="0"/>
-        <line num="421" type="stmt" count="0"/>
-        <line num="422" type="stmt" count="0"/>
-        <line num="425" type="stmt" count="0"/>
-        <line num="426" type="stmt" count="0"/>
-        <line num="429" type="stmt" count="0"/>
+        <line num="417" type="method" name="getNameTranslated" crap="3" count="2"/>
+        <line num="419" type="stmt" count="2"/>
+        <line num="420" type="stmt" count="1"/>
+        <line num="421" type="stmt" count="1"/>
+        <line num="422" type="stmt" count="1"/>
+        <line num="425" type="stmt" count="2"/>
+        <line num="426" type="stmt" count="2"/>
+        <line num="429" type="stmt" count="2"/>
         <line num="447" type="method" name="buildCalendar" crap="1" count="1"/>
         <line num="449" type="stmt" count="1"/>
         <line num="450" type="stmt" count="1"/>
@@ -344,50 +344,50 @@
         <line num="548" type="stmt" count="3"/>
         <line num="551" type="stmt" count="0"/>
         <line num="554" type="stmt" count="0"/>
-        <metrics loc="553" ncloc="337" classes="1" methods="18" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="109" coveredstatements="65" elements="127" coveredelements="70"/>
+        <metrics loc="553" ncloc="337" classes="1" methods="18" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="109" coveredstatements="82" elements="127" coveredelements="89"/>
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/ErrorHandling.php">
         <class name="ErrorHandling" namespace="Molajo\Controller">
-          <metrics methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="31" elements="36" coveredelements="35"/>
+          <metrics methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="36" coveredelements="36"/>
         </class>
-        <line num="108" type="method" name="__construct" crap="1" count="5"/>
-        <line num="118" type="stmt" count="5"/>
-        <line num="120" type="stmt" count="5"/>
-        <line num="121" type="stmt" count="5"/>
-        <line num="122" type="stmt" count="5"/>
-        <line num="123" type="stmt" count="5"/>
-        <line num="124" type="stmt" count="5"/>
-        <line num="125" type="stmt" count="5"/>
-        <line num="126" type="stmt" count="5"/>
-        <line num="127" type="stmt" count="5"/>
-        <line num="128" type="stmt" count="5"/>
-        <line num="143" type="method" name="setError" crap="2.00" count="5"/>
-        <line num="145" type="stmt" count="5"/>
-        <line num="146" type="stmt" count="5"/>
-        <line num="147" type="stmt" count="5"/>
-        <line num="148" type="stmt" count="5"/>
-        <line num="149" type="stmt" count="4"/>
-        <line num="150" type="stmt" count="0"/>
-        <line num="152" type="stmt" count="4"/>
-        <line num="153" type="stmt" count="4"/>
-        <line num="155" type="stmt" count="4"/>
+        <line num="116" type="method" name="__construct" crap="1" count="6"/>
+        <line num="126" type="stmt" count="6"/>
+        <line num="128" type="stmt" count="6"/>
+        <line num="129" type="stmt" count="6"/>
+        <line num="130" type="stmt" count="6"/>
+        <line num="131" type="stmt" count="6"/>
+        <line num="132" type="stmt" count="6"/>
+        <line num="133" type="stmt" count="6"/>
+        <line num="134" type="stmt" count="6"/>
+        <line num="135" type="stmt" count="6"/>
+        <line num="136" type="stmt" count="6"/>
+        <line num="151" type="method" name="setError" crap="2" count="6"/>
+        <line num="153" type="stmt" count="6"/>
+        <line num="154" type="stmt" count="6"/>
+        <line num="155" type="stmt" count="6"/>
+        <line num="156" type="stmt" count="5"/>
         <line num="157" type="stmt" count="4"/>
-        <line num="169" type="method" name="setErrorMessage" crap="2" count="5"/>
-        <line num="171" type="stmt" count="5"/>
-        <line num="172" type="stmt" count="4"/>
-        <line num="173" type="stmt" count="1"/>
-        <line num="176" type="stmt" count="4"/>
-        <line num="178" type="stmt" count="4"/>
-        <line num="190" type="method" name="setThemePageView" crap="2" count="4"/>
-        <line num="192" type="stmt" count="4"/>
-        <line num="193" type="stmt" count="1"/>
-        <line num="194" type="stmt" count="1"/>
-        <line num="195" type="stmt" count="1"/>
-        <line num="196" type="stmt" count="3"/>
-        <line num="197" type="stmt" count="3"/>
-        <line num="200" type="stmt" count="4"/>
-        <line num="203" type="stmt" count="0"/>
-        <metrics loc="202" ncloc="94" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="31" elements="36" coveredelements="34"/>
+        <line num="158" type="stmt" count="1"/>
+        <line num="160" type="stmt" count="5"/>
+        <line num="161" type="stmt" count="5"/>
+        <line num="163" type="stmt" count="5"/>
+        <line num="165" type="stmt" count="5"/>
+        <line num="177" type="method" name="setErrorMessage" crap="2" count="5"/>
+        <line num="179" type="stmt" count="5"/>
+        <line num="180" type="stmt" count="4"/>
+        <line num="181" type="stmt" count="1"/>
+        <line num="184" type="stmt" count="4"/>
+        <line num="186" type="stmt" count="4"/>
+        <line num="198" type="method" name="setThemePageView" crap="2" count="5"/>
+        <line num="200" type="stmt" count="5"/>
+        <line num="201" type="stmt" count="1"/>
+        <line num="202" type="stmt" count="1"/>
+        <line num="203" type="stmt" count="1"/>
+        <line num="204" type="stmt" count="4"/>
+        <line num="205" type="stmt" count="4"/>
+        <line num="208" type="stmt" count="5"/>
+        <line num="211" type="stmt" count="0"/>
+        <metrics loc="210" ncloc="96" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="36" coveredelements="36"/>
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/ImageController.php">
         <class name="ImageController" namespace="Molajo\Controller" fullPackage="Molajo" package="Molajo">
@@ -566,150 +566,150 @@
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/NumberToText.php">
         <class name="NumberToText" namespace="Molajo\Controller" fullPackage="Molajo.NumberToText" package="Molajo" subpackage="NumberToText">
-          <metrics methods="16" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="88" coveredstatements="74" elements="104" coveredelements="88"/>
+          <metrics methods="16" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="88" coveredstatements="85" elements="104" coveredelements="101"/>
         </class>
-        <line num="108" type="method" name="__construct" crap="1" count="17"/>
-        <line num="110" type="stmt" count="17"/>
+        <line num="109" type="method" name="__construct" crap="1" count="17"/>
         <line num="111" type="stmt" count="17"/>
-        <line num="121" type="method" name="convert" crap="1" count="17"/>
-        <line num="123" type="stmt" count="17"/>
+        <line num="112" type="stmt" count="17"/>
+        <line num="122" type="method" name="convert" crap="1" count="17"/>
         <line num="124" type="stmt" count="17"/>
         <line num="125" type="stmt" count="17"/>
         <line num="126" type="stmt" count="17"/>
         <line num="127" type="stmt" count="17"/>
         <line num="128" type="stmt" count="17"/>
         <line num="129" type="stmt" count="17"/>
-        <line num="131" type="stmt" count="17"/>
-        <line num="142" type="method" name="extractDecimal" crap="2" count="17"/>
-        <line num="144" type="stmt" count="17"/>
-        <line num="146" type="stmt" count="17"/>
-        <line num="147" type="stmt" count="3"/>
-        <line num="150" type="stmt" count="14"/>
-        <line num="161" type="method" name="extractSign" crap="3" count="17"/>
-        <line num="163" type="stmt" count="17"/>
-        <line num="165" type="stmt" count="17"/>
-        <line num="166" type="stmt" count="2"/>
-        <line num="168" type="stmt" count="17"/>
-        <line num="169" type="stmt" count="2"/>
-        <line num="171" type="stmt" count="2"/>
-        <line num="172" type="stmt" count="13"/>
-        <line num="175" type="stmt" count="4"/>
-        <line num="177" type="stmt" count="4"/>
-        <line num="188" type="method" name="extractDigits" crap="2" count="17"/>
-        <line num="190" type="stmt" count="17"/>
+        <line num="130" type="stmt" count="17"/>
+        <line num="132" type="stmt" count="17"/>
+        <line num="143" type="method" name="extractDecimal" crap="2" count="17"/>
+        <line num="145" type="stmt" count="17"/>
+        <line num="147" type="stmt" count="17"/>
+        <line num="148" type="stmt" count="3"/>
+        <line num="151" type="stmt" count="14"/>
+        <line num="162" type="method" name="extractSign" crap="3" count="17"/>
+        <line num="164" type="stmt" count="17"/>
+        <line num="166" type="stmt" count="17"/>
+        <line num="167" type="stmt" count="2"/>
+        <line num="169" type="stmt" count="17"/>
+        <line num="170" type="stmt" count="2"/>
+        <line num="172" type="stmt" count="2"/>
+        <line num="173" type="stmt" count="13"/>
+        <line num="176" type="stmt" count="4"/>
+        <line num="178" type="stmt" count="4"/>
+        <line num="189" type="method" name="extractDigits" crap="2" count="17"/>
         <line num="191" type="stmt" count="17"/>
         <line num="192" type="stmt" count="17"/>
-        <line num="194" type="stmt" count="17"/>
-        <line num="195" type="stmt" count="5"/>
+        <line num="193" type="stmt" count="17"/>
+        <line num="195" type="stmt" count="17"/>
         <line num="196" type="stmt" count="5"/>
-        <line num="197" type="stmt" count="12"/>
-        <line num="200" type="stmt" count="17"/>
-        <line num="211" type="method" name="createGroups" crap="1" count="17"/>
-        <line num="213" type="stmt" count="17"/>
-        <line num="224" type="method" name="processGroups" crap="3" count="17"/>
-        <line num="226" type="stmt" count="17"/>
+        <line num="197" type="stmt" count="5"/>
+        <line num="198" type="stmt" count="12"/>
+        <line num="201" type="stmt" count="17"/>
+        <line num="212" type="method" name="createGroups" crap="1" count="17"/>
+        <line num="214" type="stmt" count="17"/>
+        <line num="225" type="method" name="processGroups" crap="3" count="17"/>
         <line num="227" type="stmt" count="17"/>
-        <line num="229" type="stmt" count="17"/>
+        <line num="228" type="stmt" count="17"/>
         <line num="230" type="stmt" count="17"/>
         <line num="231" type="stmt" count="17"/>
         <line num="232" type="stmt" count="17"/>
-        <line num="234" type="stmt" count="17"/>
-        <line num="235" type="stmt" count="1"/>
+        <line num="233" type="stmt" count="17"/>
+        <line num="235" type="stmt" count="17"/>
         <line num="236" type="stmt" count="1"/>
-        <line num="238" type="stmt" count="17"/>
-        <line num="251" type="method" name="processGroupDigits" crap="6" count="0"/>
-        <line num="253" type="stmt" count="0"/>
-        <line num="255" type="stmt" count="0"/>
-        <line num="256" type="stmt" count="0"/>
-        <line num="257" type="stmt" count="0"/>
-        <line num="258" type="stmt" count="0"/>
-        <line num="261" type="stmt" count="0"/>
-        <line num="273" type="method" name="translateGroup" crap="6" count="17"/>
-        <line num="275" type="stmt" count="17"/>
-        <line num="277" type="stmt" count="17"/>
-        <line num="278" type="stmt" count="8"/>
-        <line num="281" type="stmt" count="16"/>
+        <line num="237" type="stmt" count="1"/>
+        <line num="239" type="stmt" count="17"/>
+        <line num="252" type="method" name="processGroupDigits" crap="2" count="17"/>
+        <line num="254" type="stmt" count="17"/>
+        <line num="256" type="stmt" count="17"/>
+        <line num="257" type="stmt" count="17"/>
+        <line num="258" type="stmt" count="17"/>
+        <line num="259" type="stmt" count="4"/>
+        <line num="262" type="stmt" count="17"/>
+        <line num="274" type="method" name="translateGroup" crap="6" count="17"/>
+        <line num="276" type="stmt" count="17"/>
+        <line num="278" type="stmt" count="17"/>
+        <line num="279" type="stmt" count="8"/>
         <line num="282" type="stmt" count="16"/>
         <line num="283" type="stmt" count="16"/>
-        <line num="285" type="stmt" count="16"/>
-        <line num="286" type="stmt" count="9"/>
+        <line num="284" type="stmt" count="16"/>
+        <line num="286" type="stmt" count="16"/>
         <line num="287" type="stmt" count="9"/>
-        <line num="289" type="stmt" count="16"/>
-        <line num="300" type="method" name="getGroupDigits" crap="2" count="0"/>
-        <line num="302" type="stmt" count="0"/>
-        <line num="304" type="stmt" count="0"/>
-        <line num="305" type="stmt" count="0"/>
-        <line num="306" type="stmt" count="0"/>
-        <line num="308" type="stmt" count="0"/>
-        <line num="321" type="method" name="setWordTens" crap="3.71" count="16"/>
-        <line num="323" type="stmt" count="16"/>
+        <line num="288" type="stmt" count="9"/>
+        <line num="290" type="stmt" count="16"/>
+        <line num="301" type="method" name="getGroupDigits" crap="1" count="17"/>
+        <line num="303" type="stmt" count="17"/>
+        <line num="305" type="stmt" count="17"/>
+        <line num="306" type="stmt" count="17"/>
+        <line num="307" type="stmt" count="17"/>
+        <line num="309" type="stmt" count="17"/>
+        <line num="322" type="method" name="setWordTens" crap="3.71" count="16"/>
         <line num="324" type="stmt" count="16"/>
-        <line num="326" type="stmt" count="16"/>
-        <line num="327" type="stmt" count="0"/>
-        <line num="329" type="stmt" count="0"/>
+        <line num="325" type="stmt" count="16"/>
+        <line num="327" type="stmt" count="16"/>
+        <line num="328" type="stmt" count="0"/>
         <line num="330" type="stmt" count="0"/>
-        <line num="333" type="stmt" count="16"/>
-        <line num="345" type="method" name="setWordHundreds" crap="2" count="16"/>
-        <line num="347" type="stmt" count="16"/>
-        <line num="348" type="stmt" count="11"/>
-        <line num="350" type="stmt" count="11"/>
-        <line num="351" type="stmt" count="5"/>
-        <line num="354" type="stmt" count="16"/>
-        <line num="366" type="method" name="setWord" crap="1" count="16"/>
-        <line num="368" type="stmt" count="16"/>
-        <line num="387" type="method" name="convertGrouping" crap="3" count="9"/>
-        <line num="389" type="stmt" count="9"/>
-        <line num="390" type="stmt" count="8"/>
-        <line num="391" type="stmt" count="4"/>
-        <line num="394" type="stmt" count="9"/>
-        <line num="406" type="method" name="setDecimal" crap="2" count="17"/>
-        <line num="408" type="stmt" count="17"/>
-        <line num="409" type="stmt" count="14"/>
-        <line num="410" type="stmt" count="3"/>
-        <line num="413" type="stmt" count="17"/>
-        <line num="425" type="method" name="setSign" crap="2" count="17"/>
-        <line num="427" type="stmt" count="17"/>
-        <line num="428" type="stmt" count="2"/>
+        <line num="331" type="stmt" count="0"/>
+        <line num="334" type="stmt" count="16"/>
+        <line num="346" type="method" name="setWordHundreds" crap="2" count="16"/>
+        <line num="348" type="stmt" count="16"/>
+        <line num="349" type="stmt" count="11"/>
+        <line num="351" type="stmt" count="11"/>
+        <line num="352" type="stmt" count="5"/>
+        <line num="355" type="stmt" count="16"/>
+        <line num="367" type="method" name="setWord" crap="1" count="16"/>
+        <line num="369" type="stmt" count="16"/>
+        <line num="388" type="method" name="convertGrouping" crap="3" count="9"/>
+        <line num="390" type="stmt" count="9"/>
+        <line num="391" type="stmt" count="8"/>
+        <line num="392" type="stmt" count="4"/>
+        <line num="395" type="stmt" count="9"/>
+        <line num="407" type="method" name="setDecimal" crap="2" count="17"/>
+        <line num="409" type="stmt" count="17"/>
+        <line num="410" type="stmt" count="14"/>
+        <line num="411" type="stmt" count="3"/>
+        <line num="414" type="stmt" count="17"/>
+        <line num="426" type="method" name="setSign" crap="2" count="17"/>
+        <line num="428" type="stmt" count="17"/>
         <line num="429" type="stmt" count="2"/>
-        <line num="431" type="stmt" count="17"/>
-        <metrics loc="433" ncloc="253" classes="1" methods="16" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="88" coveredstatements="74" elements="104" coveredelements="87"/>
+        <line num="430" type="stmt" count="2"/>
+        <line num="432" type="stmt" count="17"/>
+        <metrics loc="434" ncloc="254" classes="1" methods="16" coveredmethods="15" conditionals="0" coveredconditionals="0" statements="88" coveredstatements="85" elements="104" coveredelements="100"/>
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/RandomString.php">
         <class name="RandomString" namespace="Molajo\Controller" fullPackage="Molajo" package="Molajo">
-          <metrics methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="14" elements="20" coveredelements="16"/>
+          <metrics methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="16" elements="20" coveredelements="18"/>
         </class>
-        <line num="46" type="method" name="__construct" crap="4.37" count="1"/>
-        <line num="50" type="stmt" count="1"/>
+        <line num="46" type="method" name="__construct" crap="4.37" count="3"/>
+        <line num="50" type="stmt" count="3"/>
         <line num="51" type="stmt" count="0"/>
-        <line num="52" type="stmt" count="1"/>
-        <line num="55" type="stmt" count="1"/>
+        <line num="52" type="stmt" count="3"/>
+        <line num="55" type="stmt" count="3"/>
         <line num="56" type="stmt" count="0"/>
-        <line num="57" type="stmt" count="1"/>
-        <line num="59" type="stmt" count="1"/>
-        <line num="70" type="method" name="generateString" crap="4.10" count="1"/>
-        <line num="72" type="stmt" count="1"/>
-        <line num="73" type="stmt" count="1"/>
-        <line num="74" type="stmt" count="0"/>
-        <line num="77" type="stmt" count="1"/>
-        <line num="78" type="stmt" count="1"/>
-        <line num="79" type="stmt" count="0"/>
-        <line num="82" type="stmt" count="1"/>
-        <line num="84" type="stmt" count="1"/>
-        <line num="85" type="stmt" count="1"/>
-        <line num="86" type="stmt" count="1"/>
-        <line num="88" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="3"/>
+        <line num="59" type="stmt" count="3"/>
+        <line num="70" type="method" name="generateString" crap="4" count="3"/>
+        <line num="72" type="stmt" count="3"/>
+        <line num="73" type="stmt" count="2"/>
+        <line num="74" type="stmt" count="1"/>
+        <line num="77" type="stmt" count="3"/>
+        <line num="78" type="stmt" count="2"/>
+        <line num="79" type="stmt" count="1"/>
+        <line num="82" type="stmt" count="3"/>
+        <line num="84" type="stmt" count="3"/>
+        <line num="85" type="stmt" count="3"/>
+        <line num="86" type="stmt" count="3"/>
+        <line num="88" type="stmt" count="3"/>
         <line num="91" type="stmt" count="0"/>
-        <metrics loc="90" ncloc="47" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="14" elements="20" coveredelements="14"/>
+        <metrics loc="90" ncloc="47" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="16" elements="20" coveredelements="17"/>
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/TextController.php">
         <class name="TextController" namespace="Molajo\Controller" fullPackage="Molajo" package="Molajo">
-          <metrics methods="15" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="89" coveredstatements="23" elements="104" coveredelements="29"/>
+          <metrics methods="15" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="89" coveredstatements="25" elements="104" coveredelements="32"/>
         </class>
-        <line num="303" type="method" name="__construct" crap="6" count="0"/>
-        <line num="306" type="stmt" count="0"/>
+        <line num="303" type="method" name="__construct" crap="2.50" count="8"/>
+        <line num="306" type="stmt" count="8"/>
         <line num="307" type="stmt" count="0"/>
         <line num="308" type="stmt" count="0"/>
-        <line num="309" type="stmt" count="0"/>
+        <line num="309" type="stmt" count="8"/>
         <line num="336" type="method" name="getPlaceHolderText" crap="3.04" count="8"/>
         <line num="344" type="stmt" count="8"/>
         <line num="345" type="stmt" count="8"/>
@@ -809,7 +809,7 @@
         <line num="640" type="stmt" count="0"/>
         <line num="641" type="stmt" count="0"/>
         <line num="643" type="stmt" count="0"/>
-        <metrics loc="645" ncloc="475" classes="1" methods="15" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="89" coveredstatements="23" elements="104" coveredelements="24"/>
+        <metrics loc="645" ncloc="475" classes="1" methods="15" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="89" coveredstatements="25" elements="104" coveredelements="26"/>
       </file>
     </package>
     <package name="Molajo\Controller\NumberToText">
@@ -2075,6 +2075,6 @@
       <line num="26" type="stmt" count="0"/>
       <metrics loc="30" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="2" coveredelements="0"/>
     </file>
-    <metrics files="30" loc="7470" ncloc="4113" classes="19" methods="206" coveredmethods="27" conditionals="0" coveredconditionals="0" statements="1650" coveredstatements="396" elements="1856" coveredelements="423"/>
+    <metrics files="30" loc="7479" ncloc="4116" classes="19" methods="206" coveredmethods="33" conditionals="0" coveredconditionals="0" statements="1650" coveredstatements="429" elements="1856" coveredelements="462"/>
   </project>
 </coverage>

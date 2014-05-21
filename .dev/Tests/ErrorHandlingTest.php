@@ -134,6 +134,28 @@ class ErrorHandlingTest extends \PHPUnit_Framework_TestCase
         return $this;
     }
 
+    /**
+     * 503
+     *
+     * @covers Molajo\Controller\ErrorHandling::__construct
+     * @covers Molajo\Controller\ErrorHandling::setError
+     * @covers Molajo\Controller\ErrorHandling::setErrorMessage
+     * @covers Molajo\Controller\ErrorHandling::setThemePageView
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function testSetMessageError()
+    {
+        $results = $this->error_handling->setError($error_code = 500, 'This is my own message');
+
+        $this->assertEquals(500, $results->error_code);
+        $this->assertEquals('This is my own message', $results->error_message);
+        $this->assertEquals('Molajo\\Themes\\System', $results->theme_namespace);
+        $this->assertEquals('Molajo\\Views\\Pages\\Error', $results->page_namespace);
+
+        return $this;
+    }
 
     /**
      * Invalid Code
