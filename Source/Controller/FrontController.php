@@ -53,16 +53,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      * @var    array
      * @since  1.0
      */
-    protected $steps
-        = array(
-            'initialise',
-            'authenticate',
-            'route',
-            'authorise',
-            'resource',
-            'execute',
-            'response'
-        );
+    protected $steps = array();
 
     /**
      * Schedule Event Callback
@@ -94,17 +85,28 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      * @param  ScheduleInterface $queue
      * @param  array             $requests
      * @param  string            $base_path
+     * @param  array             $steps
      *
      * @since  1.0
      */
     public function __construct(
         ScheduleInterface $queue,
         $requests,
-        $base_path
+        $base_path,
+        array $steps = array(
+            'initialise',
+            'authenticate',
+            'route',
+            'authorise',
+            'resourcecontroller',
+            'execute',
+            'response'
+        )
     ) {
         $this->queue     = $queue;
         $this->requests  = $requests;
         $this->base_path = $base_path;
+        $this->steps     = $steps;
     }
 
     /**
@@ -119,22 +121,69 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
         register_shutdown_function(array($this, 'shutdown'));
 
         foreach ($this->steps as $step) {
-
-            if ($this->first_step === true) {
-            } else {
-                $this->scheduleEvent($event_name = 'onBefore' . ucfirst(strtolower($step)));
-            }
-
-            $this->$step();
-
+            $this->scheduleEvent($event_name = 'onBefore' . ucfirst(strtolower($step)));
+            $this->runStep($step);
             $this->scheduleEvent($event_name = 'onAfter' . ucfirst(strtolower($step)));
-
             $this->first_step = false;
         }
 
         $this->normal_ending = true;
 
         restore_error_handler();
+
+        return $this;
+    }
+
+    /**
+     * Executed by the process loop for each process identified in $this->steps
+     *
+     * @param   string $factory_method
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function runStep($factory_method)
+    {
+        if ($this->first_step === true) {
+            return $this->initialise();
+        }
+
+        try {
+            $results = $this->scheduleFactoryMethod($factory_method);
+
+        } catch (Exception $e) {
+            throw new RuntimeException('Frontcontroller ' . $factory_method . ' Method Failed: ' . $e->getMessage());
+        }
+
+        if (isset($results->error_code) && (int)$results->error_code > 0) {
+            $this->handleErrors();
+        }
+
+        return $this;
+    }
+
+    /**
+     * Initialise
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function initialise()
+    {
+        $this->createScheduleEventCallback();
+
+        foreach ($this->requests as $request) {
+
+            try {
+                $this->scheduleFactoryMethod($request);
+
+            } catch (Exception $e) {
+                throw new RuntimeException(
+                    'Frontcontroller Initialise Schedule Factory Failed for '
+                    . $request . ' ' . $e->getMessage()
+                );
+            }
+        }
 
         return $this;
     }
@@ -151,11 +200,13 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      */
     public function scheduleEvent($event_name, array $options = array())
     {
+        if ($this->first_step === true) {
+            return $this;
+        }
+
         $options['event_name'] = $event_name;
-
-        $event_instance = $this->scheduleEventCreateScheduled($options);
-
-        $event_results = $this->scheduleDispatcher($event_name, $event_instance);
+        $event_instance        = $this->scheduleEventCreateScheduled($options);
+        $event_results         = $this->scheduleDispatcher($event_name, $event_instance);
 
         $this->scheduleEventSaveResults($event_results);
 
@@ -170,7 +221,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      * @return  object
      * @since   1.0
      */
-    protected function scheduleEventCreateScheduled(array $options)
+    protected function scheduleEventCreateScheduled(array $options = array())
     {
         try {
             return $this->scheduleFactoryMethod('Event', $options);
@@ -330,165 +381,6 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
         };
 
         $this->setContainerEntry('Eventcallback', $this->event_callback);
-
-        return $this;
-    }
-
-    /**
-     * Initialise
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function initialise()
-    {
-        $this->createScheduleEventCallback();
-
-        foreach ($this->requests as $request) {
-
-            try {
-                $this->scheduleFactoryMethod($request);
-
-            } catch (Exception $e) {
-                throw new RuntimeException(
-                    'Frontcontroller Initialise Schedule Factory Failed for '
-                    . $request . ' ' . $e->getMessage()
-                );
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * Authenticate
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function authenticate()
-    {
-        return $this->runStep('User');
-    }
-
-    /**
-     * Route
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function route()
-    {
-        return $this->runStep('Route');
-    }
-
-    /**
-     * Authorise
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function authorise()
-    {
-        return $this->runStep('Authorisation');
-    }
-
-    /**
-     * Run step for $factory_method
-     *
-     * @param   string $factory_method
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function runStep($factory_method)
-    {
-        try {
-            $results = $this->scheduleFactoryMethod($factory_method);
-
-        } catch (Exception $e) {
-            throw new RuntimeException('Frontcontroller ' . $factory_method . ' Method Failed: ' . $e->getMessage());
-        }
-
-        if (isset($results->error_code) && (int)$results->error_code > 0) {
-            $this->handleErrors();
-        }
-
-        return $this;
-    }
-
-    /**
-     * Execute Resource
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function resource()
-    {
-        try {
-            $resource_instance = $this->scheduleFactoryMethod('Resourcecontroller');
-
-            $resource = $resource_instance->getResource();
-
-        } catch (Exception $e) {
-            throw new RuntimeException('Frontcontroller Resource Controller Method Failed: ' . $e->getMessage());
-        }
-
-        if (isset($resource->error_code) && (int)$resource->error_code > 0) {
-            $this->handleErrors();
-        }
-
-        try {
-            $runtime_data           = $this->scheduleFactoryMethod('Runtimedata');
-            $runtime_data->resource = $resource;
-            $this->setContainerEntry('Runtimedata', $runtime_data);
-
-        } catch (Exception $e) {
-            throw new RuntimeException('Frontcontroller Resource Controller Method Failed: ' . $e->getMessage());
-        }
-
-        return $this;
-    }
-
-    /**
-     * Execute Render or Action
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function execute()
-    {
-        if ($this->scheduleFactoryMethod('Runtimedata')->route->method == 'GET') {
-            $render_proxy = $this->scheduleFactoryMethod('Render');
-            $include_file = $this->scheduleFactoryMethod('Runtimedata')->resource->extensions->theme->extension->path;
-            $render_proxy->renderOutput($include_file);
-        }
-
-        // create
-
-        // update
-
-        // delete
-
-        // redirect
-
-        return $this;
-    }
-
-    /**
-     * Execute Response
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function response()
-    {
-        if ($this->scheduleFactoryMethod('Runtimedata')->route->method == 'GET') {
-        } else {
-            return $this;
-        }
-
-        $this->scheduleFactoryMethod('Response')->send();
 
         return $this;
     }

@@ -95,4 +95,42 @@ class ResourcecontrollerFactoryMethod extends FactoryMethodBase implements Facto
 
         return $this;
     }
+
+    /**
+     * Follows the completion of the instantiate method
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function onAfterInstantiation()
+    {
+        $this->dependencies['Runtimedata']->resource = $this->product_result->getResource();
+    }
+
+    /**
+     * Factory Method Controller requests any Products (other than the current product) to be saved
+     *
+     * @return  array
+     * @since   1.0
+     */
+    public function setContainerEntries()
+    {
+        $this->set_container_entries['Runtimedata']           = $this->dependencies['Runtimedata'];
+
+        return $this->set_container_entries;
+    }
+
+    /**
+     * Request for array of Factory Methods to be Scheduled
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function scheduleFactories()
+    {
+        $options = array();
+        $this->schedule_factory_methods['Date'] = $options;
+
+        return $this->schedule_factory_methods;
+    }
 }

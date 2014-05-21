@@ -228,7 +228,12 @@ class NumberToText implements NumberToTextInterface
         $word_value = '';
 
         foreach ($groups as $digits) {
-            $word_value = $this->processGroupDigits($digits, $i, $word_value);
+
+            if ($digits === '000') {
+            } else {
+                $word_value = $this->processGroupDigits($digits, $i, $word_value);
+            }
+
             $i++;
         }
 
@@ -274,10 +279,6 @@ class NumberToText implements NumberToTextInterface
     protected function translateGroup($digits, $i)
     {
         list($ones_digit, $tens_digit, $hundreds_digit) = $this->getGroupDigits($digits);
-
-        if ($ones_digit === 0 && $tens_digit === 0 && $hundreds_digit === 0) {
-            return '';
-        }
 
         $temp_word_value = $this->setWord($ones_digit);
         $temp_word_value = $this->setWordTens($tens_digit, $ones_digit, $temp_word_value);

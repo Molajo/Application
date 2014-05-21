@@ -23,20 +23,28 @@ use CommonApi\Exception\RuntimeException;
 class Site implements SiteInterface
 {
     /**
-     * Data identifying sites for this implementation
-     *
-     * @var    object
-     * @since  1.0
-     */
-    protected $sites = null;
-
-    /**
      * Host
      *
      * @var    string
      * @since  1.0
      */
     protected $host = null;
+
+    /**
+     * Path
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $path = null;
+
+    /**
+     * Data identifying sites for this implementation
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $sites = null;
 
     /**
      * Site ID
@@ -161,27 +169,33 @@ class Site implements SiteInterface
     public function get($key = null, $default = null)
     {
         if ($key == '*') {
-            $site = new stdClass();
-            foreach ($this->property_array as $key) {
-                $site->$key = $this->$key;
-            }
-            return $site;
+            return $this->getSiteProperties();
         }
 
         $key = strtolower($key);
-
-        if (in_array($key, $this->property_array)) {
-        } else {
-            throw new RuntimeException(
-                'Site Service: attempting to get value for unknown property: ' . $key
-            );
-        }
 
         if ($this->$key === null) {
             $this->$key = $default;
         }
 
         return $this->$key;
+    }
+
+    /**
+     * Get Site Properties
+     *
+     * @return  stdClass
+     * @since   1.0.0
+     */
+    protected function getSiteProperties()
+    {
+        $site = new stdClass();
+
+        foreach ($this->property_array as $key) {
+            $site->$key = $this->$key;
+        }
+
+        return $site;
     }
 
     /**
