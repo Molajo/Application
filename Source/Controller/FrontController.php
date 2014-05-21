@@ -53,7 +53,16 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      * @var    array
      * @since  1.0
      */
-    protected $steps = array();
+    protected $steps
+        = array(
+            'initialise',
+            'authenticate',
+            'route',
+            'authorise',
+            'resourcecontroller',
+            'execute',
+            'response'
+        );
 
     /**
      * Schedule Event Callback
@@ -93,21 +102,15 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
         ScheduleInterface $queue,
         $requests,
         $base_path,
-        array $steps
-        = array(
-            'initialise',
-            'authenticate',
-            'route',
-            'authorise',
-            'resourcecontroller',
-            'execute',
-            'response'
-        )
+        array $steps = array()
     ) {
         $this->queue     = $queue;
         $this->requests  = $requests;
         $this->base_path = $base_path;
-        $this->steps     = $steps;
+
+        if (count($steps) > 0) {
+            $this->steps = $steps;
+        }
     }
 
     /**
@@ -257,14 +260,9 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      */
     public function scheduleFactoryMethod($product_name, array $options = array())
     {
-        try {
-            $options['base_path'] = $this->base_path;
+        $options['base_path'] = $this->base_path;
 
-            return $this->queue->scheduleFactoryMethod($product_name, $options);
-
-        } catch (Exception $e) {
-            throw new RuntimeException('Frontcontroller scheduleFactoryMethod Failed ' . $e->getMessage());
-        }
+        return $this->runFactoryMethod($product_name, $options);
     }
 
     /**
@@ -283,56 +281,72 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
         $options['set']   = true;
         $options['value'] = $value;
 
-        try {
-            $this->queue->scheduleFactoryMethod($product_name, $options);
-
-        } catch (Exception $e) {
-            throw new RuntimeException('Frontcontroller setContainerEntry Failed ' . $e->getMessage());
-        }
+        $this->runFactoryMethod($product_name, $options);
 
         return $this;
     }
 
     /**
+     * Run Factory Method
+     *
+     * @param   string $product_name
+     * @param   array  $options
+     *
+     * @return  $this
+     * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    protected function runFactoryMethod($product_name, array $options)
+    {
+        try {
+            return $this->queue->scheduleFactoryMethod($product_name, $options);
+
+        } catch (Exception $e) {
+            throw new RuntimeException('Frontcontroller scheduleFactoryMethod Failed ' . $e->getMessage());
+        }
+    }
+
+    /**
      * Error Handling
      *
-     * Development:  E_ALL|E_STRICT
-     * Production:   E_ALL|~E_NOTICE
+     * Development:  E_ALL|E_STRICT; Production:   E_ALL|~E_NOTICE
      *
-     * @param   int     $errno
-     * @param   string  $errstr
+     * @param   integer $code
+     * @param   string  $message
+     * @param   string  $file
+     * @param   integer $line_number
      *
      * @return  mixed|string
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      * @link    http://php.net/manual/en/errorfunc.constants.php
      */
-    public function handleErrors($code, $message, $file, $line)
+    public function handleErrors($code, $message, $file, $line_number)
     {
-        switch ($errno) {
+        switch ($code) {
             case E_NOTICE:
             case E_USER_NOTICE:
             case E_DEPRECATED:
             case E_USER_DEPRECATED:
             case E_STRICT:
-                var_dump(array("NOTICE", $message, $file, $line));
+                $category = 'NOTICE';
                 break;
 
             case E_WARNING:
             case E_USER_WARNING:
-                var_dump(array("WARNING", $message, $file, $line));
+                $category = 'WARNING';
                 break;
 
             case E_ERROR:
             case E_USER_ERROR:
-                var_dump(array("FATAL", $message, $file, $line));
-                exit("FATAL ERROR $message at $file:$line");
+                $category = 'FATAL';
+                break;
 
             default:
-                var_dump(array("UNKNOWN", $code, $message, $file, $line));
-                exit("Unknown error at $file:$line");
+                $category = 'UNKNOWN';
         }
 
+        var_dump(array($category, $code, $message, $file, $line_number));
         die;
     }
 
