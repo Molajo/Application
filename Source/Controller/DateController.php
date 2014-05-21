@@ -197,7 +197,7 @@ class DateController extends DateTime implements DateInterface
         $key = strtolower($key);
 
         if ($this->$key === null) {
-            $this->$key = $default;
+            return $default;
         }
 
         return $this->$key;

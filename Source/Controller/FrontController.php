@@ -93,7 +93,8 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
         ScheduleInterface $queue,
         $requests,
         $base_path,
-        array $steps = array(
+        array $steps
+        = array(
             'initialise',
             'authenticate',
             'route',
@@ -123,8 +124,8 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
         foreach ($this->steps as $step) {
             $this->scheduleEvent($event_name = 'onBefore' . ucfirst(strtolower($step)));
             $this->runStep($step);
-            $this->scheduleEvent($event_name = 'onAfter' . ucfirst(strtolower($step)));
             $this->first_step = false;
+            $this->scheduleEvent($event_name = 'onAfter' . ucfirst(strtolower($step)));
         }
 
         $this->normal_ending = true;
@@ -148,15 +149,10 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
             return $this->initialise();
         }
 
-        try {
-            $results = $this->scheduleFactoryMethod($factory_method);
-
-        } catch (Exception $e) {
-            throw new RuntimeException('Frontcontroller ' . $factory_method . ' Method Failed: ' . $e->getMessage());
-        }
+        $results = $this->scheduleFactoryMethod($factory_method);
 
         if (isset($results->error_code) && (int)$results->error_code > 0) {
-            $this->handleErrors();
+            trigger_error(E_ERROR, 'Frontcontroller::runStep Error for: ' . $factory_method);
         }
 
         return $this;
@@ -168,20 +164,13 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      * @return  $this
      * @since   1.0
      */
-    public function initialise()
+    protected function initialise()
     {
         $this->createScheduleEventCallback();
 
-        foreach ($this->requests as $request) {
-
-            try {
+        if (count($this->requests) > 0) {
+            foreach ($this->requests as $request) {
                 $this->scheduleFactoryMethod($request);
-
-            } catch (Exception $e) {
-                throw new RuntimeException(
-                    'Frontcontroller Initialise Schedule Factory Failed for '
-                    . $request . ' ' . $e->getMessage()
-                );
             }
         }
 
@@ -223,14 +212,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      */
     protected function scheduleEventCreateScheduled(array $options = array())
     {
-        try {
-            return $this->scheduleFactoryMethod('Event', $options);
-
-        } catch (Exception $e) {
-            throw new RuntimeException(
-                'Frontcontroller scheduleEvent Get Event Factory Failed: ' . $e->getMessage()
-            );
-        }
+        return $this->scheduleFactoryMethod('Event', $options);
     }
 
     /**
@@ -244,12 +226,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      */
     protected function scheduleDispatcher($event_name, $event_instance)
     {
-        try {
-            return $this->scheduleFactoryMethod('Dispatcher')->scheduleEvent($event_name, $event_instance);
-
-        } catch (Exception $e) {
-            throw new RuntimeException('Frontcontroller scheduleEvent Failed ' . $e->getMessage());
-        }
+        return $this->scheduleFactoryMethod('Dispatcher')->scheduleEvent($event_name, $event_instance);
     }
 
     /**
@@ -319,28 +296,44 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
     /**
      * Error Handling
      *
-     * @return  $this
+     * Development:  E_ALL|E_STRICT
+     * Production:   E_ALL|~E_NOTICE
+     *
+     * @param   int     $errno
+     * @param   string  $errstr
+     *
+     * @return  mixed|string
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
+     * @link    http://php.net/manual/en/errorfunc.constants.php
      */
-    public function handleErrors()
+    public function handleErrors($code, $message, $file, $line)
     {
-        $this->scheduleFactoryMethod('ErrorHandling');
-        /**
-         *
-         * $this->redirect->set('url', $runtime_data->redirect_to_id);
-         * $this->redirect->set('status_code', 301);
-         * $this->redirect->redirect();
-         *
-         * ob_start();
-         * if ( is_callable($this->error) ) {
-         * call_user_func_array($this->error, array($argument));
-         * } else {
-         * call_user_func_array(array($this, 'defaultError'), array($argument));
-         * }
-         *
-         * return ob_get_clean();
-         */
+        switch ($errno) {
+            case E_NOTICE:
+            case E_USER_NOTICE:
+            case E_DEPRECATED:
+            case E_USER_DEPRECATED:
+            case E_STRICT:
+                var_dump(array("NOTICE", $message, $file, $line));
+                break;
+
+            case E_WARNING:
+            case E_USER_WARNING:
+                var_dump(array("WARNING", $message, $file, $line));
+                break;
+
+            case E_ERROR:
+            case E_USER_ERROR:
+                var_dump(array("FATAL", $message, $file, $line));
+                exit("FATAL ERROR $message at $file:$line");
+
+            default:
+                var_dump(array("UNKNOWN", $code, $message, $file, $line));
+                exit("Unknown error at $file:$line");
+        }
+
+        die;
     }
 
     /**

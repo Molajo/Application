@@ -8,7 +8,8 @@
  */
 namespace Molajo\Controller\Test;
 
-use CommonApi\Render\EventInterface;
+use CommonApi\Event\DispatcherInterface;
+use CommonApi\Event\EventInterface;
 use CommonApi\IoC\ScheduleInterface;
 use Molajo\Controller\FrontController;
 use stdClass;
@@ -24,12 +25,20 @@ use stdClass;
 class FrontControllerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Factory Method Scheduling
+     * IoCC
      *
      * @var    object  CommonApi\IoC\ScheduleInterface
      * @since  1.0
      */
     protected $queue;
+
+    /**
+     * Dispatcher
+     *
+     * @var    object  CommonApi\Event\DispatcherInterface
+     * @since  1.0
+     */
+    protected $dispatcher;
 
     /**
      * Requests
@@ -59,7 +68,7 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
             'authenticate',
             'route',
             'authorise',
-            'resource',
+            'resourcecontroller',
             'execute',
             'response'
         );
@@ -83,14 +92,15 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->queue = new MockSchedule();
-
+        $this->dispatcher = new MockDispatcher();
+        $this->queue = new MockScheduler($this->dispatcher);
         $this->base_path = __DIR__;
 
         $this->fc = new FrontController(
             $this->queue,
             $this->requests,
-            $this->base_path
+            $this->base_path,
+            $this->steps
         );
 
         return $this;
@@ -113,119 +123,100 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
      *
      * @since   1.0.0
      */
-    public function testProcessSeeThatItFinishes()
+    public function testVerifyIoCCProdcuts()
     {
-        $this->queue = new MockSchedule();
-
-        $this->fc = new FrontController(
-            $this->queue,
-            array(),
-            $this->base_path
-        );
-
         $results = $this->fc->process();
 
-        $this->assertEquals(1, 1);
+        $expected = array(
+            'Eventcallback',
+            'Event',
+            'Dispatcher',
+            'Event',
+            'Dispatcher',
+            'authenticate',
+            'Event',
+            'Dispatcher',
+            'Event',
+            'Dispatcher',
+            'route',
+            'Event',
+            'Dispatcher',
+            'Event',
+            'Dispatcher',
+            'authorise',
+            'Event',
+            'Dispatcher',
+            'Event',
+            'Dispatcher',
+            'resourcecontroller',
+            'Event',
+            'Dispatcher',
+            'Event',
+            'Dispatcher',
+            'execute',
+            'Event',
+            'Dispatcher',
+            'Event',
+            'Dispatcher',
+            'response',
+            'Event',
+            'Dispatcher'
+        );
+
+        $this->assertEquals($expected, $this->queue->scheduled_products);
 
         return $this;
     }
 
     /**
-     * Tear down
+     * @covers  Molajo\Controller\FrontController::__construct
+     * @covers  Molajo\Controller\FrontController::process
+     * @covers  Molajo\Controller\FrontController::runStep
+     * @covers  Molajo\Controller\FrontController::initialise
+     * @covers  Molajo\Controller\FrontController::scheduleEvent
+     * @covers  Molajo\Controller\FrontController::scheduleEventCreateScheduled
+     * @covers  Molajo\Controller\FrontController::scheduleDispatcher
+     * @covers  Molajo\Controller\FrontController::scheduleEventSaveResults
+     * @covers  Molajo\Controller\FrontController::scheduleFactoryMethod
+     * @covers  Molajo\Controller\FrontController::setContainerEntry
+     * @covers  Molajo\Controller\FrontController::handleErrors
+     * @covers  Molajo\Controller\FrontController::shutdown
+     * @covers  Molajo\Controller\FrontController::createScheduleEventCallback
      *
-     * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
-    protected function tearDown()
+    public function testVerifyEvents()
     {
+        $results = $this->fc->process();
 
-    }
-}
-
-class MockSchedule implements ScheduleInterface
-{
-    protected $dispatcher;
-    protected $resource_controller;
-
-    protected $event_option_keys
-        = array(
-            'runtime_data',
-            'plugin_data',
-            'parameters',
-            'model_registry',
-            'query_results',
-            'row',
-            'rendered_view',
-            'rendered_page',
-            'token'
+        $expected = array(
+            'onAfterInitialise',
+            'onBeforeAuthenticate',
+            'onAfterAuthenticate',
+            'onBeforeRoute',
+            'onAfterRoute',
+            'onBeforeAuthorise',
+            'onAfterAuthorise',
+            'onBeforeResourcecontroller',
+            'onAfterResourcecontroller',
+            'onBeforeExecute',
+            'onAfterExecute',
+            'onBeforeResponse',
+            'onAfterResponse'
         );
 
-    public function __construct()
-    {
-        $this->dispatcher = new MockDispatcher();
-        $this->resource_controller = new MockResourceController();
-    }
+        $this->assertEquals($expected, $this->dispatcher->event_list);
 
-    public function scheduleFactoryMethod($product_name, array $options = array())
-    {
-        if (strtolower($product_name) === 'authenticate') {
-
-        } elseif (strtolower($product_name) === 'event') {
-
-        } elseif (strtolower($product_name) === 'authorise') {
-
-        } elseif (strtolower($product_name) === 'eventcallback') {
-
-        } elseif (strtolower($product_name) === 'errorhandling') {
-
-        } elseif (strtolower($product_name) === 'dispatcher') {
-            return $this->dispatcher;
-
-        } elseif (strtolower($product_name) === 'execute') {
-
-        } elseif (strtolower($product_name) === 'resource') {
-
-        } elseif (strtolower($product_name) === 'response') {
-
-        } elseif (strtolower($product_name) === 'resourcecontroller') {
-            return $this->resource_controller;
-
-        } elseif (strtolower($product_name) === 'route') {
-
-        } elseif (strtolower($product_name) === 'runtimedata') {
-
-            $runtime_data                           = new stdClass();
-            $runtime_data->error_code               = 0;
-            $runtime_data->redirect_to_id           = 0;
-            $runtime_data->base_path                = $this->options['base_path'];
-            $runtime_data->event_options_keys       = $this->event_option_keys;
-            $runtime_data->request                  = new stdClass();
-            $runtime_data->request->data            = new stdClass();
-            $runtime_data->request->client          = new stdClass();
-            $runtime_data->request->server          = new stdClass();
-            $runtime_data->site                     = new stdClass();
-            $runtime_data->application              = new stdClass();
-            $runtime_data->route                    = new stdClass();
-            $runtime_data->user                     = new stdClass();
-            $runtime_data->reference_data           = new stdClass();
-            $runtime_data->resource                 = new stdClass();
-            $runtime_data->resource->data           = new stdClass();
-            $runtime_data->resource->parameters     = new stdClass();
-            $runtime_data->resource->model_registry = new stdClass();
-            $runtime_data->render                   = new stdClass();
-
-            return $runtime_data;
-
-        } elseif (strtolower($product_name) === 'user') {
-
-        }
-
+        return $this;
     }
 }
 
 
-class MockDispatcher implements EventInterface
+
+class MockDispatcher implements DispatcherInterface
 {
+    public $event_list = array();
+
     protected $event_option_keys
         = array(
             'runtime_data',
@@ -256,25 +247,119 @@ class MockDispatcher implements EventInterface
         return $options;
     }
 
-    /**
-     * Schedule Event
-     *
-     * @param   string $event_name
-     * @param   array  $options
-     *
-     * @return  array
-     * @since   1.0
-     */
-    public function scheduleEvent($event_name, array $options = array())
+
+    public function registerForEvent($event_name, $callback, $priority = 50)
+    {
+
+    }
+
+    public function scheduleEvent($event_name, EventInterface $event)
+    {
+        $this->event_list[] = $event_name;
+        return array();
+    }
+}
+
+/**
+ * Event
+ */
+class MockEvent implements EventInterface
+{
+    public function get($key)
+    {
+
+    }
+    public function set($key, $value)
     {
 
     }
 }
-class MockResourceController
+
+/**
+ * Injection of Control
+ *
+ * @package Molajo\Controller\Test
+ */
+class MockScheduler implements ScheduleInterface
 {
+    public $scheduled_products = array();
 
-    public function getResource($resource_namespace, $multiple = false)
+    protected $dispatcher;
+
+    protected $event_option_keys
+        = array(
+            'runtime_data',
+            'plugin_data',
+            'parameters',
+            'model_registry',
+            'query_results',
+            'row',
+            'rendered_view',
+            'rendered_page',
+            'token'
+        );
+
+    public function __construct(
+        $dispatcher
+    )
     {
+        $this->dispatcher = $dispatcher;
+    }
 
+    public function scheduleFactoryMethod($product_name, array $options = array())
+    {
+        $this->scheduled_products[] = $product_name;
+
+        if (strtolower($product_name) === 'authenticate') {
+
+        } elseif (strtolower($product_name) === 'event') {
+            return new MockEvent();
+
+        } elseif (strtolower($product_name) === 'authorise') {
+
+        } elseif (strtolower($product_name) === 'eventcallback') {
+
+        } elseif (strtolower($product_name) === 'errorhandling') {
+
+        } elseif (strtolower($product_name) === 'dispatcher') {
+            return $this->dispatcher;
+
+        } elseif (strtolower($product_name) === 'execute') {
+
+        } elseif (strtolower($product_name) === 'resource') {
+
+        } elseif (strtolower($product_name) === 'response') {
+
+        } elseif (strtolower($product_name) === 'resourcecontroller') {
+
+        } elseif (strtolower($product_name) === 'route') {
+
+        } elseif (strtolower($product_name) === 'runtimedata') {
+
+            $runtime_data                           = new stdClass();
+            $runtime_data->error_code               = 0;
+            $runtime_data->redirect_to_id           = 0;
+            $runtime_data->base_path                = $this->options['base_path'];
+            $runtime_data->event_options_keys       = $this->event_option_keys;
+            $runtime_data->request                  = new stdClass();
+            $runtime_data->request->data            = new stdClass();
+            $runtime_data->request->client          = new stdClass();
+            $runtime_data->request->server          = new stdClass();
+            $runtime_data->site                     = new stdClass();
+            $runtime_data->application              = new stdClass();
+            $runtime_data->route                    = new stdClass();
+            $runtime_data->user                     = new stdClass();
+            $runtime_data->reference_data           = new stdClass();
+            $runtime_data->resource                 = new stdClass();
+            $runtime_data->resource->data           = new stdClass();
+            $runtime_data->resource->parameters     = new stdClass();
+            $runtime_data->resource->model_registry = new stdClass();
+            $runtime_data->render                   = new stdClass();
+
+            return $runtime_data;
+
+        } elseif (strtolower($product_name) === 'user') {
+
+        }
     }
 }
