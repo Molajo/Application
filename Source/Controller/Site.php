@@ -216,7 +216,7 @@ class Site implements SiteInterface
                 $this->id             = $single->id;
                 $this->name           = $single->name;
                 $this->site_base_path = $this->base_path . $single->site_base_path;
-                
+
                 $this->installCheck();
 
                 break;

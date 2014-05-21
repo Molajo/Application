@@ -174,7 +174,7 @@ class Application implements ApplicationInterface
     /**
      * Set application base path
      *
-     * @param   $app
+     * @param   stdClass $app
      *
      * @return  $this
      * @since   1.0
@@ -241,7 +241,7 @@ class Application implements ApplicationInterface
     /**
      * Get Application Array Entry
      *
-     * @param   $application_test
+     * @param   string $application_test
      *
      * @return  stdClass
      * @since   1.0
@@ -268,7 +268,7 @@ class Application implements ApplicationInterface
     /**
      * Retrieve Application Data
      *
-     * @return  $this
+     * @return  stdClass
      * @since   1.0
      */
     public function getConfiguration()

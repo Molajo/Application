@@ -171,7 +171,7 @@ class ImageController implements ImageInterface
      * @param   string $size
      * @param   string $color
      *
-     * @return  object
+     * @return  ImageController
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
@@ -263,7 +263,7 @@ class ImageController implements ImageInterface
      *
      * @param   string $type
      * @param   string $size
-     * @param   object $image
+     * @param   stdClass $image
      *
      * @return  object
      * @since   1.0

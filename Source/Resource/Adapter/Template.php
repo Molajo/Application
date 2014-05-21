@@ -244,7 +244,7 @@ class Template extends AbstractAdapter implements AdapterInterface
      * @param   string $scheme
      * @param   array  $options
      *
-     * @return  mixed
+     * @return  Template
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */

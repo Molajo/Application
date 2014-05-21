@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1400629649">
-  <project timestamp="1400629649">
+<coverage generated="1400631404">
+  <project timestamp="1400631404">
     <file name="/Users/amystephen/Sites/Molajo/Application/.dev/Bootstrap.php">
       <line num="84" type="stmt" count="0"/>
       <line num="85" type="stmt" count="0"/>
@@ -703,7 +703,7 @@
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/TextController.php">
         <class name="TextController" namespace="Molajo\Controller" fullPackage="Molajo" package="Molajo">
-          <metrics methods="14" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="88" coveredstatements="23" elements="102" coveredelements="29"/>
+          <metrics methods="15" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="89" coveredstatements="23" elements="104" coveredelements="29"/>
         </class>
         <line num="303" type="method" name="__construct" crap="6" count="0"/>
         <line num="306" type="stmt" count="0"/>
@@ -796,18 +796,20 @@
         <line num="597" type="stmt" count="0"/>
         <line num="599" type="stmt" count="0"/>
         <line num="601" type="stmt" count="0"/>
-        <line num="614" type="method" name="createWord" crap="42" count="0"/>
+        <line num="614" type="method" name="createWord" crap="12" count="0"/>
         <line num="616" type="stmt" count="0"/>
         <line num="617" type="stmt" count="0"/>
-        <line num="618" type="stmt" count="0"/>
-        <line num="619" type="stmt" count="0"/>
         <line num="620" type="stmt" count="0"/>
-        <line num="621" type="stmt" count="0"/>
-        <line num="624" type="stmt" count="0"/>
-        <line num="625" type="stmt" count="0"/>
-        <line num="626" type="stmt" count="0"/>
-        <line num="628" type="stmt" count="0"/>
-        <metrics loc="630" ncloc="468" classes="1" methods="14" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="88" coveredstatements="23" elements="102" coveredelements="24"/>
+        <line num="631" type="method" name="createFirstWord" crap="12" count="0"/>
+        <line num="633" type="stmt" count="0"/>
+        <line num="634" type="stmt" count="0"/>
+        <line num="635" type="stmt" count="0"/>
+        <line num="636" type="stmt" count="0"/>
+        <line num="639" type="stmt" count="0"/>
+        <line num="640" type="stmt" count="0"/>
+        <line num="641" type="stmt" count="0"/>
+        <line num="643" type="stmt" count="0"/>
+        <metrics loc="645" ncloc="475" classes="1" methods="15" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="89" coveredstatements="23" elements="104" coveredelements="24"/>
       </file>
     </package>
     <package name="Molajo\Controller\NumberToText">
@@ -2073,6 +2075,6 @@
       <line num="26" type="stmt" count="0"/>
       <metrics loc="30" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="2" coveredelements="0"/>
     </file>
-    <metrics files="30" loc="7455" ncloc="4106" classes="19" methods="205" coveredmethods="27" conditionals="0" coveredconditionals="0" statements="1649" coveredstatements="396" elements="1854" coveredelements="423"/>
+    <metrics files="30" loc="7470" ncloc="4113" classes="19" methods="206" coveredmethods="27" conditionals="0" coveredconditionals="0" statements="1650" coveredstatements="396" elements="1856" coveredelements="423"/>
   </project>
 </coverage>

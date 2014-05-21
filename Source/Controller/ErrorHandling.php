@@ -182,7 +182,7 @@ class ErrorHandling implements ErrorHandlingInterface
      * Set Theme and Page View
      *
      * @param   integer $error_code
-     * @param   object  $error_object
+     * @param   stdClass  $error_object
      *
      * @returns object
      * @since   1.0.0

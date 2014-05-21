@@ -69,7 +69,7 @@ class ExtensionMap implements ExtensionsInterface
     /**
      * Catalog Types
      *
-     * @return  $this
+     * @return  stdClass
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
@@ -91,7 +91,7 @@ class ExtensionMap implements ExtensionsInterface
     /**
      * Get Catalog Types
      *
-     * @return  $this
+     * @return  stdClass
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
@@ -491,7 +491,7 @@ class ExtensionMap implements ExtensionsInterface
      * @param   object $data
      * @param   object $model_registry
      *
-     * @return  mixed
+     * @return  stdClass
      * @since   1.0
      */
     protected function processCustomfieldGroup($group, $data, $model_registry)

@@ -221,7 +221,7 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
      * @param   int    $i
      * @param   object $customfield
      *
-     * @return  object
+     * @return  stdClass
      * @since   1.0
      */
     protected function setCustomfieldItem($field, $i, $customfield)
@@ -412,7 +412,6 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
     /**
      * Get Select List and save results in plugin data
      *
-     * @param   string $list
      *
      * @return  $this
      * @ince    1.0

@@ -145,7 +145,7 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      * @param   string $event_name
      * @param   array  $options
      *
-     * @return  array
+     * @return  FrontController
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */

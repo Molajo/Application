@@ -428,7 +428,7 @@ class TextController implements TextInterface
     /**
      * Edit Valid Markup
      *
-     * @return  array
+     * @return  string[]
      * @since   1.0
      */
     protected function editValidMarkup()
@@ -441,8 +441,8 @@ class TextController implements TextInterface
     /**
      * Edit Markup Type
      *
-     * @param   $markup_type
-     * @param   $valid
+     * @param   string $markup_type
+     * @param   string[] $valid
      *
      * @return  string
      * @since   1.0
@@ -523,7 +523,7 @@ class TextController implements TextInterface
      *
      * @param   string  $markup_type
      *
-     * @return  array
+     * @return  string[]
      * @since   1.0
      */
     protected function setMarkupRequirements($markup_type)
@@ -613,12 +613,27 @@ class TextController implements TextInterface
      */
     protected function createWord($start_with_lorem_ipsum, $count_lorem_set, $word_count)
     {
-        if ($word_count === 0 && $start_with_lorem_ipsum === true) {
+        if ($word_count < 2 && $start_with_lorem_ipsum === true) {
+            return $this->createFirstWord($word_count);
+        }
+
+        return $this->lorem_set[rand(0, $count_lorem_set)];
+    }
+
+    /**
+     * Create First Word
+     *
+     * @param   integer $word_count
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function createFirstWord($word_count)
+    {
+        if ($word_count === 0) {
             $word = 'Lorem';
-        } elseif ($word_count === 1 && $start_with_lorem_ipsum === true) {
-            $word = 'ipsum';
         } else {
-            $word = $this->lorem_set[rand(0, $count_lorem_set)];
+            $word = 'ipsum';
         }
 
         if ($word_count === 0) {

@@ -10,7 +10,6 @@ namespace Molajo\Controller;
 
 use stdClass;
 use CommonApi\Controller\ResourceInterface;
-use CommonApi\Exception\RuntimeException;
 use CommonApi\Exception\UnexpectedValueException;
 use Exception;
 

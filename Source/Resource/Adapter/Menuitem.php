@@ -153,7 +153,7 @@ class Menuitem extends AbstractAdapter implements AdapterInterface
      *
      * @param   string $resource_namespace
      *
-     * @return  mixed|bool|string
+     * @return  string|false
      * @since   1.0
      */
     protected function searchResourceMap($resource_namespace, $multiple = false)
@@ -239,7 +239,7 @@ class Menuitem extends AbstractAdapter implements AdapterInterface
      * @param   string $scheme
      * @param   array  $options
      *
-     * @return  mixed
+     * @return  Menuitem
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */

@@ -78,7 +78,7 @@ class PaginationPlugin extends ReadEventPlugin implements ReadInterface
     /**
      * Prev and Next Pagination for Item Pages
      *
-     * @return bool
+     * @return PaginationPlugin|null
      * @since  1.0
      */
     protected function itemPaging()

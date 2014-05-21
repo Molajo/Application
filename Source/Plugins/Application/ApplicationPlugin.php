@@ -421,7 +421,7 @@ class ApplicationPlugin extends SystemEventPlugin implements SystemInterface
      *
      * @param   object     $data
      * @param   string     $key
-     * @param   null|mixed $value
+     * @param   null|ApplicationPlugin $value
      *
      * @return  null|$this
      * @since   1.0

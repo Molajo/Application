@@ -239,7 +239,7 @@ class Wrap extends AbstractAdapter implements AdapterInterface
      * @param   string $scheme
      * @param   array  $options
      *
-     * @return  mixed
+     * @return  Wrap
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */

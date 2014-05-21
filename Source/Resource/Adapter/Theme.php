@@ -154,7 +154,7 @@ class Theme extends AbstractAdapter implements AdapterInterface
      * @param   string $resource_namespace
      * @param   bool   $multiple
      *
-     * @return  mixed|bool|string
+     * @return  string|false
      * @since   1.0
      */
     protected function searchResourceMap($resource_namespace, $multiple = false)
@@ -240,7 +240,7 @@ class Theme extends AbstractAdapter implements AdapterInterface
      * @param   string $scheme
      * @param   array  $options
      *
-     * @return  mixed
+     * @return  Theme
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */

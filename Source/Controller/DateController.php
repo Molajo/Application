@@ -230,7 +230,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $server_or_user_timezone
      * @param   string $date_format
      *
-     * @return  DateTime
+     * @return  string
      * @since   1.0
      */
     public function getDate(
@@ -276,7 +276,7 @@ class DateController extends DateTime implements DateInterface
     /**
      * Format Date
      *
-     * @param   Datetime $date_time
+     * @param   DateTime $date_time
      * @param   string   $date_format
      *
      * @return  string
@@ -337,7 +337,7 @@ class DateController extends DateTime implements DateInterface
      *
      * @param   string $date
      *
-     * @return  Datetime
+     * @return  DateTime
      * @since   1.0
      */
     protected function formatDate($date)
@@ -441,7 +441,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $month
      * @param   string $year
      *
-     * @return  string CCYY-MM-DD
+     * @return  stdClass[] CCYY-MM-DD
      * @since   1.0
      */
     public function buildCalendar($month, $year)
@@ -518,7 +518,7 @@ class DateController extends DateTime implements DateInterface
      * @param   integer $numeric_value
      * @param   string  $type
      *
-     * @return  mixed
+     * @return  string
      * @since   1.0
      */
     protected function translatePrettyDate($numeric_value, $type)

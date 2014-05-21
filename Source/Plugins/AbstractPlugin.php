@@ -185,7 +185,7 @@ abstract class AbstractPlugin
      *
      * @param   string $key
      *
-     * @return  mixed
+     * @return  string
      * @since   1.0
      */
     public function get($key)

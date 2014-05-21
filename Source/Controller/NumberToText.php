@@ -134,7 +134,7 @@ class NumberToText implements NumberToTextInterface
     /**
      * Extract out the decimal
      *
-     * @param   $number
+     * @param   string $number
      *
      * @return  array
      * @since   1.0.0
@@ -294,7 +294,7 @@ class NumberToText implements NumberToTextInterface
      *
      * @param   string  $digits
      *
-     * @return  array
+     * @return  integer[]
      * @since   1.0.0
      */
     protected function getGroupDigits($digits)
@@ -379,7 +379,7 @@ class NumberToText implements NumberToTextInterface
      *
      * Source: http://en.wikipedia.org/wiki/Names_of_large_numbers
      *
-     * @param   string $number
+     * @param   integer $number
      *
      * @return  string
      * @since   1.0
@@ -419,7 +419,7 @@ class NumberToText implements NumberToTextInterface
      * @param   string $sign
      * @param   string $word_value
      *
-     * @return  mixed
+     * @return  string
      * @since   1.0
      */
     protected function setSign($sign, $word_value)
