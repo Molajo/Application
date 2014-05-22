@@ -21,7 +21,7 @@ use Exception;
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class FrontController implements FrontControllerInterface, ScheduleInterface
+class FrontController implements FrontControllerInterface
 {
     /**
      * Factory Method Scheduling
@@ -121,9 +121,6 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      */
     public function process()
     {
-        set_error_handler(array($this, 'handleErrors'));
-        register_shutdown_function(array($this, 'shutdown'));
-
         foreach ($this->steps as $step) {
             $this->scheduleEvent($event_name = 'onBefore' . ucfirst(strtolower($step)));
             $this->runStep($step);
@@ -169,6 +166,11 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      */
     protected function initialise()
     {
+        error_reporting(E_ALL & ~E_NOTICE);
+        set_error_handler(array($this, 'handleErrors'));
+        set_exception_handler(array($this, 'handleExceptions'));
+        register_shutdown_function(array($this, 'shutdown'));
+
         $this->createScheduleEventCallback();
 
         if (count($this->requests) > 0) {
@@ -197,52 +199,10 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
         }
 
         $options['event_name'] = $event_name;
-        $event_instance        = $this->scheduleEventCreateScheduled($options);
-        $event_results         = $this->scheduleDispatcher($event_name, $event_instance);
+        $event_instance        = $this->scheduleFactoryMethod('Event', $options);
+        $dispatcher            = $this->scheduleFactoryMethod('Dispatcher');
 
-        $this->scheduleEventSaveResults($event_results);
-
-        return $this;
-    }
-
-    /**
-     * Create Event Scheduled Instance
-     *
-     * @param   array $options
-     *
-     * @return  object
-     * @since   1.0
-     */
-    protected function scheduleEventCreateScheduled(array $options = array())
-    {
-        return $this->scheduleFactoryMethod('Event', $options);
-    }
-
-    /**
-     * Create Event Scheduled Instance
-     *
-     * @param   string $event_name
-     * @param   object $event_instance
-     *
-     * @return  array
-     * @since   1.0
-     */
-    protected function scheduleDispatcher($event_name, $event_instance)
-    {
-        return $this->scheduleFactoryMethod('Dispatcher')->scheduleEvent($event_name, $event_instance);
-    }
-
-    /**
-     * Retrieve Data from Event and save to container
-     *
-     * @param   array $options
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function scheduleEventSaveResults(array $options = array())
-    {
-        foreach ($options as $key => $value) {
+        foreach ($dispatcher->scheduleEvent($event_name, $event_instance) as $key => $value) {
             $this->setContainerEntry($key, $options[$key]);
         }
 
@@ -287,6 +247,28 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
     }
 
     /**
+     * Error Handling
+     *
+     * @param   integer $error_number
+     * @param   string  $message
+     * @param   string  $file
+     * @param   integer $line_number
+     *
+     * @return  mixed|string
+     * @since   1.0
+     */
+    public function handleErrors($error_number, $message, $file, $line_number)
+    {
+        $options                 = array();
+        $options['error_number'] = $error_number;
+        $options['message']      = $message;
+        $options['file']         = $file;
+        $options['line_number']  = $line_number;
+
+        return $this->queue->scheduleFactoryMethod('ErrorHandler')->handleError($options);
+    }
+
+    /**
      * Run Factory Method
      *
      * @param   string $product_name
@@ -307,50 +289,6 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
     }
 
     /**
-     * Error Handling
-     *
-     * Development:  E_ALL|E_STRICT; Production:   E_ALL|~E_NOTICE
-     *
-     * @param   integer $code
-     * @param   string  $message
-     * @param   string  $file
-     * @param   integer $line_number
-     *
-     * @return  mixed|string
-     * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
-     * @link    http://php.net/manual/en/errorfunc.constants.php
-     */
-    public function handleErrors($code, $message, $file, $line_number)
-    {
-        switch ($code) {
-            case E_NOTICE:
-            case E_USER_NOTICE:
-            case E_DEPRECATED:
-            case E_USER_DEPRECATED:
-            case E_STRICT:
-                $category = 'NOTICE';
-                break;
-
-            case E_WARNING:
-            case E_USER_WARNING:
-                $category = 'WARNING';
-                break;
-
-            case E_ERROR:
-            case E_USER_ERROR:
-                $category = 'FATAL';
-                break;
-
-            default:
-                $category = 'UNKNOWN';
-        }
-
-        var_dump(array($category, $code, $message, $file, $line_number));
-        die;
-    }
-
-    /**
      * Shutdown the application
      *
      * @return  void
@@ -358,6 +296,13 @@ class FrontController implements FrontControllerInterface, ScheduleInterface
      */
     public function shutdown()
     {
+        $error = error_get_last();
+
+        if (headers_sent() && $this->normal_ending) {
+        } else {
+            header('HTTP/1.1 500 Internal Server Error');
+        }
+
         if ($this->normal_ending) {
         } else {
             echo 'Failed Run';

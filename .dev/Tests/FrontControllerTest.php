@@ -79,9 +79,6 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\FrontController::runStep
      * @covers  Molajo\Controller\FrontController::initialise
      * @covers  Molajo\Controller\FrontController::scheduleEvent
-     * @covers  Molajo\Controller\FrontController::scheduleEventCreateScheduled
-     * @covers  Molajo\Controller\FrontController::scheduleDispatcher
-     * @covers  Molajo\Controller\FrontController::scheduleEventSaveResults
      * @covers  Molajo\Controller\FrontController::scheduleFactoryMethod
      * @covers  Molajo\Controller\FrontController::setContainerEntry
      * @covers  Molajo\Controller\FrontController::handleErrors
@@ -93,8 +90,8 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->dispatcher = new MockDispatcher();
-        $this->queue = new MockScheduler($this->dispatcher);
-        $this->base_path = __DIR__;
+        $this->queue      = new MockScheduler($this->dispatcher);
+        $this->base_path  = __DIR__;
 
         $this->fc = new FrontController(
             $this->queue,
@@ -112,9 +109,6 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\FrontController::runStep
      * @covers  Molajo\Controller\FrontController::initialise
      * @covers  Molajo\Controller\FrontController::scheduleEvent
-     * @covers  Molajo\Controller\FrontController::scheduleEventCreateScheduled
-     * @covers  Molajo\Controller\FrontController::scheduleDispatcher
-     * @covers  Molajo\Controller\FrontController::scheduleEventSaveResults
      * @covers  Molajo\Controller\FrontController::scheduleFactoryMethod
      * @covers  Molajo\Controller\FrontController::setContainerEntry
      * @covers  Molajo\Controller\FrontController::handleErrors
@@ -174,9 +168,6 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\FrontController::runStep
      * @covers  Molajo\Controller\FrontController::initialise
      * @covers  Molajo\Controller\FrontController::scheduleEvent
-     * @covers  Molajo\Controller\FrontController::scheduleEventCreateScheduled
-     * @covers  Molajo\Controller\FrontController::scheduleDispatcher
-     * @covers  Molajo\Controller\FrontController::scheduleEventSaveResults
      * @covers  Molajo\Controller\FrontController::scheduleFactoryMethod
      * @covers  Molajo\Controller\FrontController::setContainerEntry
      * @covers  Molajo\Controller\FrontController::handleErrors
@@ -210,7 +201,6 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
         return $this;
     }
 }
-
 
 
 class MockDispatcher implements DispatcherInterface
@@ -269,6 +259,7 @@ class MockEvent implements EventInterface
     {
 
     }
+
     public function set($key, $value)
     {
 
@@ -301,8 +292,7 @@ class MockScheduler implements ScheduleInterface
 
     public function __construct(
         $dispatcher
-    )
-    {
+    ) {
         $this->dispatcher = $dispatcher;
     }
 

@@ -23,68 +23,31 @@ use CommonApi\Exception\ErrorThrownAsException;
 class ErrorHandling implements ErrorHandlingInterface
 {
     /**
-     * Not Authorised Message
+     * Logger
      *
-     * @var    string
+     * @var    object
      * @since  1.0
      */
-    protected $error_message_not_authorised = 'Not Authorised';
+    protected $logger_instance = null;
 
     /**
-     * Not Found Message
+     * Error Code Array
      *
-     * @var    string
+     * @var    boolean
      * @since  1.0
      */
-    protected $error_message_not_found = 'Not Found';
-
-    /**
-     * Internal Server Error Message
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $error_message_internal_server_error = 'Internal Server Error';
-
-    /**
-     * Site is Offline Error Message
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $error_message_offline_switch = 'Site is Offline.';
-
-    /**
-     * Error Theme Namespace
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $error_theme = 'Molajo\\Themes\\System';
-
-    /**
-     * Error Offline Theme Namespace
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $error_offline_theme = 'Molajo\\Themes\\System';
-
-    /**
-     * Page View for Offline Error
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $error_page_offline_view = 'Molajo\\Views\\Pages\\Offline';
-
-    /**
-     * Page View for Standard Error
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $error_page_view = 'Molajo\\Views\\Pages\\Error';
+    protected $error_number_array
+        = array(
+            E_USER_NOTICE     => 'USER',
+            E_USER_DEPRECATED => 'USER',
+            E_USER_WARNING    => 'WARNING',
+            E_USER_ERROR      => 'FATAL',
+            E_NOTICE          => 'NOTICE',
+            E_DEPRECATED      => 'NOTICE',
+            E_STRICT          => 'NOTICE',
+            E_WARNING         => 'WARNING',
+            E_ERROR           => 'FATAL'
+        );
 
     /**
      * Error Code to Message Array
@@ -92,75 +55,57 @@ class ErrorHandling implements ErrorHandlingInterface
      * @var    string
      * @since  1.0
      */
-    protected $error_code_to_message = array(
-        403 => 'error_message_not_authorised',
-        404 => 'error_message_not_found',
-        500 => 'error_message_internal_server_error',
-        503 => 'error_message_offline_switch'
-    );
+    protected $error_number_to_message
+        = array(
+            403 => 'message_not_authorised',
+            404 => 'message_not_found',
+            500 => 'message_internal_server_error',
+            503 => 'message_offline_number_switch'
+        );
 
     /**
      * Class Constructor
      *
      * @param  string $error_theme
-     * @param  string $error_page_view
-     * @param  string $error_message_not_authorised
-     * @param  string $error_message_not_found
-     * @param  string $error_message_internal_server_error
-     * @param  string $error_offline_theme
-     * @param  string $error_page_offline_view
-     * @param  string $error_message_offline_switch
      *
      * @since  1.0
      */
     public function __construct(
-        $error_theme = 'Molajo\\Themes\\System',
-        $error_page_view = 'Molajo\\Views\\Pages\\Error',
-        $error_message_not_authorised = 'Not Authorised',
-        $error_message_not_found = 'Not Found',
-        $error_message_internal_server_error = 'Internal Server Error',
-        $error_offline_theme = 'Molajo\\Themes\\System',
-        $error_page_offline_view = 'Molajo\\Views\\Pages\\Offline',
-        $error_message_offline_switch = 'Site is Offline.'
-    ) {
-        set_error_handler(array($this, 'setError'), 0);
+        $error_theme = 'Molajo\\Themes\\System'
 
-        $this->error_theme                         = $error_theme;
-        $this->error_page_view                     = $error_page_view;
-        $this->error_message_not_authorised        = $error_message_not_authorised;
-        $this->error_message_not_found             = $error_message_not_found;
-        $this->error_message_internal_server_error = $error_message_internal_server_error;
-        $this->error_offline_theme                 = $error_offline_theme;
-        $this->error_page_offline_view             = $error_page_offline_view;
-        $this->error_message_offline_switch        = $error_message_offline_switch;
+    ) {
+
+
+        //respect error_reporting() and $code;
+
+        $this->message_offline_number_switch = $message_offline_number_switch;
     }
 
     /**
-     * Set 403, 404, 500 and 503 Error. Throw exception for any other errors.
-     * Set rendering parameters for theme, page and template.
+     * Set Error Message
      *
-     * @param   int    $error_code
-     * @param   string $error_message
+     * @param   int    $error_number
+     * @param   string $message
      * @param   string $file
-     * @param   string $line
+     * @param   string $line_number
      *
      * @return  object|stdClass
      * @throws  \CommonApi\Exception\ErrorThrownAsException
      * @since   1.0
      */
-    public function setError($error_code = 0, $error_message = '', $file = '', $line = '')
+    public function setError($error_number = 0, $message = '', $file = '', $line_number = '')
     {
-        $error_object             = new stdClass();
-        $error_object->error_code = $error_code;
-        if ($error_message === '') {
-            $error_object->error_message = $this->setErrorMessage($error_code);
+        $error_object               = new stdClass();
+        $error_object->error_number = $error_number;
+        if ($message === '') {
+            $error_object->message = $this->setErrorMessage($error_number);
         } else {
-            $error_object->error_message = $error_message;
+            $error_object->message = $message;
         }
-        $error_object->file = $file;
-        $error_object->line = $line;
+        $error_object->file        = $file;
+        $error_object->line_number = $line_number;
 
-        $error_object = $this->setThemePageView($error_code, $error_object);
+        $error_object = $this->setThemePageView($error_number, $error_object);
 
         return $error_object;
     }
@@ -168,20 +113,20 @@ class ErrorHandling implements ErrorHandlingInterface
     /**
      * Set Error Message
      *
-     * @param   integer $error_code
+     * @param   integer $error_number
      *
      * @returns string
      * @since   1.0.0
      * @throws  \CommonApi\Exception\ErrorThrownAsException
      */
-    protected function setErrorMessage($error_code)
+    protected function setErrorMessage($error_number)
     {
-        if (isset($this->error_code_to_message[$error_code])) {
+        if (isset($this->error_number_to_message[$error_number])) {
         } else {
-            throw new ErrorThrownAsException($this->error_message_internal_server_error, $error_code);
+            throw new ErrorThrownAsException($this->message_internal_server_error, $error_number);
         }
 
-        $value = $this->error_code_to_message[$error_code];
+        $value = $this->error_number_to_message[$error_number];
 
         return $this->$value;
     }
@@ -189,17 +134,17 @@ class ErrorHandling implements ErrorHandlingInterface
     /**
      * Set Theme and Page View
      *
-     * @param   integer $error_code
-     * @param   stdClass  $error_object
+     * @param   integer  $error_number
+     * @param   stdClass $error_object
      *
      * @returns object
      * @since   1.0.0
      */
-    protected function setThemePageView($error_code, $error_object)
+    protected function setThemePageView($error_number, $error_object)
     {
-        if ($error_code == 503) {
+        if ($error_number == 503) {
             $error_object->theme_namespace = $this->error_theme;
-            $error_object->page_namespace  = $this->error_page_offline_view;
+            $error_object->page_namespace  = $this->error_page_offline_number_view;
         } else {
             $error_object->theme_namespace = $this->error_theme;
             $error_object->page_namespace  = $this->error_page_view;
