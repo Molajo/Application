@@ -40,22 +40,6 @@ class TextFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
     }
 
     /**
-     * Identify Class Dependencies for Constructor Injection
-     *
-     * @return  array
-     * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
-     */
-    public function setDependencies(array $reflection = null)
-    {
-        $reflection = null;
-
-        $this->dependencies['Resource'] = array();
-
-        return $this->dependencies;
-    }
-
-    /**
      * Instantiate Class
      *
      * @return  $this
@@ -67,7 +51,6 @@ class TextFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
         $class = 'Molajo\\Controller\\TextController';
 
         $this->product_result = new $class(
-            $this->dependencies['Resource'],
             $this->getTextList()
         );
 

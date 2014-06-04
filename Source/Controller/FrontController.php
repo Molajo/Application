@@ -8,9 +8,11 @@
  */
 namespace Molajo\Controller;
 
+use CommonApi\Controller\ErrorHandlingInterface;
 use CommonApi\Controller\FrontControllerInterface;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\ScheduleInterface;
+use ErrorException;
 use Exception;
 
 /**
@@ -21,7 +23,7 @@ use Exception;
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class FrontController implements FrontControllerInterface
+class FrontController implements FrontControllerInterface, ErrorHandlingInterface
 {
     /**
      * Factory Method Scheduling
@@ -55,13 +57,13 @@ class FrontController implements FrontControllerInterface
      */
     protected $steps
         = array(
-            'initialise',
-            'authenticate',
-            'route',
-            'authorise',
-            'resourcecontroller',
-            'execute',
-            'response'
+            'Initialise',
+            'Authenticate',
+            'Route',
+            'Authorise',
+            'Resourcecontroller',
+            'Execute',
+            'Response'
         );
 
     /**
@@ -81,6 +83,14 @@ class FrontController implements FrontControllerInterface
     protected $first_step = true;
 
     /**
+     * Debug Mode
+     *
+     * @var    boolean
+     * @since  1.0
+     */
+    protected $debug = true;
+
+    /**
      * Normal Ending
      *
      * @var    boolean
@@ -95,6 +105,7 @@ class FrontController implements FrontControllerInterface
      * @param  array             $requests
      * @param  string            $base_path
      * @param  array             $steps
+     * @param  boolean           $debug
      *
      * @since  1.0
      */
@@ -102,11 +113,13 @@ class FrontController implements FrontControllerInterface
         ScheduleInterface $queue,
         $requests,
         $base_path,
-        array $steps = array()
+        array $steps = array(),
+        $debug = false
     ) {
         $this->queue     = $queue;
         $this->requests  = $requests;
         $this->base_path = $base_path;
+        $this->debug     = $debug;
 
         if (count($steps) > 0) {
             $this->steps = $steps;
@@ -167,8 +180,8 @@ class FrontController implements FrontControllerInterface
     protected function initialise()
     {
         error_reporting(E_ALL & ~E_NOTICE);
-        set_error_handler(array($this, 'handleErrors'));
-        set_exception_handler(array($this, 'handleExceptions'));
+        set_error_handler(array($this, 'setError'));
+        set_exception_handler(array($this, 'setException'));
         register_shutdown_function(array($this, 'shutdown'));
 
         $this->createScheduleEventCallback();
@@ -203,7 +216,7 @@ class FrontController implements FrontControllerInterface
         $dispatcher            = $this->scheduleFactoryMethod('Dispatcher');
 
         foreach ($dispatcher->scheduleEvent($event_name, $event_instance) as $key => $value) {
-            $this->setContainerEntry($key, $options[$key]);
+            $this->setContainerEntry($key, $options);
         }
 
         return $this;
@@ -221,8 +234,20 @@ class FrontController implements FrontControllerInterface
     public function scheduleFactoryMethod($product_name, array $options = array())
     {
         $options['base_path'] = $this->base_path;
+/***
+        if ($this->debug === true) {
 
-        return $this->runFactoryMethod($product_name, $options);
+            $log_level = 100;
+            $class = 'Molajo\\Controller\\FrontController';
+            $method = 'scheduleFactoryMethod';
+            $product = $product_name;
+
+            trigger_error('Frontcontroller::initialise scheduleFactoryMethod for: ' . $product_name, E_USER_NOTICE);
+        }
+*/
+        $instance = $this->runFactoryMethod($product_name, $options);
+
+        return $instance;
     }
 
     /**
@@ -233,7 +258,6 @@ class FrontController implements FrontControllerInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setContainerEntry($product_name, $value)
     {
@@ -244,28 +268,6 @@ class FrontController implements FrontControllerInterface
         $this->runFactoryMethod($product_name, $options);
 
         return $this;
-    }
-
-    /**
-     * Error Handling
-     *
-     * @param   integer $error_number
-     * @param   string  $message
-     * @param   string  $file
-     * @param   integer $line_number
-     *
-     * @return  mixed|string
-     * @since   1.0
-     */
-    public function handleErrors($error_number, $message, $file, $line_number)
-    {
-        $options                 = array();
-        $options['error_number'] = $error_number;
-        $options['message']      = $message;
-        $options['file']         = $file;
-        $options['line_number']  = $line_number;
-
-        return $this->queue->scheduleFactoryMethod('ErrorHandler')->handleError($options);
     }
 
     /**
@@ -286,6 +288,60 @@ class FrontController implements FrontControllerInterface
         } catch (Exception $e) {
             throw new RuntimeException('Frontcontroller scheduleFactoryMethod Failed ' . $e->getMessage());
         }
+    }
+
+    /**
+     * Method is called by PHP for errors if it has been assigned the PHP set_error_handler in the application
+     *
+     * @param   integer $error_number
+     * @param   string  $message
+     * @param   string  $file
+     * @param   integer $line_number
+     * @param   array   $context
+     *
+     * @return  $this
+     * @throws  ErrorException
+     * @since   1.0.0
+     */
+    public function setError($error_number, $message, $file, $line_number, array $context = array())
+    {
+        echo 'xxxxIn setErrorxxxx<br>';
+        echo '<pre>';
+        var_dump(
+            array(
+                $error_number, $message, $file, $line_number, $context
+            )
+        );
+        echo '<pre>';
+        var_dump($this->queue->scheduleFactoryMethod('ErrorHandling'));
+        die;
+     //   die;
+        $this->queue->scheduleFactoryMethod('ErrorHandling')
+            ->setError($error_number, $message, $file, $line_number, $context);
+    }
+
+    /**
+     * Method is called by PHP for errors if it has been assigned the PHP set_error_handler in the application
+     *
+     * @param   Exception $e
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    public function setException(Exception $e)
+    {
+echo 'xxxxIn Frontcontroller setExceptionxxxx<br>';
+echo '<pre>';
+var_dump(
+    array(
+        $e
+    )
+);
+        die;
+        $options                 = array();
+        $options['exception']    = $e;
+
+        return $this->queue->scheduleFactoryMethod('ExceptionHandling')->handleException($options);
     }
 
     /**

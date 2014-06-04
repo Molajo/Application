@@ -162,7 +162,9 @@ class Application implements ApplicationInterface
     public function setApplication()
     {
         $application_test = $this->setApplicationPath();
+
         $app              = $this->getApplicationArrayEntry($application_test);
+
         $this->id         = $app->id;
         $this->name       = $app->name;
 
@@ -215,7 +217,7 @@ class Application implements ApplicationInterface
         }
 
         if (strpos($this->request_path, '/') == true) {
-            $application_test = substr($this->request_path, strpos($this->request_path, '/') + 1, 99999);
+            $application_test = substr($this->request_path, 0, strpos($this->request_path, '/'));
         } else {
             $application_test = 'default';
         }
@@ -396,12 +398,14 @@ class Application implements ApplicationInterface
 
         $temp = array();
 
-        foreach ($this->model_registry[$group] as $customfields) {
-            foreach ($customfields as $field) {
-                $key       = $this->getCustomfieldsDataElement($field, 'name');
-                $default   = $this->getCustomfieldsDataElement($field, 'default');
+        foreach ($this->model_registry[$group] as $customfield) {
+
+            foreach ($customfield as $field) {
+
+                $key       = $this->getCustomfieldsDataElement($customfield, 'name');
+                $default   = $this->getCustomfieldsDataElement($customfield, 'default');
                 $value     = $this->setCustomFieldValue($group_data, $key, $default);
-                $data_type = $this->getCustomfieldsDataElement($field, 'type');
+                $data_type = $this->getCustomfieldsDataElement($customfield, 'type');
 
                 if ($data_type === null) {
                     $data_type = 'string';
@@ -417,15 +421,15 @@ class Application implements ApplicationInterface
     /**
      * Get Customfield Group Data
      *
-     * @param   object $customfields
+     * @param   object $customfield
      * @param   string $key
      *
      * @return  mixed|stdClass
      */
-    protected function getCustomfieldsDataElement($customfields, $key)
+    protected function getCustomfieldsDataElement($customfield, $key)
     {
-        if (isset($customfields[$key])) {
-            $value = $customfields[$key];
+        if (isset($customfield[$key])) {
+            $value = $customfield[$key];
         } else {
             $value = null;
         }

@@ -86,7 +86,7 @@
 
         <criteria>
             <where name="a.protected"
-                   connector="!="
+                   connector="<>"
                    value="2"/>
         </criteria>
 

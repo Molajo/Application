@@ -35,7 +35,8 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
     {
         $options['product_name']      = basename(__DIR__);
         $options['product_namespace'] = null;
-
+echo 'ini ExecuteFactoryMethod';
+        die;
         parent::__construct($options);
     }
 
@@ -49,7 +50,6 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
     public function setDependencies(array $reflection = null)
     {
         parent::setDependencies($reflection);
-
         $this->dependencies['Database']     = array();
         $this->dependencies['Query']        = array();
         $this->dependencies['Resource']     = array();
@@ -76,7 +76,9 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
             $this->dependencies['Resource']->get('xml:///Molajo//Model//Datasource//Execute.xml');
 
         $this->dependencies['request_path']     = $this->dependencies['Request']->path;
-
+echo '<pre>';
+        var_dump($this->dependencies['Runtimedata']);
+        die;
         return $this->dependencies;
     }
 
