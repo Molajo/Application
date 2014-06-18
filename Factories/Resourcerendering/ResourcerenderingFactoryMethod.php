@@ -12,7 +12,7 @@ use Exception;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\FactoryInterface;
 use CommonApi\IoC\FactoryBatchInterface;
-use Molajo\IoC\FactoryMethodBase;
+use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
 
 /**
  * Resources Rendering Factory Method
@@ -45,7 +45,7 @@ class ResourcerenderingFactoryMethod extends FactoryMethodBase implements Factor
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function setDependencies(array $reflection = null)
+    public function setDependencies(array $reflection = array())
     {
         parent::setDependencies($reflection);
 
@@ -148,8 +148,9 @@ class ResourcerenderingFactoryMethod extends FactoryMethodBase implements Factor
                 $this->dependencies['Resource']
             );
         } catch (Exception $e) {
-            throw new RuntimeException('Resources Handler ' . $adapter
-            . ' Exception during Instantiation: ' . $e->getMessage()
+            throw new RuntimeException(
+                'Resources Handler ' . $adapter
+                . ' Exception during Instantiation: ' . $e->getMessage()
             );
         }
 
@@ -174,8 +175,9 @@ class ResourcerenderingFactoryMethod extends FactoryMethodBase implements Factor
         try {
             $scheme = new $class ($input);
         } catch (Exception $e) {
-            throw new RuntimeException('Resources Scheme ' . $class
-            . ' Exception during Instantiation: ' . $e->getMessage()
+            throw new RuntimeException(
+                'Resources Scheme ' . $class
+                . ' Exception during Instantiation: ' . $e->getMessage()
             );
         }
 

@@ -47,9 +47,9 @@ class RandomString implements RandomStringInterface
         $length = 15,
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     ) {
-        if ((int) $length < 5) {
+        if ((int)$length < 5) {
         } else {
-            $this->length = (int) $length;
+            $this->length = (int)$length;
         }
 
         if ($characters === null || trim($characters) == '') {
@@ -69,9 +69,9 @@ class RandomString implements RandomStringInterface
      */
     public function generateString($length = null, $characters = null)
     {
-        if ((int) $length < 5) {
+        if ((int)$length < 5) {
         } else {
-            $this->length = (int) $length;
+            $this->length = (int)$length;
         }
 
         if ($characters === null) {
@@ -81,7 +81,7 @@ class RandomString implements RandomStringInterface
 
         $random_string = '';
 
-        for ($i = 0; $i < $this->length; $i ++) {
+        for ($i = 0; $i < $this->length; $i++) {
             $random_string .= $this->characters[rand(0, strlen($this->characters) - 1)];
         }
 

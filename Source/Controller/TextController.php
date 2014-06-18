@@ -322,12 +322,12 @@ class TextController implements TextInterface
      * $text->getPlaceHolderText(1, 10, 3, 'li', false);
      *  Generates 1 <ul> list with 10 items each with 3 random words
      *
-     * @param   int     $number_of_paragraphs
-     * @param   int     $lines_per_paragraphs
-     * @param   int     $words_per_line
-     * @param   string  $markup_type ('p', 'h1', 'h2', 'h3', 'h4', 'h5', 'ul', 'ol', 'blockquote')
-     * @param   bool    $start_with_lorem_ipsum
-     * @param   array   $valid_markup
+     * @param   int    $number_of_paragraphs
+     * @param   int    $lines_per_paragraphs
+     * @param   int    $words_per_line
+     * @param   string $markup_type ('p', 'h1', 'h2', 'h3', 'h4', 'h5', 'ul', 'ol', 'blockquote')
+     * @param   bool   $start_with_lorem_ipsum
+     * @param   array  $valid_markup
      *
      * @return  string
      * @since   1.0
@@ -377,7 +377,7 @@ class TextController implements TextInterface
     /**
      * Edit number of paragraphs
      *
-     * @param   integer  $number_of_paragraphs
+     * @param   integer $number_of_paragraphs
      *
      * @return  integer
      * @since   1.0
@@ -394,7 +394,7 @@ class TextController implements TextInterface
     /**
      * Edit lines per paragraph
      *
-     * @param   integer  $lines_per_paragraphs
+     * @param   integer $lines_per_paragraphs
      *
      * @return  integer
      * @since   1.0
@@ -411,7 +411,7 @@ class TextController implements TextInterface
     /**
      * Edit words per line
      *
-     * @param   integer  $words_per_line
+     * @param   integer $words_per_line
      *
      * @return  integer
      * @since   1.0
@@ -441,7 +441,7 @@ class TextController implements TextInterface
     /**
      * Edit Markup Type
      *
-     * @param   string $markup_type
+     * @param   string   $markup_type
      * @param   string[] $valid
      *
      * @return  string
@@ -521,7 +521,7 @@ class TextController implements TextInterface
     /**
      * Establish the output pattern
      *
-     * @param   string  $markup_type
+     * @param   string $markup_type
      *
      * @return  string[]
      * @since   1.0
@@ -604,9 +604,9 @@ class TextController implements TextInterface
     /**
      * Create a single word
      *
-     * @param  boolean  $start_with_lorem_ipsum
-     * @param  integer  $count_lorem_set
-     * @param  integer  $word_count
+     * @param  boolean $start_with_lorem_ipsum
+     * @param  integer $count_lorem_set
+     * @param  integer $word_count
      *
      * @return string
      * @since  1.0.0

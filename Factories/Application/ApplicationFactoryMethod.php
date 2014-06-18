@@ -11,7 +11,7 @@ namespace Molajo\Factories\Application;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\FactoryBatchInterface;
 use CommonApi\IoC\FactoryInterface;
-use Molajo\IoC\FactoryMethodBase;
+use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
 use stdClass;
 
 /**
@@ -46,7 +46,7 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function setDependencies(array $reflection = null)
+    public function setDependencies(array $reflection = array())
     {
         parent::setDependencies($reflection);
 
@@ -71,11 +71,12 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
     {
         parent::onBeforeInstantiation($dependency_values);
 
-        $this->dependencies['applications']   = $this->getApplicationInstances();
-        $this->dependencies['model_registry'] =
-            $this->dependencies['Resource']->get('xml:///Molajo//Model//Datasource//Application.xml');
+        $this->dependencies['applications'] = $this->getApplicationInstances();
 
-        $this->dependencies['request_path']     = $this->dependencies['Request']->path;
+        $this->dependencies['model_registry']
+            = $this->dependencies['Resource']->get('xml:///Molajo//Model//Datasource//Application.xml');
+
+        $this->dependencies['request_path'] = $this->dependencies['Request']->path;
 
         return $this->dependencies;
     }
@@ -98,23 +99,23 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
 
         $this->dependencies['Runtimedata']->application = $configuration;
 
-        $this->dependencies['Runtimedata']->site->cache_folder =
-            $this->dependencies['Runtimedata']->site->site_base_path
+        $this->dependencies['Runtimedata']->site->cache_folder
+            = $this->dependencies['Runtimedata']->site->site_base_path
             . '/'
             . $this->dependencies['Runtimedata']->application->parameters->system_cache_folder;
 
-        $this->dependencies['Runtimedata']->site->logs_folder =
-            $this->dependencies['Runtimedata']->site->site_base_path
+        $this->dependencies['Runtimedata']->site->logs_folder
+            = $this->dependencies['Runtimedata']->site->site_base_path
             . '/'
             . $this->dependencies['Runtimedata']->application->parameters->system_logs_folder;
 
-        $this->dependencies['Runtimedata']->site->media_folder =
-            $this->dependencies['Runtimedata']->site->site_base_path
+        $this->dependencies['Runtimedata']->site->media_folder
+            = $this->dependencies['Runtimedata']->site->site_base_path
             . '/'
             . $this->dependencies['Runtimedata']->application->parameters->system_media_folder;
 
-        $this->dependencies['Runtimedata']->site->temp_folder =
-            $this->dependencies['Runtimedata']->site->site_base_path
+        $this->dependencies['Runtimedata']->site->temp_folder
+            = $this->dependencies['Runtimedata']->site->site_base_path
             . '/'
             . $this->dependencies['Runtimedata']->application->parameters->system_temp_folder;
 

@@ -124,10 +124,10 @@ class PagetypeeditPlugin extends DisplayEventPlugin implements DisplayInterface
     {
         //@todo figure out selected value
         $selected = '';
-        $lists = array();
+        $lists    = array();
 
-        $class = 'Molajo\\Controller\\Datalist';
-        $datalist = new $class($this->resource);
+        $class                   = 'Molajo\\Controller\\Datalist';
+        $datalist                = new $class($this->resource);
         $options                 = array();
         $options['runtime_data'] = $this->runtime_data;
         $options['plugin_data']  = $this->plugin_data;

@@ -224,7 +224,7 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
     {
         $parameters = $this->runtime_data->resource->menuitem->parameters;
 
-        for ($i = 1; $i < 16; $i ++) {
+        for ($i = 1; $i < 16; $i++) {
 
             $grid_column_number = 'grid_column' . $i;
             if (isset($parameters->$grid_column_number)) {
@@ -308,7 +308,7 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
                 $direction = 'ASC';
             }
 
-            $grid->orderBy($grid->getModelRegistry('primary_prefix') . '.' . $ordering,  $direction);
+            $grid->orderBy($grid->getModelRegistry('primary_prefix') . '.' . $ordering, $direction);
 
             /** Offset */
             $offset = 0;
@@ -354,14 +354,14 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
                 $lvl = (int)$item->lvl - 1;
 
                 if ($lvl > 0) {
-                    for ($i = 0; $i < $lvl; $i ++) {
+                    for ($i = 0; $i < $lvl; $i++) {
                         $name = ' ..' . $name;
                     }
                 }
                 $temp_row->$name_key = $name;
 
-                $temp_row->home_url = $this->plugin_data->page->urls['home'];
-                $temp_row->page_url = $this->plugin_data->page->urls['home'];
+                $temp_row->home_url     = $this->plugin_data->page->urls['home'];
+                $temp_row->page_url     = $this->plugin_data->page->urls['home'];
                 $temp_row->username_url = '';
 
                 $grid_items[] = $temp_row;
@@ -396,7 +396,7 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
         $grid_list = array();
         $temp      = array();
 
-        for ($i = 1; $i < 11; $i ++) {
+        for ($i = 1; $i < 11; $i++) {
 
             $grid_list_number = 'grid_filter_list' . $i;
 
@@ -417,7 +417,7 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
             }
         }
 
-        $class = 'Molajo\\Controller\\Datalist';
+        $class    = 'Molajo\\Controller\\Datalist';
         $datalist = new $class($this->resource);
 
         $options                 = array();
@@ -520,7 +520,7 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
         if ($total_rows == 0) {
         } else {
             foreach ($rows as $row) {
-                $count ++;
+                $count++;
 
                 if ($count == 1) {
                     $row->first_row = 'first ';
@@ -566,7 +566,7 @@ class PagetypegridPlugin extends DisplayEventPlugin implements DisplayInterface
     {
         $parameters = $this->runtime_data->resource->menuitem->parameters;
 
-        $class = 'Molajo\\Controller\\Datalist';
+        $class    = 'Molajo\\Controller\\Datalist';
         $datalist = new $class($this->resource);
 
         $options                 = array();

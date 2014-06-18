@@ -11,7 +11,7 @@ namespace Molajo\Factories\Plugindata;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\FactoryInterface;
 use CommonApi\IoC\FactoryBatchInterface;
-use Molajo\IoC\FactoryMethodBase;
+use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
 use stdClass;
 
 /**
@@ -49,10 +49,10 @@ class PlugindataFactoryMethod extends FactoryMethodBase implements FactoryInterf
      */
     public function instantiateClass()
     {
-        $plugin_data                           = new stdClass();
-        $plugin_data->page                     = new stdClass();
-        $plugin_data->page->urls               = array();
-        $plugin_data->datalists                = new stdClass();
+        $plugin_data             = new stdClass();
+        $plugin_data->page       = new stdClass();
+        $plugin_data->page->urls = array();
+        $plugin_data->datalists  = new stdClass();
 
         $this->product_result = $plugin_data;
 

@@ -11,7 +11,7 @@ namespace Molajo\Factories\Date;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\FactoryInterface;
 use CommonApi\IoC\FactoryBatchInterface;
-use Molajo\IoC\FactoryMethodBase;
+use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
 
 /**
  * Date Factory Method
@@ -46,7 +46,7 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function setDependencies(array $reflection = null)
+    public function setDependencies(array $reflection = array())
     {
         $reflection = null;
 
@@ -120,7 +120,7 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      */
     public function scheduleFactories()
     {
-        $options = array();
+        $options                                    = array();
         $this->schedule_factory_methods['Language'] = $options;
 
         return $this->schedule_factory_methods;

@@ -8,8 +8,6 @@
  */
 namespace Molajo\Plugins;
 
-use CommonApi\Exception\RuntimeException;
-use Exception;
 use stdClass;
 
 /**
@@ -188,7 +186,7 @@ abstract class AbstractPlugin
      * @return  string
      * @since   1.0
      */
-    public function get($key)
+    public function get($key = null)
     {
         if (isset($this->$key)) {
             return $this->$key;
@@ -218,7 +216,7 @@ abstract class AbstractPlugin
      * @return  mixed
      * @since   1.0
      */
-    public function getField($name, $default = null)
+    protected function getField($name, $default = null)
     {
         if (isset($this->model_registry->field->$name)) {
         } else {
@@ -236,7 +234,7 @@ abstract class AbstractPlugin
      * @return  array
      * @since   1.0
      */
-    public function getFieldsByType($type)
+    protected function getFieldsByType($type)
     {
         $results = array();
 
@@ -262,7 +260,7 @@ abstract class AbstractPlugin
      * @return  null|mixed
      * @since   1.0
      */
-    public function getFieldValue($field)
+    protected function getFieldValue($field)
     {
         if (isset($field['as_name'])) {
             if ($field['as_name'] == '') {

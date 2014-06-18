@@ -66,7 +66,9 @@ class PagetypeconfigurationPlugin extends DisplayEventPlugin implements DisplayI
     protected function getCurrentMenuItem()
     {
         $resource                                        = $this->runtime_data->resource->resource_model_name;
-        $model                                           = 'Menuitem:///Molajo//' . $resource . '//Menuitem//Configuration.xml';
+        $model
+                                                         =
+            'Menuitem:///Molajo//' . $resource . '//Menuitem//Configuration.xml';
         $this->runtime_data->current_menuitem            = new stdClass();
         $this->runtime_data->current_menuitem->id        = (int)$this->plugin_data->page->current_menuitem_id;
         $this->runtime_data->current_menuitem->extension = $this->resource->get($model);

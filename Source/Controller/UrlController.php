@@ -203,7 +203,7 @@ class UrlController implements UrlInterface
         try {
             $results = $query->getData();
         } catch (Exception $e) {
-            throw new RuntimeException ($e->getMessage());
+            throw new RuntimeException($e->getMessage());
         }
 
         return $results;

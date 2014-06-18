@@ -135,7 +135,7 @@ class PagetypedashboardPlugin extends DisplayEventPlugin implements DisplayInter
         $dashboard_list = array();
         $temp           = array();
 
-        for ($i = 1; $i < 11; $i ++) {
+        for ($i = 1; $i < 11; $i++) {
 
             $dashboard_list_number = 'dashboard_list' . $i;
             if (isset($this->runtime_data->current_menuitem->extension->parameters->$dashboard_list_number)) {
@@ -143,18 +143,19 @@ class PagetypedashboardPlugin extends DisplayEventPlugin implements DisplayInter
                 } else {
                     if (in_array($dashboard_list_number, $temp)) {
                     } else {
-                        $temp[]           = $dashboard_list_number;
-                        $row              = new stdClass();
-                        $row->list_name   = $this->runtime_data->current_menuitem->extension->parameters->$dashboard_list_number;
+                        $temp[] = $dashboard_list_number;
+                        $row    = new stdClass();
+                        $row->list_name
+                                          = $this->runtime_data->current_menuitem->extension->parameters->$dashboard_list_number;
                         $dashboard_list[] = $row;
                     }
                 }
             }
         }
 
-        $lists = array();
-        $class = 'Molajo\\Controller\\Datalist';
-        $datalist = new $class($this->resource);
+        $lists                   = array();
+        $class                   = 'Molajo\\Controller\\Datalist';
+        $datalist                = new $class($this->resource);
         $options                 = array();
         $options['runtime_data'] = $this->runtime_data;
         $options['plugin_data']  = $this->plugin_data;

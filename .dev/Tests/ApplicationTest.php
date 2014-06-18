@@ -90,12 +90,12 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->database         = new MockDatabase();
-        $this->query            = new MockQuery(new stdClass());
-        $this->fieldhandler     = new MockFieldHandler();
-        $this->request_path     = 'example.com/admin/';
-        $this->applications     = $this->mockApplicationInstances();
-        $this->model_registry   = null;
+        $this->database       = new MockDatabase();
+        $this->query          = new MockQuery(new stdClass());
+        $this->fieldhandler   = new MockFieldHandler();
+        $this->request_path   = 'example.com/admin/';
+        $this->applications   = $this->mockApplicationInstances();
+        $this->model_registry = null;
 
         return $this;
     }
@@ -144,7 +144,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetApplicationTrailSlashSite()
     {
-        $this->request_path     = 'example.com/';
+        $this->request_path = 'example.com/';
 
         $this->instantiateClass();
 
@@ -185,7 +185,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetApplicationNoTrailSlashSite()
     {
-        $this->request_path     = 'example.com';
+        $this->request_path = 'example.com';
 
         $this->instantiateClass();
 
@@ -226,7 +226,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetApplicationTrailSlashAdmin()
     {
-        $this->request_path     = 'example.com/admin/';
+        $this->request_path = 'example.com/admin/';
 
         $this->instantiateClass();
 
@@ -267,7 +267,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetApplicationNoTrailSlashAdmin()
     {
-        $this->request_path     = 'example.com/admin';
+        $this->request_path = 'example.com/admin';
 
         $this->instantiateClass();
 
@@ -308,7 +308,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetConfiguration()
     {
-        $this->request_path     = 'example.com/admin';
+        $this->request_path = 'example.com/admin';
 
         $this->instantiateClass();
 
@@ -391,7 +391,7 @@ class MockDatabase extends Joomla implements DatabaseInterface
 
     public function loadObjectList($offset = null, $limit = null)
     {
-        $data = new stdClass();
+        $data                  = new stdClass();
         $data->id              = 1;
         $data->base_path       = 'admin';
         $data->path            = 'admin';
@@ -405,21 +405,21 @@ class MockDatabase extends Joomla implements DatabaseInterface
 
         $group = array();
 
-        $field = array();
-        $field['name'] = 'food';
+        $field            = array();
+        $field['name']    = 'food';
         $field['default'] = 'ice cream';
-        $field['type'] = 'string';
+        $field['type']    = 'string';
 
         $group[] = $field;
 
-        $field = array();
-        $field['name'] = 'animal';
+        $field            = array();
+        $field['name']    = 'animal';
         $field['default'] = 'dog';
-        $field['type'] = 'string';
+        $field['type']    = 'string';
 
         $group[] = $field;
 
-        $model_registry = array();
+        $model_registry                  = array();
         $model_registry['custom_fields'] = $group;
 
     }

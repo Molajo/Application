@@ -12,7 +12,7 @@ use Exception;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\FactoryInterface;
 use CommonApi\IoC\FactoryBatchInterface;
-use Molajo\IoC\FactoryMethodBase;
+use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
 
 /**
  * Resource Factory Method
@@ -47,7 +47,7 @@ class ResourcecontrollerFactoryMethod extends FactoryMethodBase implements Facto
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function setDependencies(array $reflection = null)
+    public function setDependencies(array $reflection = array())
     {
         parent::setDependencies($reflection);
 
@@ -88,7 +88,8 @@ class ResourcecontrollerFactoryMethod extends FactoryMethodBase implements Facto
             );
         } catch (Exception $e) {
 
-            throw new RuntimeException('IoC instantiateClass Failed: '
+            throw new RuntimeException(
+                'IoC instantiateClass Failed: '
                 . $this->product_namespace . '  ' . $e->getMessage()
             );
         }
@@ -115,7 +116,7 @@ class ResourcecontrollerFactoryMethod extends FactoryMethodBase implements Facto
      */
     public function setContainerEntries()
     {
-        $this->set_container_entries['Runtimedata']           = $this->dependencies['Runtimedata'];
+        $this->set_container_entries['Runtimedata'] = $this->dependencies['Runtimedata'];
 
         return $this->set_container_entries;
     }
@@ -128,7 +129,7 @@ class ResourcecontrollerFactoryMethod extends FactoryMethodBase implements Facto
      */
     public function scheduleFactories()
     {
-        $options = array();
+        $options                                = array();
         $this->schedule_factory_methods['Date'] = $options;
 
         return $this->schedule_factory_methods;

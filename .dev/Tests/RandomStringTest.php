@@ -30,8 +30,8 @@ class RandomStringTest extends \PHPUnit_Framework_TestCase
     protected $random_instance;
 
     /**
-     * @covers Molajo\Controller\RandomString::__construct
-     * @covers Molajo\Controller\RandomString::generateString
+     * @covers  Molajo\Controller\RandomString::__construct
+     * @covers  Molajo\Controller\RandomString::generateString
      *
      * @return  $this
      * @since   1.0
@@ -39,7 +39,7 @@ class RandomStringTest extends \PHPUnit_Framework_TestCase
     public function testGenerateString()
     {
         $this->random_instance = new RandomString();
-        $results = $this->random_instance->generateString();
+        $results               = $this->random_instance->generateString();
 
         $this->assertEquals(true, strlen($results) > 4);
 
@@ -47,8 +47,8 @@ class RandomStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Molajo\Controller\RandomString::__construct
-     * @covers Molajo\Controller\RandomString::generateString
+     * @covers  Molajo\Controller\RandomString::__construct
+     * @covers  Molajo\Controller\RandomString::generateString
      *
      * @return  $this
      * @since   1.0
@@ -56,7 +56,7 @@ class RandomStringTest extends \PHPUnit_Framework_TestCase
     public function testGenerateStringConstructor()
     {
         $this->random_instance = new RandomString(5, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-        $results = $this->random_instance->generateString();
+        $results               = $this->random_instance->generateString();
 
         $this->assertEquals(5, strlen($results));
 
@@ -64,8 +64,8 @@ class RandomStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Molajo\Controller\RandomString::__construct
-     * @covers Molajo\Controller\RandomString::generateString
+     * @covers  Molajo\Controller\RandomString::__construct
+     * @covers  Molajo\Controller\RandomString::generateString
      *
      * @return  $this
      * @since   1.0
@@ -73,7 +73,7 @@ class RandomStringTest extends \PHPUnit_Framework_TestCase
     public function testGenerateStringPassin()
     {
         $this->random_instance = new RandomString();
-        $results = $this->random_instance->generateString(5, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+        $results               = $this->random_instance->generateString(5, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
         $this->assertEquals(5, strlen($results));
 

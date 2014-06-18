@@ -65,7 +65,7 @@ class MenuitemsPlugin extends SystemEventPlugin implements SystemInterface
             $menuitem->getModelRegistry('primary_prefix', 'a') . '.' . 'catalog_type_id',
             '=',
             'integer',
-            (int) $this->runtime_data->reference_data->catalog_type_menuitem_id
+            (int)$this->runtime_data->reference_data->catalog_type_menuitem_id
         );
 
         $menuitem->orderBy($menuitem->getModelRegistry('primary_prefix', 'a') . '.' . 'root', 'ASC');
@@ -92,7 +92,7 @@ class MenuitemsPlugin extends SystemEventPlugin implements SystemInterface
             $lvl  = (int)$item->lvl - 1;
 
             if ($lvl > 0) {
-                for ($i = 0; $i < $lvl; $i ++) {
+                for ($i = 0; $i < $lvl; $i++) {
                     $name = ' ..' . $name;
                 }
             }

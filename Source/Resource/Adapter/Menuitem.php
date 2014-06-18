@@ -203,7 +203,7 @@ class Menuitem extends AbstractAdapter implements AdapterInterface
     {
         if (file_exists($located_path)) {
         } else {
-            throw new RuntimeException ('Resource: Menuitem not found.');
+            throw new RuntimeException('Resource: Menuitem not found.');
         }
 
         try {

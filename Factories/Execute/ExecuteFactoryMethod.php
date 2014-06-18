@@ -11,7 +11,7 @@ namespace Molajo\Factories\Execute;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\FactoryBatchInterface;
 use CommonApi\IoC\FactoryInterface;
-use Molajo\IoC\FactoryMethodBase;
+use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
 use stdClass;
 
 /**
@@ -35,8 +35,7 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
     {
         $options['product_name']      = basename(__DIR__);
         $options['product_namespace'] = null;
-echo 'ini ExecuteFactoryMethod';
-        die;
+
         parent::__construct($options);
     }
 
@@ -47,7 +46,7 @@ echo 'ini ExecuteFactoryMethod';
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function setDependencies(array $reflection = null)
+    public function setDependencies(array $reflection = array())
     {
         parent::setDependencies($reflection);
         $this->dependencies['Database']     = array();
@@ -72,13 +71,12 @@ echo 'ini ExecuteFactoryMethod';
         parent::onBeforeInstantiation($dependency_values);
 
         $this->dependencies['applications']   = $this->getExecuteInstances();
-        $this->dependencies['model_registry'] =
-            $this->dependencies['Resource']->get('xml:///Molajo//Model//Datasource//Execute.xml');
+        $this->dependencies['model_registry'] = $this->dependencies['Resource']->get(
+            'xml:///Molajo//Model//Datasource//Execute.xml'
+        );
 
-        $this->dependencies['request_path']     = $this->dependencies['Request']->path;
-echo '<pre>';
-        var_dump($this->dependencies['Runtimedata']);
-        die;
+        $this->dependencies['request_path'] = $this->dependencies['Request']->path;
+
         return $this->dependencies;
     }
 
@@ -129,7 +127,7 @@ echo '<pre>';
      */
     public function setContainerEntries()
     {
-        $this->set_container_entries['Runtimedata']           = $this->dependencies['Runtimedata'];
+        $this->set_container_entries['Runtimedata'] = $this->dependencies['Runtimedata'];
 
         return $this->set_container_entries;
     }
@@ -142,7 +140,7 @@ echo '<pre>';
      */
     public function scheduleFactories()
     {
-        $options = array();
+        $options                                = array();
         $this->schedule_factory_methods['Date'] = $options;
 
         return $this->schedule_factory_methods;

@@ -6,7 +6,7 @@
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
-$base     = substr(__DIR__, 0, strlen(__DIR__) - 5);
+$base = substr(__DIR__, 0, strlen(__DIR__) - 5);
 include_once $base . '/vendor/autoload.php';
 if (function_exists('CreateClassMap')) {
 } else {
@@ -70,8 +70,11 @@ $results  = createClassMap($base . '/Source/Plugins/Status', 'Molajo\\Plugins\\S
 $classmap = array_merge($classmap, $results);
 ksort($classmap);
 
-$results  = createClassMap($base . '/Source/Resource/Adapter', 'Molajo\\Resource\\Adapter\\');
-$classmap = array_merge($classmap, $results);
+$results                                    = createClassMap(
+    $base . '/Source/Resource/Adapter',
+    'Molajo\\Resource\\Adapter\\'
+);
+$classmap                                   = array_merge($classmap, $results);
 $classmap['Molajo\\Resource\\ExtensionMap'] = $base . '/Source/Resource/ExtensionMap.php';
 
 $results  = createClassMap($base . '/Factories', 'Molajo\\Factories\\');

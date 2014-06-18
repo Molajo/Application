@@ -86,7 +86,7 @@ class SiteTest extends \PHPUnit_Framework_TestCase
         $host = 'site2';
         $path = 'admin';
 
-        $sites = array();
+        $sites                = array();
         $site                 = new stdClass();
         $site->id             = 1;
         $site->name           = 'Site 1';

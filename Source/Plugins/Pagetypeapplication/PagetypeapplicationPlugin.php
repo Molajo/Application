@@ -80,7 +80,7 @@ class PagetypeapplicationPlugin extends DisplayEventPlugin implements DisplayInt
         foreach ($pages as $item) {
             if ($item == '') {
             } else {
-                $i ++;
+                $i++;
                 $temp_row     = new stdClass();
                 $temp_row->id = $i;
                 if ($i == $page_number) {

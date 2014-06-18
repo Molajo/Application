@@ -8,7 +8,7 @@
  */
 namespace Molajo\Controller\Test;
 
-use Molajo\Controller\ErrorHandling;
+use Molajo\Controller\Errorhandling;
 
 /**
  * Error Handling Test
@@ -18,7 +18,7 @@ use Molajo\Controller\ErrorHandling;
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class ErrorHandlingTest extends \PHPUnit_Framework_TestCase
+class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Options

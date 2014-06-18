@@ -379,8 +379,8 @@ class DateController extends DateTime implements DateInterface
     /**
      * Provides translated name of day in abbreviated or full format, given day number
      *
-     * @param   string   $day_number
-     * @param   boolean  $abbreviation
+     * @param   string  $day_number
+     * @param   boolean $abbreviation
      *
      * @return  string
      * @since   1.0
@@ -393,8 +393,8 @@ class DateController extends DateTime implements DateInterface
     /**
      * Provides translated name of month in abbreviated or full format, given month number
      *
-     * @param   string   $month_number
-     * @param   boolean  $abbreviation
+     * @param   string  $month_number
+     * @param   boolean $abbreviation
      *
      * @return  string
      * @since   1.0

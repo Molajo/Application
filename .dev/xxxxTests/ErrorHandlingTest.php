@@ -8,7 +8,7 @@
  */
 namespace Molajo\Controller\Test;
 
-use Molajo\Controller\ErrorHandling;
+use Molajo\Controller\Errorhandling;
 
 /**
  * Error Handling Test
@@ -18,7 +18,7 @@ use Molajo\Controller\ErrorHandling;
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class ErrorHandlingTest extends \PHPUnit_Framework_TestCase
+class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Error Handling
@@ -29,26 +29,26 @@ class ErrorHandlingTest extends \PHPUnit_Framework_TestCase
     protected $error_handling;
 
     /**
-     * @covers Molajo\Controller\ErrorHandling::__construct
-     * @covers Molajo\Controller\ErrorHandling::setError
-     * @covers Molajo\Controller\ErrorHandling::setErrorMessage
-     * @covers Molajo\Controller\ErrorHandling::setThemePageView
+     * @covers  Molajo\Controller\Errorhandling::__construct
+     * @covers  Molajo\Controller\Errorhandling::setError
+     * @covers  Molajo\Controller\Errorhandling::setErrorMessage
+     * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
      * @since   1.0
      */
     protected function setUp()
     {
-        $this->error_handling = new ErrorHandling();
+        $this->error_handling = new Errorhandling();
     }
 
     /**
      * 403
      *
-     * @covers Molajo\Controller\ErrorHandling::__construct
-     * @covers Molajo\Controller\ErrorHandling::setError
-     * @covers Molajo\Controller\ErrorHandling::setErrorMessage
-     * @covers Molajo\Controller\ErrorHandling::setThemePageView
+     * @covers  Molajo\Controller\Errorhandling::__construct
+     * @covers  Molajo\Controller\Errorhandling::setError
+     * @covers  Molajo\Controller\Errorhandling::setErrorMessage
+     * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
      * @since   1.0
@@ -68,10 +68,10 @@ class ErrorHandlingTest extends \PHPUnit_Framework_TestCase
     /**
      * 404
      *
-     * @covers Molajo\Controller\ErrorHandling::__construct
-     * @covers Molajo\Controller\ErrorHandling::setError
-     * @covers Molajo\Controller\ErrorHandling::setErrorMessage
-     * @covers Molajo\Controller\ErrorHandling::setThemePageView
+     * @covers  Molajo\Controller\Errorhandling::__construct
+     * @covers  Molajo\Controller\Errorhandling::setError
+     * @covers  Molajo\Controller\Errorhandling::setErrorMessage
+     * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
      * @since   1.0
@@ -91,10 +91,10 @@ class ErrorHandlingTest extends \PHPUnit_Framework_TestCase
     /**
      * 500
      *
-     * @covers Molajo\Controller\ErrorHandling::__construct
-     * @covers Molajo\Controller\ErrorHandling::setError
-     * @covers Molajo\Controller\ErrorHandling::setErrorMessage
-     * @covers Molajo\Controller\ErrorHandling::setThemePageView
+     * @covers  Molajo\Controller\Errorhandling::__construct
+     * @covers  Molajo\Controller\Errorhandling::setError
+     * @covers  Molajo\Controller\Errorhandling::setErrorMessage
+     * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
      * @since   1.0
@@ -114,10 +114,10 @@ class ErrorHandlingTest extends \PHPUnit_Framework_TestCase
     /**
      * 503
      *
-     * @covers Molajo\Controller\ErrorHandling::__construct
-     * @covers Molajo\Controller\ErrorHandling::setError
-     * @covers Molajo\Controller\ErrorHandling::setErrorMessage
-     * @covers Molajo\Controller\ErrorHandling::setThemePageView
+     * @covers  Molajo\Controller\Errorhandling::__construct
+     * @covers  Molajo\Controller\Errorhandling::setError
+     * @covers  Molajo\Controller\Errorhandling::setErrorMessage
+     * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
      * @since   1.0
@@ -137,10 +137,10 @@ class ErrorHandlingTest extends \PHPUnit_Framework_TestCase
     /**
      * 503
      *
-     * @covers Molajo\Controller\ErrorHandling::__construct
-     * @covers Molajo\Controller\ErrorHandling::setError
-     * @covers Molajo\Controller\ErrorHandling::setErrorMessage
-     * @covers Molajo\Controller\ErrorHandling::setThemePageView
+     * @covers  Molajo\Controller\Errorhandling::__construct
+     * @covers  Molajo\Controller\Errorhandling::setError
+     * @covers  Molajo\Controller\Errorhandling::setErrorMessage
+     * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
      * @since   1.0
@@ -160,10 +160,10 @@ class ErrorHandlingTest extends \PHPUnit_Framework_TestCase
     /**
      * Invalid Code
      *
-     * @covers Molajo\Controller\ErrorHandling::__construct
-     * @covers Molajo\Controller\ErrorHandling::setError
-     * @covers Molajo\Controller\ErrorHandling::setErrorMessage
-     * @covers Molajo\Controller\ErrorHandling::setThemePageView
+     * @covers  Molajo\Controller\Errorhandling::__construct
+     * @covers  Molajo\Controller\Errorhandling::setError
+     * @covers  Molajo\Controller\Errorhandling::setErrorMessage
+     * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @expectedException \CommonApi\Exception\ErrorThrownAsException
      * @expectedExceptionMessage

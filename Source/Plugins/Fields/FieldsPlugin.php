@@ -77,9 +77,11 @@ class FieldsPlugin extends DisplayEventPlugin implements DisplayInterface
 
                     if (count($fields) > 0 && is_array($fields)) {
                         foreach ($fields as $field) {
-                            $row        = new stdClass();
-                            $row->id    = $field['name'];
-                            $row->value = $field['name'] . ' (' . $this->language_controller->translateString($group) . ')';
+                            $row     = new stdClass();
+                            $row->id = $field['name'];
+                            $row->value
+                                     =
+                                $field['name'] . ' (' . $this->language_controller->translateString($group) . ')';
 
                             $group_array[]      = $row;
                             $all_fields_array[] = $row;
@@ -100,9 +102,10 @@ class FieldsPlugin extends DisplayEventPlugin implements DisplayInterface
                     foreach ($row as $f) {
                         if (trim($f) == '') {
                         } else {
-                            $row        = new stdClass();
-                            $row->id    = $field['alias'] . '_' . $f;
-                            $row->value = $field['alias'] . '_' . $f . ' (' . $this->language_controller->translateString(
+                            $row     = new stdClass();
+                            $row->id = $field['alias'] . '_' . $f;
+                            $row->value
+                                     = $field['alias'] . '_' . $f . ' (' . $this->language_controller->translateString(
                                     'joins'
                                 ) . ')';
 

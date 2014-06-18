@@ -58,7 +58,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
     protected $steps
         = array(
             'Initialise',
-            'Authenticate',
+            'Authentication',
             'Route',
             'Authorise',
             'Resourcecontroller',
@@ -192,6 +192,9 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
             }
         }
 
+        echo 'after initialise';
+        die;
+
         return $this;
     }
 
@@ -233,18 +236,17 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      */
     public function scheduleFactoryMethod($product_name, array $options = array())
     {
-        $options['base_path'] = $this->base_path;
-/***
-        if ($this->debug === true) {
-
-            $log_level = 100;
-            $class = 'Molajo\\Controller\\FrontController';
-            $method = 'scheduleFactoryMethod';
-            $product = $product_name;
-
-            trigger_error('Frontcontroller::initialise scheduleFactoryMethod for: ' . $product_name, E_USER_NOTICE);
-        }
-*/
+        /***
+         * if ($this->debug === true) {
+         *
+         * $log_level = 100;
+         * $class = 'Molajo\\Controller\\FrontController';
+         * $method = 'scheduleFactoryMethod';
+         * $product = $product_name;
+         *
+         * trigger_error('Frontcontroller::initialise scheduleFactoryMethod for: ' . $product_name, E_USER_NOTICE);
+         * }
+         */
         $instance = $this->runFactoryMethod($product_name, $options);
 
         return $instance;
@@ -280,8 +282,10 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    protected function runFactoryMethod($product_name, array $options)
+    protected function runFactoryMethod($product_name, array $options = array())
     {
+        $options['base_path'] = $this->base_path;
+
         try {
             return $this->queue->scheduleFactoryMethod($product_name, $options);
 
@@ -309,14 +313,15 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
         echo '<pre>';
         var_dump(
             array(
-                $error_number, $message, $file, $line_number, $context
+                $error_number,
+                $message,
+                $file,
+                $line_number,
+                $context
             )
         );
-        echo '<pre>';
-        var_dump($this->queue->scheduleFactoryMethod('ErrorHandling'));
         die;
-     //   die;
-        $this->queue->scheduleFactoryMethod('ErrorHandling')
+        $this->queue->scheduleFactoryMethod('Errorhandling')
             ->setError($error_number, $message, $file, $line_number, $context);
     }
 
@@ -330,16 +335,17 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      */
     public function setException(Exception $e)
     {
-echo 'xxxxIn Frontcontroller setExceptionxxxx<br>';
-echo '<pre>';
-var_dump(
-    array(
-        $e
-    )
-);
+        echo 'xxxxIn Frontcontroller setExceptionxxxx<br>';
+        echo '<pre>';
+        var_dump(
+            array(
+                $e
+            )
+        );
         die;
-        $options                 = array();
-        $options['exception']    = $e;
+        $options              = array();
+        $options['exception'] = $e;
+        $options['base_path'] = $this->base_path;
 
         return $this->queue->scheduleFactoryMethod('ExceptionHandling')->handleException($options);
     }

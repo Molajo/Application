@@ -10,7 +10,7 @@ namespace Molajo\Factories\Authenticate;
 
 use CommonApi\IoC\FactoryInterface;
 use CommonApi\IoC\FactoryBatchInterface;
-use Molajo\IoC\FactoryMethodBase;
+use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
 
 /**
  * Authenticate Factory Method
@@ -44,12 +44,12 @@ class AuthenticateFactoryMethod extends FactoryMethodBase implements FactoryInte
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function setDependencies(array $reflection = null)
+    public function setDependencies(array $reflection = array())
     {
-        parent::setDependencies(null);
+        parent::setDependencies(array());
 
-        $options                             = array();
-        $this->dependencies['User']          = $options;
+        $options                    = array();
+        $this->dependencies['User'] = $options;
 
         return $this->dependencies;
     }

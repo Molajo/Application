@@ -30,21 +30,21 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     protected $text_instance;
 
     /**
-     * @covers Molajo\Controller\TextController::__construct
-     * @covers Molajo\Controller\TextController::getPlaceHolderText
-     * @covers Molajo\Controller\TextController::editCountLoremSet
-     * @covers Molajo\Controller\TextController::editNumberOfParagraphs
-     * @covers Molajo\Controller\TextController::editLinesPerParagraph
-     * @covers Molajo\Controller\TextController::editWordsPerLine
-     * @covers Molajo\Controller\TextController::editValidMarkup
-     * @covers Molajo\Controller\TextController::editMarkupType
-     * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
-     * @covers Molajo\Controller\TextController::createParagraphs
-     * @covers Molajo\Controller\TextController::setMarkupRequirements
-     * @covers Molajo\Controller\TextController::createLines
-     * @covers Molajo\Controller\TextController::createWords
-     * @covers Molajo\Controller\TextController::createWord
-     * @covers Molajo\Controller\TextController::createFirstWord
+     * @covers  Molajo\Controller\TextController::__construct
+     * @covers  Molajo\Controller\TextController::getPlaceHolderText
+     * @covers  Molajo\Controller\TextController::editCountLoremSet
+     * @covers  Molajo\Controller\TextController::editNumberOfParagraphs
+     * @covers  Molajo\Controller\TextController::editLinesPerParagraph
+     * @covers  Molajo\Controller\TextController::editWordsPerLine
+     * @covers  Molajo\Controller\TextController::editValidMarkup
+     * @covers  Molajo\Controller\TextController::editMarkupType
+     * @covers  Molajo\Controller\TextController::editStartWithLoremIpsum
+     * @covers  Molajo\Controller\TextController::createParagraphs
+     * @covers  Molajo\Controller\TextController::setMarkupRequirements
+     * @covers  Molajo\Controller\TextController::createLines
+     * @covers  Molajo\Controller\TextController::createWords
+     * @covers  Molajo\Controller\TextController::createWord
+     * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -55,21 +55,21 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Molajo\Controller\TextController::__construct
-     * @covers Molajo\Controller\TextController::getPlaceHolderText
-     * @covers Molajo\Controller\TextController::editCountLoremSet
-     * @covers Molajo\Controller\TextController::editNumberOfParagraphs
-     * @covers Molajo\Controller\TextController::editLinesPerParagraph
-     * @covers Molajo\Controller\TextController::editWordsPerLine
-     * @covers Molajo\Controller\TextController::editValidMarkup
-     * @covers Molajo\Controller\TextController::editMarkupType
-     * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
-     * @covers Molajo\Controller\TextController::createParagraphs
-     * @covers Molajo\Controller\TextController::setMarkupRequirements
-     * @covers Molajo\Controller\TextController::createLines
-     * @covers Molajo\Controller\TextController::createWords
-     * @covers Molajo\Controller\TextController::createWord
-     * @covers Molajo\Controller\TextController::createFirstWord
+     * @covers  Molajo\Controller\TextController::__construct
+     * @covers  Molajo\Controller\TextController::getPlaceHolderText
+     * @covers  Molajo\Controller\TextController::editCountLoremSet
+     * @covers  Molajo\Controller\TextController::editNumberOfParagraphs
+     * @covers  Molajo\Controller\TextController::editLinesPerParagraph
+     * @covers  Molajo\Controller\TextController::editWordsPerLine
+     * @covers  Molajo\Controller\TextController::editValidMarkup
+     * @covers  Molajo\Controller\TextController::editMarkupType
+     * @covers  Molajo\Controller\TextController::editStartWithLoremIpsum
+     * @covers  Molajo\Controller\TextController::createParagraphs
+     * @covers  Molajo\Controller\TextController::setMarkupRequirements
+     * @covers  Molajo\Controller\TextController::createLines
+     * @covers  Molajo\Controller\TextController::createWords
+     * @covers  Molajo\Controller\TextController::createWord
+     * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -91,21 +91,21 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Molajo\Controller\TextController::__construct
-     * @covers Molajo\Controller\TextController::getPlaceHolderText
-     * @covers Molajo\Controller\TextController::editCountLoremSet
-     * @covers Molajo\Controller\TextController::editNumberOfParagraphs
-     * @covers Molajo\Controller\TextController::editLinesPerParagraph
-     * @covers Molajo\Controller\TextController::editWordsPerLine
-     * @covers Molajo\Controller\TextController::editValidMarkup
-     * @covers Molajo\Controller\TextController::editMarkupType
-     * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
-     * @covers Molajo\Controller\TextController::createParagraphs
-     * @covers Molajo\Controller\TextController::setMarkupRequirements
-     * @covers Molajo\Controller\TextController::createLines
-     * @covers Molajo\Controller\TextController::createWords
-     * @covers Molajo\Controller\TextController::createWord
-     * @covers Molajo\Controller\TextController::createFirstWord
+     * @covers  Molajo\Controller\TextController::__construct
+     * @covers  Molajo\Controller\TextController::getPlaceHolderText
+     * @covers  Molajo\Controller\TextController::editCountLoremSet
+     * @covers  Molajo\Controller\TextController::editNumberOfParagraphs
+     * @covers  Molajo\Controller\TextController::editLinesPerParagraph
+     * @covers  Molajo\Controller\TextController::editWordsPerLine
+     * @covers  Molajo\Controller\TextController::editValidMarkup
+     * @covers  Molajo\Controller\TextController::editMarkupType
+     * @covers  Molajo\Controller\TextController::editStartWithLoremIpsum
+     * @covers  Molajo\Controller\TextController::createParagraphs
+     * @covers  Molajo\Controller\TextController::setMarkupRequirements
+     * @covers  Molajo\Controller\TextController::createLines
+     * @covers  Molajo\Controller\TextController::createWords
+     * @covers  Molajo\Controller\TextController::createWord
+     * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -125,21 +125,21 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Molajo\Controller\TextController::__construct
-     * @covers Molajo\Controller\TextController::getPlaceHolderText
-     * @covers Molajo\Controller\TextController::editCountLoremSet
-     * @covers Molajo\Controller\TextController::editNumberOfParagraphs
-     * @covers Molajo\Controller\TextController::editLinesPerParagraph
-     * @covers Molajo\Controller\TextController::editWordsPerLine
-     * @covers Molajo\Controller\TextController::editValidMarkup
-     * @covers Molajo\Controller\TextController::editMarkupType
-     * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
-     * @covers Molajo\Controller\TextController::createParagraphs
-     * @covers Molajo\Controller\TextController::setMarkupRequirements
-     * @covers Molajo\Controller\TextController::createLines
-     * @covers Molajo\Controller\TextController::createWords
-     * @covers Molajo\Controller\TextController::createWord
-     * @covers Molajo\Controller\TextController::createFirstWord
+     * @covers  Molajo\Controller\TextController::__construct
+     * @covers  Molajo\Controller\TextController::getPlaceHolderText
+     * @covers  Molajo\Controller\TextController::editCountLoremSet
+     * @covers  Molajo\Controller\TextController::editNumberOfParagraphs
+     * @covers  Molajo\Controller\TextController::editLinesPerParagraph
+     * @covers  Molajo\Controller\TextController::editWordsPerLine
+     * @covers  Molajo\Controller\TextController::editValidMarkup
+     * @covers  Molajo\Controller\TextController::editMarkupType
+     * @covers  Molajo\Controller\TextController::editStartWithLoremIpsum
+     * @covers  Molajo\Controller\TextController::createParagraphs
+     * @covers  Molajo\Controller\TextController::setMarkupRequirements
+     * @covers  Molajo\Controller\TextController::createLines
+     * @covers  Molajo\Controller\TextController::createWords
+     * @covers  Molajo\Controller\TextController::createWord
+     * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -159,21 +159,21 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Molajo\Controller\TextController::__construct
-     * @covers Molajo\Controller\TextController::getPlaceHolderText
-     * @covers Molajo\Controller\TextController::editCountLoremSet
-     * @covers Molajo\Controller\TextController::editNumberOfParagraphs
-     * @covers Molajo\Controller\TextController::editLinesPerParagraph
-     * @covers Molajo\Controller\TextController::editWordsPerLine
-     * @covers Molajo\Controller\TextController::editValidMarkup
-     * @covers Molajo\Controller\TextController::editMarkupType
-     * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
-     * @covers Molajo\Controller\TextController::createParagraphs
-     * @covers Molajo\Controller\TextController::setMarkupRequirements
-     * @covers Molajo\Controller\TextController::createLines
-     * @covers Molajo\Controller\TextController::createWords
-     * @covers Molajo\Controller\TextController::createWord
-     * @covers Molajo\Controller\TextController::createFirstWord
+     * @covers  Molajo\Controller\TextController::__construct
+     * @covers  Molajo\Controller\TextController::getPlaceHolderText
+     * @covers  Molajo\Controller\TextController::editCountLoremSet
+     * @covers  Molajo\Controller\TextController::editNumberOfParagraphs
+     * @covers  Molajo\Controller\TextController::editLinesPerParagraph
+     * @covers  Molajo\Controller\TextController::editWordsPerLine
+     * @covers  Molajo\Controller\TextController::editValidMarkup
+     * @covers  Molajo\Controller\TextController::editMarkupType
+     * @covers  Molajo\Controller\TextController::editStartWithLoremIpsum
+     * @covers  Molajo\Controller\TextController::createParagraphs
+     * @covers  Molajo\Controller\TextController::setMarkupRequirements
+     * @covers  Molajo\Controller\TextController::createLines
+     * @covers  Molajo\Controller\TextController::createWords
+     * @covers  Molajo\Controller\TextController::createWord
+     * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -193,21 +193,21 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Molajo\Controller\TextController::__construct
-     * @covers Molajo\Controller\TextController::getPlaceHolderText
-     * @covers Molajo\Controller\TextController::editCountLoremSet
-     * @covers Molajo\Controller\TextController::editNumberOfParagraphs
-     * @covers Molajo\Controller\TextController::editLinesPerParagraph
-     * @covers Molajo\Controller\TextController::editWordsPerLine
-     * @covers Molajo\Controller\TextController::editValidMarkup
-     * @covers Molajo\Controller\TextController::editMarkupType
-     * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
-     * @covers Molajo\Controller\TextController::createParagraphs
-     * @covers Molajo\Controller\TextController::setMarkupRequirements
-     * @covers Molajo\Controller\TextController::createLines
-     * @covers Molajo\Controller\TextController::createWords
-     * @covers Molajo\Controller\TextController::createWord
-     * @covers Molajo\Controller\TextController::createFirstWord
+     * @covers  Molajo\Controller\TextController::__construct
+     * @covers  Molajo\Controller\TextController::getPlaceHolderText
+     * @covers  Molajo\Controller\TextController::editCountLoremSet
+     * @covers  Molajo\Controller\TextController::editNumberOfParagraphs
+     * @covers  Molajo\Controller\TextController::editLinesPerParagraph
+     * @covers  Molajo\Controller\TextController::editWordsPerLine
+     * @covers  Molajo\Controller\TextController::editValidMarkup
+     * @covers  Molajo\Controller\TextController::editMarkupType
+     * @covers  Molajo\Controller\TextController::editStartWithLoremIpsum
+     * @covers  Molajo\Controller\TextController::createParagraphs
+     * @covers  Molajo\Controller\TextController::setMarkupRequirements
+     * @covers  Molajo\Controller\TextController::createLines
+     * @covers  Molajo\Controller\TextController::createWords
+     * @covers  Molajo\Controller\TextController::createWord
+     * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -227,21 +227,21 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Molajo\Controller\TextController::__construct
-     * @covers Molajo\Controller\TextController::getPlaceHolderText
-     * @covers Molajo\Controller\TextController::editCountLoremSet
-     * @covers Molajo\Controller\TextController::editNumberOfParagraphs
-     * @covers Molajo\Controller\TextController::editLinesPerParagraph
-     * @covers Molajo\Controller\TextController::editWordsPerLine
-     * @covers Molajo\Controller\TextController::editValidMarkup
-     * @covers Molajo\Controller\TextController::editMarkupType
-     * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
-     * @covers Molajo\Controller\TextController::createParagraphs
-     * @covers Molajo\Controller\TextController::setMarkupRequirements
-     * @covers Molajo\Controller\TextController::createLines
-     * @covers Molajo\Controller\TextController::createWords
-     * @covers Molajo\Controller\TextController::createWord
-     * @covers Molajo\Controller\TextController::createFirstWord
+     * @covers  Molajo\Controller\TextController::__construct
+     * @covers  Molajo\Controller\TextController::getPlaceHolderText
+     * @covers  Molajo\Controller\TextController::editCountLoremSet
+     * @covers  Molajo\Controller\TextController::editNumberOfParagraphs
+     * @covers  Molajo\Controller\TextController::editLinesPerParagraph
+     * @covers  Molajo\Controller\TextController::editWordsPerLine
+     * @covers  Molajo\Controller\TextController::editValidMarkup
+     * @covers  Molajo\Controller\TextController::editMarkupType
+     * @covers  Molajo\Controller\TextController::editStartWithLoremIpsum
+     * @covers  Molajo\Controller\TextController::createParagraphs
+     * @covers  Molajo\Controller\TextController::setMarkupRequirements
+     * @covers  Molajo\Controller\TextController::createLines
+     * @covers  Molajo\Controller\TextController::createWords
+     * @covers  Molajo\Controller\TextController::createWord
+     * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -257,26 +257,28 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
             $valid_markup = array('p', 'h1', 'h2', 'h3', 'h4', 'h5', 'ul', 'ol', 'blockquote')
         );
 
-        $this->assertEquals(array('p', 'h1', 'h2', 'h3', 'h4', 'h5', 'ul', 'ol', 'blockquote'),
-            $this->text_instance->valid);
+        $this->assertEquals(
+            array('p', 'h1', 'h2', 'h3', 'h4', 'h5', 'ul', 'ol', 'blockquote'),
+            $this->text_instance->valid
+        );
     }
 
     /**
-     * @covers Molajo\Controller\TextController::__construct
-     * @covers Molajo\Controller\TextController::getPlaceHolderText
-     * @covers Molajo\Controller\TextController::editCountLoremSet
-     * @covers Molajo\Controller\TextController::editNumberOfParagraphs
-     * @covers Molajo\Controller\TextController::editLinesPerParagraph
-     * @covers Molajo\Controller\TextController::editWordsPerLine
-     * @covers Molajo\Controller\TextController::editValidMarkup
-     * @covers Molajo\Controller\TextController::editMarkupType
-     * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
-     * @covers Molajo\Controller\TextController::createParagraphs
-     * @covers Molajo\Controller\TextController::setMarkupRequirements
-     * @covers Molajo\Controller\TextController::createLines
-     * @covers Molajo\Controller\TextController::createWords
-     * @covers Molajo\Controller\TextController::createWord
-     * @covers Molajo\Controller\TextController::createFirstWord
+     * @covers  Molajo\Controller\TextController::__construct
+     * @covers  Molajo\Controller\TextController::getPlaceHolderText
+     * @covers  Molajo\Controller\TextController::editCountLoremSet
+     * @covers  Molajo\Controller\TextController::editNumberOfParagraphs
+     * @covers  Molajo\Controller\TextController::editLinesPerParagraph
+     * @covers  Molajo\Controller\TextController::editWordsPerLine
+     * @covers  Molajo\Controller\TextController::editValidMarkup
+     * @covers  Molajo\Controller\TextController::editMarkupType
+     * @covers  Molajo\Controller\TextController::editStartWithLoremIpsum
+     * @covers  Molajo\Controller\TextController::createParagraphs
+     * @covers  Molajo\Controller\TextController::setMarkupRequirements
+     * @covers  Molajo\Controller\TextController::createLines
+     * @covers  Molajo\Controller\TextController::createWords
+     * @covers  Molajo\Controller\TextController::createWord
+     * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -296,21 +298,21 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Molajo\Controller\TextController::__construct
-     * @covers Molajo\Controller\TextController::getPlaceHolderText
-     * @covers Molajo\Controller\TextController::editCountLoremSet
-     * @covers Molajo\Controller\TextController::editNumberOfParagraphs
-     * @covers Molajo\Controller\TextController::editLinesPerParagraph
-     * @covers Molajo\Controller\TextController::editWordsPerLine
-     * @covers Molajo\Controller\TextController::editValidMarkup
-     * @covers Molajo\Controller\TextController::editMarkupType
-     * @covers Molajo\Controller\TextController::editStartWithLoremIpsum
-     * @covers Molajo\Controller\TextController::createParagraphs
-     * @covers Molajo\Controller\TextController::setMarkupRequirements
-     * @covers Molajo\Controller\TextController::createLines
-     * @covers Molajo\Controller\TextController::createWords
-     * @covers Molajo\Controller\TextController::createWord
-     * @covers Molajo\Controller\TextController::createFirstWord
+     * @covers  Molajo\Controller\TextController::__construct
+     * @covers  Molajo\Controller\TextController::getPlaceHolderText
+     * @covers  Molajo\Controller\TextController::editCountLoremSet
+     * @covers  Molajo\Controller\TextController::editNumberOfParagraphs
+     * @covers  Molajo\Controller\TextController::editLinesPerParagraph
+     * @covers  Molajo\Controller\TextController::editWordsPerLine
+     * @covers  Molajo\Controller\TextController::editValidMarkup
+     * @covers  Molajo\Controller\TextController::editMarkupType
+     * @covers  Molajo\Controller\TextController::editStartWithLoremIpsum
+     * @covers  Molajo\Controller\TextController::createParagraphs
+     * @covers  Molajo\Controller\TextController::setMarkupRequirements
+     * @covers  Molajo\Controller\TextController::createLines
+     * @covers  Molajo\Controller\TextController::createWords
+     * @covers  Molajo\Controller\TextController::createWord
+     * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
      * @since   1.0
@@ -350,7 +352,8 @@ class MockTextController extends TextController implements TextInterface
         $start_with_lorem_ipsum = true,
         $valid_markup = array('p', 'h1', 'h2', 'h3', 'h4', 'h5', 'ul', 'ol', 'blockquote')
     ) {
-        $output = parent::getPlaceHolderText($number_of_paragraphs,
+        $output = parent::getPlaceHolderText(
+            $number_of_paragraphs,
             $lines_per_paragraphs,
             $words_per_line,
             $markup_type,

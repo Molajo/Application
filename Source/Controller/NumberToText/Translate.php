@@ -41,7 +41,7 @@ class Translate implements TranslateInterface
         }
 
         $locale                       = str_replace('-', '', $locale);
-        $locale = ucfirst(strtolower($locale));
+        $locale                       = ucfirst(strtolower($locale));
         $class                        = 'Molajo\\Controller\\NumberToText\\' . $locale;
         $translate                    = new $class();
         $this->number_translate_array = $translate->loadTranslation();

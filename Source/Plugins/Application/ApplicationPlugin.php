@@ -152,7 +152,7 @@ class ApplicationPlugin extends SystemEventPlugin implements SystemInterface
                     $look_for_parent = $item->parent_id;
                 }
             }
-            $i ++;
+            $i++;
         }
 
         rsort($select);
@@ -288,11 +288,11 @@ class ApplicationPlugin extends SystemEventPlugin implements SystemInterface
         $count        = 0;
         $navbar       = array();
         foreach ($menu as $item) {
-            $temp = clone $item;
+            $temp               = clone $item;
             $temp->previous_lvl = $previous_lvl;
             $temp->home_url     = $this->plugin_data->page->urls['home'];
             $temp->page_url     = $this->plugin_data->page->urls['page'];
-            $temp->count        = $count ++;
+            $temp->count        = $count++;
             $navbar[]           = $temp;
             $previous_lvl       = $temp->lvl;
         }
@@ -419,8 +419,8 @@ class ApplicationPlugin extends SystemEventPlugin implements SystemInterface
     /**
      * Set Meta Data for Key
      *
-     * @param   object     $data
-     * @param   string     $key
+     * @param   object                 $data
+     * @param   string                 $key
      * @param   null|ApplicationPlugin $value
      *
      * @return  null|$this

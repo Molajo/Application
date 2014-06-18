@@ -62,7 +62,7 @@ class CsrftokenPlugin extends AbstractPlugin
                 . '<input type="hidden" name="' . $formToken . '" value="token">';
 
             $replaceThis[] = $match;
-            $i ++;
+            $i++;
         }
 
         $temp = str_replace($replaceThis, $withThis, $rendered);

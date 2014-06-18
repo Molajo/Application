@@ -36,14 +36,15 @@ class ImageController implements ImageInterface
      * @var    array
      * @since  1.0
      */
-    protected $standard_size = array(
-        'thumbnail' => array('width' => 50, 'height' => 50),
-        'small'     => array('width' => 75, 'height' => 75),
-        'medium'    => array('width' => 150, 'height' => 150),
-        'large'     => array('width' => 300, 'height' => 300),
-        'xlarge'    => array('width' => 500, 'height' => 500),
-        'normal'    => array('width' => null, 'height' => null)
-    );
+    protected $standard_size
+        = array(
+            'thumbnail' => array('width' => 50, 'height' => 50),
+            'small'     => array('width' => 75, 'height' => 75),
+            'medium'    => array('width' => 150, 'height' => 150),
+            'large'     => array('width' => 300, 'height' => 300),
+            'xlarge'    => array('width' => 500, 'height' => 500),
+            'normal'    => array('width' => null, 'height' => null)
+        );
 
     /**
      * Standard Types
@@ -122,7 +123,7 @@ class ImageController implements ImageInterface
         /** Step 1: Validate Filename */
         if (file_exists($filename)) {
         } else {
-            throw new RuntimeException ('ImageController: Filename: ' . $filename . ' Does Not Exist.');
+            throw new RuntimeException('ImageController: Filename: ' . $filename . ' Does Not Exist.');
         }
 
         /** Step 2: Type */
@@ -219,9 +220,11 @@ class ImageController implements ImageInterface
                 break;
 
             default:
-                throw new RuntimeException ('ImageController: Invalid File Extension: '
-                . $image->original_file_extension
-                . ' Filename: ' . $image->original_filename);
+                throw new RuntimeException(
+                    'ImageController: Invalid File Extension: '
+                    . $image->original_file_extension
+                    . ' Filename: ' . $image->original_filename
+                );
         }
 
         $image->original_width  = imagesx($image->original_source);
@@ -261,8 +264,8 @@ class ImageController implements ImageInterface
     /**
      * Get Image Dimensions
      *
-     * @param   string $type
-     * @param   string $size
+     * @param   string   $type
+     * @param   string   $size
      * @param   stdClass $image
      *
      * @return  object
@@ -352,14 +355,14 @@ class ImageController implements ImageInterface
                     imagejpeg($image->source, $image->filename, $image_quality);
                     break;
                 }
-                throw new RuntimeException ('ImageController resizeImage: PHP function imagejpeg is not supported');
+                throw new RuntimeException('ImageController resizeImage: PHP function imagejpeg is not supported');
 
             case 'gif':
                 if (function_exists('imagegif')) {
                     imagegif($image->source, $image->filename, $image_quality);
                     break;
                 }
-                throw new RuntimeException ('ImageController resizeImage: PHP function imagegif is not supported');
+                throw new RuntimeException('ImageController resizeImage: PHP function imagegif is not supported');
 
             case 'png':
                 // *** Scale quality from 0-100 to 0-9
@@ -372,12 +375,14 @@ class ImageController implements ImageInterface
                     imagepng($image->source, $image->filename, $invert_scale_quality);
                     break;
                 }
-                throw new RuntimeException ('ImageController resizeImage: PHP function imagepng is not supported');
+                throw new RuntimeException('ImageController resizeImage: PHP function imagepng is not supported');
 
             default:
-                throw new RuntimeException ('ImageController createResizedImage: Invalid File Extension: '
-                . $image->file_extension
-                . ' Filename: ' . $image->filename);
+                throw new RuntimeException(
+                    'ImageController createResizedImage: Invalid File Extension: '
+                    . $image->file_extension
+                    . ' Filename: ' . $image->filename
+                );
         }
 
         return $image;

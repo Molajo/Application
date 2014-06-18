@@ -48,7 +48,7 @@ class Application implements ApplicationInterface
     /**
      * Application Model Registry
      *
-     * @var    object
+     * @var    array
      * @since  1.0
      */
     protected $model_registry = null;
@@ -133,7 +133,7 @@ class Application implements ApplicationInterface
      * @param FieldhandlerInterface $fieldhandler
      * @param string                $request_path
      * @param array                 $applications
-     * @param null|object           $model_registry
+     * @param null|array            $model_registry
      *
      * @since  1.0
      */
@@ -163,10 +163,10 @@ class Application implements ApplicationInterface
     {
         $application_test = $this->setApplicationPath();
 
-        $app              = $this->getApplicationArrayEntry($application_test);
+        $app = $this->getApplicationArrayEntry($application_test);
 
-        $this->id         = $app->id;
-        $this->name       = $app->name;
+        $this->id   = $app->id;
+        $this->name = $app->name;
 
         $this->setApplicationBasePath($app);
 

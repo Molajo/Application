@@ -243,8 +243,8 @@
         <line num="591" type="stmt" count="0"/>
         <metrics loc="590" ncloc="419" classes="1" methods="14" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="187" coveredstatements="101" elements="201" coveredelements="104"/>
       </file>
-      <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/ErrorHandling.php">
-        <class name="ErrorHandling" namespace="Molajo\Controller">
+      <file name="/Users/amystephen/Sites/Molajo/Application/Source/Controller/Errorhandling.php">
+        <class name="Errorhandling" namespace="Molajo\Controller">
           <metrics methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="30" coveredstatements="29" elements="34" coveredelements="33"/>
         </class>
         <line num="95" type="method" name="__construct" crap="1" count="5"/>

@@ -60,7 +60,7 @@ class FooterPlugin extends AbstractPlugin
 
         $temp_row = array();
 
-        for ($x = 0; $x < $count; $x ++) {
+        for ($x = 0; $x < $count; $x++) {
             $temp_row = new \stdClass();
 
             $temp_row->title          = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
