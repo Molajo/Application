@@ -73,6 +73,28 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
     protected $event_callback;
 
     /**
+     * Dependencies for Events
+     *
+     * @var    array
+     * @since  1.0
+     */
+    protected $dependencies_array
+        = array(
+            'runtime_data'   => 'Runtimedata',
+            'plugin_data'    => 'Plugindata',
+            'parameters'     => 'parameters',
+            'row'            => 'row',
+            'query'          => 'query',
+            'model_registry' => 'model_registry',
+            'query_results'  => 'query_results',
+            'rendered_view'  => 'rendered_view',
+            'rendered_page'  => 'rendered_page',
+            'user'           => 'User',
+            'exclude_tokens' => 'exclude_tokens',
+            'token_objects'  => 'token_objects'
+        );
+
+    /**
      * First Step
      *
      * @var    boolean
@@ -102,6 +124,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      * @param  ScheduleInterface $schedule
      * @param  array             $requests
      * @param  string            $base_path
+     * @param  array             $dependencies
      * @param  array             $steps
      * @param  boolean           $debug
      *
@@ -112,6 +135,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
         $requests,
         $base_path,
         array $steps = array(),
+        array $dependencies = array(),
         $debug = false
     ) {
         $this->schedule  = $schedule;
@@ -121,6 +145,10 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
 
         if (count($steps) > 0) {
             $this->steps = $steps;
+        }
+
+        if (count($dependencies) > 0) {
+            $this->dependencies = $dependencies;
         }
     }
 
@@ -185,22 +213,6 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      */
     public function scheduleEvent($event_name, array $options = array())
     {
-        //todo: replace this and the event factory array
-        $dependencies_array = array(
-            'runtime_data'   => 'Runtimedata',
-            'plugin_data'    => 'Plugindata',
-            'parameters'     => 'parameters',
-            'row'            => 'row',
-            'query'          => 'query',
-            'model_registry' => 'model_registry',
-            'query_results'  => 'query_results',
-            'rendered_view'  => 'rendered_view',
-            'rendered_page'  => 'rendered_page',
-            'user'           => 'User',
-            'exclude_tokens' => 'exclude_tokens',
-            'token_objects'  => 'token_objects'
-        );
-
         if ($this->first_step === true) {
             return $this;
         }
@@ -211,10 +223,9 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
         $event_results         = $dispatcher->scheduleEvent($event_name, $event_instance);
 
         foreach ($event_results as $key => $value) {
-            $new_key = $dependencies_array[$key];
+            $new_key = $this->dependencies_array[$key];
             $this->setContainerEntry($new_key, $value);
         }
-
 
         return $event_results;
     }
@@ -225,7 +236,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      * @param   string $product_name
      * @param   array  $options
      *
-     * @return  FrontController
+     * @return  object
      * @since   1.0
      */
     public function scheduleFactoryMethod($product_name, array $options = array())
@@ -272,7 +283,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      * @param   string $product_name
      * @param   array  $options
      *
-     * @return  $this
+     * @return  object
      * @since   1.0
      */
     protected function runFactoryMethod($product_name, array $options = array())
@@ -281,7 +292,6 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
 
         try {
             return $this->schedule->scheduleFactoryMethod($product_name, $options);
-
         } catch (Exception $e) {
             throw new RuntimeException('Frontcontroller scheduleFactoryMethod Failed ' . $e->getMessage());
         }
