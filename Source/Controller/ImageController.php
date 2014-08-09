@@ -114,7 +114,7 @@ class ImageController implements ImageInterface
      * @param   null|string $size
      * @param   bool        $base64_encode
      *
-     * @return  string
+     * @return  stdClass
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
@@ -328,7 +328,7 @@ class ImageController implements ImageInterface
      * @param   stdClass $image
      * @param   int    $image_quality
      *
-     * @return  object
+     * @return  stdClass
      * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function resizeImage($image, $image_quality = 100)

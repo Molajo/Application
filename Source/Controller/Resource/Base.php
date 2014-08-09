@@ -207,7 +207,7 @@ abstract class Base
      * @param   array $registry_item
      * @param   array $parameter_keys
      *
-     * @return  array
+     * @return  Base
      * @since   1.0
      */
     protected function setResourceMenuitemParameter($parameters, $registry_item, $parameter_keys)

@@ -124,8 +124,8 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      * @param  ScheduleInterface $schedule
      * @param  array             $requests
      * @param  string            $base_path
-     * @param  array             $dependencies
      * @param  array             $steps
+     * @param  array             $dependencies
      * @param  boolean           $debug
      *
      * @since  1.0
@@ -148,7 +148,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
         }
 
         if (count($dependencies) > 0) {
-            $this->dependencies = $dependencies;
+            $this->dependencies_array = $dependencies;
         }
     }
 
@@ -258,10 +258,10 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
     }
 
     /**
-     * Store Instance in the Inversion of Control Container
+     * Store Product in the Inversion of Control Container
      *
-     * @param   string $product_name
-     * @param   object $value
+     * @param   string  $product_name
+     * @param   mixed   $value
      *
      * @return  $this
      * @since   1.0
