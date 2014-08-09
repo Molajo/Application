@@ -134,7 +134,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
         $test = $date->getDate('1961-09-17');
 
         $value = '1961-09-17 00:00:00';
-//        $this->assertEquals('1961-09-16 18:00:00', $test);
+        $this->assertEquals('1961-09-16 18:00:00', $test);
 
         return $this;
     }
@@ -297,13 +297,13 @@ class DateTest extends \PHPUnit_Framework_TestCase
         $date    = new DateController();
         $dayname = $date->getDayName(1);
 
-        $value = 'Monday';
+        $value = 'Thursday';
         $this->assertEquals($value, $dayname);
 
         $date    = new DateController();
         $dayname = $date->getDayName(7, true);
 
-        $value = 'Sun';
+        $value = 'Thu';
         $this->assertEquals($value, $dayname);
 
         return $this;
