@@ -86,7 +86,7 @@
 
         <criteria>
             <where name="a.protected"
-                   connector="<>"
+                   connector="&lt;&gt;"
                    value="2"/>
         </criteria>
 
@@ -102,4 +102,5 @@
             <include name="ParametersItemModel"/>
         </customfield>
     </customfields>
+
 </model>

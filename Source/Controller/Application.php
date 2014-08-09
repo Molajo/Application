@@ -51,7 +51,7 @@ class Application implements ApplicationInterface
      * @var    array
      * @since  1.0
      */
-    protected $model_registry = null;
+    protected $model_registry = array();
 
     /**
      * Database Instance
@@ -88,10 +88,10 @@ class Application implements ApplicationInterface
     /**
      * Application Data
      *
-     * @var    array
+     * @var    stdClass
      * @since  1.0
      */
-    protected $data = null;
+    protected $data;
 
     /**
      * Application Name
@@ -133,7 +133,7 @@ class Application implements ApplicationInterface
      * @param FieldhandlerInterface $fieldhandler
      * @param string                $request_path
      * @param array                 $applications
-     * @param null|array            $model_registry
+     * @param array                 $model_registry
      *
      * @since  1.0
      */
@@ -143,7 +143,7 @@ class Application implements ApplicationInterface
         FieldhandlerInterface $fieldhandler,
         $request_path,
         array $applications = array(),
-        $model_registry = null
+        array $model_registry = array()
     ) {
         $this->database       = $database;
         $this->query          = $query;
@@ -183,12 +183,12 @@ class Application implements ApplicationInterface
      */
     protected function setApplicationBasePath($app)
     {
-        if ($app->base_path == '') {
+        if ($app->base_path === '') {
             $this->base_path = '';
             $this->path      = $this->request_path;
         } else {
             $this->base_path = $app->base_path;
-            $this->path      = substr($this->request_path, 0, -strlen(trim($this->base_path)));
+            $this->path      = substr($this->request_path, strlen(trim($this->base_path)) + 1, 999);
         }
 
         if ($this->path === false) {
@@ -208,18 +208,18 @@ class Application implements ApplicationInterface
      */
     protected function setApplicationPath()
     {
-        if (substr($this->request_path, -1) == '/') {
+        if (substr($this->request_path, - 1) === '/') {
             $this->processRequestPath(0);
         }
 
-        if (substr($this->request_path, 0, 1) == '/') {
+        if (substr($this->request_path, 0, 1) === '/') {
             $this->processRequestPath(1);
         }
 
         if (strpos($this->request_path, '/') == true) {
             $application_test = substr($this->request_path, 0, strpos($this->request_path, '/'));
         } else {
-            $application_test = 'default';
+            $application_test = $this->request_path;
         }
 
         return trim(strtolower($application_test));
@@ -305,7 +305,7 @@ class Application implements ApplicationInterface
      */
     protected function getConfigurationInstallation()
     {
-        if ($this->name == 'installation') {
+        if ($this->name === 'installation') {
             $this->data->id          = 0;
             $this->data->name        = $this->name;
             $this->data->description = $this->name;
@@ -508,7 +508,7 @@ class Application implements ApplicationInterface
     protected function getConfigurationLineEnd()
     {
         if (isset($this->data->parameters->application_html5)
-            && $this->data->parameters->application_html5 == 1
+            && $this->data->parameters->application_html5 === 1
         ) {
             $this->data->parameters->application_line_end = '>' . chr(10);
         } else {
@@ -556,7 +556,7 @@ class Application implements ApplicationInterface
 
         $returned_site_id = $this->database->loadResult($this->query->getSQL());
 
-        if ((int)$returned_site_id == (int)$site_id) {
+        if ((int)$returned_site_id === (int)$site_id) {
             return $this;
         }
 

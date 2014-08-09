@@ -12,7 +12,6 @@ use CommonApi\Controller\ErrorHandlingInterface;
 use CommonApi\Controller\FrontControllerInterface;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\ScheduleInterface;
-use ErrorException;
 use Exception;
 
 /**
@@ -31,10 +30,10 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      * @var    object  CommonApi\IoC\ScheduleInterface
      * @since  1.0
      */
-    protected $queue;
+    protected $schedule;
 
     /**
-     * Requests
+     * Factory Method Requests
      *
      * @var    array
      * @since  1.0
@@ -58,9 +57,8 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
     protected $steps
         = array(
             'Initialise',
-            'Authentication',
             'Route',
-            'Authorise',
+            'Authorisation',
             'Resourcecontroller',
             'Execute',
             'Response'
@@ -101,7 +99,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
     /**
      * Constructor
      *
-     * @param  ScheduleInterface $queue
+     * @param  ScheduleInterface $schedule
      * @param  array             $requests
      * @param  string            $base_path
      * @param  array             $steps
@@ -110,13 +108,13 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      * @since  1.0
      */
     public function __construct(
-        ScheduleInterface $queue,
+        ScheduleInterface $schedule,
         $requests,
         $base_path,
         array $steps = array(),
         $debug = false
     ) {
-        $this->queue     = $queue;
+        $this->schedule  = $schedule;
         $this->requests  = $requests;
         $this->base_path = $base_path;
         $this->debug     = $debug;
@@ -135,8 +133,13 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
     public function process()
     {
         foreach ($this->steps as $step) {
-            $this->scheduleEvent($event_name = 'onBefore' . ucfirst(strtolower($step)));
+
+            if ($this->first_step === false) {
+                $this->scheduleEvent($event_name = 'onBefore' . ucfirst(strtolower($step)));
+            }
+
             $this->runStep($step);
+
             $this->first_step = false;
             $this->scheduleEvent($event_name = 'onAfter' . ucfirst(strtolower($step)));
         }
@@ -145,7 +148,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
 
         restore_error_handler();
 
-        return $this;
+        $this->shutdown();
     }
 
     /**
@@ -172,33 +175,6 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
     }
 
     /**
-     * Initialise
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function initialise()
-    {
-        error_reporting(E_ALL & ~E_NOTICE);
-        set_error_handler(array($this, 'setError'));
-        set_exception_handler(array($this, 'setException'));
-        register_shutdown_function(array($this, 'shutdown'));
-
-        $this->createScheduleEventCallback();
-
-        if (count($this->requests) > 0) {
-            foreach ($this->requests as $request) {
-                $this->scheduleFactoryMethod($request);
-            }
-        }
-
-        echo 'after initialise';
-        die;
-
-        return $this;
-    }
-
-    /**
      * Schedule Event Processing
      *
      * @param   string $event_name
@@ -206,10 +182,25 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      *
      * @return  FrontController
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function scheduleEvent($event_name, array $options = array())
     {
+        //todo: replace this and the event factory array
+        $dependencies_array = array(
+            'runtime_data'   => 'Runtimedata',
+            'plugin_data'    => 'Plugindata',
+            'parameters'     => 'parameters',
+            'row'            => 'row',
+            'query'          => 'query',
+            'model_registry' => 'model_registry',
+            'query_results'  => 'query_results',
+            'rendered_view'  => 'rendered_view',
+            'rendered_page'  => 'rendered_page',
+            'user'           => 'User',
+            'exclude_tokens' => 'exclude_tokens',
+            'token_objects'  => 'token_objects'
+        );
+
         if ($this->first_step === true) {
             return $this;
         }
@@ -217,12 +208,15 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
         $options['event_name'] = $event_name;
         $event_instance        = $this->scheduleFactoryMethod('Event', $options);
         $dispatcher            = $this->scheduleFactoryMethod('Dispatcher');
+        $event_results         = $dispatcher->scheduleEvent($event_name, $event_instance);
 
-        foreach ($dispatcher->scheduleEvent($event_name, $event_instance) as $key => $value) {
-            $this->setContainerEntry($key, $options);
+        foreach ($event_results as $key => $value) {
+            $new_key = $dependencies_array[$key];
+            $this->setContainerEntry($new_key, $value);
         }
 
-        return $this;
+
+        return $event_results;
     }
 
     /**
@@ -231,7 +225,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      * @param   string $product_name
      * @param   array  $options
      *
-     * @return  mixed
+     * @return  FrontController
      * @since   1.0
      */
     public function scheduleFactoryMethod($product_name, array $options = array())
@@ -280,18 +274,41 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function runFactoryMethod($product_name, array $options = array())
     {
         $options['base_path'] = $this->base_path;
 
         try {
-            return $this->queue->scheduleFactoryMethod($product_name, $options);
+            return $this->schedule->scheduleFactoryMethod($product_name, $options);
 
         } catch (Exception $e) {
             throw new RuntimeException('Frontcontroller scheduleFactoryMethod Failed ' . $e->getMessage());
         }
+    }
+
+    /**
+     * Initialise
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function initialise()
+    {
+        error_reporting(E_ALL & ~E_NOTICE);
+        set_error_handler(array($this, 'setError'));
+        set_exception_handler(array($this, 'setException'));
+        register_shutdown_function(array($this, 'shutdown'));
+
+        $this->createScheduleEventCallback();
+
+        if (count($this->requests) > 0) {
+            foreach ($this->requests as $request) {
+                $this->scheduleFactoryMethod($request);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -304,7 +321,6 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      * @param   array   $context
      *
      * @return  $this
-     * @throws  ErrorException
      * @since   1.0.0
      */
     public function setError($error_number, $message, $file, $line_number, array $context = array())
@@ -321,7 +337,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
             )
         );
         die;
-        $this->queue->scheduleFactoryMethod('Errorhandling')
+        $this->schedule->scheduleFactoryMethod('Errorhandling')
             ->setError($error_number, $message, $file, $line_number, $context);
     }
 
@@ -347,7 +363,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
         $options['exception'] = $e;
         $options['base_path'] = $this->base_path;
 
-        return $this->queue->scheduleFactoryMethod('ExceptionHandling')->handleException($options);
+        return $this->schedule->scheduleFactoryMethod('Exceptionhandling')->handleException($options);
     }
 
     /**

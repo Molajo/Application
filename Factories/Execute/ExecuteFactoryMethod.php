@@ -49,72 +49,86 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
     public function setDependencies(array $reflection = array())
     {
         parent::setDependencies($reflection);
-        $this->dependencies['Database']     = array();
-        $this->dependencies['Query']        = array();
-        $this->dependencies['Resource']     = array();
-        $this->dependencies['Request']      = array();
-        $this->dependencies['Fieldhandler'] = array();
-        $this->dependencies['Runtimedata']  = array();
+
+        $this->dependencies['Runtimedata'] = array();
+        $this->dependencies['Resource']    = array();
 
         return $this->dependencies;
     }
 
     /**
-     * Set Dependencies for Instantiation
-     *
-     * @return  array
-     * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
-     */
-    public function onBeforeInstantiation(array $dependency_values = null)
-    {
-        parent::onBeforeInstantiation($dependency_values);
-
-        $this->dependencies['applications']   = $this->getExecuteInstances();
-        $this->dependencies['model_registry'] = $this->dependencies['Resource']->get(
-            'xml:///Molajo//Model//Datasource//Execute.xml'
-        );
-
-        $this->dependencies['request_path'] = $this->dependencies['Request']->path;
-
-        return $this->dependencies;
-    }
-
-
-    /**
-     * Execute Render or Action
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function execute()
-    {
-        if ($this->scheduleFactoryMethod('Runtimedata')->route->method == 'GET') {
-            $render_proxy = $this->scheduleFactoryMethod('Render');
-            $include_file = $this->scheduleFactoryMethod('Runtimedata')->resource->extensions->theme->extension->path;
-            $render_proxy->renderOutput($include_file);
-        }
-
-        // create
-
-        // update
-
-        // delete
-
-        // redirect
-
-        return $this;
-    }
-
-    /**
-     * Follows the completion of the instantiate method
+     * Set Extension Data for Resource
      *
      * @return  $this
      * @since   1.0
      */
     public function onAfterInstantiation()
     {
+        $this->setResourceExtensions();
 
+        return $this;
+    }
+
+    /**
+     * Save View Data for Resource
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setResourceExtensions()
+    {
+        $page_type = strtolower($this->dependencies['Runtimedata']->route->page_type);
+
+        if ($page_type == 'dashboard') {
+            $theme_id         = 7010;
+            $page_view_id     = 8265;
+            $template_view_id = 9305;
+            $wrap_view_id     = 10010;
+
+        } elseif (isset($this->dependencies['Runtimedata']->resource->menuitem->parameters)) {
+
+            $theme_id         = $this->dependencies['Runtimedata']->resource->menuitem->parameters->theme_id;
+            $page_view_id     = $this->dependencies['Runtimedata']->resource->menuitem->parameters->page_view_id;
+            $template_view_id = $this->dependencies['Runtimedata']->resource->menuitem->parameters->template_view_id;
+            $wrap_view_id     = $this->dependencies['Runtimedata']->resource->menuitem->parameters->wrap_view_id;
+
+        } else {
+            $theme_id         = $this->dependencies['Runtimedata']->resource->parameters->theme_id;
+            $page_view_id     = $this->dependencies['Runtimedata']->resource->parameters->page_view_id;
+            $template_view_id = $this->dependencies['Runtimedata']->resource->parameters->template_view_id;
+            $wrap_view_id     = $this->dependencies['Runtimedata']->resource->parameters->wrap_view_id;
+        }
+/**
+        echo '<pre>';
+        var_dump($this->dependencies['Runtimedata']->resource->menuitem->parameters);
+
+
+        echo 'In Execute';
+        echo ' Theme: ' . $theme_id;
+        echo ' Page: ' . $page_view_id;
+        echo ' Template: ' . $template_view_id;
+        echo ' Wrap: ' . $wrap_view_id;
+        die;
+ */
+        $this->dependencies['Runtimedata']->resource->extensions = new stdClass();
+
+        /** Get Theme */
+        $this->dependencies['Runtimedata']->resource->extensions->theme
+            = $this->dependencies['Resource']->get('theme:///molajo//themes//' . $theme_id);
+
+        /** Get Page */
+        $this->dependencies['Runtimedata']->resource->extensions->page
+            = $this->dependencies['Resource']->get('page:///molajo//views//pages//' . $page_view_id);
+
+        /** Get Template */
+        $this->dependencies['Runtimedata']->resource->extensions->template
+            = $this->dependencies['Resource']->get('template:///molajo//views//templates//' . $template_view_id);
+
+        /** Get Wrap */
+        $this->dependencies['Runtimedata']->resource->extensions->wrap
+            = $this->dependencies['Resource']->get('wrap:///molajo//views//wraps//' . $wrap_view_id);
+
+        $this->set_container_entries['Runtimedata'] = $this->dependencies['Runtimedata'];
 
         return $this;
     }
@@ -140,8 +154,12 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
      */
     public function scheduleFactories()
     {
-        $options                                = array();
-        $this->schedule_factory_methods['Date'] = $options;
+        $options              = array();
+        $options['base_path'] = $this->options['base_path'];
+
+        if ($this->dependencies['Runtimedata']->route->method === 'GET') {
+            $this->schedule_factory_methods['Render'] = $options;
+        }
 
         return $this->schedule_factory_methods;
     }

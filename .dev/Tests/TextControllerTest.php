@@ -421,7 +421,7 @@ class MockTextController extends TextController implements TextInterface
         $start_with_lorem_ipsum,
         $count_lorem_set
     ) {
-        if ($markup_type == 'ul' || $markup_type == 'ol') {
+        if ($markup_type === 'ul' || $markup_type === 'ol') {
             $output = '<' . $markup_type . '>';
             $begin  = '<li>';
             $end    = '</li>';

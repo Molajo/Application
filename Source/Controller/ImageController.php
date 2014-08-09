@@ -188,7 +188,7 @@ class ImageController implements ImageInterface
      * @param   string $type
      * @param   string $size
      *
-     * @return  object
+     * @return  stdClass
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
@@ -268,7 +268,7 @@ class ImageController implements ImageInterface
      * @param   string   $size
      * @param   stdClass $image
      *
-     * @return  object
+     * @return  stdClass
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
@@ -277,13 +277,13 @@ class ImageController implements ImageInterface
         $image->width  = $this->standard_size[$size]['width'];
         $image->height = $this->standard_size[$size]['height'];
 
-        if ($size == 'normal' || $image->width === null || $image->height === null) {
+        if ($size === 'normal' || $image->width === null || $image->height === null) {
             $image->width  = $image->original_width;
             $image->height = $image->original_height;
             return $image;
         }
 
-        if ($type == 'auto') {
+        if ($type === 'auto') {
             if ($image->height < $image->width) {
                 $type = 'landscape';
             } else {
@@ -325,7 +325,7 @@ class ImageController implements ImageInterface
     /**
      * Resize the image and save it to a file
      *
-     * @param   object $image
+     * @param   stdClass $image
      * @param   int    $image_quality
      *
      * @return  object

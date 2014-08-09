@@ -209,15 +209,18 @@ class MockDispatcher implements DispatcherInterface
 
     protected $event_option_keys
         = array(
-            'runtime_data',
-            'plugin_data',
-            'parameters',
+            'exclude_tokens',
             'model_registry',
+            'parameters',
+            'plugin_data',
             'query_results',
-            'row',
-            'rendered_view',
+            'query',
             'rendered_page',
-            'token'
+            'rendered_view',
+            'row',
+            'runtime_data',
+            'token_objects',
+            'user'
         );
 
     /**

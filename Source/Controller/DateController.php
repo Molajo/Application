@@ -148,11 +148,11 @@ class DateController extends DateTime implements DateInterface
      * @since  1.0
      */
     const MINUTE = 60;
-    const HOUR = 3600;
-    const DAY = 86400;
-    const WEEK = 604800;
-    const MONTH = 2629800;
-    const YEAR = 31557600;
+    const HOUR   = 3600;
+    const DAY    = 86400;
+    const WEEK   = 604800;
+    const MONTH  = 2629800;
+    const YEAR   = 31557600;
 
     /**
      * Constructor
@@ -239,7 +239,7 @@ class DateController extends DateTime implements DateInterface
         $server_or_user_timezone = 'user',
         $date_format = 'Y-m-d H:i:s'
     ) {
-        if ($time == '') {
+        if ($time === '') {
             $time = 'now';
         }
 
@@ -263,7 +263,7 @@ class DateController extends DateTime implements DateInterface
     protected function getDateTimezone($timezone = null, $server_or_user_timezone = 'server')
     {
         if ($timezone === null) {
-            if ($server_or_user_timezone == 'server') {
+            if ($server_or_user_timezone === 'server') {
                 $timezone = $this->timezone_server;
             } else {
                 $timezone = $this->timezone_user;
@@ -283,11 +283,11 @@ class DateController extends DateTime implements DateInterface
      */
     protected function getDateFormatDate(DateTime $date_time, $date_format)
     {
-        if ($date_format == null) {
+        if ($date_format === null) {
             $date_format = 'Y-m-d H:i:s';
         }
 
-        if ($date_format == 'd-m-YY') {
+        if ($date_format === 'd-m-YY') {
             $date = strtotime($date_time->format('d-m-YY'));
         } else {
             $date = $date_time->format($date_format);
@@ -305,6 +305,19 @@ class DateController extends DateTime implements DateInterface
      * @since   1.0
      */
     public function convertCCYYMMDD($date = null)
+    {
+        return substr($date, 0, 4) . substr($date, 5, 2) . substr($date, 8, 2);
+    }
+
+    /**
+     * Converts standard MYSQL date (ex. 2011-11-11 11:11:11) to CCYY-MM-DD format (ex. 2011-11-11)
+     *
+     * @param   string $date
+     *
+     * @return  string CCYY-MM-DD
+     * @since   1.0
+     */
+    public function convertCCYYdashMMdashDD($date = null)
     {
         return substr($date, 0, 4) . '-' . substr($date, 5, 2) . '-' . substr($date, 8, 2);
     }
@@ -367,7 +380,7 @@ class DateController extends DateTime implements DateInterface
         $interval       = $source_date->diff($compare_to_date);
         $day_difference = $interval->days;
 
-        if ($day_difference == 0) {
+        if ($day_difference === 0) {
             $pretty_date = $this->getPrettyDateToday($interval);
         } else {
             $pretty_date = $this->getPrettyDateNotToday($interval);
@@ -377,17 +390,34 @@ class DateController extends DateTime implements DateInterface
     }
 
     /**
-     * Provides translated name of day in abbreviated or full format, given day number
+     * Provides day number
      *
-     * @param   string  $day_number
+     * @param   string  $ccyymmdd
+     *
+     * @return  string
+     * @since   1.0
+     */
+    public function getDayNumber($ccyymmdd)
+    {
+        return date('N', strtotime($ccyymmdd));
+    }
+
+    /**
+     * Provides translated name of day in abbreviated or full format
+     *
+     * @param   string  $ccyymmdd
      * @param   boolean $abbreviation
      *
      * @return  string
      * @since   1.0
      */
-    public function getDayName($day_number, $abbreviation = false)
+    public function getDayName($ccyymmdd, $abbreviation = false)
     {
-        return $this->getNameTranslated('day', $day_number, $abbreviation);
+        if ($abbreviation === false) {
+            return date('l', strtotime($ccyymmdd));
+        }
+
+        return date('D', strtotime($ccyymmdd));
     }
 
     /**
@@ -523,11 +553,11 @@ class DateController extends DateTime implements DateInterface
      */
     protected function translatePrettyDate($numeric_value, $type)
     {
-        if ($numeric_value == 0) {
+        if ($numeric_value === 0) {
             return '';
         }
 
-        if ($numeric_value == 1) {
+        if ($numeric_value === 1) {
             return strtolower($this->translate('DATE_' . strtoupper($type) . '_SINGULAR'));
         }
 

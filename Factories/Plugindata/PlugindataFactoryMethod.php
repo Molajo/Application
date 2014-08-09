@@ -53,8 +53,7 @@ class PlugindataFactoryMethod extends FactoryMethodBase implements FactoryInterf
         $plugin_data->page       = new stdClass();
         $plugin_data->page->urls = array();
         $plugin_data->datalists  = new stdClass();
-
-        $this->product_result = $plugin_data;
+        $this->product_result    = $plugin_data;
 
         return $this;
     }

@@ -23,7 +23,7 @@
         </fields>
         <criteria>
             <where name="id"
-                   connector=">"
+                   connector="&gt;"
                    value="0"/>
         </criteria>
     </table>

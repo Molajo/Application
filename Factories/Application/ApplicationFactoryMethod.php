@@ -120,6 +120,7 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
             . $this->dependencies['Runtimedata']->application->parameters->system_temp_folder;
 
         $base_url  = $this->dependencies['Runtimedata']->request->data->base_url;
+
         $base_path = $this->dependencies['Runtimedata']->application->base_path;
 
         $this->dependencies['Runtimedata']->application->base_url = $base_url . $base_path . '/';
@@ -155,7 +156,7 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
             $row            = new stdClass();
             $row->name      = trim(strtolower((string)$app->name));
             $row->id        = (string)$app->id;
-            $row->base_path = '/' . $app->name;
+            $row->base_path = $app->name;
 
             $applications[$row->name] = $row;
         }

@@ -192,7 +192,7 @@ class NumberToText implements NumberToTextInterface
         $temp          = array_reverse($reverseDigits);
         $number        = implode('', $temp);
 
-        if ((strlen($number) % 3) == 0) {
+        if ((strlen($number) % 3) === 0) {
             $padToSetsOfThree = strlen($number);
         } else {
             $padToSetsOfThree = 3 - (strlen($number) % 3) + strlen($number);
@@ -234,7 +234,7 @@ class NumberToText implements NumberToTextInterface
                 $word_value = $this->processGroupDigits($digits, $i, $word_value);
             }
 
-            $i++;
+            $i ++;
         }
 
         if (trim($word_value) === '') {

@@ -77,7 +77,7 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
             }
         }
 
-        if ($timezone == '') {
+        if ($timezone === '') {
             $timezone = 'America/Chicago';
         }
 

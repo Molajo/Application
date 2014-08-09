@@ -499,7 +499,7 @@ class TextController implements TextInterface
     ) {
         list($output, $begin, $end) = $this->setMarkupRequirements($markup_type);
 
-        for ($paragraph_count = 0; $paragraph_count < $number_of_paragraphs; $paragraph_count++) {
+        for ($paragraph_count = 0; $paragraph_count < $number_of_paragraphs; $paragraph_count ++) {
 
             $output .= $begin;
 
@@ -528,7 +528,7 @@ class TextController implements TextInterface
      */
     protected function setMarkupRequirements($markup_type)
     {
-        if ($markup_type == 'ul' || $markup_type == 'ol') {
+        if ($markup_type === 'ul' || $markup_type === 'ol') {
             $output = '<' . $markup_type . '>';
             $begin  = '<li>';
             $end    = '</li>';
@@ -562,7 +562,7 @@ class TextController implements TextInterface
         $count_lorem_set,
         $end
     ) {
-        for ($line_count = 0; $line_count < $lines_per_paragraphs; $line_count++) {
+        for ($line_count = 0; $line_count < $lines_per_paragraphs; $line_count ++) {
 
             $output = $this->createWords($words_per_line, $start_with_lorem_ipsum, $output, $count_lorem_set, $end);
 
@@ -586,7 +586,7 @@ class TextController implements TextInterface
      */
     protected function createWords($words_per_line, $start_with_lorem_ipsum, $output, $count_lorem_set, $end)
     {
-        for ($word_count = 0; $word_count < $words_per_line; $word_count++) {
+        for ($word_count = 0; $word_count < $words_per_line; $word_count ++) {
 
             $word = $this->createWord($start_with_lorem_ipsum, $count_lorem_set, $word_count);
 

@@ -130,7 +130,7 @@ class UrlController implements UrlInterface
         $key    = $query->getModelRegistry('primary_key');
 
         /** Get Catalog ID */
-        if ($request_type == 1) {
+        if ($request_type === 1) {
             $query->setModelRegistry('query_object', 'result');
 
             $query->query->select(
@@ -140,7 +140,7 @@ class UrlController implements UrlInterface
             );
 
             /** Get Redirect ID */
-        } elseif ($request_type == 2) {
+        } elseif ($request_type === 2) {
             $query->setModelRegistry('query_object', 'result');
 
             $query->query->select(
@@ -150,7 +150,7 @@ class UrlController implements UrlInterface
             );
 
             /** Get SEF Request */
-        } elseif ($request_type == 3) {
+        } elseif ($request_type === 3) {
             $query->setModelRegistry('query_object', 'result');
 
             $query->query->select(
@@ -258,11 +258,11 @@ class UrlController implements UrlInterface
      */
     public function checkURLExternal($url)
     {
-        if (substr($url, 0, strlen($this->site_base_url)) == $this->site_base_url) {
+        if (substr($url, 0, strlen($this->site_base_url)) === $this->site_base_url) {
             return false;
 
-        } elseif ((strtolower(substr($url, 0, 3)) == 'www')
-            && (substr($url, 3, strlen($this->site_base_url)) == $this->site_base_url)
+        } elseif ((strtolower(substr($url, 0, 3)) === 'www')
+            && (substr($url, 3, strlen($this->site_base_url)) === $this->site_base_url)
         ) {
             return false;
         }
@@ -285,9 +285,9 @@ class UrlController implements UrlInterface
      */
     public function urlShortener($url, $type = 2)
     {
-        if ($type == '1') {
+        if ($type === '1') {
             return (implode('', file('http://tinyurl.com/api-create.php?url=' . urlencode($url))));
-        } elseif ($type == '2') {
+        } elseif ($type === '2') {
             return (implode('', file('http://is.gd/api.php?longurl=' . urlencode($url))));
         }
 

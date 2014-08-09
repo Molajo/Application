@@ -168,7 +168,7 @@ class Site implements SiteInterface
      */
     public function get($key = null, $default = null)
     {
-        if ($key == '*') {
+        if ($key === '*') {
             return $this->getSiteProperties();
         }
 
@@ -226,7 +226,7 @@ class Site implements SiteInterface
     {
         foreach ($this->sites as $single) {
 
-            if (strtolower((string)$single->site_base_url) == strtolower($this->host)) {
+            if (strtolower((string)$single->site_base_url) === strtolower($this->host)) {
                 $this->id             = $single->id;
                 $this->name           = $single->name;
                 $this->site_base_path = $this->base_path . $single->site_base_path;
@@ -273,7 +273,7 @@ class Site implements SiteInterface
      */
     public function installCheck()
     {
-        if (substr($this->path, 0, strlen('installation')) == 'installation') {
+        if (substr($this->path, 0, strlen('installation')) === 'installation') {
             return $this;
         }
 

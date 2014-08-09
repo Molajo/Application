@@ -50,15 +50,18 @@ class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInter
     public function instantiateClass()
     {
         $event_option_keys   = array();
-        $event_option_keys[] = 'runtime_data';
-        $event_option_keys[] = 'plugin_data';
-        $event_option_keys[] = 'parameters';
-        $event_option_keys[] = 'query';
+        $event_option_keys[] = 'exclude_tokens';
         $event_option_keys[] = 'model_registry';
+        $event_option_keys[] = 'parameters';
+        $event_option_keys[] = 'plugin_data';
         $event_option_keys[] = 'query_results';
-        $event_option_keys[] = 'row';
-        $event_option_keys[] = 'rendered_view';
+        $event_option_keys[] = 'query';
         $event_option_keys[] = 'rendered_page';
+        $event_option_keys[] = 'rendered_view';
+        $event_option_keys[] = 'row';
+        $event_option_keys[] = 'runtime_data';
+        $event_option_keys[] = 'token_objects';
+        $event_option_keys[] = 'user';
 
         $runtime_data                           = new stdClass();
         $runtime_data->error_code               = 0;

@@ -167,7 +167,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
         $date = new DateController();
         $test = $date->getDate('1961-09-17');
 
-        $results = $date->convertCCYYMMDD($test);
+        $results = $date->convertCCYYdashMMdashDD($test);
 
         $value = '1961-09-17';
         $this->assertEquals('1961-09-16', $results);
