@@ -36,7 +36,12 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Utilities Connection
+     * @covers  Molajo\Controller\ImageController::__construct
+     * @covers  Molajo\Controller\ImageController::getImage
+     * @covers  Molajo\Controller\ImageController::getImagePlaceholder
+     * @covers  Molajo\Controller\ImageController::setImageObject
+     * @covers  Molajo\Controller\ImageController::setImageSize
+     * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
      * @since   1.0
@@ -81,7 +86,12 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Utilities Connection
+     * @covers  Molajo\Controller\ImageController::__construct
+     * @covers  Molajo\Controller\ImageController::getImage
+     * @covers  Molajo\Controller\ImageController::getImagePlaceholder
+     * @covers  Molajo\Controller\ImageController::setImageObject
+     * @covers  Molajo\Controller\ImageController::setImageSize
+     * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
      * @since   1.0
@@ -125,7 +135,12 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Utilities Connection
+     * @covers  Molajo\Controller\ImageController::__construct
+     * @covers  Molajo\Controller\ImageController::getImage
+     * @covers  Molajo\Controller\ImageController::getImagePlaceholder
+     * @covers  Molajo\Controller\ImageController::setImageObject
+     * @covers  Molajo\Controller\ImageController::setImageSize
+     * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
      * @since   1.0
@@ -170,7 +185,12 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Utilities Connection
+     * @covers  Molajo\Controller\ImageController::__construct
+     * @covers  Molajo\Controller\ImageController::getImage
+     * @covers  Molajo\Controller\ImageController::getImagePlaceholder
+     * @covers  Molajo\Controller\ImageController::setImageObject
+     * @covers  Molajo\Controller\ImageController::setImageSize
+     * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
      * @since   1.0
@@ -217,7 +237,12 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Request for Resize to Large for PNG
+     * @covers  Molajo\Controller\ImageController::__construct
+     * @covers  Molajo\Controller\ImageController::getImage
+     * @covers  Molajo\Controller\ImageController::getImagePlaceholder
+     * @covers  Molajo\Controller\ImageController::setImageObject
+     * @covers  Molajo\Controller\ImageController::setImageSize
+     * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
      * @since   1.0
@@ -260,7 +285,12 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Utilities Connection
+     * @covers  Molajo\Controller\ImageController::__construct
+     * @covers  Molajo\Controller\ImageController::getImage
+     * @covers  Molajo\Controller\ImageController::getImagePlaceholder
+     * @covers  Molajo\Controller\ImageController::setImageObject
+     * @covers  Molajo\Controller\ImageController::setImageSize
+     * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
      * @since   1.0

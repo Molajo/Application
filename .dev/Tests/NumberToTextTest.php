@@ -8,6 +8,8 @@
  */
 namespace Molajo\Controller\Translate\Test;
 
+include_once __DIR__ . '/' . 'Mocks/MockNumberToText.php';
+
 use Molajo\Controller\NumberToText;
 use Molajo\Controller\NumberToText\Translate;
 
@@ -31,9 +33,21 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers  Molajo\Controller\NumberToText::__construct
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::convert
+     * @covers  Molajo\Controller\NumberToText::extractDecimal
+     * @covers  Molajo\Controller\NumberToText::extractSign
+     * @covers  Molajo\Controller\NumberToText::extractDigits
+     * @covers  Molajo\Controller\NumberToText::createGroups
+     * @covers  Molajo\Controller\NumberToText::processGroups
+     * @covers  Molajo\Controller\NumberToText::processGroupDigits
+     * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
+     * @covers  Molajo\Controller\NumberToText::setWordTens
+     * @covers  Molajo\Controller\NumberToText::setWordHundreds
+     * @covers  Molajo\Controller\NumberToText::setWord
+     * @covers  Molajo\Controller\NumberToText::convertGrouping
+     * @covers  Molajo\Controller\NumberToText::setDecimal
+     * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
      * @since   1.0
@@ -45,9 +59,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -55,8 +67,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -78,9 +90,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -88,8 +98,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -111,9 +121,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -121,8 +129,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -144,9 +152,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -154,8 +160,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -177,9 +183,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -187,8 +191,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -209,9 +213,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -219,8 +221,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -241,9 +243,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -251,8 +251,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -273,9 +273,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -283,8 +281,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -305,9 +303,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -315,8 +311,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -337,9 +333,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -347,8 +341,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -369,9 +363,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -379,8 +371,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -401,9 +393,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -411,8 +401,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -433,9 +423,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -443,8 +431,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -465,9 +453,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -475,8 +461,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -497,9 +483,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -507,8 +491,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -529,9 +513,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -539,8 +521,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -561,9 +543,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Controller\NumberToText\Translate::__construct
-     * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
-     * @covers  Molajo\Controller\NumberToText\Translate::translateString
+     * @covers  Molajo\Controller\NumberToText::__construct
      * @covers  Molajo\Controller\NumberToText::convert
      * @covers  Molajo\Controller\NumberToText::extractDecimal
      * @covers  Molajo\Controller\NumberToText::extractSign
@@ -571,8 +551,8 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::createGroups
      * @covers  Molajo\Controller\NumberToText::processGroups
      * @covers  Molajo\Controller\NumberToText::processGroupDigits
-     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::translateGroup
+     * @covers  Molajo\Controller\NumberToText::getGroupDigits
      * @covers  Molajo\Controller\NumberToText::setWordTens
      * @covers  Molajo\Controller\NumberToText::setWordHundreds
      * @covers  Molajo\Controller\NumberToText::setWord
@@ -590,103 +570,5 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('-one million one hundred . 01', $results);
 
         return $this;
-    }
-}
-
-/**
- * Number to Text Utility: Converts a numeric value up to a 999 quattuordecillion to translatable term.
- *
- * @package     Molajo
- * @subpackage  NumberToText
- * @since       1.0
- */
-class MockNumberToText extends NumberToText
-{
-    public $propertyConvert;
-    public $propertyExtractDecimal;
-    public $propertyExtractSign;
-    public $propertyExtractDigits;
-    public $propertyCreateGroups;
-    public $propertyProcessGroups;
-    public $propertyTranslateGroup;
-    public $propertySetWordTens;
-    public $propertySetWordHundreds;
-    public $propertySetWord;
-
-    public function convert($number, $remove_spaces = false)
-    {
-        $this->propertyConvert = parent::convert($number, $remove_spaces);
-
-        return $this->propertyConvert;
-    }
-
-    protected function extractDecimal($number)
-    {
-        $this->propertyExtractDecimal = parent::extractDecimal($number);
-
-        return $this->propertyExtractDecimal;
-    }
-
-    protected function extractSign($digit)
-    {
-        $this->propertyExtractSign = parent::extractSign($digit);
-
-        return $this->propertyExtractSign;
-    }
-
-    protected function extractDigits($number)
-    {
-        $this->propertyExtractDigits = parent::extractDigits($number);
-
-        return $this->propertyExtractDigits;
-    }
-
-    protected function createGroups($number)
-    {
-        $this->propertyCreateGroups = parent::createGroups($number);
-
-        return $this->propertyCreateGroups;
-    }
-
-    protected function processGroups(array $groups = array())
-    {
-        $this->propertyProcessGroups = parent::processGroups($groups);
-
-        return $this->propertyProcessGroups;
-    }
-
-    protected function translateGroup($digits, $i)
-    {
-        $this->propertyTranslateGroup = parent::translateGroup($digits, $i);
-
-        return $this->propertyTranslateGroup;
-    }
-
-    protected function setWordTens($tens_digit, $ones_digit, $onesWord)
-    {
-        $this->propertySetWordTens = parent::setWordTens($tens_digit, $ones_digit, $onesWord);
-
-        return $this->propertySetWordTens;
-    }
-
-    protected function setWordHundreds($hundreds_digit, $tens_word)
-    {
-        $this->propertySetWordHundreds = parent::setWordHundreds($hundreds_digit, $tens_word);
-
-        return $this->propertySetWordHundreds;
-    }
-
-    protected function setWord($digit, $digit_position = 0)
-    {
-        $this->propertySetWord = parent::setWord($digit, $digit_position = 0);
-
-        return $this->propertySetWord;
-    }
-
-    protected function convertGrouping($number = 0)
-    {
-        $this->propertySetWord = parent::convertGrouping($number);
-
-        return $this->propertySetWord;
     }
 }
