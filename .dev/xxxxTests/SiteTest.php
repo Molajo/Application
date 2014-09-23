@@ -65,7 +65,7 @@ class SiteTest extends \PHPUnit_Framework_TestCase
             'authenticate',
             'route',
             'authorise',
-            'resourcecontroller',
+            'dispatcher',
             'execute',
             'response'
         );

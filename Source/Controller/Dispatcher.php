@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource Controller
+ * Dispatcher
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -12,14 +12,14 @@ use CommonApi\Controller\ResourceInterface;
 use Molajo\Controller\Resource\MenuitemPageType;
 
 /**
- * Resource Controller
+ * Dispatcher
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class ResourceController extends MenuitemPageType implements ResourceInterface
+class Dispatcher extends MenuitemPageType implements ResourceInterface
 {
     /**
      * Get Resource Data for Route

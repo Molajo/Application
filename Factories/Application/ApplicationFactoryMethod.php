@@ -50,12 +50,14 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
     {
         parent::setDependencies($reflection);
 
-        $this->dependencies['Database']     = array();
-        $this->dependencies['Query']        = array();
-        $this->dependencies['Resource']     = array();
-        $this->dependencies['Request']      = array();
-        $this->dependencies['Fieldhandler'] = array();
-        $this->dependencies['Runtimedata']  = array();
+        $options = array('base_path' => $this->base_path);
+
+        $this->dependencies['Database']     = $options;
+        $this->dependencies['Query']        = $options;
+        $this->dependencies['Resource']     = $options;
+        $this->dependencies['Request']      = $options;
+        $this->dependencies['Fieldhandler'] = $options;
+        $this->dependencies['Runtimedata']  = $options;
 
         return $this->dependencies;
     }
@@ -119,7 +121,7 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
             . '/'
             . $this->dependencies['Runtimedata']->application->parameters->system_temp_folder;
 
-        $base_url  = $this->dependencies['Runtimedata']->request->data->base_url;
+        $base_url = $this->dependencies['Runtimedata']->request->data->base_url;
 
         $base_path = $this->dependencies['Runtimedata']->application->base_path;
 

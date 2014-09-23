@@ -84,51 +84,47 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
             $page_view_id     = 8265;
             $template_view_id = 9305;
             $wrap_view_id     = 10010;
-
-        } elseif (isset($this->dependencies['Runtimedata']->resource->menuitem->parameters)) {
+        } elseif (is_object($this->dependencies['Runtimedata']->resource->menuitem->parameters)) {
 
             $theme_id         = $this->dependencies['Runtimedata']->resource->menuitem->parameters->theme_id;
             $page_view_id     = $this->dependencies['Runtimedata']->resource->menuitem->parameters->page_view_id;
             $template_view_id = $this->dependencies['Runtimedata']->resource->menuitem->parameters->template_view_id;
             $wrap_view_id     = $this->dependencies['Runtimedata']->resource->menuitem->parameters->wrap_view_id;
-
         } else {
+
             $theme_id         = $this->dependencies['Runtimedata']->resource->parameters->theme_id;
             $page_view_id     = $this->dependencies['Runtimedata']->resource->parameters->page_view_id;
             $template_view_id = $this->dependencies['Runtimedata']->resource->parameters->template_view_id;
             $wrap_view_id     = $this->dependencies['Runtimedata']->resource->parameters->wrap_view_id;
         }
-/**
-        echo '<pre>';
-        var_dump($this->dependencies['Runtimedata']->resource->menuitem->parameters);
-
-
-        echo 'In Execute';
-        echo ' Theme: ' . $theme_id;
-        echo ' Page: ' . $page_view_id;
-        echo ' Template: ' . $template_view_id;
-        echo ' Wrap: ' . $wrap_view_id;
-        die;
- */
+        /**
+         * echo 'In Execute';
+         * echo ' Theme: ' . $theme_id . '<br>';
+         * echo ' Page: ' . $page_view_id . '<br>';
+         * echo ' Template: ' . $template_view_id . '<br>';
+         * echo ' Wrap: ' . $wrap_view_id . '<br>';
+         */
         $this->dependencies['Runtimedata']->resource->extensions = new stdClass();
 
-        /** Get Theme */
+        $scheme = 'theme:///';
+        $ns     = 'molajo//themes//' . $theme_id;
         $this->dependencies['Runtimedata']->resource->extensions->theme
-            = $this->dependencies['Resource']->get('theme:///molajo//themes//' . $theme_id);
+                = $this->dependencies['Resource']->get($scheme . $ns);
 
-        /** Get Page */
+        $scheme = 'page:///';
+        $ns     = 'molajo//views//pages//' . $page_view_id;
         $this->dependencies['Runtimedata']->resource->extensions->page
-            = $this->dependencies['Resource']->get('page:///molajo//views//pages//' . $page_view_id);
+                = $this->dependencies['Resource']->get($scheme . $ns);
 
-        /** Get Template */
+        $scheme = 'template:///';
+        $ns     = 'molajo//views//templates//' . $template_view_id;
         $this->dependencies['Runtimedata']->resource->extensions->template
-            = $this->dependencies['Resource']->get('template:///molajo//views//templates//' . $template_view_id);
+                = $this->dependencies['Resource']->get($scheme . $ns);
 
-        /** Get Wrap */
+        $scheme = 'wrap:///';
+        $ns     = 'molajo//views//wraps//' . $wrap_view_id;
         $this->dependencies['Runtimedata']->resource->extensions->wrap
-            = $this->dependencies['Resource']->get('wrap:///molajo//views//wraps//' . $wrap_view_id);
-
-        $this->set_container_entries['Runtimedata'] = $this->dependencies['Runtimedata'];
+                = $this->dependencies['Resource']->get($scheme . $ns);
 
         return $this;
     }
@@ -155,7 +151,7 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
     public function scheduleFactories()
     {
         $options              = array();
-        $options['base_path'] = $this->options['base_path'];
+        $options['base_path'] = $this->base_path;
 
         if ($this->dependencies['Runtimedata']->route->method === 'GET') {
             $this->schedule_factory_methods['Render'] = $options;

@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource Controller
+ * Dispatcher
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -11,7 +11,7 @@ namespace Molajo\Controller\Resource;
 use CommonApi\Exception\UnexpectedValueException;
 
 /**
- * Resource Controller
+ * Dispatcher
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -29,8 +29,7 @@ class ItemPageType extends Extension
      */
     protected function getResourceItem()
     {
-        $controller = $this->setResourceItemQuery();
-
+        $controller           = $this->setResourceItemQuery();
         $this->resource->data = $this->runQuery($controller);
         $this->setResourceItemParameters();
         $this->resource->model_registry = $controller->getModelRegistry('*');

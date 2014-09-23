@@ -68,7 +68,7 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
             'authenticate',
             'route',
             'authorise',
-            'resourcecontroller',
+            'dispatcher',
             'execute',
             'response'
         );
@@ -172,7 +172,7 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
             'Dispatcher',
             'Event',
             'Dispatcher',
-            'resourcecontroller',
+            'dispatcher',
             'Event',
             'Dispatcher',
             'Event',
@@ -218,8 +218,8 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
             'onAfterRoute',
             'onBeforeAuthorise',
             'onAfterAuthorise',
-            'onBeforeResourcecontroller',
-            'onAfterResourcecontroller',
+            'onBeforeDispatcher',
+            'onAfterDispatcher',
             'onBeforeExecute',
             'onAfterExecute',
             'onBeforeResponse',

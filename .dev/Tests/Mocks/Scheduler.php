@@ -65,7 +65,7 @@ class MockScheduler implements ScheduleInterface
 
         } elseif (strtolower($product_name) === 'response') {
 
-        } elseif (strtolower($product_name) === 'resourcecontroller') {
+        } elseif (strtolower($product_name) === 'dispatcher') {
 
         } elseif (strtolower($product_name) === 'route') {
 
@@ -74,7 +74,7 @@ class MockScheduler implements ScheduleInterface
             $runtime_data                           = new stdClass();
             $runtime_data->error_code               = 0;
             $runtime_data->redirect_to_id           = 0;
-            $runtime_data->base_path                = $this->options['base_path'];
+            $runtime_data->base_path                = $this->base_path;
             $runtime_data->event_options_keys       = $this->event_option_keys;
             $runtime_data->request                  = new stdClass();
             $runtime_data->request->data            = new stdClass();

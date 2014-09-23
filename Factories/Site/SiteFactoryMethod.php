@@ -108,7 +108,7 @@ class SiteFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
 
         $this->product_result->setBase(
             $this->dependencies['Request']->base_url,
-            $this->options['base_path']
+            $this->base_path
         );
 
         $this->product_result->identifySite();

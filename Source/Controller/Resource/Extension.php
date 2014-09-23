@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource Controller
+ * Dispatcher
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -11,7 +11,7 @@ namespace Molajo\Controller\Resource;
 use CommonApi\Exception\UnexpectedValueException;
 
 /**
- * Resource Controller
+ * Dispatcher
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License

@@ -13,6 +13,7 @@ use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\FactoryInterface;
 use CommonApi\IoC\FactoryBatchInterface;
 use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
+use stdClass;
 
 /**
  * Extensions Factory Method
@@ -42,7 +43,7 @@ class ExtensionsFactoryMethod extends FactoryMethodBase implements FactoryInterf
     public function __construct(array $options = array())
     {
         $options['product_name']             = basename(__DIR__);
-        $options['store_instance_indicator'] = true;
+        $options['store_instance_indicator'] = false;
         $options['product_namespace']        = 'Molajo\\Resource\\ExtensionMap';
 
         parent::__construct($options);
@@ -79,7 +80,7 @@ class ExtensionsFactoryMethod extends FactoryMethodBase implements FactoryInterf
         parent::onBeforeInstantiation($dependency_values);
 
         $this->dependencies['extensions_filename']
-            = $this->options['base_path'] . '/Bootstrap/Files/Output/Extensions.json';
+            = $this->base_path . '/Bootstrap/Files/Output/Extensions.json';
 
         return $this->dependencies;
     }
@@ -89,34 +90,66 @@ class ExtensionsFactoryMethod extends FactoryMethodBase implements FactoryInterf
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()
     {
         $cache_results = $this->dependencies['Cache']->get('Extensions');
 
-        if ($cache_results === false || $cache_results->is_hit === false) {
-
-            try {
-                $this->product_result = new $this->product_namespace(
-                    $this->dependencies['Resource'],
-                    $this->dependencies['Runtimedata'],
-                    $this->dependencies['extensions_filename']
-                );
-            } catch (Exception $e) {
-                throw new RuntimeException(
-                    'Render: Could not instantiate Handler: ' . $this->product_namespace
-                );
-            }
-
-            $extensions           = $this->product_result->createMap();
-            $this->product_result = $extensions;
-            $this->dependencies['Cache']->set('Extensions', $extensions);
-
+        if ($cache_results === false || $cache_results->value === null) {
         } else {
             $this->product_result = $cache_results->value;
+
+            return $this;
         }
 
+        if (is_file($this->dependencies['extensions_filename'])) {
+            $this->product_result = $this->readFile($this->dependencies['extensions_filename']);
+        } else {
+            $this->createMap();
+        }
+
+        $this->dependencies['Cache']->set('Extensions', $this->product_result);
+
         return $this;
+    }
+
+    /**
+     * Create Extensions Map
+     *
+     * @return  $this
+     * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    public function createMap()
+    {
+        try {
+            $extension_map = new $this->product_namespace(
+                $this->dependencies['Resource'],
+                $this->dependencies['Runtimedata'],
+                $this->dependencies['extensions_filename']
+            );
+        } catch (Exception $e) {
+            throw new RuntimeException(
+                'Render: Could not instantiate Handler: ' . $this->product_namespace
+            );
+        }
+
+        $this->product_result = $extension_map->createMap();
+
+        return $this;
+    }
+
+    /**
+     * Factory Method Controller requests any Products (other than the current product) to be saved
+     *
+     * @return  array
+     * @since   1.0
+     */
+    public function setContainerEntries()
+    {
+        $this->dependencies['Runtimedata']->reference_data->extensions = $this->product_result;
+        $this->set_container_entries['Runtimedata']                    = $this->dependencies['Runtimedata'];
+
+        return $this->set_container_entries;
     }
 }

@@ -63,25 +63,26 @@ class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInter
         $event_option_keys[] = 'token_objects';
         $event_option_keys[] = 'user';
 
-        $runtime_data                           = new stdClass();
-        $runtime_data->error_code               = 0;
-        $runtime_data->redirect_to_id           = 0;
-        $runtime_data->base_path                = $this->options['base_path'];
-        $runtime_data->event_options_keys       = $event_option_keys;
-        $runtime_data->request                  = new stdClass();
-        $runtime_data->request->data            = new stdClass();
-        $runtime_data->request->client          = new stdClass();
-        $runtime_data->request->server          = new stdClass();
-        $runtime_data->site                     = new stdClass();
-        $runtime_data->application              = new stdClass();
-        $runtime_data->route                    = new stdClass();
-        $runtime_data->user                     = new stdClass();
-        $runtime_data->reference_data           = new stdClass();
-        $runtime_data->resource                 = new stdClass();
-        $runtime_data->resource->data           = new stdClass();
-        $runtime_data->resource->parameters     = new stdClass();
-        $runtime_data->resource->model_registry = new stdClass();
-        $runtime_data->render                   = new stdClass();
+        $runtime_data                             = new stdClass();
+        $runtime_data->error_code                 = 0;
+        $runtime_data->redirect_to_id             = 0;
+        $runtime_data->base_path                  = $this->base_path;
+        $runtime_data->event_options_keys         = $event_option_keys;
+        $runtime_data->request                    = new stdClass();
+        $runtime_data->request->data              = new stdClass();
+        $runtime_data->request->client            = new stdClass();
+        $runtime_data->request->server            = new stdClass();
+        $runtime_data->site                       = new stdClass();
+        $runtime_data->application                = new stdClass();
+        $runtime_data->route                      = new stdClass();
+        $runtime_data->user                       = new stdClass();
+        $runtime_data->reference_data             = new stdClass();
+        $runtime_data->reference_data->extensions = new stdClass();
+        $runtime_data->resource                   = new stdClass();
+        $runtime_data->resource->data             = new stdClass();
+        $runtime_data->resource->parameters       = new stdClass();
+        $runtime_data->resource->model_registry   = new stdClass();
+        $runtime_data->render                     = new stdClass();
 
         $this->product_result = $runtime_data;
 
@@ -99,5 +100,20 @@ class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInter
         $this->set_container_entries['rendered_page'] = '';
 
         return $this->set_container_entries;
+    }
+
+    /**
+     * Request for array of Factory Methods to be Scheduled
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function scheduleFactories()
+    {
+        $options                                      = array();
+        $options['base_path']                         = $this->base_path;
+        $this->schedule_factory_methods['Plugindata'] = $options;
+
+        return $this->schedule_factory_methods;
     }
 }

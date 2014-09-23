@@ -162,11 +162,9 @@ class Application implements ApplicationInterface
     public function setApplication()
     {
         $application_test = $this->setApplicationPath();
-
-        $app = $this->getApplicationArrayEntry($application_test);
-
-        $this->id   = $app->id;
-        $this->name = $app->name;
+        $app              = $this->getApplicationArrayEntry($application_test);
+        $this->id         = $app->id;
+        $this->name       = $app->name;
 
         $this->setApplicationBasePath($app);
 
@@ -208,7 +206,7 @@ class Application implements ApplicationInterface
      */
     protected function setApplicationPath()
     {
-        if (substr($this->request_path, - 1) === '/') {
+        if (substr($this->request_path, -1) === '/') {
             $this->processRequestPath(0);
         }
 

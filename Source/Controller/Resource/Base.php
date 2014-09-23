@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource Controller
+ * Dispatcher
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -13,7 +13,7 @@ use CommonApi\Exception\UnexpectedValueException;
 use stdClass;
 
 /**
- * Resource Controller
+ * Dispatcher
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
