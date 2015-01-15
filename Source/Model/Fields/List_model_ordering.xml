@@ -2,5 +2,5 @@
        type="string"
        null="0"
        default=" "
-       datalist="Fields"
+       datalist="fields"
         />

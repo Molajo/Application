@@ -3,6 +3,6 @@
         type="integer"
         null="0"
         default=" "
-        datalist="ExtensionInstances"
+        datalist="Resources"
         locked="1"
         />

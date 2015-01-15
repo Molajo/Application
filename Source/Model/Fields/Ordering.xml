@@ -2,4 +2,5 @@
        type="integer"
        null="0"
        default="0"
+       datalist="Ordering"
         />

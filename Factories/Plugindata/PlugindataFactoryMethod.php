@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Factories\Plugindata;
 
@@ -19,7 +19,7 @@ use stdClass;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class PlugindataFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
@@ -52,8 +52,8 @@ class PlugindataFactoryMethod extends FactoryMethodBase implements FactoryInterf
         $plugin_data             = new stdClass();
         $plugin_data->page       = new stdClass();
         $plugin_data->page->urls = array();
-        $plugin_data->datalists  = new stdClass();
-        $this->product_result    = $plugin_data;
+
+        $this->product_result = $plugin_data;
 
         return $this;
     }

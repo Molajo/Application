@@ -65,6 +65,7 @@
         <modelattribute name="table_name" default=""/>
         <modelattribute name="primary_key" default="id"/>
         <modelattribute name="primary_key_value" default=""/>
+        <modelattribute name="default"/>
         <modelattribute name="name_key" default="title"/>
         <modelattribute name="name_key_value" default=""/>
         <modelattribute name="primary_prefix" default="a"/>

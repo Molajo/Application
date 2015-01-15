@@ -1,1 +1,1 @@
-<field name="grid_pagination_ordering_column" type="string" null="1" datalist="Fields"/>
+<field name="grid_pagination_ordering_column" type="string" null="1" datalist="fields"/>

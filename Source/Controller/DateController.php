@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Controller;
 
@@ -18,7 +18,7 @@ use stdClass;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class DateController extends DateTime implements DateInterface
@@ -148,11 +148,11 @@ class DateController extends DateTime implements DateInterface
      * @since  1.0
      */
     const MINUTE = 60;
-    const HOUR   = 3600;
-    const DAY    = 86400;
-    const WEEK   = 604800;
-    const MONTH  = 2629800;
-    const YEAR   = 31557600;
+    const HOUR = 3600;
+    const DAY = 86400;
+    const WEEK = 604800;
+    const MONTH = 2629800;
+    const YEAR = 31557600;
 
     /**
      * Constructor
@@ -314,12 +314,25 @@ class DateController extends DateTime implements DateInterface
      *
      * @param   string $date
      *
-     * @return  string CCYY-MM-DD
+     * @return  string
      * @since   1.0
      */
     public function convertCCYYdashMMdashDD($date = null)
     {
         return substr($date, 0, 4) . '-' . substr($date, 5, 2) . '-' . substr($date, 8, 2);
+    }
+
+    /**
+     * Converts standard MYSQL date (ex. 2011-11-11 11:11:11) to MM/DD/CCYYY format (ex. 11-11-2011)
+     *
+     * @param   string $date
+     *
+     * @return  string
+     * @since   1.0
+     */
+    public function convertMMslashDDslashCCYY($date = null)
+    {
+        return substr($date, 5, 2) . '/' . substr($date, 8, 2) . '/' . substr($date, 0, 4);
     }
 
     /**
@@ -348,14 +361,16 @@ class DateController extends DateTime implements DateInterface
     /**
      * Format Date
      *
-     * @param   string $date
+     * @param   string $date -- formatted as ccyymmdd
      *
      * @return  DateTime
      * @since   1.0
      */
     protected function formatDate($date)
     {
-        return new DateTime(substr($date, 5, 2) . '/' . substr($date, 8, 2) . '/' . substr($date, 0, 4));
+        $formatted = substr($date, 4, 2) . '/' . substr($date, 6, 2) . '/' . substr($date, 0, 4);
+
+        return new DateTime($formatted);
     }
 
     /**
@@ -392,7 +407,7 @@ class DateController extends DateTime implements DateInterface
     /**
      * Provides day number
      *
-     * @param   string  $ccyymmdd
+     * @param   string $ccyymmdd
      *
      * @return  string
      * @since   1.0

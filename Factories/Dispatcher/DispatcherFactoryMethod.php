@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Factories\Dispatcher;
 
@@ -20,7 +20,7 @@ use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
@@ -68,23 +68,18 @@ class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterf
      */
     public function instantiateClass()
     {
-        $resource = new stdClass();
+        $route = $this->dependencies['Runtimedata']->route;
 
-        $resource->default_theme_id
+        $route->default_theme_id
             = $this->dependencies['Runtimedata']->application->parameters->application_default_theme_id;
-
-        $resource->page_type        = $this->dependencies['Runtimedata']->route->page_type;
-        $resource->model_type       = $this->dependencies['Runtimedata']->route->b_model_type;
-        $resource->model_name       = $this->dependencies['Runtimedata']->route->b_model_name;
-        $resource->sef_request      = $this->dependencies['Runtimedata']->route->sef_request;
-        $resource->source_id        = $this->dependencies['Runtimedata']->route->source_id;
 
         try {
             $class = $this->product_namespace;
 
             $this->product_result = new $class(
                 $this->dependencies['Resource'],
-                $resource
+                $route,
+                $this->dependencies['Runtimedata']
             );
 
         } catch (Exception $e) {

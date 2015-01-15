@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Factories\Execute;
 
@@ -19,7 +19,7 @@ use stdClass;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
@@ -79,24 +79,11 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
     {
         $page_type = strtolower($this->dependencies['Runtimedata']->route->page_type);
 
-        if ($page_type == 'dashboard') {
-            $theme_id         = 7010;
-            $page_view_id     = 8265;
-            $template_view_id = 9305;
-            $wrap_view_id     = 10010;
-        } elseif (is_object($this->dependencies['Runtimedata']->resource->menuitem->parameters)) {
+        $theme_id         = $this->dependencies['Runtimedata']->resource->parameters->theme_id;
+        $page_view_id     = $this->dependencies['Runtimedata']->resource->parameters->page_view_id;
+        $template_view_id = $this->dependencies['Runtimedata']->resource->parameters->template_view_id;
+        $wrap_view_id     = $this->dependencies['Runtimedata']->resource->parameters->wrap_view_id;
 
-            $theme_id         = $this->dependencies['Runtimedata']->resource->menuitem->parameters->theme_id;
-            $page_view_id     = $this->dependencies['Runtimedata']->resource->menuitem->parameters->page_view_id;
-            $template_view_id = $this->dependencies['Runtimedata']->resource->menuitem->parameters->template_view_id;
-            $wrap_view_id     = $this->dependencies['Runtimedata']->resource->menuitem->parameters->wrap_view_id;
-        } else {
-
-            $theme_id         = $this->dependencies['Runtimedata']->resource->parameters->theme_id;
-            $page_view_id     = $this->dependencies['Runtimedata']->resource->parameters->page_view_id;
-            $template_view_id = $this->dependencies['Runtimedata']->resource->parameters->template_view_id;
-            $wrap_view_id     = $this->dependencies['Runtimedata']->resource->parameters->wrap_view_id;
-        }
         /**
          * echo 'In Execute';
          * echo ' Theme: ' . $theme_id . '<br>';
@@ -107,22 +94,22 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
         $this->dependencies['Runtimedata']->resource->extensions = new stdClass();
 
         $scheme = 'theme:///';
-        $ns     = 'molajo//themes//' . $theme_id;
+        $ns     = 'molajo//themes//' . (int) $theme_id;
         $this->dependencies['Runtimedata']->resource->extensions->theme
                 = $this->dependencies['Resource']->get($scheme . $ns);
 
         $scheme = 'page:///';
-        $ns     = 'molajo//views//pages//' . $page_view_id;
+        $ns     = 'molajo//views//pages//' . (int) $page_view_id;
         $this->dependencies['Runtimedata']->resource->extensions->page
                 = $this->dependencies['Resource']->get($scheme . $ns);
 
         $scheme = 'template:///';
-        $ns     = 'molajo//views//templates//' . $template_view_id;
+        $ns     = 'molajo//views//templates//' . (int) $template_view_id;
         $this->dependencies['Runtimedata']->resource->extensions->template
                 = $this->dependencies['Resource']->get($scheme . $ns);
 
         $scheme = 'wrap:///';
-        $ns     = 'molajo//views//wraps//' . $wrap_view_id;
+        $ns     = 'molajo//views//wraps//' . (int) $wrap_view_id;
         $this->dependencies['Runtimedata']->resource->extensions->wrap
                 = $this->dependencies['Resource']->get($scheme . $ns);
 

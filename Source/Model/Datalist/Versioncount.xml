@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model
+        name="Versioncount"
+        data_object="Datalist">
+    <table>
+        <values>
+            <value id="0" value="000"/>
+            <value id="1" value="001"/>
+            <value id="2" value="002"/>
+            <value id="3" value="003"/>
+            <value id="4" value="004"/>
+            <value id="5" value="005"/>
+            <value id="10" value="010"/>
+            <value id="15" value="015"/>
+            <value id="20" value="020"/>
+            <value id="25" value="025"/>
+            <value id="50" value="050"/>
+            <value id="100" value="100"/>
+        </values>
+    </table>
+</model>

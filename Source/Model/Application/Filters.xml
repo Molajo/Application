@@ -6,6 +6,4 @@
     <filter name="date"/>
     <filter name="theme"/>
     <filter name="page"/>
-    <filter name="edit"/>
-    <filter name="delete"/>
 </filters>

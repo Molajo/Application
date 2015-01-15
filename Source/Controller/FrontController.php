@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Controller;
 
@@ -19,7 +19,7 @@ use Exception;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class FrontController implements FrontControllerInterface, ErrorHandlingInterface
@@ -206,17 +206,19 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
             return $this;
         }
 
+//echo 'In Frontcontroller scheduleEvent ' . $event_name . '<br>';
+
         $options['event_name'] = $event_name;
         $event_instance        = $this->scheduleFactoryMethod('Event', 'Service', $options);
         $dispatcher            = $this->scheduleFactoryMethod('Dispatch', 'Service', array());
 
         $message = 'Class: ' . __CLASS__ . ' Method:' . __METHOD__ . ' Type: Event: ' . $event_name;
-
-        $this->setDebugMethodCall(
-            $message . ' Started',
-            $event_name,
-            array('file' => __FILE__, 'line' => __LINE__)
-        );
+// echo $message . '<br>';
+//        $this->setDebugMethodCall(
+//            $message . ' Started',
+//            $event_name,
+//            array('file' => __FILE__, 'line' => __LINE__)
+//        );
 
         $event_results = $dispatcher->scheduleEvent($event_name, $event_instance, $this->debug_callback);
 

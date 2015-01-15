@@ -1,10 +1,10 @@
 <?php
 /**
- * Dispatcher
+ * Base Page Type Class
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Controller\Resource;
 
@@ -13,15 +13,23 @@ use CommonApi\Exception\UnexpectedValueException;
 use stdClass;
 
 /**
- * Dispatcher
+ * Base Page Type Class
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 abstract class Base
 {
+    /**
+     * Runtime Data
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $runtime_data = null;
+
     /**
      * Resource
      *
@@ -31,20 +39,52 @@ abstract class Base
     protected $resource_instance = null;
 
     /**
-     * Page Type
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $page_type = null;
-
-    /**
      * Default Theme ID
      *
      * @var    string
      * @since  1.0
      */
     protected $default_theme_id = null;
+
+    /**
+     * Home
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $home = null;
+
+    /**
+     * Method
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $method = null;
+
+    /**
+     * Action
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $action = null;
+
+    /**
+     * Action
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $special_action = null;
+
+    /**
+     * Page Type
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $page_type = null;
 
     /**
      * Model Type
@@ -63,12 +103,36 @@ abstract class Base
     protected $model_name = null;
 
     /**
-     * SEF Request
+     * Base URL
      *
      * @var    string
      * @since  1.0
      */
-    protected $sef_request = null;
+    protected $base_url = null;
+
+    /**
+     * Path
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $path = null;
+
+    /**
+     * Filters
+     *
+     * @var    array
+     * @since  1.0
+     */
+    protected $filters = array();
+
+    /**
+     * POST variable array
+     *
+     * @var    array
+     * @since  1.0
+     */
+    protected $post_variable_array = array();
 
     /**
      * Source ID
@@ -90,37 +154,57 @@ abstract class Base
      * Constructor
      *
      * @param  object $resource_instance
-     * @param  object $resource
+     * @param  object $route
+     * @param  object $runtime_data
      *
      * @since  1.0
      */
     public function __construct(
         $resource_instance,
-        $resource
+        $route,
+        $runtime_data
     ) {
         $this->resource_instance = $resource_instance;
-
-        $this->setResourceInput($resource);
+        $this->runtime_data      = $runtime_data;
+        $this->setRouteInput($route);
         $this->initialiseResourceObject();
     }
 
     /**
-     * Initialize Resource Object
+     * Retrieve Resource Item
      *
-     * @return  Base $resource
-     *
-     * @return  Base
+     * @return  object
      * @since   1.0
-     * @throws  \CommonApi\Exception\UnexpectedValueException
      */
-    protected function setResourceInput($resource)
+    public function getResource()
     {
-        $this->default_theme_id = $resource->default_theme_id;
-        $this->page_type        = ucfirst(strtolower($resource->page_type));
-        $this->model_type       = $resource->model_type;
-        $this->model_name       = $resource->model_name;
-        $this->sef_request      = $resource->sef_request;
-        $this->source_id        = $resource->source_id;
+        $this->resource = $this->sortObject($this->resource);
+
+        return $this->resource;
+    }
+
+    /**
+     * Set Route Data
+     *
+     * @param   object $route
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setRouteInput($route)
+    {
+        $this->default_theme_id    = $route->default_theme_id;
+        $this->home                = $route->home;
+        $this->method              = $route->method;
+        $this->action              = $route->action;
+        $this->special_action      = $route->special_action;
+        $this->page_type           = ucfirst(strtolower($route->page_type));
+        $this->model_type          = $route->model_type;
+        $this->model_name          = $route->model_name;
+        $this->base_url            = $route->base_url;
+        $this->path                = trim(strtolower($route->path));
+        $this->filters             = $route->filters;
+        $this->post_variable_array = $route->post_variable_array;
 
         return $this;
     }
@@ -130,21 +214,15 @@ abstract class Base
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\UnexpectedValueException
      */
     protected function initialiseResourceObject()
     {
         $this->resource                           = new stdClass();
         $this->resource->catalog_type_id          = null;
-        $this->resource->criteria_catalog_type_id = null;
-        $this->resource->resource_model_name      = null;
+        $this->resource->model_name               = null;
         $this->resource->data                     = new stdClass();
         $this->resource->parameters               = array();
         $this->resource->model_registry           = array();
-        $this->resource->menuitem                 = new stdClass();
-        $this->resource->menuitem->data           = new stdClass();
-        $this->resource->menuitem->parameters     = array();
-        $this->resource->menuitem->model_registry = array();
 
         return $this;
     }
@@ -167,7 +245,6 @@ abstract class Base
             throw new UnexpectedValueException($e->getMessage());
         }
 
-
         if (count($results) === 0) {
             throw new UnexpectedValueException('Resource Data not found.');
         }
@@ -176,77 +253,65 @@ abstract class Base
     }
 
     /**
-     * Set Resource Menu Query
-     *
-     * $param   array  $model_registry
-     * $param   array  $parameters
+     * Set Parameters
      *
      * @return  $this
      * @since   1.0
      */
-    protected function setResourceMenuitemParameters($model_registry, $parameters)
+    protected function setParameters()
     {
-        $parameter_keys = $this->getParameterKeys(
-            $this->resource->menuitem->parameters
-        );
-
-        foreach ($model_registry['parameters'] as $registry_item) {
-
-            $this->setResourceMenuitemParameter($parameters, $registry_item, $parameter_keys);
-        }
-
-        $this->resource->model_registry = $model_registry;
-
-        return $this;
-    }
-
-    /**
-     * Set Parameter Key and Value
-     *
-     * @param   array $parameters
-     * @param   array $registry_item
-     * @param   array $parameter_keys
-     *
-     * @return  Base
-     * @since   1.0
-     */
-    protected function setResourceMenuitemParameter($parameters, $registry_item, $parameter_keys)
-    {
-        if (in_array($registry_item['name'], $parameter_keys)) {
-            return $this;
-        }
-
-        $key = $registry_item['name'];
-
-        if (isset($parameters->$key)) {
-            $value = $parameters->$key;
+        if (isset($this->resource->data->parameters->theme_id)
+            && (int)$this->resource->data->parameters->theme_id > 0
+        ) {
         } else {
-            $value = null;
+            $this->resource->data->parameters->theme_id = $this->default_theme_id;
         }
 
-        $this->resource->menuitem->model_registry['parameters'][] = $registry_item;
+        $parameters = $this->resource->data->parameters;
+        unset($this->resource->data->parameters);
 
-        $this->resource->menuitem->parameters->$key = $value;
+        $this->resource->parameters = $parameters;
 
         return $this;
     }
 
     /**
-     * Get Parameter Keys
+     * Set Model Registry
      *
-     * @param   array $parameters
-     *
-     * @return  array
+     * @return  object
      * @since   1.0
      */
-    protected function getParameterKeys($parameters)
+    protected function setModelRegistry($controller)
     {
-        $parameter_keys = array();
+        $this->resource->model_registry = $controller->getModelRegistry('*');
 
-        foreach ($parameters as $key => $value) {
-            $parameter_keys[] = $key;
+        return $this;
+    }
+
+    /**
+     * Sort an object
+     *
+     * @param   object $object
+     *
+     * @return  object
+     * @since   1.0.0
+     */
+    protected function sortObject($object)
+    {
+        $sort_array = get_object_vars($object);
+        ksort($sort_array);
+
+        $new_object = new stdClass();
+        foreach ($sort_array as $key => $value) {
+            if (is_object($value)) {
+                $value = $this->sortObject($value);
+            }
+            $new_object->$key = $value;
         }
 
-        return $parameter_keys;
+        unset($sort_array);
+        unset($object);
+
+        return $new_object;
     }
 }

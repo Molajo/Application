@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Factories\Application;
 
@@ -19,7 +19,7 @@ use stdClass;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
@@ -127,6 +127,8 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
 
         $this->dependencies['Runtimedata']->application->base_url = $base_url . $base_path . '/';
 
+        $this->dependencies['Runtimedata']->application->model_registry = $this->dependencies['model_registry'];
+
         return $this;
     }
 
@@ -155,10 +157,18 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
         $applications = array();
 
         foreach ($xml as $app) {
-            $row            = new stdClass();
-            $row->name      = trim(strtolower((string)$app->name));
-            $row->id        = (string)$app->id;
-            $row->base_path = $app->name;
+
+            $row       = new stdClass();
+            $row->name = trim(strtolower((string)$app->name));
+            $row->id   = (string)$app->id;
+
+            if ($row->name === 'site') {
+                $row->base_path = '';
+                $row->default   = 1;
+            } else {
+                $row->base_path = $row->name;
+                $row->default   = 0;
+            }
 
             $applications[$row->name] = $row;
         }

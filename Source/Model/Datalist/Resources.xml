@@ -8,7 +8,7 @@
         get_customfields="0"
         get_item_children="0"
         use_special_joins="1"
-        check_view_level_access="0"
+        check_view_level_access="1"
         process_events="0"
         criteria_catalog_type_id="12000"
         published_status="1"
@@ -35,8 +35,5 @@
                   jointo="extension_instance_id,site_id"
                   joinwith="id,SITE_ID"/>
         </joins>
-        <plugins>
-            <plugin name="Publishedstatus"/>
-        </plugins>
     </table>
 </model>
