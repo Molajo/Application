@@ -19,7 +19,7 @@ use CommonApi\Resource\AdapterInterface;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class CssDeclarations extends AbstractAdapter implements AdapterInterface
+class CssDeclarations extends Assets implements AdapterInterface
 {
     /**
      * Css Declarations
@@ -27,15 +27,7 @@ class CssDeclarations extends AbstractAdapter implements AdapterInterface
      * @var    array
      * @since  1.0.0
      */
-    protected $css = array();
-
-    /**
-     * CSS Declarations Priorities
-     *
-     * @var    array
-     * @since  1.0.0
-     */
-    protected $css_priorities = array();
+    protected $css_strings = array();
 
     /**
      * Language Direction
@@ -99,6 +91,7 @@ class CssDeclarations extends AbstractAdapter implements AdapterInterface
         $this->language_direction = $handler_options['language_direction'];
         $this->html5              = $handler_options['html5'];
         $this->line_end           = $handler_options['line_end'];
+        $this->mimetype           = $handler_options['mimetype'];
     }
 
     /**
@@ -113,31 +106,17 @@ class CssDeclarations extends AbstractAdapter implements AdapterInterface
      */
     public function handlePath($scheme, $located_path, array $options = array())
     {
-        $css = '';
-        if (isset($options['css'])) {
-            $css = $options['css'];
-        }
-        $priority = 500;
-        if (isset($options['priority'])) {
-            $priority = $options['priority'];
-        }
-        $mimetype = 'text/css';
-        if (isset($options['mimetype'])) {
-            $mimetype = $options['mimetype'];
+        if (isset($options['css_string'])) {
+        } else {
+            return $this;
         }
 
-        $temp_row = new stdClass();
+        $css_string = $options['css_string'];
+        unset($options['css_string']);
 
-        $temp_row->mimetype = $mimetype;
-        $temp_row->content  = $css;
-        $temp_row->priority = $priority;
+        $this->addCssString($css_string, $options);
 
-        $this->css[] = $temp_row;
-
-        $this->css_priorities[] = $priority;
-        sort($priorities);
-
-        return;
+        return $this;
     }
 
     /**
@@ -151,40 +130,40 @@ class CssDeclarations extends AbstractAdapter implements AdapterInterface
      */
     public function getCollection($scheme, array $options = array())
     {
-        $temp = $this->css;
+        $priorities = $this->getAssetPriorities($this->css_strings);
 
-        if (is_array($temp) && count($temp) > 0) {
-        } else {
-            return array();
-        }
-
-        $priorities = $this->css_priorities;
-        sort($priorities);
-
-        $query_results = array();
+        $priority_order = array();
 
         foreach ($priorities as $priority) {
-
-            foreach ($temp as $temp_row) {
-
-                $include = false;
-
-                if (isset($temp_row->priority)) {
-                    if ($temp_row->priority == $priority) {
-                        $include = true;
-                    }
-                }
-
-                if ($include === false) {
-                } else {
-                    $temp_row->application_html5 = $this->html5;
-                    $temp_row->end               = $this->line_end;
-                    $temp_row->page_mimetype     = $this->mimetype;
-                    $query_results[]             = $temp_row;
+            foreach ($this->css_strings as $row) {
+                if ($row->priority === $priority) {
+                    $priority_order[] = $row;
                 }
             }
         }
 
-        return $query_results;
+        return $priority_order;
+    }
+
+    /**
+     * addCssString Adds a single Css Stylesheet String to Page rarray
+     *
+     * @param   string $css_string
+     * @param   array  $options
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function addCssString($css_string, array $options = array())
+    {
+        if ($this->skipDuplicateFile($css_string, $this->css_strings) === true) {
+            return $this;
+        }
+
+        $row = $this->setCssRow($css_string, $options);
+
+        $this->css_strings[] = $row;
+
+        return $this;
     }
 }

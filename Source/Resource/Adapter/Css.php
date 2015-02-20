@@ -22,21 +22,6 @@ use stdClass;
 class Css extends Assets implements AdapterInterface
 {
     /**
-     * Option Names
-     *
-     * @var    array
-     * @since  1.0.0
-     */
-    protected $option_names
-        = array(
-            'priority'    => 'integer',
-            'mimetype'    => 'string',
-            'media'       => 'string',
-            'conditional' => 'string',
-            'attributes'  => 'array'
-        );
-
-    /**
      * CSS Files array
      *
      * @var    array
@@ -143,7 +128,7 @@ class Css extends Assets implements AdapterInterface
      */
     public function getCollection($scheme, array $options = array())
     {
-        $priorities = $this->getFilePriorities($this->css_files);
+        $priorities = $this->getAssetPriorities($this->css_files);
 
         $priority_order = array();
 
@@ -206,26 +191,5 @@ class Css extends Assets implements AdapterInterface
         $this->css_files[] = $row;
 
         return $this;
-    }
-
-    /**
-     * Create a row containing the CSS information
-     *
-     * @param   string $file_path
-     * @param   array  $options
-     *
-     * @return  stdClass
-     * @since   1.0.0
-     */
-    protected function setCssRow($file_path, array $options = array())
-    {
-        $row       = new stdClass();
-        $row->path = $file_path;
-
-        foreach ($this->option_names as $name => $filter) {
-            $row->$name = $this->setOptionValue($options, $name, $filter);
-        }
-
-        return $row;
     }
 }

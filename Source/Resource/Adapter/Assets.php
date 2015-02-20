@@ -8,6 +8,8 @@
  */
 namespace Molajo\Resource\Adapter;
 
+use stdClass;
+
 /**
  * Assets Resource Adapter
  *
@@ -19,25 +21,41 @@ namespace Molajo\Resource\Adapter;
 abstract class Assets extends AbstractAdapter
 {
     /**
+     * Option Names
+     *
+     * @var    array
+     * @since  1.0.0
+     */
+    protected $css_options_names
+        = array(
+            'priority'    => 'integer',
+            'mimetype'    => 'string',
+            'media'       => 'string',
+            'conditional' => 'string',
+            'attributes'  => 'array'
+        );
+
+    /**
      * Skip File Methods
      *
      * @var    array
      * @since  1.0.0
      */
-    protected $methods = array(
-        'verifyDotFile',
-        'verifyLanguageDirectionalFile',
-        'verifySkipFile',
-        'verifyNotFile',
-        'verifyNotFileExtension'
-    );
+    protected $methods
+        = array(
+            'verifyDotFile',
+            'verifyLanguageDirectionalFile',
+            'verifySkipFile',
+            'verifyNotFile',
+            'verifyNotFileExtension'
+        );
 
     /**
      * Perform file checks for inclusion
      *
-     * @param   string  $file
-     * @param   string  $extension
-     * @param   string  $language_direction
+     * @param   string $file
+     * @param   string $extension
+     * @param   string $language_direction
      *
      * @return  boolean
      * @since   1.0.0
@@ -58,9 +76,9 @@ abstract class Assets extends AbstractAdapter
     /**
      * Load options into an array
      *
-     * @param   string  $file
-     * @param   string  $extension
-     * @param   string  $language_direction
+     * @param   string $file
+     * @param   string $extension
+     * @param   string $language_direction
      *
      * @return  array
      * @since   1.0.0
@@ -78,7 +96,7 @@ abstract class Assets extends AbstractAdapter
     /**
      * Verify if file is '.' or '..'
      *
-     * @param   array  $options
+     * @param   array $options
      *
      * @return  boolean
      * @since   1.0.0
@@ -95,7 +113,7 @@ abstract class Assets extends AbstractAdapter
     /**
      * Verify Language Directional File
      *
-     * @param   array  $options
+     * @param   array $options
      *
      * @return  boolean
      * @since   1.0.0
@@ -115,7 +133,7 @@ abstract class Assets extends AbstractAdapter
     /**
      * Verify Skip File
      *
-     * @param   array  $options
+     * @param   array $options
      *
      * @return  boolean
      * @since   1.0.0
@@ -132,7 +150,7 @@ abstract class Assets extends AbstractAdapter
     /**
      * Verify name is actually a file
      *
-     * @param   array  $options
+     * @param   array $options
      *
      * @return  boolean
      * @since   1.0.0
@@ -150,7 +168,7 @@ abstract class Assets extends AbstractAdapter
     /**
      * Verify File Extension
      *
-     * @param   array  $options
+     * @param   array $options
      *
      * @return  boolean
      * @since   1.0.0
@@ -214,8 +232,8 @@ abstract class Assets extends AbstractAdapter
     /**
      * Filter Option Value
      *
-     * @param   mixed   $value
-     * @param   string  $filter
+     * @param   mixed  $value
+     * @param   string $filter
      *
      * @return  string
      * @since   1.0.0
@@ -226,7 +244,7 @@ abstract class Assets extends AbstractAdapter
 
             if (is_array($value)) {
                 $value = trim(implode(' ', $value));
-                return (string) $value;
+                return (string)$value;
 
             } else {
                 return '';
@@ -239,8 +257,8 @@ abstract class Assets extends AbstractAdapter
     /**
      * Skip file if it has already been defined to page array
      *
-     * @param   string  $file_path
-     * @param   array   $existing
+     * @param   string $file_path
+     * @param   array  $existing
      *
      * @return  boolean
      * @since   1.0.0
@@ -263,21 +281,21 @@ abstract class Assets extends AbstractAdapter
     /**
      * Develop a unique list of priorities in priority order
      *
-     * @param   array  $files
+     * @param   array $assets
      *
      * @return  array
      * @since   1.0.0
      */
-    public function getFilePriorities(array $files = array())
+    public function getAssetPriorities(array $assets = array())
     {
-        if (is_array($files) && count($files) > 0) {
+        if (is_array($assets) && count($assets) > 0) {
         } else {
             return array();
         }
 
         $priorities = array();
 
-        foreach ($files as $row) {
+        foreach ($assets as $row) {
             $priorities[] = $row->priority;
         }
 
@@ -286,5 +304,26 @@ abstract class Assets extends AbstractAdapter
         sort($priorities);
 
         return $priorities;
+    }
+
+    /**
+     * Create a row containing the CSS information
+     *
+     * @param   string $file_path
+     * @param   array  $options
+     *
+     * @return  stdClass
+     * @since   1.0.0
+     */
+    protected function setCssRow($css_path_or_string, array $options = array())
+    {
+        $row                     = new stdClass();
+        $row->css_path_or_string = $css_path_or_string;
+
+        foreach ($this->css_options_names as $name => $filter) {
+            $row->$name = $this->setOptionValue($options, $name, $filter);
+        }
+
+        return $row;
     }
 }
