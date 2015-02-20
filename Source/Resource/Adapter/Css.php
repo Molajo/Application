@@ -70,6 +70,14 @@ class Css extends AbstractAdapter implements AdapterInterface
     protected $line_end;
 
     /**
+     * Mime Type
+     *
+     * @var    string
+     * @since  1.0.0
+     */
+    protected $mime_type;
+
+    /**
      * Constructor
      *
      * @param  string $base_path
@@ -100,6 +108,7 @@ class Css extends AbstractAdapter implements AdapterInterface
         $this->language_direction = $handler_options['language_direction'];
         $this->html5              = $handler_options['html5'];
         $this->line_end           = $handler_options['line_end'];
+        $this->mime_type          = $handler_options['mime_type'];
     }
 
     /**
@@ -327,7 +336,7 @@ class Css extends AbstractAdapter implements AdapterInterface
                 } else {
                     $temp_row->application_html5 = $this->html5;
                     $temp_row->end               = $this->line_end;
-                    $temp_row->page_mimetype     = $this->mimetype;
+                    $temp_row->page_mimetype     = $this->mime_type;
                     $query_results[]             = $temp_row;
                 }
             }

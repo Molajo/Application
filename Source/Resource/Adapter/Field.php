@@ -79,6 +79,7 @@ class Field extends AbstractAdapter implements AdapterInterface
         }
 
         $message = ' SCHEME: field' . ' NAMESPACE: ' . $resource_namespace;
+
         throw new RuntimeException('Resource FieldHandler Failure: ' . $message);
     }
 

@@ -234,8 +234,8 @@ class DateController extends DateTime implements DateInterface
         $time = 'now',
         $timezone = null,
         $server_or_user_timezone = 'user',
-        $date_format = 'Y-m-d H:i:s'
-    ) {
+        $date_format = 'Y-m-d H:i:s')
+    {
         if ($time === '') {
             $time = 'now';
         }

@@ -140,4 +140,18 @@ class JsDeclarations extends AbstractAdapter implements AdapterInterface
 
         return $this;
     }
+
+    /**
+     * Retrieve a collection of a specific handler
+     *
+     * @param   string $scheme
+     * @param   array  $options
+     *
+     * @return  mixed
+     * @since   1.0.0
+     */
+    public function getCollection($scheme, array $options = array())
+    {
+
+    }
 }

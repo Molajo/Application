@@ -550,5 +550,4 @@ class Application implements ApplicationInterface
 
         return $results->getFieldValue();
     }
-
 }
