@@ -21,36 +21,33 @@ use CommonApi\Resource\AdapterInterface;
 class Template extends Extension implements AdapterInterface
 {
     /**
-     * Constructor
+     * Catalog Type Id
      *
-     * @param  string $base_path
-     * @param  array  $resource_map
-     * @param  array  $namespace_prefixes
-     * @param  array  $valid_file_extensions
-     * @param  array  $cache_callbacks
-     * @param  array  $handler_options
-     *
+     * @var    integer
      * @since  1.0.0
      */
-    public function __construct(
-        $base_path = null,
-        array $resource_map = array(),
-        array $namespace_prefixes = array(),
-        array $valid_file_extensions = array(),
-        array $cache_callbacks = array(),
-        array $handler_options = array()
-    ) {
-        parent::__construct(
-            $base_path,
-            $resource_map,
-            $namespace_prefixes,
-            $valid_file_extensions,
-            $cache_callbacks,
-            $handler_options
-        );
+    protected $catalog_type_id = 9000;
 
-        $this->catalog_type_id       = 9000;
-        $this->catalog_type_priority = 200;
+    /**
+     * Catalog Type Priority
+     *
+     * @var    integer
+     * @since  1.0.0
+     */
+    protected $catalog_type_priority = 200;
+
+    /**
+     * Locates resource for extension
+     *
+     * @param   string  $resource_namespace
+     * @param   bool    $multiple
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    public function get($resource_namespace, $multiple = false)
+    {
+        return $this->getExtension($this->catalog_type_id, $resource_namespace, $multiple);
     }
 
     /**

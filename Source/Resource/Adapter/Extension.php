@@ -54,22 +54,6 @@ class Extension extends AbstractAdapter implements AdapterInterface
     protected $parameters = null;
 
     /**
-     * Catalog Type ID
-     *
-     * @var    int
-     * @since  1.0.0
-     */
-    protected $catalog_type_id;
-
-    /**
-     * Catalog Type Priority
-     *
-     * @var    int
-     * @since  1.0.0
-     */
-    protected $catalog_type_priority;
-
-    /**
      * Resource Instance to retrieve CSS and JS files
      *
      * @var    object
@@ -125,16 +109,16 @@ class Extension extends AbstractAdapter implements AdapterInterface
     }
 
     /**
-     * Locates folder/file associated with Namespace for Resource
+     * Locates folder/file associated with Namespace for Resource Extension
      *
-     * @param   string $resource_namespace
-     * @param   bool   $multiple
+     * @param   integer $catalog_type_id
+     * @param   string  $resource_namespace
+     * @param   bool    $multiple
      *
-     * @return  void|mixed
+     * @return  string
      * @since   1.0.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function get($resource_namespace, $multiple = false)
+    protected function getExtension($catalog_type_id, $resource_namespace, $multiple = false)
     {
         $extension = substr($resource_namespace, strrpos($resource_namespace, '/') + 1, 9999);
 
@@ -142,22 +126,22 @@ class Extension extends AbstractAdapter implements AdapterInterface
         if (is_numeric($test) && (int)$test == $extension) {
         } else {
             $test = strtolower($extension);
-            if (isset($this->extensions->extensions[$this->catalog_type_id]->names[$test])) {
-                $extension = $this->extensions->extensions[$this->catalog_type_id]->names[$test];
+            if (isset($this->extensions->extensions[$catalog_type_id]->names[$test])) {
+                $extension = $this->extensions->extensions[$catalog_type_id]->names[$test];
             }
         }
 
         $temp = substr($resource_namespace, 0, strrpos($resource_namespace, '/') - 1);
 
-        if (isset($this->extensions->extensions[$this->catalog_type_id]->ids[$extension])) {
-            $alias = $this->extensions->extensions[$this->catalog_type_id]->ids[$extension];
+        if (isset($this->extensions->extensions[$catalog_type_id]->ids[$extension])) {
+            $alias = $this->extensions->extensions[$catalog_type_id]->ids[$extension];
         } else {
             $alias = $extension;
         }
 
         $namespace = $temp . '//' . $alias;
 
-        $this->extension = $this->extensions->extensions[$this->catalog_type_id]->extensions[$extension];
+        $this->extension = $this->extensions->extensions[$catalog_type_id]->extensions[$extension];
 
         return parent::get($namespace);
     }
