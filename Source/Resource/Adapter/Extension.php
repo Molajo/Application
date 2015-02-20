@@ -220,15 +220,7 @@ class Extension extends AbstractAdapter implements AdapterInterface
             return $extension;
         }
 
-        $test = strtolower($extension);
-
-        if (isset($this->extensions->extensions[$catalog_type_id]->names[$test])) {
-            $extension = $this->extensions->extensions[$catalog_type_id]->names[$test];
-
-            return $extension;
-        }
-
-        return $extension;
+        return $this->getExtensionAlias($catalog_type_id, $extension);
     }
 
     /**
@@ -242,8 +234,10 @@ class Extension extends AbstractAdapter implements AdapterInterface
      */
     protected function getExtensionAlias($catalog_type_id, $extension)
     {
-        if (isset($this->extensions->extensions[$catalog_type_id]->ids[$extension])) {
-            $alias = $this->extensions->extensions[$catalog_type_id]->ids[$extension];
+        $test = strtolower($extension);
+
+        if (isset($this->extensions->extensions[$catalog_type_id]->ids[$test])) {
+            $alias = $this->extensions->extensions[$catalog_type_id]->ids[$test];
         } else {
             $alias = $extension;
         }
