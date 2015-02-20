@@ -156,9 +156,9 @@ class Extension extends AbstractAdapter implements AdapterInterface
      */
     public function get($resource_namespace, $multiple = false)
     {
-        $extension = $this->getExtensionId($resource_namespace, $this->catalog_type_id);
+        $extension = $this->getExtensionId($resource_namespace);
         $temp      = substr($resource_namespace, 0, strrpos($resource_namespace, '/') - 1);
-        $alias     = $this->getExtensionAlias($this->catalog_type_id, $extension);
+        $alias     = $this->getExtensionAlias($extension);
         $namespace = $temp . '//' . $alias;
 
         $this->extension = $this->extensions->extensions[$this->catalog_type_id]->extensions[$extension];
@@ -184,7 +184,7 @@ class Extension extends AbstractAdapter implements AdapterInterface
             return $extension;
         }
 
-        return $this->getExtensionAlias($this->catalog_type_id, $extension);
+        return $this->getExtensionAlias($extension);
     }
 
     /**

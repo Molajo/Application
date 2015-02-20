@@ -21,38 +21,6 @@ use CommonApi\Resource\AdapterInterface;
 class Theme extends Extension implements AdapterInterface
 {
     /**
-     * Catalog Type Id
-     *
-     * @var    integer
-     * @since  1.0.0
-     */
-    protected $catalog_type_id = 7000;
-
-    /**
-     * Catalog Type Priority
-     *
-     * @var    integer
-     * @since  1.0.0
-     */
-    protected $catalog_type_priority = 100;
-
-    /**
-     * Default Partial Path
-     *
-     * @var    string
-     * @since  1.0.0
-     */
-    protected $default_partial_path = 'Source/Themes';
-
-    /**
-     * Filename
-     *
-     * @var    string
-     * @since  1.0.0
-     */
-    protected $file_name = 'Index.phtml';
-
-    /**
      * Constructor
      *
      * @param  string $base_path
@@ -72,10 +40,13 @@ class Theme extends Extension implements AdapterInterface
         array $cache_callbacks = array(),
         array $handler_options = array()
     ) {
-        $handler_options['catalog_type_id']       = $this->catalog_type_id;
-        $handler_options['catalog_type_priority'] = $this->catalog_type_priority;
-        $handler_options['default_partial_path']  = $this->default_partial_path;
-        $handler_options['file_name']             = $this->file_name;
+        $handler_options = $this->setHandlerOptions(
+            $handler_options,
+            7000,
+            200,
+            'Source/Themes',
+            'Index.phtml'
+        );
 
         parent::__construct(
             $base_path,
@@ -86,4 +57,12 @@ class Theme extends Extension implements AdapterInterface
             $handler_options
         );
     }
+
+    /**
+     * Extension Trait
+     *
+     * @var     object  Molajo\Resource\Adapter\ExtensionTrait
+     * @since   1.0.0
+     */
+    use \Molajo\Resource\Adapter\ExtensionTrait;
 }
