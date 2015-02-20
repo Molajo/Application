@@ -95,6 +95,46 @@ class Extension extends AbstractAdapter implements AdapterInterface
     protected $file_name = null;
 
     /**
+     * Class Properties
+     *
+     * @var    array
+     * @since  1.0.0
+     */
+    protected $class_properties
+        = array(
+            'Menuitem' => array(
+                'catalog_type_id'       => 11000,
+                'catalog_type_priority' => 200,
+                'default_partial_path'  => 'Source/Menuitem',
+                'file_name'            => 'Configuration.phtml'
+            ),
+            'Page' => array(
+                'catalog_type_id'       => 8000,
+                'catalog_type_priority' => 200,
+                'default_partial_path'  => 'Source/Views/Pages',
+                'file_name'            => 'Index.phtml'
+            ),
+            'Template' => array(
+                'catalog_type_id'       => 9000,
+                'catalog_type_priority' => 200,
+                'default_partial_path'  => 'Source/Views/Templates',
+                'file_name'            => ''
+            ),
+            'Theme' => array(
+                'catalog_type_id'       => 7000,
+                'catalog_type_priority' => 200,
+                'default_partial_path'  => 'Source/Themes',
+                'file_name'            => 'Index.phtml'
+            ),
+            'Wraps' => array(
+                'catalog_type_id'       => 10000,
+                'catalog_type_priority' => 600,
+                'default_partial_path'  => 'Source/Views/Wraps',
+                'file_name'            => ''
+            )
+        );
+
+    /**
      * Constructor
      *
      * @param  string $base_path
@@ -122,25 +162,28 @@ class Extension extends AbstractAdapter implements AdapterInterface
             $cache_callbacks
         );
 
-        $this->setHandlerOptions($handler_options);
+        $this->setClassProperties($handler_options);
     }
 
     /**
      * Set Class properties using Handler Options array
      *
-     * @param   array  $handler_options
+     * @param   array $handler_options
      *
      * @return  $this
      * @since   1.0.0
      */
-    protected function setHandlerOptions(array $handler_options = array())
+    protected function setClassProperties(array $handler_options = array())
     {
-        $this->extensions            = $handler_options['extensions'];
-        $this->resource              = $handler_options['resource'];
-        $this->catalog_type_id       = $handler_options['catalog_type_id'];
-        $this->catalog_type_priority = $handler_options['catalog_type_priority'];
-        $this->default_partial_path  = $handler_options['default_partial_path'];
-        $this->file_name             = $handler_options['file_name'];
+        $this->extensions = $handler_options['extensions'];
+        $this->resource   = $handler_options['resource'];
+
+        $class = get_called_class();
+
+        $this->catalog_type_id       = $this->class_properties[$class]['catalog_type_id'];
+        $this->catalog_type_priority = $this->class_properties[$class]['catalog_type_priority'];
+        $this->default_partial_path  = $this->class_properties[$class]['default_partial_path'];
+        $this->file_name             = $this->class_properties[$class]['file_name'];
 
         return $this;
     }
@@ -169,7 +212,7 @@ class Extension extends AbstractAdapter implements AdapterInterface
     /**
      * Get Extension expressed as primary key
      *
-     * @param   string  $resource_namespace
+     * @param   string $resource_namespace
      *
      * @return  string
      * @since   1.0.0
@@ -190,7 +233,7 @@ class Extension extends AbstractAdapter implements AdapterInterface
     /**
      * Get Alias for Extension
      *
-     * @param   string  $extension
+     * @param   string $extension
      *
      * @return  string
      * @since   1.0.0
