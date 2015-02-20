@@ -22,28 +22,27 @@ use stdClass;
 class Css extends Assets implements AdapterInterface
 {
     /**
+     * Option Names
+     *
+     * @var    array
+     * @since  1.0.0
+     */
+    protected $option_names
+        = array(
+            'priority'    => 'integer',
+            'mimetype'    => 'string',
+            'media'       => 'string',
+            'conditional' => 'string',
+            'attributes'  => 'array'
+        );
+
+    /**
      * CSS Files array
      *
      * @var    array
      * @since  1.0.0
      */
     protected $css_files = array();
-
-    /**
-     * Css String array
-     *
-     * @var    array
-     * @since  1.0.0
-     */
-    protected $css = array();
-
-    /**
-     * CSS Priorities
-     *
-     * @var    array
-     * @since  1.0.0
-     */
-    protected $css_priorities = array();
 
     /**
      * Language Direction
@@ -124,143 +123,11 @@ class Css extends Assets implements AdapterInterface
     public function handlePath($scheme, $located_path, array $options = array())
     {
         if (is_dir($located_path)) {
-            $type = 'folder';
+            $this->addCssFolder($located_path, $options);
 
         } elseif (file_exists($located_path)) {
-            $type = 'file';
-
-        } else {
-            return null;
+            $this->addCssFile($located_path, $options);
         }
-
-        $priority = '';
-        if (isset($options['priority'])) {
-            $priority = $options['priority'];
-        }
-
-        $mimetype = '';
-        if (isset($options['mimetype'])) {
-            $mimetype = $options['mimetype'];
-        }
-
-        $media = '';
-        if (isset($options['media'])) {
-            $media = $options['media'];
-        }
-
-        $conditional = '';
-        if (isset($options['conditional'])) {
-            $conditional = $options['conditional'];
-        }
-
-        $attributes = array();
-        if (isset($options['attributes'])) {
-            $attributes = $options['attributes'];
-        }
-
-        if ($type == 'folder') {
-            $this->addCssFolder(
-                $located_path,
-                $priority
-            );
-
-        } else {
-            $this->addCss(
-                $located_path,
-                $priority,
-                $mimetype,
-                $media,
-                $conditional,
-                $attributes
-            );
-        }
-
-        return $this;
-    }
-
-    /**
-     * addCssFolder - Loads the CSS files located within the identified folder
-     *
-     * @param   string  $file_path
-     * @param   integer $priority
-     *
-     * @return  $this
-     * @since   1.0.0
-     */
-    protected function addCssFolder($file_path, $priority = 500)
-    {
-        $files = scandir($file_path);
-
-        if (count($files) === 0) {
-            return $this;
-        }
-
-        foreach ($files as $file) {
-            if ($this->skipFile($file, 'css', $this->language_direction) === true) {
-                $this->addCss($file_path . '/' . $file, $priority);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * addCss - Adds a linked stylesheet to the page
-     *
-     * @param   string $file_path
-     * @param   int    $priority
-     * @param   string $mimetype
-     * @param   string $media
-     * @param   string $conditional
-     * @param   array  $attributes
-     *
-     * @return  mixed
-     * @since   1.0.0
-     */
-    public function addCss(
-        $file_path,
-        $priority = 500,
-        $mimetype = 'text/css',
-        $media = '',
-        $conditional = '',
-        $attributes = array()
-    ) {
-        $css = $this->css;
-
-        foreach ($css as $item) {
-
-            if ($item->path == $file_path
-                && $item->mimetype == $mimetype
-                && $item->media == $media
-                && $item->conditional == $conditional
-            ) {
-                return $this;
-            }
-        }
-
-        $temp_row = new stdClass();
-
-        $temp_row->path        = $file_path;
-        $temp_row->priority    = $priority;
-        $temp_row->mimetype    = $mimetype;
-        $temp_row->media       = $media;
-        $temp_row->conditional = $conditional;
-        $temp_row->attributes  = trim(implode(' ', $attributes));
-
-        $css[] = $temp_row;
-
-        $this->css = $css;
-
-        $priorities = $this->css_priorities;
-
-        if (in_array($priority, $priorities)) {
-        } else {
-            $priorities[] = $priority;
-        }
-
-        sort($priorities);
-
-        $this->css_priorities = $priorities;
 
         return $this;
     }
@@ -276,40 +143,89 @@ class Css extends Assets implements AdapterInterface
      */
     public function getCollection($scheme, array $options = array())
     {
-        $temp = $this->css;
+        $priorities = $this->getFilePriorities($this->css_files);
 
-        if (is_array($temp) && count($temp) > 0) {
-        } else {
-            return array();
-        }
-
-        $priorities = $this->css_priorities;
-        sort($priorities);
-
-        $query_results = array();
+        $priority_order = array();
 
         foreach ($priorities as $priority) {
-
-            foreach ($temp as $temp_row) {
-
-                $include = false;
-
-                if (isset($temp_row->priority)) {
-                    if ($temp_row->priority == $priority) {
-                        $include = true;
-                    }
-                }
-
-                if ($include === false) {
-                } else {
-                    $temp_row->application_html5 = $this->html5;
-                    $temp_row->end               = $this->line_end;
-                    $temp_row->page_mimetype     = $this->mimetype;
-                    $query_results[]             = $temp_row;
+            foreach ($this->css_files as $row) {
+                if ($row->priority === $priority) {
+                    $priority_order[] = $row;
                 }
             }
         }
 
-        return $query_results;
+        return $priority_order;
+    }
+
+    /**
+     * addCssFolder - Loads the CSS files located within the identified folder
+     *
+     * @param   string  $file_path
+     * @param   integer $priority
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function addCssFolder($file_path, $options)
+    {
+        $files = scandir($file_path);
+
+        if (count($files) === 0) {
+            return $this;
+        }
+
+        foreach ($files as $file) {
+            $this->addCssFile($file_path . '/' . $file, $options);
+        }
+
+        return $this;
+    }
+
+    /**
+     * addCss - Adds a single linked stylesheet to the page array
+     *
+     * @param   string $file_path
+     * @param   array  $options
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function addCssFile($file_path, array $options = array())
+    {
+        if ($this->skipFile($file_path, 'css', $this->language_direction) === true) {
+            return $this;
+        }
+
+        if ($this->skipDuplicateFile($file_path, $this->css_files) === true) {
+            return $this;
+        }
+
+        $row = $this->setCssRow($file_path, $options);
+
+        $this->css_files[] = $row;
+
+        return $this;
+    }
+
+    /**
+     * Create a row containing the CSS information
+     *
+     * @param   string $file_path
+     * @param   array  $options
+     *
+     * @return  stdClass
+     * @since   1.0.0
+     */
+    protected function setCssRow($file_path, array $options = array())
+    {
+        $row       = new stdClass();
+        $row->path = $file_path;
+
+        foreach ($this->option_names as $name => $filter) {
+            $row->$name = $this->setOptionValue($options, $name, $filter);
+        }
+
+        return $row;
     }
 }

@@ -166,4 +166,125 @@ abstract class Assets extends AbstractAdapter
 
         return true;
     }
+
+    /**
+     * Set Option
+     *
+     * @param   array $options
+     *
+     * @return  mixed
+     * @since   1.0.0
+     */
+    public function setOption(array $options = array(), $name, $type)
+    {
+        $filter = $this->setOptionFilter($type);
+
+        $value = null;
+
+        if (isset($options[$name])) {
+            $value = $options[$name];
+        }
+
+        return $this->filterOptionValue($value, $filter);
+    }
+
+    /**
+     * Set Option Filter
+     *
+     * @param   string $type
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function setOptionFilter($type)
+    {
+        if ($type === 'string') {
+            $filter = FILTER_SANITIZE_STRING;
+
+        } elseif ($type === 'array') {
+            $filter = 'array';
+
+        } else {
+            $filter = FILTER_SANITIZE_NUMBER_INT;
+        }
+
+        return $filter;
+    }
+
+    /**
+     * Filter Option Value
+     *
+     * @param   mixed   $value
+     * @param   string  $filter
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function setOptionValue($value, $filter)
+    {
+        if ($filter === 'array') {
+
+            if (is_array($value)) {
+                $value = trim(implode(' ', $value));
+                return (string) $value;
+
+            } else {
+                return '';
+            }
+        }
+
+        return filter_var($value, $filter);
+    }
+
+    /**
+     * Skip file if it has already been defined to page array
+     *
+     * @param   string  $file_path
+     * @param   array   $existing
+     *
+     * @return  boolean
+     * @since   1.0.0
+     */
+    protected function skipDuplicateFile($file_path, array $existing_files = array())
+    {
+        if (count($existing_files) === 0) {
+            return false;
+        }
+
+        foreach ($existing_files as $existing) {
+            if ($existing->path === $file_path) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Develop a unique list of priorities in priority order
+     *
+     * @param   array  $files
+     *
+     * @return  array
+     * @since   1.0.0
+     */
+    public function getFilePriorities(array $files = array())
+    {
+        if (is_array($files) && count($files) > 0) {
+        } else {
+            return array();
+        }
+
+        $priorities = array();
+
+        foreach ($files as $row) {
+            $priorities[] = $row->priority;
+        }
+
+        array_unique($priorities);
+
+        sort($priorities);
+
+        return $priorities;
+    }
 }
