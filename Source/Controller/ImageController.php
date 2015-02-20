@@ -120,39 +120,86 @@ class ImageController implements ImageInterface
      */
     public function getImage($filename, $type = null, $size = null, $base64_encode = true)
     {
-        /** Step 1: Validate Filename */
+        $this->validateFileName($filename);
+        $type  = $this->verifyType($type);
+        $size  = $this->setSize($size);
+        $image = $this->setImageObject($filename, $type, $size);
+        $image = $this->createImage($image);
+        $this->addBase64Encoded($base64_encode, $image);
+
+        return $image;
+    }
+
+    /**
+     * @param $filename
+     *
+     * @throws RuntimeException
+     */
+    protected function validateFileName($filename)
+    {
         if (file_exists($filename)) {
         } else {
             throw new RuntimeException('ImageController: Filename: ' . $filename . ' Does Not Exist.');
         }
+    }
 
-        /** Step 2: Type */
+    /**
+     * @param $type
+     *
+     * @return array|string
+     */
+    protected function verifyType($type)
+    {
         if ($type === null) {
             $type = $this->default_type;
         }
         if (in_array($type, $this->standard_type)) {
         } else {
             $type = $this->default_type;
+            return $type;
         }
+        return $type;
+    }
 
-        /** Step 3: Size (all) */
+    /**
+     * @param $size
+     *
+     * @return string
+     */
+    protected function setSize($size)
+    {
         if ($size === null) {
             $size = $this->default_size;
         }
         if (in_array($size, $this->standard_size)) {
             $size = $this->default_size;
+            return $size;
         }
+        return $size;
+    }
 
-        /** Step 4: Create Image Object */
-        $image = $this->setImageObject($filename, $type, $size);
-
-        /** Step 5: Create Image, if needed*/
+    /**
+     * @param $image
+     *
+     * @return stdClass
+     * @throws RuntimeException
+     */
+    protected function createImage($image)
+    {
         if (file_exists($image->filename)) {
         } else {
             $image = $this->resizeImage($image, $image_quality = 100);
+            return $image;
         }
+        return $image;
+    }
 
-        /** Step 7: Add Base 64 Encoded Image Property, if requested */
+    /**
+     * @param $base64_encode
+     * @param $image
+     */
+    protected function addBase64Encoded($base64_encode, $image)
+    {
         unset($image->original_source);
         unset($image->source);
 
@@ -162,8 +209,6 @@ class ImageController implements ImageInterface
                 . ';base64,'
                 . base64_encode(fread(fopen($image->filename, 'r'), filesize($image->filename)));
         }
-
-        return $image;
     }
 
     /**

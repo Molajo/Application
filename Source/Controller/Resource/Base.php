@@ -171,6 +171,33 @@ abstract class Base
     }
 
     /**
+     * Get Resource Data for Content
+     *
+     * @param   integer  $extension_instance_id
+     * @param   integer  $extension_instance_id
+     * @param   integer  $extension_instance_id
+     *
+     * @return  object
+     * @since   1.0.0
+     */
+    public function getResourceData($extension_instance_id, $catalog_type_id, $model_name)
+    {
+        $controller = $this->setQuery();
+
+        $this->resource->data = $this->runQuery($controller);
+
+        $this->setParameters();
+
+        $this->setModelRegistry($controller);
+
+        $this->resource->extension_instance_id = $extension_instance_id;
+        $this->resource->catalog_type_id       = $catalog_type_id;
+        $this->resource->model_name            = $model_name;
+
+        return $this;
+    }
+
+    /**
      * Retrieve Resource Item
      *
      * @return  object

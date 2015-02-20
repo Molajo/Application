@@ -28,20 +28,13 @@ class Extension extends Base implements ResourceInterface
      */
     public function getResource()
     {
-        $controller           = $this->setQuery();
-        $this->resource->data = $this->runQuery($controller);
+        $this->getResourceData(
+            $this->resource->data->id,
+            $this->resource->data->catalog_type_id,
+            $this->model_name
+        );
 
-        $this->setParameters();
-
-        $this->setModelRegistry($controller);
-
-        $this->resource->extension_instance_id = $this->resource->data->id;
-        $this->resource->catalog_type_id       = $this->resource->data->catalog_type_id;
-        $this->resource->model_name            = $this->model_name;
-
-        parent::getResource();
-
-        return $this->resource;
+        return parent::getResource();
     }
 
     /**
