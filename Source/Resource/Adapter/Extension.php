@@ -191,30 +191,64 @@ class Extension extends AbstractAdapter implements AdapterInterface
      */
     protected function getExtension($catalog_type_id, $resource_namespace)
     {
+        $extension = $this->getExtensionId($resource_namespace, $catalog_type_id);
+        $temp      = substr($resource_namespace, 0, strrpos($resource_namespace, '/') - 1);
+        $alias     = $this->getExtensionAlias($catalog_type_id, $extension);
+        $namespace = $temp . '//' . $alias;
+
+        $this->extension = $this->extensions->extensions[$catalog_type_id]->extensions[$extension];
+
+        return $this->get($namespace);
+    }
+
+    /**
+     * Get Extension expressed as primary key
+     *
+     * @param   string  $resource_namespace
+     * @param   integer $catalog_type_id
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function getExtensionId($resource_namespace, $catalog_type_id)
+    {
         $extension = substr($resource_namespace, strrpos($resource_namespace, '/') + 1, 9999);
 
         $test = $extension;
+
         if (is_numeric($test) && (int)$test == $extension) {
-        } else {
-            $test = strtolower($extension);
-            if (isset($this->extensions->extensions[$catalog_type_id]->names[$test])) {
-                $extension = $this->extensions->extensions[$catalog_type_id]->names[$test];
-            }
+            return $extension;
         }
 
-        $temp = substr($resource_namespace, 0, strrpos($resource_namespace, '/') - 1);
+        $test = strtolower($extension);
 
+        if (isset($this->extensions->extensions[$catalog_type_id]->names[$test])) {
+            $extension = $this->extensions->extensions[$catalog_type_id]->names[$test];
+
+            return $extension;
+        }
+
+        return $extension;
+    }
+
+    /**
+     * Get Alias for Extension
+     *
+     * @param   integer $catalog_type_id
+     * @param   string  $extension
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function getExtensionAlias($catalog_type_id, $extension)
+    {
         if (isset($this->extensions->extensions[$catalog_type_id]->ids[$extension])) {
             $alias = $this->extensions->extensions[$catalog_type_id]->ids[$extension];
         } else {
             $alias = $extension;
         }
 
-        $namespace = $temp . '//' . $alias;
-
-        $this->extension = $this->extensions->extensions[$catalog_type_id]->extensions[$extension];
-
-        return $this->get($namespace);
+        return $alias;
     }
 
     /**
