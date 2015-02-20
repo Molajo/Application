@@ -230,31 +230,6 @@ abstract class Assets extends AbstractAdapter
     }
 
     /**
-     * Filter Option Value
-     *
-     * @param   mixed  $value
-     * @param   string $filter
-     *
-     * @return  string
-     * @since   1.0.0
-     */
-    protected function setOptionValue($value, $filter)
-    {
-        if ($filter === 'array') {
-
-            if (is_array($value)) {
-                $value = trim(implode(' ', $value));
-                return (string)$value;
-
-            } else {
-                return '';
-            }
-        }
-
-        return filter_var($value, $filter);
-    }
-
-    /**
      * Skip file if it has already been defined to page array
      *
      * @param   string $file_path
@@ -309,7 +284,7 @@ abstract class Assets extends AbstractAdapter
     /**
      * Create a row containing the CSS information
      *
-     * @param   string $file_path
+     * @param   string $css_path_or_string
      * @param   array  $options
      *
      * @return  stdClass
@@ -321,9 +296,66 @@ abstract class Assets extends AbstractAdapter
         $row->css_path_or_string = $css_path_or_string;
 
         foreach ($this->css_options_names as $name => $filter) {
-            $row->$name = $this->setOptionValue($options, $name, $filter);
+
+            if (isset($options[$name])) {
+                $value = $options[$name];
+            } else {
+                $value = null;
+            }
+
+            $row->$name = $this->setOptionValue($value, $filter);
         }
 
         return $row;
+    }
+
+    /**
+     * Filter Option Value
+     *
+     * @param   mixed  $value
+     * @param   string $filter
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function setOptionValue($value, $filter)
+    {
+        if ($filter === 'array') {
+
+            if (is_array($value)) {
+                $value = trim(implode(' ', $value));
+                return (string)$value;
+
+            } else {
+                return '';
+            }
+        }
+
+        return filter_var($value, $filter);
+    }
+
+    /**
+     * Retrieve a collection of a specific asset
+     *
+     * @param   array  $collection
+     *
+     * @return  array
+     * @since   1.0.0
+     */
+    public function getAssetCollection(array $collection = array())
+    {
+        $priorities = $this->getAssetPriorities($collection);
+
+        $priority_order = array();
+
+        foreach ($priorities as $priority) {
+            foreach ($collection as $row) {
+                if ($row->priority === $priority) {
+                    $priority_order[] = $row;
+                }
+            }
+        }
+
+        return $priority_order;
     }
 }

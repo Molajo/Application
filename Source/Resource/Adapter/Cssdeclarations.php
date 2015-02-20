@@ -130,19 +130,7 @@ class CssDeclarations extends Assets implements AdapterInterface
      */
     public function getCollection($scheme, array $options = array())
     {
-        $priorities = $this->getAssetPriorities($this->css_strings);
-
-        $priority_order = array();
-
-        foreach ($priorities as $priority) {
-            foreach ($this->css_strings as $row) {
-                if ($row->priority === $priority) {
-                    $priority_order[] = $row;
-                }
-            }
-        }
-
-        return $priority_order;
+        return $this->getAssetPriorities($this->css_files);
     }
 
     /**

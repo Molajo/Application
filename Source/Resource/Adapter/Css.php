@@ -128,19 +128,7 @@ class Css extends Assets implements AdapterInterface
      */
     public function getCollection($scheme, array $options = array())
     {
-        $priorities = $this->getAssetPriorities($this->css_files);
-
-        $priority_order = array();
-
-        foreach ($priorities as $priority) {
-            foreach ($this->css_files as $row) {
-                if ($row->priority === $priority) {
-                    $priority_order[] = $row;
-                }
-            }
-        }
-
-        return $priority_order;
+        return $this->getAssetPriorities($this->css_files);
     }
 
     /**
