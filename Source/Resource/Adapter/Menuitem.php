@@ -88,57 +88,13 @@ class Menuitem extends Extension implements AdapterInterface
      * @param   string $located_path
      * @param   array  $options
      *
-     * @return  mixed
+     * @return  object
      * @since   1.0.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function handlePath($scheme, $located_path, array $options = array())
     {
-        if (file_exists($located_path)) {
-        } else {
-            throw new RuntimeException('Resource: Menuitem not found.');
-        }
-
-        try {
-            $options                 = array();
-            $options['located_path'] = $this->extension_path . '/Css';
-            $options['priority']     = $this->catalog_type_priority;
-            $this->resource->get('Css:///' . $this->extension->resource_namespace, $options);
-
-        } catch (Exception $e) {
-
-            throw new RuntimeException(
-                'Resource Menuitem Handler: Get Menuitem CSS failed: ' . $this->extension->resource_namespace
-            );
-        }
-
-        try {
-            $options                 = array();
-            $options['located_path'] = $this->extension_path . '/Js';
-            $options['priority']     = $this->catalog_type_priority;
-            $this->resource->get('Js:///' . $this->extension->resource_namespace, $options);
-
-        } catch (Exception $e) {
-
-            throw new RuntimeException(
-                'Resource Menuitem Handler: Get Menuitem Js failed: ' . $this->extension->resource_namespace
-            );
-        }
+        $this->handleExtensionPath($located_path, $this->catalog_type_priority);
 
         return $this->extension;
-    }
-
-    /**
-     * Retrieve a collection of a specific handler
-     *
-     * @param   string $scheme
-     * @param   array  $options
-     *
-     * @return  string
-     * @since   1.0.0
-     */
-    public function getCollection($scheme, array $options = array())
-    {
-        return $this;
     }
 }

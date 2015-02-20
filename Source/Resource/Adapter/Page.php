@@ -67,6 +67,23 @@ class Page extends Extension implements AdapterInterface
     }
 
     /**
+     * Handle located folder/file associated with URI Namespace for Resource
+     *
+     * @param   string $scheme
+     * @param   string $located_path
+     * @param   array  $options
+     *
+     * @return  object
+     * @since   1.0.0
+     */
+    public function handlePath($scheme, $located_path, array $options = array())
+    {
+        $this->handleExtensionPath($located_path, $this->catalog_type_priority);
+
+        return $this->extension;
+    }
+
+    /**
      * Search compiled namespace map for resource namespace
      *
      * @param   string $resource_namespace
@@ -77,20 +94,5 @@ class Page extends Extension implements AdapterInterface
     protected function searchResourceMap($resource_namespace, $multiple = false)
     {
         return $this->searchResourceMapExtension($resource_namespace, $this->default_partial_path, $this->file_name);
-    }
-
-    /**
-     * Retrieve a collection of a specific handler
-     *
-     * @param   string $scheme
-     * @param   array  $options
-     *
-     * @return  Page
-     * @since   1.0.0
-     * @throws  \CommonApi\Exception\RuntimeException
-     */
-    public function getCollection($scheme, array $options = array())
-    {
-        return $this;
     }
 }

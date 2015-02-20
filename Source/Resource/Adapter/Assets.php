@@ -218,7 +218,7 @@ abstract class Assets extends AbstractAdapter
      * Skip file if it has already been defined to page array
      *
      * @param   string $file_path
-     * @param   array  $existing
+     * @param   array  $existing_files
      *
      * @return  boolean
      * @since   1.0.0

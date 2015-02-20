@@ -10,6 +10,7 @@ namespace Molajo\Resource\Adapter;
 
 use CommonApi\Resource\AdapterInterface;
 use CommonApi\Exception\RuntimeException;
+use Exception;
 
 /**
  * Extension Resources
@@ -269,17 +270,90 @@ class Extension extends AbstractAdapter implements AdapterInterface
     }
 
     /**
-     * Retrieve a collection of a specific handler
+     * Process CSS and JS for Extension, if needed
      *
-     * @param   string $scheme
-     * @param   array  $options
+     * @param   string  $located_path
+     * @param   integer $priority
      *
-     * @return  Extension
+     * @return  $this
+     * @since   1.0.0
+     */
+    public function handleExtensionPath($located_path, $priority = 500)
+    {
+        $this->checkFileExists($located_path);
+
+        $options = array();
+        $options['priority'] = $this->catalog_type_priority;
+
+        $this->setExtensionJs($located_path . '/Js', $options);
+
+        $this->setExtensionCss($located_path . '/Css', $options);
+
+        return $this;
+    }
+
+    /**
+     * Check if File Exists
+     *
+     * @param   string $located_path
+     *
+     * @return  $this
      * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function getCollection($scheme, array $options = array())
+    protected function checkFileExists($located_path)
     {
-        return $this;
+        if (file_exists($located_path)) {
+            return $this;
+        }
+
+        throw new RuntimeException('Resource Extension File Does Not Exist for Path: ' . $located_path);
+    }
+
+
+    /**
+     * Set CSS for this Extension
+     *
+     * @param   string $extension_path
+     * @param   array  $options
+     *
+     * @return  $this
+     * @since   1.0.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    protected function setExtensionCss($extension_path, array $options)
+    {
+        try {
+            $this->resource->get('Css:///' . $extension_path, $options);
+
+        } catch (Exception $e) {
+
+            throw new RuntimeException(
+                'Resource Extension Handler: setExtensionCss failed: ' . $extension_path
+            );
+        }
+    }
+
+    /**
+     * Set Js for this Extension
+     *
+     * @param   string $extension_path
+     * @param   array  $options
+     *
+     * @return  $this
+     * @since   1.0.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    protected function setExtensionJs($extension_path, array $options)
+    {
+        try {
+            return $this->resource->get('Js:///' . $extension_path, $options);
+
+        } catch (Exception $e) {
+
+            throw new RuntimeException(
+                'Resource Extension Handler: setExtensionJs failed: ' . $extension_path
+            );
+        }
     }
 }
