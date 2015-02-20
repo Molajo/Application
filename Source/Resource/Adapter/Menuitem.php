@@ -39,17 +39,33 @@ class Menuitem extends Extension implements AdapterInterface
     protected $catalog_type_priority = 200;
 
     /**
+     * Default Partial Path
+     *
+     * @var    string
+     * @since  1.0.0
+     */
+    protected $default_partial_path = 'Source/Menuitem';
+
+    /**
+     * Filename
+     *
+     * @var    string
+     * @since  1.0.0
+     */
+    protected $file_name = 'Configuration.xml';
+
+    /**
      * Locates resource for extension
      *
-     * @param   string  $resource_namespace
-     * @param   bool    $multiple
+     * @param   string $resource_namespace
+     * @param   bool   $multiple
      *
      * @return  string
      * @since   1.0.0
      */
     public function get($resource_namespace, $multiple = false)
     {
-        return $this->getExtension($this->catalog_type_id, $resource_namespace, $multiple);
+        return $this->getExtension($this->catalog_type_id, $resource_namespace);
     }
 
     /**
@@ -62,32 +78,7 @@ class Menuitem extends Extension implements AdapterInterface
      */
     protected function searchResourceMap($resource_namespace, $multiple = false)
     {
-        if (isset($this->resource_map[strtolower($resource_namespace)])) {
-        } else {
-
-            /** Default location */
-            $path                 = $this->base_path . 'Source/Menuitem'
-                . ucfirst(strtolower($this->extension->alias));
-            $this->extension_path = $path;
-            $include_path         = $path . '/' . 'Configuration.xml';
-
-            return $include_path;
-        }
-
-        $paths = $this->resource_map[strtolower($resource_namespace)];
-
-        if (is_array($paths)) {
-        } else {
-            $paths = array($paths);
-        }
-
-        foreach ($paths as $path) {
-            $include_path         = $path . '/' . 'Configuration.xml';
-            $this->extension_path = $path;
-            return $include_path;
-        }
-
-        return false;
+        return $this->searchResourceMapExtension($resource_namespace, $this->default_partial_path, $this->file_name);
     }
 
     /**
@@ -113,6 +104,7 @@ class Menuitem extends Extension implements AdapterInterface
             $options['located_path'] = $this->extension_path . '/Css';
             $options['priority']     = $this->catalog_type_priority;
             $this->resource->get('Css:///' . $this->extension->resource_namespace, $options);
+
         } catch (Exception $e) {
 
             throw new RuntimeException(
@@ -125,6 +117,7 @@ class Menuitem extends Extension implements AdapterInterface
             $options['located_path'] = $this->extension_path . '/Js';
             $options['priority']     = $this->catalog_type_priority;
             $this->resource->get('Js:///' . $this->extension->resource_namespace, $options);
+
         } catch (Exception $e) {
 
             throw new RuntimeException(
@@ -141,9 +134,8 @@ class Menuitem extends Extension implements AdapterInterface
      * @param   string $scheme
      * @param   array  $options
      *
-     * @return  Menuitem
+     * @return  string
      * @since   1.0.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function getCollection($scheme, array $options = array())
     {

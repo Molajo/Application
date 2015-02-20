@@ -8,8 +8,8 @@
  */
 namespace Molajo\Resource\Adapter;
 
-use stdClass;
 use CommonApi\Resource\AdapterInterface;
+use stdClass;
 
 /**
  * Css Resource Adapter
@@ -19,10 +19,10 @@ use CommonApi\Resource\AdapterInterface;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class Css extends AbstractAdapter implements AdapterInterface
+class Css extends Assets implements AdapterInterface
 {
     /**
-     * Collect list of CSS Files
+     * CSS Files array
      *
      * @var    array
      * @since  1.0.0
@@ -30,7 +30,7 @@ class Css extends AbstractAdapter implements AdapterInterface
     protected $css_files = array();
 
     /**
-     * Css
+     * Css String array
      *
      * @var    array
      * @since  1.0.0
@@ -75,7 +75,7 @@ class Css extends AbstractAdapter implements AdapterInterface
      * @var    string
      * @since  1.0.0
      */
-    protected $mime_type;
+    protected $mimetype;
 
     /**
      * Constructor
@@ -108,7 +108,7 @@ class Css extends AbstractAdapter implements AdapterInterface
         $this->language_direction = $handler_options['language_direction'];
         $this->html5              = $handler_options['html5'];
         $this->line_end           = $handler_options['line_end'];
-        $this->mime_type          = $handler_options['mime_type'];
+        $this->mimetype           = $handler_options['mimetype'];
     }
 
     /**
@@ -123,12 +123,12 @@ class Css extends AbstractAdapter implements AdapterInterface
      */
     public function handlePath($scheme, $located_path, array $options = array())
     {
-        $located_path = $options['located_path'];
-
         if (is_dir($located_path)) {
             $type = 'folder';
+
         } elseif (file_exists($located_path)) {
             $type = 'file';
+
         } else {
             return null;
         }
@@ -163,6 +163,7 @@ class Css extends AbstractAdapter implements AdapterInterface
                 $located_path,
                 $priority
             );
+
         } else {
             $this->addCss(
                 $located_path,
@@ -178,7 +179,7 @@ class Css extends AbstractAdapter implements AdapterInterface
     }
 
     /**
-     * addCssFolder - Loads the CS located within the folder
+     * addCssFolder - Loads the CSS files located within the identified folder
      *
      * @param   string  $file_path
      * @param   integer $priority
@@ -186,50 +187,17 @@ class Css extends AbstractAdapter implements AdapterInterface
      * @return  $this
      * @since   1.0.0
      */
-    public function addCssFolder($file_path, $priority = 500)
+    protected function addCssFolder($file_path, $priority = 500)
     {
         $files = scandir($file_path);
 
-        if (count($files) > 0) {
+        if (count($files) === 0) {
+            return $this;
+        }
 
-            foreach ($files as $file) {
-
-                $add = 1;
-
-                if ($file == 1 || $file == '.' || $file == '..') {
-                    $add = 0;
-                }
-
-                if (substr($file, 0, 4) == 'ltr_') {
-                    if ($this->language_direction == 'rtl') {
-                        $add = 0;
-                    }
-                } elseif (substr($file, 0, 4) == 'rtl_') {
-                    if ($this->language_direction == 'rtl') {
-                    } else {
-                        $add = 0;
-                    }
-                } elseif (strtolower(substr($file, 0, 4)) == 'hold') {
-                    $add = 0;
-                }
-
-                if (is_file($file)) {
-                } else {
-                    $add = 0;
-                }
-
-                if ($add == 1) {
-                    $pathinfo = pathinfo($file);
-
-                    if ($pathinfo->extension == 'css') {
-                    } else {
-                        $add = 0;
-                    }
-                }
-
-                if ($add == 1) {
-                    $this->addCss($file_path . '/' . $file, $priority);
-                }
+        foreach ($files as $file) {
+            if ($this->includeFile($file, 'css', $this->language_direction) === true) {
+                $this->addCss($file_path . '/' . $file, $priority);
             }
         }
 
@@ -336,7 +304,7 @@ class Css extends AbstractAdapter implements AdapterInterface
                 } else {
                     $temp_row->application_html5 = $this->html5;
                     $temp_row->end               = $this->line_end;
-                    $temp_row->page_mimetype     = $this->mime_type;
+                    $temp_row->page_mimetype     = $this->mimetype;
                     $query_results[]             = $temp_row;
                 }
             }

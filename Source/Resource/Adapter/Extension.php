@@ -109,16 +109,87 @@ class Extension extends AbstractAdapter implements AdapterInterface
     }
 
     /**
-     * Locates folder/file associated with Namespace for Resource Extension
+     * Search compiled namespace map for resource namespace
      *
-     * @param   integer $catalog_type_id
-     * @param   string  $resource_namespace
-     * @param   bool    $multiple
+     * @param   string $resource_namespace
+     * @param   string $default_partial_path
+     * @param   string $file_name
+     *
+     * @return  string|false
+     * @since   1.0.0
+     */
+    protected function searchResourceMapExtension($resource_namespace, $default_partial_path, $file_name = '')
+    {
+        if (isset($this->resource_map[strtolower($resource_namespace)])) {
+            return $this->searchResourceMapExtensionMap($resource_namespace, $file_name);
+        }
+
+        $path = $this->base_path . $default_partial_path . ucfirst(strtolower($this->extension->alias));
+
+        $this->extension_path = $path;
+
+        return $this->setResourceMapFileName($path, $file_name);
+    }
+
+    /**
+     * Search compiled namespace map for resource namespace
+     *
+     * @param   string $resource_namespace
+     * @param   string $file_name
+     *
+     * @return  string|false
+     * @since   1.0.0
+     */
+    protected function searchResourceMapExtensionMap($resource_namespace, $file_name)
+    {
+        $paths = $this->resource_map[strtolower($resource_namespace)];
+
+        if (is_array($paths)) {
+        } else {
+            $paths = array($paths);
+        }
+
+        $include_path = '';
+
+        foreach ($paths as $path) {
+            $include_path = $this->setResourceMapFileName($path, $file_name);
+
+            break;
+        }
+
+        return $include_path;
+    }
+
+    /**
+     * Set the return path + file_name (if needed)
+     *
+     * @param   string $path
+     * @param   string $file_name
      *
      * @return  string
      * @since   1.0.0
      */
-    protected function getExtension($catalog_type_id, $resource_namespace, $multiple = false)
+    protected function setResourceMapFileName($path, $file_name = '')
+    {
+        if ($file_name === '') {
+            $include_path = $path;
+        } else {
+            $include_path = $path . '/' . $file_name;
+        }
+
+        return $include_path;
+    }
+
+    /**
+     * Locates folder/file associated with Namespace for Resource Extension
+     *
+     * @param   integer $catalog_type_id
+     * @param   string  $resource_namespace
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function getExtension($catalog_type_id, $resource_namespace)
     {
         $extension = substr($resource_namespace, strrpos($resource_namespace, '/') + 1, 9999);
 
@@ -143,7 +214,7 @@ class Extension extends AbstractAdapter implements AdapterInterface
 
         $this->extension = $this->extensions->extensions[$catalog_type_id]->extensions[$extension];
 
-        return parent::get($namespace);
+        return $this->get($namespace);
     }
 
     /**

@@ -37,17 +37,33 @@ class Wrap extends Extension implements AdapterInterface
     protected $catalog_type_priority = 600;
 
     /**
+     * Default Partial Path
+     *
+     * @var    string
+     * @since  1.0.0
+     */
+    protected $default_partial_path = 'Source/Views/Wraps';
+
+    /**
+     * Filename
+     *
+     * @var    string
+     * @since  1.0.0
+     */
+    protected $file_name = '';
+
+    /**
      * Locates resource for extension
      *
-     * @param   string  $resource_namespace
-     * @param   bool    $multiple
+     * @param   string $resource_namespace
+     * @param   bool   $multiple
      *
      * @return  string
      * @since   1.0.0
      */
     public function get($resource_namespace, $multiple = false)
     {
-        return $this->getExtension($this->catalog_type_id, $resource_namespace, $multiple);
+        return $this->getExtension($this->catalog_type_id, $resource_namespace);
     }
 
     /**
@@ -55,36 +71,12 @@ class Wrap extends Extension implements AdapterInterface
      *
      * @param   string $resource_namespace
      *
-     * @return  mixed|bool|string
+     * @return  string|false
      * @since   1.0.0
      */
     protected function searchResourceMap($resource_namespace, $multiple = false)
     {
-        if (isset($this->resource_map[$resource_namespace])) {
-        } else {
-
-            $path = $this->base_path . 'Source/Views/Wraps' . ucfirst(strtolower($this->extension->alias));
-            $include_path         = $path;
-            $this->extension_path = $include_path;
-
-            return $include_path;
-        }
-
-        $paths = $this->resource_map[strtolower($resource_namespace)];
-
-        if (is_array($paths)) {
-        } else {
-            $paths = array($paths);
-        }
-
-        foreach ($paths as $path) {
-            $include_path         = $path;
-            $this->extension_path = $include_path;
-
-            return $include_path;
-        }
-
-        return false;
+        return $this->searchResourceMapExtension($resource_namespace, $this->default_partial_path, $this->file_name);
     }
 
     /**
