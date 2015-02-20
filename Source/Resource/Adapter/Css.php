@@ -196,7 +196,7 @@ class Css extends Assets implements AdapterInterface
         }
 
         foreach ($files as $file) {
-            if ($this->includeFile($file, 'css', $this->language_direction) === true) {
+            if ($this->skipFile($file, 'css', $this->language_direction) === true) {
                 $this->addCss($file_path . '/' . $file, $priority);
             }
         }
