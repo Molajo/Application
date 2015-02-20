@@ -8,8 +8,6 @@
  */
 namespace Molajo\Resource\Adapter;
 
-use stdClass;
-
 /**
  * Assets Resource Adapter
  *

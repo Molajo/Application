@@ -63,6 +63,38 @@ class Extension extends AbstractAdapter implements AdapterInterface
     protected $resource;
 
     /**
+     * Catalog Type Id
+     *
+     * @var    integer
+     * @since  1.0.0
+     */
+    protected $catalog_type_id = null;
+
+    /**
+     * Catalog Type Priority
+     *
+     * @var    integer
+     * @since  1.0.0
+     */
+    protected $catalog_type_priority = null;
+
+    /**
+     * Default Partial Path
+     *
+     * @var    string
+     * @since  1.0.0
+     */
+    protected $default_partial_path = null;
+
+    /**
+     * Filename
+     *
+     * @var    string
+     * @since  1.0.0
+     */
+    protected $file_name = null;
+
+    /**
      * Constructor
      *
      * @param  string $base_path
@@ -90,23 +122,103 @@ class Extension extends AbstractAdapter implements AdapterInterface
             $cache_callbacks
         );
 
-        $this->extensions = $handler_options['extensions'];
-        $this->resource   = $handler_options['resource'];
+        $this->setHandlerOptions($handler_options);
     }
 
     /**
-     * Set a namespace prefix by mapping to the filesystem path
+     * Set Class properties using Handler Options array
      *
-     * @param   string  $namespace_prefix
-     * @param   string  $namespace_base_directory
-     * @param   boolean $prepend
+     * @param   array  $handler_options
      *
      * @return  $this
      * @since   1.0.0
      */
-    public function setNamespace($namespace_prefix, $namespace_base_directory, $prepend = false)
+    protected function setHandlerOptions(array $handler_options = array())
     {
-        return parent::setNamespace($namespace_prefix, $namespace_base_directory, $prepend);
+        $this->extensions            = $handler_options['extensions'];
+        $this->resource              = $handler_options['resource'];
+        $this->catalog_type_id       = $handler_options['catalog_type_id'];
+        $this->catalog_type_priority = $handler_options['catalog_type_priority'];
+        $this->default_partial_path  = $handler_options['default_partial_path'];
+        $this->file_name             = $handler_options['file_name'];
+
+        return $this;
+    }
+
+    /**
+     * Locates resource for extension
+     *
+     * @param   string $resource_namespace
+     * @param   bool   $multiple
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    public function get($resource_namespace, $multiple = false)
+    {
+        $extension = $this->getExtensionId($resource_namespace, $this->catalog_type_id);
+        $temp      = substr($resource_namespace, 0, strrpos($resource_namespace, '/') - 1);
+        $alias     = $this->getExtensionAlias($this->catalog_type_id, $extension);
+        $namespace = $temp . '//' . $alias;
+
+        $this->extension = $this->extensions->extensions[$this->catalog_type_id]->extensions[$extension];
+
+        return $this->get($namespace);
+    }
+
+    /**
+     * Get Extension expressed as primary key
+     *
+     * @param   string  $resource_namespace
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function getExtensionId($resource_namespace)
+    {
+        $extension = substr($resource_namespace, strrpos($resource_namespace, '/') + 1, 9999);
+
+        $test = $extension;
+
+        if (is_numeric($test) && (int)$test == $extension) {
+            return $extension;
+        }
+
+        return $this->getExtensionAlias($this->catalog_type_id, $extension);
+    }
+
+    /**
+     * Get Alias for Extension
+     *
+     * @param   string  $extension
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function getExtensionAlias($extension)
+    {
+        $test = strtolower($extension);
+
+        if (isset($this->extensions->extensions[$this->catalog_type_id]->ids[$test])) {
+            $alias = $this->extensions->extensions[$this->catalog_type_id]->ids[$test];
+        } else {
+            $alias = $extension;
+        }
+
+        return $alias;
+    }
+
+    /**
+     * Search compiled namespace map for resource namespace
+     *
+     * @param   string $resource_namespace
+     *
+     * @return  string|false
+     * @since   1.0.0
+     */
+    protected function searchResourceMap($resource_namespace, $multiple = false)
+    {
+        return $this->searchResourceMapExtension($resource_namespace, $this->default_partial_path, $this->file_name);
     }
 
     /**
@@ -182,114 +294,27 @@ class Extension extends AbstractAdapter implements AdapterInterface
     }
 
     /**
-     * Locates folder/file associated with Namespace for Resource Extension
-     *
-     * @param   integer $catalog_type_id
-     * @param   string  $resource_namespace
-     *
-     * @return  string
-     * @since   1.0.0
-     */
-    protected function getExtension($catalog_type_id, $resource_namespace)
-    {
-        $extension = $this->getExtensionId($resource_namespace, $catalog_type_id);
-        $temp      = substr($resource_namespace, 0, strrpos($resource_namespace, '/') - 1);
-        $alias     = $this->getExtensionAlias($catalog_type_id, $extension);
-        $namespace = $temp . '//' . $alias;
-
-        $this->extension = $this->extensions->extensions[$catalog_type_id]->extensions[$extension];
-
-        return $this->get($namespace);
-    }
-
-    /**
-     * Get Extension expressed as primary key
-     *
-     * @param   string  $resource_namespace
-     * @param   integer $catalog_type_id
-     *
-     * @return  string
-     * @since   1.0.0
-     */
-    protected function getExtensionId($resource_namespace, $catalog_type_id)
-    {
-        $extension = substr($resource_namespace, strrpos($resource_namespace, '/') + 1, 9999);
-
-        $test = $extension;
-
-        if (is_numeric($test) && (int)$test == $extension) {
-            return $extension;
-        }
-
-        return $this->getExtensionAlias($catalog_type_id, $extension);
-    }
-
-    /**
-     * Get Alias for Extension
-     *
-     * @param   integer $catalog_type_id
-     * @param   string  $extension
-     *
-     * @return  string
-     * @since   1.0.0
-     */
-    protected function getExtensionAlias($catalog_type_id, $extension)
-    {
-        $test = strtolower($extension);
-
-        if (isset($this->extensions->extensions[$catalog_type_id]->ids[$test])) {
-            $alias = $this->extensions->extensions[$catalog_type_id]->ids[$test];
-        } else {
-            $alias = $extension;
-        }
-
-        return $alias;
-    }
-
-    /**
      * Handle located folder/file associated with URI Namespace for Resource
      *
      * @param   string $scheme
      * @param   string $located_path
      * @param   array  $options
      *
-     * @return  mixed
+     * @return  object
      * @since   1.0.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function handlePath($scheme, $located_path, array $options = array())
     {
-        if (file_exists($located_path)) {
-        } else {
-            throw new RuntimeException('Resource Extension Adapter: File not found: ' . $located_path);
-        }
-
-        $this->extension->path = $located_path;
-
-        return $this->extension;
-    }
-
-    /**
-     * Process CSS and JS for Extension, if needed
-     *
-     * @param   string  $located_path
-     * @param   integer $priority
-     *
-     * @return  $this
-     * @since   1.0.0
-     */
-    public function handleExtensionPath($located_path, $priority = 500)
-    {
         $this->checkFileExists($located_path);
 
-        $options = array();
+        $options             = array();
         $options['priority'] = $this->catalog_type_priority;
 
-        $this->setExtensionJs($located_path . '/Js', $options);
+        $this->setExtensionAsset('Js', $located_path . '/Js', $options);
 
-        $this->setExtensionCss($located_path . '/Css', $options);
+        $this->setExtensionAsset('Css', $located_path . '/Css', $options);
 
-        return $this;
+        return $this->extension;
     }
 
     /**
@@ -310,10 +335,10 @@ class Extension extends AbstractAdapter implements AdapterInterface
         throw new RuntimeException('Resource Extension File Does Not Exist for Path: ' . $located_path);
     }
 
-
     /**
-     * Set CSS for this Extension
+     * Set Js or CSS for this Extension
      *
+     * @param   string $type
      * @param   string $extension_path
      * @param   array  $options
      *
@@ -321,38 +346,17 @@ class Extension extends AbstractAdapter implements AdapterInterface
      * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    protected function setExtensionCss($extension_path, array $options)
+    protected function setExtensionAsset($type, $extension_path, array $options)
     {
+        $type = ucfirst(strtolower($type));
+
         try {
-            $this->resource->get('Css:///' . $extension_path, $options);
+            return $this->resource->get($type . ':///' . $extension_path, $options);
 
         } catch (Exception $e) {
 
             throw new RuntimeException(
-                'Resource Extension Handler: setExtensionCss failed: ' . $extension_path
-            );
-        }
-    }
-
-    /**
-     * Set Js for this Extension
-     *
-     * @param   string $extension_path
-     * @param   array  $options
-     *
-     * @return  $this
-     * @since   1.0.0
-     * @throws  \CommonApi\Exception\RuntimeException
-     */
-    protected function setExtensionJs($extension_path, array $options)
-    {
-        try {
-            return $this->resource->get('Js:///' . $extension_path, $options);
-
-        } catch (Exception $e) {
-
-            throw new RuntimeException(
-                'Resource Extension Handler: setExtensionJs failed: ' . $extension_path
+                'Resource Extension Handler: setExtensionAsset failed: ' . $extension_path
             );
         }
     }
