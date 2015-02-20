@@ -56,7 +56,7 @@ class UrlController implements UrlInterface
     /**
      * Application Base
      *
-     * @var    int
+     * @var    string
      * @since  1.0
      */
     protected $application_base;
@@ -72,7 +72,7 @@ class UrlController implements UrlInterface
     /**
      * Url SEF Option
      *
-     * @var    boolean
+     * @var    integer
      * @since  1.0
      */
     protected $url_sef = 1;
@@ -287,9 +287,10 @@ class UrlController implements UrlInterface
      */
     public function urlShortener($url, $type = 2)
     {
-        if ($type === '1') {
+        if ($type === 1) {
             return (implode('', file('http://tinyurl.com/api-create.php?url=' . urlencode($url))));
-        } elseif ($type === '2') {
+
+        } elseif ($type === 2) {
             return (implode('', file('http://is.gd/api.php?longurl=' . urlencode($url))));
         }
 

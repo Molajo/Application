@@ -24,8 +24,7 @@ class Engb
      * @since  1.0
      */
     protected $number_translate_array
-        = array
-        (
+        = array(
             'number_negative'          => '-',
             'number_point'             => '.',
             'number_zero'              => 'zero',

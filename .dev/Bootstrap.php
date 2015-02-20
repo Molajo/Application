@@ -8,6 +8,7 @@
  */
 $base = substr(__DIR__, 0, strlen(__DIR__) - 5);
 include_once $base . '/vendor/autoload.php';
+
 if (function_exists('CreateClassMap')) {
 } else {
     include_once __DIR__ . '/CreateClassMap.php';
@@ -15,10 +16,22 @@ if (function_exists('CreateClassMap')) {
 
 $classmap = array();
 
+$results  = createClassMap($base . '/Source/Controller/FrontController', 'Molajo\\Controller\\FrontController\\');
+$classmap = array_merge($classmap, $results);
+
 $results  = createClassMap($base . '/Source/Controller/NumberToText', 'Molajo\\Controller\\NumberToText\\');
 $classmap = array_merge($classmap, $results);
 
+$results  = createClassMap($base . '/Source/Controller/Resource', 'Molajo\\Controller\\Resource\\');
+$classmap = array_merge($classmap, $results);
+
 $results  = createClassMap($base . '/Source/Controller', 'Molajo\\Controller\\');
+$classmap = array_merge($classmap, $results);
+
+$results  = createClassMap($base . '/Source/Resource/Adapter', 'Molajo\\Resource\\Adapter\\');
+$classmap = array_merge($classmap, $results);
+
+$results  = createClassMap($base . '/Source/Resource', 'Molajo\\Resource\\');
 $classmap = array_merge($classmap, $results);
 
 ksort($classmap);

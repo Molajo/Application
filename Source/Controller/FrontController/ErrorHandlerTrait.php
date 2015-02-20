@@ -42,12 +42,6 @@ trait ErrorHandlerTrait
      */
     public function setError($error_number, $message, $file, $line_number, array $context = array())
     {
-        echo 'in frontcontroller setError <br>';
-        echo '<pre>';
-        var_dump(array($error_number, $message, $file, $line_number, $context));
-        echo '</pre>';
-        die;
-
         $this->error_handler->setError($error_number, $message, $file, $line_number, $context);
 
         return $this;

@@ -97,10 +97,10 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
     /**
      * Constructor
      *
+     * @param  ScheduleInterface      $schedule
      * @param  array                  $requests
      * @param  array                  $steps
      * @param  array                  $dependencies
-     * @param  ScheduleInterface      $schedule
      * @param  ErrorHandlingInterface $error_handler
      * @param  null                   $exception_handler
      * @param  ErrorHandlingInterface $debug_handler
@@ -110,20 +110,20 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
      * @since  1.0
      */
     public function __construct(
+        ScheduleInterface $schedule,
         $requests,
         array $steps = array(),
         array $dependencies = array(),
-        ScheduleInterface $schedule,
         ErrorHandlingInterface $error_handler = null,
         $exception_handler = null,
         ErrorHandlingInterface $debug_handler = null,
         array $debug_types = array(),
         $debug = false
     ) {
+        $this->schedule     = $schedule;
         $this->requests     = $requests;
         $this->steps        = $steps;
         $this->dependencies = $dependencies;
-        $this->schedule     = $schedule;
 
         $this->setErrorHandler($error_handler);
         $this->setExceptionHandler($exception_handler);

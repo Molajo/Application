@@ -46,8 +46,7 @@ class DateController extends DateTime implements DateInterface
      * @since  1.0
      */
     protected $date_translate_array
-        = array
-        (
+        = array(
             'AGO'                  => 'ago',
             'DATE_MINUTE_SINGULAR' => 'minute',
             'DATE_MINUTE_PLURAL'   => 'minutes',
@@ -140,7 +139,6 @@ class DateController extends DateTime implements DateInterface
             7 => array('abbreviation' => 'SUN', 'name' => 'SUNDAY')
         );
 
-
     /**
      * Second Constants
      *
@@ -211,7 +209,6 @@ class DateController extends DateTime implements DateInterface
      *
      * @return  mixed
      * @since   1.0.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function set($key, $value = null)
     {
@@ -249,7 +246,9 @@ class DateController extends DateTime implements DateInterface
         $date_time = new DateTime($time);
         $date_time->setTimezone($tz);
 
-        return $this->getDateFormatDate($date_time, $date_format);
+        $date = $this->getDateFormatDate($date_time, $date_format);
+
+        return $date;
     }
 
     /**
@@ -486,7 +485,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $month
      * @param   string $year
      *
-     * @return  stdClass[] CCYY-MM-DD
+     * @return  array
      * @since   1.0.0
      */
     public function buildCalendar($month, $year)

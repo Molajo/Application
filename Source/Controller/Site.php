@@ -41,7 +41,7 @@ class Site implements SiteInterface
     /**
      * Data identifying sites for this implementation
      *
-     * @var    object
+     * @var    array
      * @since  1.0
      */
     protected $sites = null;
@@ -149,7 +149,7 @@ class Site implements SiteInterface
     public function __construct(
         $host,
         $path,
-        $sites
+        array $sites = array()
     ) {
         $this->host  = $host;
         $this->path  = $path;

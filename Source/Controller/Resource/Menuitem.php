@@ -58,25 +58,17 @@ class MenuItem extends Base implements ResourceInterface
     /**
      * Set Resource Menu Item Query
      *
-     * @param   string $resource_name
      * @param   string $page_type
+     * @param   string $path
      *
      * @return  object
      * @since   1.0.0
      */
-    protected function setQuery($resource_name, $page_type, $path)
+    protected function setQuery($page_type, $path)
     {
-//        if ($resource_name === '') {
-            $model = 'Molajo//Model//Menuitem//'
-                . ucfirst(strtolower($page_type))
-                . '//Configuration.xml';
-  //      } else {
-    //        $model = 'Molajo//'
-      //          . ucfirst(strtolower($resource_name))
-        //        . '//Menuitem//'
-          //      . ucfirst(strtolower($page_type))
-            //    . '.xml';
-     //   }
+        $model = 'Molajo//Model//Menuitem//'
+            . ucfirst(strtolower($page_type))
+            . '//Configuration.xml';
 
         $controller = $this->resource_instance->get(
             'query:///' . $model,

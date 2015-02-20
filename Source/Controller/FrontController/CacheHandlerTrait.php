@@ -50,18 +50,14 @@ trait CacheHandlerTrait
      * @param   string $cache_key
      * @param   array  $options
      *
-     * @return  object CommonApi\Cache\CacheItemInterface
+     * @return  mixed
      * @since   1.0.0
      */
     public function getCache($cache_key, $options)
     {
-        $cache_instance = $this->scheduleFactoryMethod($cache_key, 'Service');
+        $cache_instance = $this->scheduleCacheService($cache_key);
 
-        if (isset($options['key'])) {
-            $key = $options['key'];
-        } else {
-            throw new RuntimeException('Frontcontroller getCache method requires $options[key]');
-        }
+        $key = $this->verifyCacheKey('getCache', $options);
 
         return $cache_instance->get($key);
     }
@@ -74,17 +70,12 @@ trait CacheHandlerTrait
      *
      * @return  $this
      * @since   1.0.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setCache($cache_key, $options)
     {
-        $cache_instance = $this->scheduleFactoryMethod($cache_key, 'Service');
+        $cache_instance = $this->scheduleCacheService($cache_key);
 
-        if (isset($options['key'])) {
-            $key = $options['key'];
-        } else {
-            throw new RuntimeException('Frontcontroller getCache method requires $options[key]');
-        }
+        $key = $this->verifyCacheKey('setCache', $options);
 
         if (isset($options['value'])) {
             $value = $options['value'];
@@ -108,7 +99,7 @@ trait CacheHandlerTrait
      */
     public function deleteCache($cache_key, $options)
     {
-        $cache_instance = $this->scheduleFactoryMethod($cache_key, 'Service');
+        $cache_instance = $this->scheduleCacheService($cache_key);
 
         if (isset($options['key'])) {
             $cache_instance->remove($options['key']);
@@ -170,5 +161,38 @@ trait CacheHandlerTrait
         $this->setContainerEntry('Deletecachecallback', $this->delete_cache_callback);
 
         return $this;
+    }
+
+    /**
+     * Schedule Cache Service
+     *
+     * @param   string $cache_key
+     *
+     * @return  object
+     * @since   1.0.0
+     */
+    protected function scheduleCacheService($cache_key)
+    {
+        return $this->scheduleFactoryMethod($cache_key, 'Service');
+    }
+
+    /**
+     * Verify Options Key
+     *
+     * @param   string $method_name
+     * @param   array  $options
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function verifyCacheKey($method_name, array $options = array())
+    {
+        if (isset($options['key'])) {
+            $key = $options['key'];
+        } else {
+            throw new RuntimeException('Frontcontroller ' . $method_name . ' method requires $options[key]');
+        }
+
+        return $key;
     }
 }

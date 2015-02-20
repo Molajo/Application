@@ -38,11 +38,6 @@ trait ExceptionHandlerTrait
      */
     public function setException(Exception $e)
     {
-        echo 'Exception';
-        echo '<pre>';
-        var_dump($e);
-        die;
-
         $options              = array();
         $options['exception'] = $e;
 

@@ -111,7 +111,6 @@ class ExtensionMap implements ExtensionsInterface
      *
      * @return  stdClass
      * @since   1.0.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function createMap()
     {
@@ -232,7 +231,7 @@ class ExtensionMap implements ExtensionsInterface
                 $model_name = $this->setExtensionModelNameDefault($catalog_type_model_name, $alias);
             }
 
-            $this->temp_extensions[$id] = $this->getExtension($id, $model_name, $resource_indicator);
+            $this->temp_extensions[$id] = $this->getExtension($id, $model_name);
         }
 
         return $this->setExtensions();
@@ -340,8 +339,8 @@ class ExtensionMap implements ExtensionsInterface
     /**
      * Set Extension Model Name for Menu Item
      *
-     * @param   string  $alias
-     * @param   string  $catalog_type_model_name
+     * @param   string $alias
+     * @param   string $catalog_type_model_name
      *
      * @return  array
      * @since   1.0.0
@@ -571,15 +570,14 @@ class ExtensionMap implements ExtensionsInterface
     /**
      * Retrieve System Extensions for a specific Catalog Type
      *
-     * @param   int $catalog_type_id
+     * @param   integer $catalog_type_id
      *
-     * @return  array|stdClass
+     * @return  object
      * @since   1.0.0
      */
     protected function setExtensionsQuery($catalog_type_id)
     {
-        $controller
-            = $this->resource->get(
+        $controller = $this->resource->get(
             'query:///Molajo//Model//Datasource//ExtensionInstances.xml',
             array('Runtimedata' => $this->runtime_data)
         );
