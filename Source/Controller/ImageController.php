@@ -115,7 +115,7 @@ class ImageController implements ImageInterface
      * @param   bool        $base64_encode
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function getImage($filename, $type = null, $size = null, $base64_encode = true)
@@ -173,7 +173,7 @@ class ImageController implements ImageInterface
      * @param   string $color
      *
      * @return  ImageController
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function getImagePlaceholder($size, $color)
@@ -189,7 +189,7 @@ class ImageController implements ImageInterface
      * @param   string $size
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function setImageObject($filename, $type, $size)
@@ -269,7 +269,7 @@ class ImageController implements ImageInterface
      * @param   stdClass $image
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function setImageSize($type, $size, $image)
@@ -326,7 +326,7 @@ class ImageController implements ImageInterface
      * Resize the image and save it to a file
      *
      * @param   stdClass $image
-     * @param   int    $image_quality
+     * @param   int      $image_quality
      *
      * @return  stdClass
      * @throws  \CommonApi\Exception\RuntimeException

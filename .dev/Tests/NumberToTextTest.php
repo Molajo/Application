@@ -50,7 +50,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUp()
     {
@@ -77,7 +77,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testExtractDecimal()
     {
@@ -108,7 +108,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testExtractNoSign()
     {
@@ -139,7 +139,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testExtractNegativeSign()
     {
@@ -170,7 +170,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testExtractPlusSign()
     {
@@ -201,7 +201,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testExtractDigits()
     {
@@ -231,7 +231,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testExtractDigitsThousand()
     {
@@ -261,7 +261,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGroups()
     {
@@ -291,7 +291,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testProcessGroupsZero()
     {
@@ -321,7 +321,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testProcessGroupsOne()
     {
@@ -351,7 +351,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testProcessGroupsEight()
     {
@@ -381,7 +381,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testProcessGroups100()
     {
@@ -411,7 +411,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testProcessGroups1000()
     {
@@ -441,7 +441,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testProcessGroups1002()
     {
@@ -471,7 +471,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testProcessGroupsOneMillion()
     {
@@ -501,7 +501,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testProcessGroupsOneMillionOneHundred()
     {
@@ -531,7 +531,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testDigit()
     {
@@ -561,7 +561,7 @@ class NumberToTextTranslateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText::setSign
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testDigitNegative()
     {

@@ -80,7 +80,7 @@ class Engb
      * Returns the translation array
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function loadTranslation()
     {

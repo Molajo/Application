@@ -24,11 +24,12 @@ class Content extends Base implements ResourceInterface
      * Get Resource Data for Content
      *
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getResource()
     {
-        $controller           = $this->setQuery();
+        $controller = $this->setQuery();
+
         $this->resource->data = $this->runQuery($controller);
 
         $this->setParameters();
@@ -46,7 +47,7 @@ class Content extends Base implements ResourceInterface
      * Set Resource Content Query
      *
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setQuery()
     {

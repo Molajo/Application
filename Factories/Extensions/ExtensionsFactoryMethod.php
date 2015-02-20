@@ -13,7 +13,6 @@ use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\FactoryInterface;
 use CommonApi\IoC\FactoryBatchInterface;
 use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
-use stdClass;
 
 /**
  * Extensions Factory Method
@@ -29,7 +28,7 @@ class ExtensionsFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Controller
      *
      * @var    object  CommonApi\Controller\ReadInterface
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $controller = null;
 
@@ -38,7 +37,7 @@ class ExtensionsFactoryMethod extends FactoryMethodBase implements FactoryInterf
      *
      * @param  $options
      *
-     * @since  1.0
+     * @since  1.0.0
      */
     public function __construct(array $options = array())
     {
@@ -53,8 +52,7 @@ class ExtensionsFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Define dependencies or use dependencies automatically defined by base class using Reflection
      *
      * @return  array
-     * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
+     * @since   1.0.0
      */
     public function setDependencies(array $reflection = array())
     {
@@ -72,7 +70,7 @@ class ExtensionsFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Set Dependencies for Instantiation
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function onBeforeInstantiation(array $dependency_values = null)
@@ -89,13 +87,12 @@ class ExtensionsFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function instantiateClass()
     {
         $cache_results = $this->dependencies['Cache']->get('Extensions');
-
-        if ($cache_results === false || $cache_results->value === null) {
+        if ($cache_results->is_hit === false) {
         } else {
             $this->product_result = $cache_results->value;
 
@@ -117,10 +114,10 @@ class ExtensionsFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Create Extensions Map
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function createMap()
+    protected function createMap()
     {
         try {
             $extension_map = new $this->product_namespace(
@@ -143,7 +140,7 @@ class ExtensionsFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setContainerEntries()
     {

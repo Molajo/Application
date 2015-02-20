@@ -18,11 +18,11 @@
         <dataobjectattribute name="name" default=""/>
         <dataobjectattribute name="data_object_type" default=""/>
         <dataobjectattribute name="db" default=""/>
-        <dataobjectattribute name="db_prefix" default=""/>
-        <dataobjectattribute name="db_type" default="mysqli"/>
-        <dataobjectattribute name="db_host" default=""/>
-        <dataobjectattribute name="db_user" default=""/>
-        <dataobjectattribute name="db_password" default=""/>
+        <dataobjectattribute name="prefix" default=""/>
+        <dataobjectattribute name="type" default="mysqli"/>
+        <dataobjectattribute name="host" default=""/>
+        <dataobjectattribute name="user" default=""/>
+        <dataobjectattribute name="password" default=""/>
         <dataobjectattribute name="process_events" default=""/>
         <dataobjectattribute name="class" default=""/>
         <dataobjectattribute name="class_query_method" default="getData"/>
@@ -56,7 +56,6 @@
     <modelattributes>
         <modelattribute name="name" default=""/>
         <modelattribute name="criteria_title" default=""/>
-
         <modelattribute name="data_object" default=" "/>
         <modelattribute name="class" default=""/>
         <modelattribute name="startup" default="0"/>
@@ -173,11 +172,11 @@
         <field>width</field>
     </fields>
     <joins>
-        <join>model</join>
+        <join>table_name</join>
         <join>alias</join>
         <join>select</join>
-        <join>joinwith</join>
-        <join>jointo</join>
+        <join>join_with</join>
+        <join>join_to</join>
     </joins>
     <foreignkeys>
         <foreignkey>name</foreignkey>
@@ -193,6 +192,7 @@
     </criterion>
     <children>
         <child>name</child>
+        <child>table_name</child>
         <child>join</child>
         <child>type</child>
     </children>

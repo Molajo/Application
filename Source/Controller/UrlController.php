@@ -114,7 +114,7 @@ class UrlController implements UrlInterface
      * @param   null|int $url_sef_request
      *
      * @return  mixed
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function get($request_type = 1, $catalog_type_id = null, $source_id = null, $url_sef_request = null)
@@ -200,6 +200,8 @@ class UrlController implements UrlInterface
             . $this->application_id
         );
 
+        $query->query->setSql();
+
         try {
             $results = $query->getData();
         } catch (Exception $e) {
@@ -215,7 +217,7 @@ class UrlController implements UrlInterface
      * @param   string $url
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function addTrailingSlash($url)
     {
@@ -228,7 +230,7 @@ class UrlController implements UrlInterface
      * @param   string $url
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function removeTrailingSlash($url)
     {
@@ -241,7 +243,7 @@ class UrlController implements UrlInterface
      * @param   string $path
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getApplicationURL($path = '')
     {
@@ -254,7 +256,7 @@ class UrlController implements UrlInterface
      * @param   string $url
      *
      * @return  boolean
-     * @since   1.0
+     * @since   1.0.0
      */
     public function checkURLExternal($url)
     {
@@ -281,7 +283,7 @@ class UrlController implements UrlInterface
      * 3 Local
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function urlShortener($url, $type = 2)
     {

@@ -100,7 +100,7 @@ class Dispatcher implements ResourceInterface
      * Get Resource Data for Route
      *
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getResource()
     {
@@ -115,11 +115,12 @@ class Dispatcher implements ResourceInterface
      * Create Page Type Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function createPageTypeInstance()
     {
         $test_page_type = strtolower($this->page_type);
+
         if (in_array($test_page_type, $this->standard_page_types)) {
             $class_name = 'Molajo\\Controller\\Resource\\' . ucfirst(strtolower($this->page_type)) . 'PageType';
         } else {
@@ -135,7 +136,7 @@ class Dispatcher implements ResourceInterface
      * Get Resource from the PageType instance
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getResourceObject()
     {

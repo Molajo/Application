@@ -24,7 +24,7 @@ class Extension extends Base implements ResourceInterface
      * Get Resource Data for Extension
      *
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getResource()
     {
@@ -48,7 +48,7 @@ class Extension extends Base implements ResourceInterface
      * Set Resource Extension Query
      *
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setQuery()
     {

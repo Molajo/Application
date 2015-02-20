@@ -3,7 +3,11 @@
     "description": "Molajo Application for use in developing Molajo Distributions",
     "version": "1.0.0",
     "type": "molajo-package",
-    "keywords": ["application", "commonapi", "molajo"],
+    "keywords": [
+        "application",
+        "commonapi",
+        "molajo"
+    ],
     "homepage": "http://github.com/Molajo/Application",
     "license": "MIT",
     "authors": [
@@ -29,10 +33,12 @@
 
     "autoload": {
         "psr-4": {
-            "Molajo\\": "Source/Extensions/",
             "Molajo\\Controller\\": "Source/Controller/",
+            "Molajo\\Factories\\": "Factories/",
+            "Molajo\\System\\": "Source/Extensions/",
             "Molajo\\Model\\": "Source/Model/",
-            "Molajo\\Factories\\": "Factories/"
+            "Molajo\\Resource\\": "Source/Resource/",
+            "Molajo\\Resources\\": "Source/Resources/"
         }
     },
 

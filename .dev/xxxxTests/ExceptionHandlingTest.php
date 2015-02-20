@@ -32,7 +32,7 @@ class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
      * Setup testing
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUp()
     {
@@ -50,7 +50,7 @@ class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
      * todo: change class to render output
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSetError()
     {
@@ -65,7 +65,7 @@ class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
      * Tear down
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function tearDown()
     {

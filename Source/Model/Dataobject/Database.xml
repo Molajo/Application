@@ -2,10 +2,10 @@
 <model
         name="Database"
         data_object_type="Database"
-        db_type="mysqli"
-        db_host="localhost"
-        db_user=""
-        db_password=""
+        type="mysqli"
+        host="localhost"
+        user=""
+        password=""
         db="molajo"
-        db_prefix="molajo_"
+        prefix="molajo_"
         process_events="1"/>

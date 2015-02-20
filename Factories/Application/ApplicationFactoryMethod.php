@@ -8,7 +8,6 @@
  */
 namespace Molajo\Factories\Application;
 
-use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\FactoryBatchInterface;
 use CommonApi\IoC\FactoryInterface;
 use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
@@ -43,21 +42,18 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
      * Instantiate a new handler and inject it into the Adapter for the FactoryInterface
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = array())
     {
         parent::setDependencies($reflection);
 
-        $options = array('base_path' => $this->base_path);
-
-        $this->dependencies['Database']     = $options;
-        $this->dependencies['Query']        = $options;
-        $this->dependencies['Resource']     = $options;
-        $this->dependencies['Request']      = $options;
-        $this->dependencies['Fieldhandler'] = $options;
-        $this->dependencies['Runtimedata']  = $options;
+        $this->dependencies['Query']        = array();
+        $this->dependencies['Resource']     = array();
+        $this->dependencies['Request']      = array();
+        $this->dependencies['Fieldhandler'] = array();
+        $this->dependencies['Runtimedata']  = array();
 
         return $this->dependencies;
     }
@@ -66,7 +62,7 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
      * Set Dependencies for Instantiation
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function onBeforeInstantiation(array $dependency_values = null)
@@ -87,7 +83,7 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
      * Follows the completion of the instantiate method
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function onAfterInstantiation()
     {
@@ -136,7 +132,7 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
      * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setContainerEntries()
     {
@@ -149,7 +145,7 @@ class ApplicationFactoryMethod extends FactoryMethodBase implements FactoryInter
      * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getApplicationInstances()
     {

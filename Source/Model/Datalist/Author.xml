@@ -14,8 +14,8 @@
         data_object="Database">
     <table>
         <fields>
-            <field name="id" type="integer" null="1" default="0" identity="1"/>
-            <field name="full_name" type="string" null="1" default="0"/>
+            <include field="id"/>
+            <include field="full_name"/>
         </fields>
         <criteria>
             <where name="id"

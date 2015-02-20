@@ -1,4 +1,6 @@
-<model name="Root">
+<model
+        name="Root"
+        data_object="Database">
     <customfields>
         <customfield name="metadata">
             <include field="metadata_title"/>

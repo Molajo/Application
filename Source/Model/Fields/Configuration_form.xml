@@ -1,6 +1,0 @@
-<field
-        name="configuration_form"
-        type="string"
-        null="0"
-        default="{{ViewForm,form_*}}"
-        />

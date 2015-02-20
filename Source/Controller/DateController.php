@@ -190,7 +190,7 @@ class DateController extends DateTime implements DateInterface
      * @param   mixed  $default
      *
      * @return  mixed
-     * @since   1.0
+     * @since   1.0.0
      */
     public function get($key = null, $default = null)
     {
@@ -210,7 +210,7 @@ class DateController extends DateTime implements DateInterface
      * @param   mixed  $value
      *
      * @return  mixed
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function set($key, $value = null)
@@ -231,7 +231,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $date_format
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getDate(
         $time = 'now',
@@ -302,7 +302,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $date
      *
      * @return  string CCYY-MM-DD
-     * @since   1.0
+     * @since   1.0.0
      */
     public function convertCCYYMMDD($date = null)
     {
@@ -315,7 +315,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $date
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function convertCCYYdashMMdashDD($date = null)
     {
@@ -328,7 +328,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $date
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function convertMMslashDDslashCCYY($date = null)
     {
@@ -341,7 +341,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $date1
      * @param   string $date2
      *
-     * @since   1.0
+     * @since   1.0.0
      * @return  integer
      */
     public function getNumberofDaysAgo($date1, $date2 = null)
@@ -364,7 +364,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $date -- formatted as ccyymmdd
      *
      * @return  DateTime
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function formatDate($date)
     {
@@ -380,7 +380,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $compare_to_date
      *
      * @return  string formatted pretty date
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getPrettyDate($date, $compare_to_date = null)
     {
@@ -410,7 +410,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $ccyymmdd
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getDayNumber($ccyymmdd)
     {
@@ -424,7 +424,7 @@ class DateController extends DateTime implements DateInterface
      * @param   boolean $abbreviation
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getDayName($ccyymmdd, $abbreviation = false)
     {
@@ -442,7 +442,7 @@ class DateController extends DateTime implements DateInterface
      * @param   boolean $abbreviation
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getMonthName($month_number, $abbreviation = false)
     {
@@ -457,7 +457,7 @@ class DateController extends DateTime implements DateInterface
      * @param   boolean $abbreviation
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getNameTranslated($type, $index, $abbreviation)
     {
@@ -487,7 +487,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $year
      *
      * @return  stdClass[] CCYY-MM-DD
-     * @since   1.0
+     * @since   1.0.0
      */
     public function buildCalendar($month, $year)
     {
@@ -509,7 +509,7 @@ class DateController extends DateTime implements DateInterface
      * @param   object $interval
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getPrettyDateToday($interval)
     {
@@ -536,7 +536,7 @@ class DateController extends DateTime implements DateInterface
      * @param   object $interval
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getPrettyDateNotToday($interval)
     {
@@ -564,7 +564,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string  $type
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function translatePrettyDate($numeric_value, $type)
     {
@@ -585,7 +585,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $string
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function translate($string)
     {

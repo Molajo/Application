@@ -7,7 +7,7 @@
         data_object="Database">
     <table>
         <fields>
-            <field name="id" type="integer" null="0" default="" identity="1"/>
+            <include field="id"/>
             <include field="view_group_id"/>
             <include field="catalog_id"/>
             <include field="action_id"/>

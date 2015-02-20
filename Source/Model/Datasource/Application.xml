@@ -16,7 +16,7 @@
 
     <table>
         <fields>
-            <include field="id_pk"/>
+            <include field="id"/>
             <include field="catalog_type_id"/>
             <include field="name"/>
             <include field="path"/>
@@ -31,11 +31,11 @@
         </foreignkeys>
 
         <joins>
-            <join model="Catalog"
+            <join table_name="#__catalog"
                   alias="catalog"
                   select="catalog_type_id,source_id,sef_request,view_group_id,redirect_to_id"
-                  jointo="application_id,application_id,source_id,catalog_type_id"
-                  joinwith="APPLICATION_ID,id,id,catalog_type_id"/>
+                  join_to="source_id,catalog_type_id"
+                  join_with="id,catalog_type_id"/>
         </joins>
 
         <children>

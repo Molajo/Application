@@ -27,7 +27,7 @@ class AuthenticateFactoryMethod extends FactoryMethodBase implements FactoryInte
      *
      * @param   $options
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(array $options = array())
     {
@@ -41,7 +41,7 @@ class AuthenticateFactoryMethod extends FactoryMethodBase implements FactoryInte
      * Identify Class Dependencies for Constructor Injection
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = array())

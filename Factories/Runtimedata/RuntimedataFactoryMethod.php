@@ -44,7 +44,7 @@ class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInter
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()
@@ -93,7 +93,7 @@ class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInter
      * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setContainerEntries()
     {
@@ -106,12 +106,11 @@ class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInter
      * Request for array of Factory Methods to be Scheduled
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function scheduleFactories()
     {
         $options                                      = array();
-        $options['base_path']                         = $this->base_path;
         $this->schedule_factory_methods['Plugindata'] = $options;
 
         return $this->schedule_factory_methods;

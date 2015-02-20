@@ -17,7 +17,7 @@
 
     <table>
         <fields>
-            <include field="id_pk"/>
+            <include field="id"/>
             <include field="username"/>
             <include field="alias"/>
             <include field="first_name"/>
@@ -43,11 +43,11 @@
         </fields>
 
         <children>
-            <child name="Useractivity" type="Datasource" join="user_id"/>
-            <child name="Userapplications" type="Datasource" join="user_id"/>
-            <child name="Usergroups" type="Datasource" join="user_id"/>
-            <child name="Usersites" type="Datasource" join="user_id"/>
-            <child name="Userviewgroups" type="Datasource" join="user_id"/>
+            <child name="Useractivity" table_name="#__user_activity" type="Datasource" join="user_id"/>
+            <child name="Userapplications" table_name="#__user_applications" type="Datasource" join="user_id"/>
+            <child name="Usergroups" table_name="#__user_groups" type="Datasource" join="user_id"/>
+            <child name="Usersites" table_name="#__user_sites" type="Datasource" join="user_id"/>
+            <child name="Userviewgroups" table_name="#__user_view_groups" type="Datasource" join="user_id"/>
         </children>
 
         <plugins>

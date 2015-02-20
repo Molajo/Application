@@ -34,7 +34,7 @@ class RandomStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\RandomString::generateString
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGenerateString()
     {
@@ -51,7 +51,7 @@ class RandomStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\RandomString::generateString
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGenerateStringConstructor()
     {
@@ -68,7 +68,7 @@ class RandomStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\RandomString::generateString
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGenerateStringPassin()
     {

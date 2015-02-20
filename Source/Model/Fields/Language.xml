@@ -1,6 +1,0 @@
-<field name="language"
-       type="string"
-       null="0"
-       default=" "
-       datalist="Languages"
-        />

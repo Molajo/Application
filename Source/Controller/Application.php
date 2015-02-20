@@ -9,7 +9,6 @@
 namespace Molajo\Controller;
 
 use CommonApi\Controller\ApplicationInterface;
-use CommonApi\Database\DatabaseInterface;
 use CommonApi\Exception\RuntimeException;
 use CommonApi\Model\FieldhandlerInterface;
 use CommonApi\Query\QueryInterface;
@@ -52,14 +51,6 @@ class Application implements ApplicationInterface
      * @since  1.0
      */
     protected $model_registry = array();
-
-    /**
-     * Database Instance
-     *
-     * @var    object
-     * @since  1.0
-     */
-    protected $database;
 
     /**
      * Query Instance
@@ -128,7 +119,6 @@ class Application implements ApplicationInterface
     /**
      * Constructor
      *
-     * @param DatabaseInterface     $database
      * @param QueryInterface        $query
      * @param FieldhandlerInterface $fieldhandler
      * @param string                $request_path
@@ -138,14 +128,12 @@ class Application implements ApplicationInterface
      * @since  1.0
      */
     public function __construct(
-        DatabaseInterface $database,
         QueryInterface $query,
         FieldhandlerInterface $fieldhandler,
         $request_path,
         array $applications = array(),
         array $model_registry = array()
     ) {
-        $this->database       = $database;
         $this->query          = $query;
         $this->fieldhandler   = $fieldhandler;
         $this->request_path   = $request_path;
@@ -157,7 +145,7 @@ class Application implements ApplicationInterface
      * Using Request URI, identify current application and page request
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setApplication()
     {
@@ -177,7 +165,7 @@ class Application implements ApplicationInterface
      * @param   stdClass $app
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setApplicationBasePath($app)
     {
@@ -202,7 +190,7 @@ class Application implements ApplicationInterface
      * Extract Application Path from the Request URL
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setApplicationPath()
     {
@@ -229,7 +217,7 @@ class Application implements ApplicationInterface
      * @param   integer $start
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function processRequestPath($start)
     {
@@ -244,7 +232,7 @@ class Application implements ApplicationInterface
      * @param   string $application_test
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getApplicationArrayEntry($application_test)
     {
@@ -269,7 +257,7 @@ class Application implements ApplicationInterface
      * Retrieve Application Data
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getConfiguration()
     {
@@ -323,9 +311,9 @@ class Application implements ApplicationInterface
     {
         $this->createConfigurationQuery();
 
-        $x = $this->database->loadObjectList($this->query->getSQL());
+        $x = $this->query->loadObjectList($this->query->getSQL());
 
-        if ($x === false) {
+        if (count($x) === 0) {
             throw new RuntimeException('Application: Error executing getApplication Query');
         }
 
@@ -388,7 +376,7 @@ class Application implements ApplicationInterface
      * @param   object $data
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function processCustomfieldGroup($group, $data)
     {
@@ -540,7 +528,7 @@ class Application implements ApplicationInterface
      * @param   int $site_id
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function verifySiteApplication($site_id)
@@ -552,7 +540,7 @@ class Application implements ApplicationInterface
         $this->query->where('column', 'application_id', '=', 'integer', (int)$this->id);
         $this->query->where('column', 'site_id', '=', 'integer', (int)$site_id);
 
-        $returned_site_id = $this->database->loadResult($this->query->getSQL());
+        $returned_site_id = $this->query->loadResult($this->query->getSQL());
 
         if ((int)$returned_site_id === (int)$site_id) {
             return $this;

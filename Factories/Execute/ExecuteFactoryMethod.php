@@ -43,7 +43,7 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
      * Instantiate a new handler and inject it into the Adapter for the FactoryInterface
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = array())
@@ -60,7 +60,7 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
      * Set Extension Data for Resource
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function onAfterInstantiation()
     {
@@ -73,43 +73,40 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
      * Save View Data for Resource
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setResourceExtensions()
     {
-        $page_type = strtolower($this->dependencies['Runtimedata']->route->page_type);
-
         $theme_id         = $this->dependencies['Runtimedata']->resource->parameters->theme_id;
         $page_view_id     = $this->dependencies['Runtimedata']->resource->parameters->page_view_id;
         $template_view_id = $this->dependencies['Runtimedata']->resource->parameters->template_view_id;
         $wrap_view_id     = $this->dependencies['Runtimedata']->resource->parameters->wrap_view_id;
-
-        /**
-         * echo 'In Execute';
-         * echo ' Theme: ' . $theme_id . '<br>';
-         * echo ' Page: ' . $page_view_id . '<br>';
-         * echo ' Template: ' . $template_view_id . '<br>';
-         * echo ' Wrap: ' . $wrap_view_id . '<br>';
-         */
+/**
+        echo 'In ExecuteFactoryMethod';
+        echo ' Theme: ' . $theme_id . '<br>';
+        echo ' Page: ' . $page_view_id . '<br>';
+        echo ' Template: ' . $template_view_id . '<br>';
+        echo ' Wrap: ' . $wrap_view_id . '<br>';
+*/
         $this->dependencies['Runtimedata']->resource->extensions = new stdClass();
 
         $scheme = 'theme:///';
-        $ns     = 'molajo//themes//' . (int) $theme_id;
+        $ns     = 'molajo//themes//' . (int)$theme_id;
         $this->dependencies['Runtimedata']->resource->extensions->theme
                 = $this->dependencies['Resource']->get($scheme . $ns);
 
         $scheme = 'page:///';
-        $ns     = 'molajo//views//pages//' . (int) $page_view_id;
+        $ns     = 'molajo//views//pages//' . (int)$page_view_id;
         $this->dependencies['Runtimedata']->resource->extensions->page
                 = $this->dependencies['Resource']->get($scheme . $ns);
 
         $scheme = 'template:///';
-        $ns     = 'molajo//views//templates//' . (int) $template_view_id;
+        $ns     = 'molajo//views//templates//' . (int)$template_view_id;
         $this->dependencies['Runtimedata']->resource->extensions->template
                 = $this->dependencies['Resource']->get($scheme . $ns);
 
         $scheme = 'wrap:///';
-        $ns     = 'molajo//views//wraps//' . (int) $wrap_view_id;
+        $ns     = 'molajo//views//wraps//' . (int)$wrap_view_id;
         $this->dependencies['Runtimedata']->resource->extensions->wrap
                 = $this->dependencies['Resource']->get($scheme . $ns);
 
@@ -120,7 +117,7 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
      * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setContainerEntries()
     {
@@ -133,15 +130,12 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
      * Request for array of Factory Methods to be Scheduled
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function scheduleFactories()
     {
-        $options              = array();
-        $options['base_path'] = $this->base_path;
-
         if ($this->dependencies['Runtimedata']->route->method === 'GET') {
-            $this->schedule_factory_methods['Render'] = $options;
+            $this->schedule_factory_methods['Render'] = array();
         }
 
         return $this->schedule_factory_methods;

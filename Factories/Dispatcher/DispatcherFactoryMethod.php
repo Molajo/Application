@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource Controller Factory Method
+ * Dispatcher Factory Method
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -16,7 +16,7 @@ use CommonApi\IoC\FactoryBatchInterface;
 use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
 
 /**
- * Resource Factory Method
+ * Dispatcher Factory Method
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -30,7 +30,7 @@ class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterf
      *
      * @param   $options
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(array $options = array())
     {
@@ -45,7 +45,7 @@ class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Identify Class Dependencies for Constructor Injection
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = array())
@@ -63,7 +63,7 @@ class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()
@@ -97,7 +97,7 @@ class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Follows the completion of the instantiate method
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function onAfterInstantiation()
     {
@@ -110,7 +110,7 @@ class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setContainerEntries()
     {

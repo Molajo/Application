@@ -33,7 +33,7 @@ class NumberToTextTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText\enGB::loadTranslation
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUp()
     {
@@ -46,7 +46,7 @@ class NumberToTextTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText\Translate::translateString
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testTranslateString()
     {
@@ -62,7 +62,7 @@ class NumberToTextTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\NumberToText\Translate::translateString
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testTranslateStringNotFound()
     {

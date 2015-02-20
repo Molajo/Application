@@ -32,7 +32,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::__construct
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUp()
     {
@@ -62,7 +62,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetDate()
     {
@@ -97,7 +97,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGet()
     {
@@ -132,7 +132,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetDate2()
     {
@@ -167,7 +167,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testConvertCCYYMMDD()
     {
@@ -205,7 +205,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetNumberofDaysAgo()
     {
@@ -244,7 +244,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetPrettyDate()
     {
@@ -301,7 +301,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetDayName()
     {
@@ -343,7 +343,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetMonthName()
     {
@@ -385,7 +385,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\DateController::translate
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testBuildCalendar()
     {

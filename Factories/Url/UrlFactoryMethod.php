@@ -28,7 +28,7 @@ class UrlFactoryMethod extends FactoryMethodBase implements FactoryInterface, Fa
      *
      * @param   $options
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(array $options = array())
     {
@@ -43,7 +43,7 @@ class UrlFactoryMethod extends FactoryMethodBase implements FactoryInterface, Fa
      * Identify Class Dependencies for Constructor Injection
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = array())
@@ -60,7 +60,7 @@ class UrlFactoryMethod extends FactoryMethodBase implements FactoryInterface, Fa
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()

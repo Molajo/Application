@@ -24,7 +24,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
      * Setup testing
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUp()
     {
@@ -44,7 +44,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetGifImage()
     {
@@ -94,7 +94,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetPngImage()
     {
@@ -143,7 +143,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetJpgImage()
     {
@@ -193,7 +193,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetGifImageSmall()
     {
@@ -245,7 +245,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetPngLargeImage()
     {
@@ -293,7 +293,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\ImageController::resizeImage
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetJpgImageThumbnail()
     {
@@ -336,7 +336,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
      * Tear Down testing
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function tearDown()
     {

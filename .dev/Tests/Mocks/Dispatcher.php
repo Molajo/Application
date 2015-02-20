@@ -35,7 +35,7 @@ class MockDispatcher implements DispatcherInterface
      * Initialise Options Array for Event
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function initializeEventOptions()
     {
@@ -56,7 +56,7 @@ class MockDispatcher implements DispatcherInterface
      * @param   int    $priority 0 (lowest) to 100 (highest)
      *
      * @return  mixed
-     * @since   1.0
+     * @since   1.0.0
      */
     public function registerForEvent($event_name, $callback, $priority = 50)
     {
@@ -67,10 +67,10 @@ class MockDispatcher implements DispatcherInterface
      * Requester Schedules Event with Dispatcher
      *
      * @param   string         $event_name
-     * @param   EventInterface $event      CommonApi\Event\EventInterface
+     * @param   EventInterface $event CommonApi\Event\EventInterface
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function scheduleEvent($event_name, EventInterface $event)
     {

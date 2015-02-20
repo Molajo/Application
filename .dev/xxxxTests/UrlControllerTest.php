@@ -32,7 +32,7 @@ class UrlControllerTest extends \PHPUnit_Framework_TestCase
      * Setup testing
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUp()
     {
@@ -47,7 +47,7 @@ class UrlControllerTest extends \PHPUnit_Framework_TestCase
      * 4. verify name, id, base_path and path
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSetUrlController()
     {
@@ -62,7 +62,7 @@ class UrlControllerTest extends \PHPUnit_Framework_TestCase
      * Tear down
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function tearDown()
     {

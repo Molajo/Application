@@ -28,7 +28,7 @@ class TextFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      *
      * @param   $options
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(array $options = array())
     {
@@ -43,7 +43,7 @@ class TextFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()
@@ -61,7 +61,7 @@ class TextFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function getTextList()

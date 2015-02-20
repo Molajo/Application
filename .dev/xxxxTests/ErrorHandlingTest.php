@@ -35,7 +35,7 @@ class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUp()
     {
@@ -51,7 +51,7 @@ class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSet403Error()
     {
@@ -74,7 +74,7 @@ class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSet404Error()
     {
@@ -97,7 +97,7 @@ class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSet500Error()
     {
@@ -120,7 +120,7 @@ class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSet503Error()
     {
@@ -143,7 +143,7 @@ class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Errorhandling::setThemePageView
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSetMessageError()
     {
@@ -169,7 +169,7 @@ class ErrorhandlingTest extends \PHPUnit_Framework_TestCase
      * @expectedExceptionMessage
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSetInvalidError()
     {

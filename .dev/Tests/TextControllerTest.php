@@ -47,7 +47,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUp()
     {
@@ -72,7 +72,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetText()
     {
@@ -108,7 +108,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testEditCountLoremSet()
     {
@@ -142,7 +142,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testEditNumberOfParagraphs()
     {
@@ -176,7 +176,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testEditLinesPerParagraph()
     {
@@ -210,7 +210,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testEditWordsPerLine()
     {
@@ -244,7 +244,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testEditValidMarkup()
     {
@@ -281,7 +281,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testEditMarkupType()
     {
@@ -315,7 +315,7 @@ class TextControllerTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\TextController::createFirstWord
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testEditStartWithLoremIpsum()
     {

@@ -28,7 +28,7 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      *
      * @param   $options
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(array $options = array())
     {
@@ -43,7 +43,7 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      * Identify Class Dependencies for Constructor Injection
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = array())
@@ -61,7 +61,7 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()
@@ -116,7 +116,7 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      * Request for array of Factory Methods to be Scheduled
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function scheduleFactories()
     {
@@ -130,7 +130,7 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      * Get Default Date Translations
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getDefaultDateTranslations()
     {

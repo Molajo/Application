@@ -174,7 +174,7 @@ abstract class Base
      * Retrieve Resource Item
      *
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getResource()
     {
@@ -189,7 +189,7 @@ abstract class Base
      * @param   object $route
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setRouteInput($route)
     {
@@ -213,16 +213,16 @@ abstract class Base
      * Initialize Resource Object
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function initialiseResourceObject()
     {
-        $this->resource                           = new stdClass();
-        $this->resource->catalog_type_id          = null;
-        $this->resource->model_name               = null;
-        $this->resource->data                     = new stdClass();
-        $this->resource->parameters               = array();
-        $this->resource->model_registry           = array();
+        $this->resource                  = new stdClass();
+        $this->resource->catalog_type_id = null;
+        $this->resource->model_name      = null;
+        $this->resource->data            = new stdClass();
+        $this->resource->parameters      = array();
+        $this->resource->model_registry  = array();
 
         return $this;
     }
@@ -231,13 +231,16 @@ abstract class Base
      * Run Query
      *
      * @param   object $controller
+     * @param   string $sql
      *
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\UnexpectedValueException
      */
-    protected function runQuery($controller)
+    protected function runQuery($controller, $sql = null)
     {
+        $controller->setSql($sql);
+
         try {
             $results = $controller->getData();
 
@@ -256,7 +259,7 @@ abstract class Base
      * Set Parameters
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setParameters()
     {
@@ -279,7 +282,7 @@ abstract class Base
      * Set Model Registry
      *
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setModelRegistry($controller)
     {

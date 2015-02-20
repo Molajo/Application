@@ -65,7 +65,7 @@ class RandomString implements RandomStringInterface
      * @param   null|string $characters
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function generateString($length = null, $characters = null)
     {
@@ -81,7 +81,7 @@ class RandomString implements RandomStringInterface
 
         $random_string = '';
 
-        for ($i = 0; $i < $this->length; $i ++) {
+        for ($i = 0; $i < $this->length; $i++) {
             $random_string .= $this->characters[rand(0, strlen($this->characters) - 1)];
         }
 

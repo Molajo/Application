@@ -163,7 +163,7 @@ class Site implements SiteInterface
      * @param   mixed  $default
      *
      * @return  mixed
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function get($key = null, $default = null)
@@ -205,7 +205,7 @@ class Site implements SiteInterface
      * @param   string $base_path
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setBase($base_url, $base_path)
     {
@@ -219,7 +219,7 @@ class Site implements SiteInterface
      * Identifies the specific site and sets site paths for use in the application
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function identifySite()
@@ -273,20 +273,20 @@ class Site implements SiteInterface
      */
     public function installCheck()
     {
-        if (substr($this->path, 0, strlen('installation')) === 'installation') {
+        if (strtolower(substr($this->path, -12, 12)) === 'installation') {
             return $this;
         }
 
-        if (defined('SKIP_INSTALL_CHECK')) {
+        if (defined('SKIP_MOLAJO_INSTALL_CHECK')) {
             return $this;
         }
 
-        if (file_exists($this->site_base_path . '/Temp/Index.html')) {
-            return $this;
+        if (file_exists($this->base_path . '/installation/Index.html')) {
+            $redirect = $this->host . '/installation/';
+            header('Location: ' . $redirect);
+            exit();
         }
 
-        $redirect = $this->host . 'installation/';
-        header('Location: ' . $redirect);
-        exit();
+        return $this;
     }
 }

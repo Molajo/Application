@@ -86,7 +86,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * Setup testing
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUp()
     {
@@ -104,7 +104,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * Instantiate the class to test
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function instantiateClass()
     {
@@ -140,7 +140,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Application::verifySiteApplication
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSetApplicationTrailSlashSite()
     {
@@ -181,7 +181,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Application::verifySiteApplication
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSetApplicationNoTrailSlashSite()
     {
@@ -222,7 +222,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Application::verifySiteApplication
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSetApplicationTrailSlashAdmin()
     {
@@ -263,7 +263,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Application::verifySiteApplication
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSetApplicationNoTrailSlashAdmin()
     {
@@ -304,7 +304,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Controller\Application::verifySiteApplication
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testGetConfiguration()
     {
@@ -327,7 +327,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * Tear down
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function tearDown()
     {
@@ -338,7 +338,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function mockApplicationInstances()
     {
@@ -458,7 +458,7 @@ class MockQuery extends Driver implements QueryInterface
      * @param   null|string $data_type
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws \CommonApi\Exception\RuntimeException
      */
     public function select($column_name, $alias = null, $value = null, $data_type = null)
@@ -473,7 +473,7 @@ class MockQuery extends Driver implements QueryInterface
      * @param   null|string $alias
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function from($table_name, $alias = null)
@@ -493,7 +493,7 @@ class MockQuery extends Driver implements QueryInterface
      * @param   null|string $group
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function where(
@@ -514,7 +514,7 @@ class MockQuery extends Driver implements QueryInterface
      * @param   null|string $sql
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function getSQL($sql = null)

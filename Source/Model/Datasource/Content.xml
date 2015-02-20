@@ -16,9 +16,9 @@
 
     <table>
         <fields>
-            <include field="id_pk"/>
-            <include field="extension_instance_id_single"/>
-            <include field="catalog_type_id_single"/>
+            <include field="id"/>
+            <include field="extension_instance_id"/>
+            <include field="catalog_type_id"/>
             <include field="title"/>
             <include field="subtitle"/>
             <include field="path"/>
@@ -27,7 +27,7 @@
             <include field="protected"/>
             <include field="featured"/>
             <include field="stickied"/>
-            <include field="statussingle"/>
+            <include field="status"/>
             <include field="start_publishing_datetime"/>
             <include field="stop_publishing_datetime"/>
             <include field="version"/>
@@ -54,26 +54,26 @@
         </fields>
 
         <joins>
-            <join model="Catalog"
+            <join table_name="#__catalog"
                   alias="catalog"
                   select="sef_request,primary_category_id,view_group_id,catalog_type_id,extension_instance_id"
-                  jointo="application_id,source_id,catalog_type_id,extension_instance_id,redirect_to_id,enabled"
-                  joinwith="APPLICATION_ID,id,catalog_type_id,extension_instance_id,0,1"/>
-            <join model="ExtensionInstances"
+                  join_to="application_id,source_id,catalog_type_id,extension_instance_id,redirect_to_id,enabled"
+                  join_with="APPLICATION_ID,id,catalog_type_id,extension_instance_id,0,1"/>
+            <join table_name="#__extension_instances"
                   alias="extension_instances"
                   select="id,title,catalog_type_id,customfields,parameters,metadata"
-                  jointo="id"
-                  joinwith="extension_instance_id"/>
-            <join model="User"
+                  join_to="id"
+                  join_with="extension_instance_id"/>
+            <join table_name="#__users"
                   alias="created_by"
                   select="full_name,username"
-                  jointo="id"
-                  joinwith="created_by"/>
-            <join model="User"
+                  join_to="id"
+                  join_with="created_by"/>
+            <join table_name="#__users"
                   alias="modified_by"
                   select="full_name,username"
-                  jointo="id"
-                  joinwith="modified_by"/>
+                  join_to="id"
+                  join_with="modified_by"/>
         </joins>
 
         <foreignkeys>

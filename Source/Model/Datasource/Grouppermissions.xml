@@ -12,7 +12,7 @@
         data_object="Database">
     <table>
         <fields>
-            <include field="id_pk"/>
+            <include field="id"/>
             <include field="group_id"/>
             <include field="catalog_id"/>
             <include field="action_id"/>

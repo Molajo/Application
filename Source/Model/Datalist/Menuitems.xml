@@ -16,7 +16,7 @@
     <table>
         <fields>
             <include field="id"/>
-            <include field="name"/>
+            <include field="title"/>
         </fields>
     </table>
 </model>

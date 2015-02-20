@@ -4,7 +4,7 @@
     <table>
         <values>
             <value id="datalist" value="Datalist"/>
-            <value id="dataobject" value="Dataobject"/>
+            <value id="data_object" value="data_object"/>
             <value id="menuitem" value="Menuitem"/>
             <value id="pageview" value="Pageview"/>
             <value id="plugin" value="Plugin"/>

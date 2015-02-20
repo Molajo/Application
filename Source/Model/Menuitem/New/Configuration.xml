@@ -1,8 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<model name="New" extends="Menuitem">
-    <customfields>
-        <customfield name="parameters">
-            <include name="ParametersNew"/>
-        </customfield>
-    </customfields>
-</model>
+<model name="New" extends="Menuitem"/>

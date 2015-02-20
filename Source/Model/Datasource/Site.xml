@@ -14,10 +14,9 @@
         use_pagination="1"
         extends="root"
         data_object="Database">
-
     <table>
         <fields>
-            <include field="id_pk"/>
+            <include field="id"/>
             <include field="catalog_type_id"/>
             <include field="name"/>
             <include field="path"/>

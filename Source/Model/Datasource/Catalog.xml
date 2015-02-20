@@ -15,7 +15,7 @@
     <table>
 
         <fields>
-            <include field="id_pk"/>
+            <include field="id"/>
             <include field="application_id"/>
             <include field="catalog_type_id"/>
             <include field="source_id"/>
@@ -29,21 +29,21 @@
         </fields>
 
         <joins>
-            <join model="Catalogtypes"
+            <join table_name="#__catalog_types"
                   alias="b"
                   select="title,model_type,model_name,primary_category_id,alias"
-                  jointo="id"
-                  joinwith="catalog_type_id"/>
-            <join model="Applicationextensioninstances"
+                  join_to="id"
+                  join_with="catalog_type_id"/>
+            <join table_name="#__application_extension_instances"
                   alias="application_extension_instances"
                   select=""
-                  jointo="application_id,extension_instance_id"
-                  joinwith="APPLICATION_ID,extension_instance_id"/>
-            <join model="SiteExtensionInstances"
+                  join_to="application_id,extension_instance_id"
+                  join_with="application_id,extension_instance_id"/>
+            <join table_name="#__site_extension_instances"
                   alias="site_extension_instances"
                   select=""
-                  jointo="site_id,extension_instance_id"
-                  joinwith="SITE_ID,extension_instance_id"/>
+                  join_to="site_id,extension_instance_id"
+                  join_with="SITE_ID,extension_instance_id"/>
         </joins>
 
         <criteria>

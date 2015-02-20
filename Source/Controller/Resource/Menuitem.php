@@ -24,20 +24,21 @@ class MenuItem extends Base implements ResourceInterface
      * Get Resource for Menu Item
      *
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getResource()
     {
-        $page_type = strtolower($this->page_type);
-        $path      = strtolower($this->path);
-
+        $page_type     = strtolower($this->page_type);
+        $path          = strtolower($this->path);
         $resource_name = $path;
         $remove        = strlen($resource_name) - strlen($page_type) - 1;
+
         if (substr($resource_name, $remove + 1, strlen($page_type)) === $page_type) {
             $resource_name = substr($resource_name, 0, $remove);
         }
 
-        $controller           = $this->setQuery($resource_name, $page_type, $path);
+        $controller = $this->setQuery($resource_name, $page_type, $path);
+
         $this->resource->data = $this->runQuery($controller);
 
         $this->setParameters();
@@ -61,15 +62,21 @@ class MenuItem extends Base implements ResourceInterface
      * @param   string $page_type
      *
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setQuery($resource_name, $page_type, $path)
     {
-        $model = 'Molajo//'
-            . ucfirst(strtolower($resource_name))
-            . '//Menuitem//'
-            . ucfirst(strtolower($page_type))
-            . '.xml';
+//        if ($resource_name === '') {
+            $model = 'Molajo//Model//Menuitem//'
+                . ucfirst(strtolower($page_type))
+                . '//Configuration.xml';
+  //      } else {
+    //        $model = 'Molajo//'
+      //          . ucfirst(strtolower($resource_name))
+        //        . '//Menuitem//'
+          //      . ucfirst(strtolower($page_type))
+            //    . '.xml';
+     //   }
 
         $controller = $this->resource_instance->get(
             'query:///' . $model,
