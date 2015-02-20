@@ -9,7 +9,6 @@
 namespace Molajo\Resource\Adapter;
 
 use CommonApi\Resource\AdapterInterface;
-use stdClass;
 
 /**
  * Css Resource Adapter
@@ -19,7 +18,7 @@ use stdClass;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class Css extends Assets implements AdapterInterface
+class Css extends CssAssets implements AdapterInterface
 {
     /**
      * CSS Files array

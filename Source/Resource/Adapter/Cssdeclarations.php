@@ -8,7 +8,6 @@
  */
 namespace Molajo\Resource\Adapter;
 
-use stdClass;
 use CommonApi\Resource\AdapterInterface;
 
 /**
@@ -19,7 +18,7 @@ use CommonApi\Resource\AdapterInterface;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class CssDeclarations extends Assets implements AdapterInterface
+class CssDeclarations extends CssAssets implements AdapterInterface
 {
     /**
      * Css Declarations
@@ -130,7 +129,7 @@ class CssDeclarations extends Assets implements AdapterInterface
      */
     public function getCollection($scheme, array $options = array())
     {
-        return $this->getAssetPriorities($this->css_files);
+        return $this->getAssetPriorities($this->css_strings);
     }
 
     /**

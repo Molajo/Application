@@ -21,21 +21,6 @@ use stdClass;
 abstract class Assets extends AbstractAdapter
 {
     /**
-     * Option Names
-     *
-     * @var    array
-     * @since  1.0.0
-     */
-    protected $css_options_names
-        = array(
-            'priority'    => 'integer',
-            'mimetype'    => 'string',
-            'media'       => 'string',
-            'conditional' => 'string',
-            'attributes'  => 'array'
-        );
-
-    /**
      * Skip File Methods
      *
      * @var    array
@@ -279,34 +264,6 @@ abstract class Assets extends AbstractAdapter
         sort($priorities);
 
         return $priorities;
-    }
-
-    /**
-     * Create a row containing the CSS information
-     *
-     * @param   string $css_path_or_string
-     * @param   array  $options
-     *
-     * @return  stdClass
-     * @since   1.0.0
-     */
-    protected function setCssRow($css_path_or_string, array $options = array())
-    {
-        $row                     = new stdClass();
-        $row->css_path_or_string = $css_path_or_string;
-
-        foreach ($this->css_options_names as $name => $filter) {
-
-            if (isset($options[$name])) {
-                $value = $options[$name];
-            } else {
-                $value = null;
-            }
-
-            $row->$name = $this->setOptionValue($value, $filter);
-        }
-
-        return $row;
     }
 
     /**
