@@ -49,8 +49,8 @@ abstract class Assets extends AssetBase
     /**
      * addAssetFolder - Loads the CSS files located within the identified folder
      *
-     * @param   string  $file_path
-     * @param   array   $options
+     * @param   string $file_path
+     * @param   array  $options
      *
      * @return  $this
      * @since   1.0.0

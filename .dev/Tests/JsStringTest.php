@@ -292,19 +292,19 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
         document.Grid.submit();
     }
 });';
-        $row->priority       = '500';
-        $row->mimetype       = 'text/js';
-        $row->defer          = '';
-        $row->async          = '';
+        $row->priority      = '500';
+        $row->mimetype      = 'text/js';
+        $row->defer         = '';
+        $row->async         = '';
         $expected_results[] = $row;
 
         // input
-        $options             = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = '';
-        $options['async']    = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/js';
+        $options['defer']        = '';
+        $options['async']        = '';
 
         $this->test_instance->handlePath('js', '', $options);
 
@@ -370,21 +370,21 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
         // Results
         $expected_results = array();
 
-        $row = new stdClass();
+        $row                 = new stdClass();
         $row->path_or_string = '';
         $row->priority       = '500';
         $row->mimetype       = 'text/js';
         $row->defer          = '';
         $row->async          = '';
-        $expected_results[] = $row;
+        $expected_results[]  = $row;
 
         // input
-        $options             = array();
-        $options['asset_string']  = '';
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = '';
-        $options['async']    = '';
+        $options                 = array();
+        $options['asset_string'] = '';
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/js';
+        $options['defer']        = '';
+        $options['async']        = '';
 
         $this->test_instance->handlePath('js', '', $options);
 
@@ -445,45 +445,46 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
         $expected_results = array();
 
         $row = new stdClass();
-        $row->path_or_string = '$(document).ready(function () {
+        $row->path_or_string
+                            = '$(document).ready(function () {
 
     function submitform() {
         document.Grid.submit();
     }
 });';
-        $row->priority       = '500';
-        $row->mimetype       = 'text/js';
-        $row->defer          = 0;
-        $row->async          = '';
+        $row->priority      = '500';
+        $row->mimetype      = 'text/js';
+        $row->defer         = 0;
+        $row->async         = '';
         $expected_results[] = $row;
 
         // 1
-        $options             = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = 0;
-        $options['async']    = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/js';
+        $options['defer']        = 0;
+        $options['async']        = '';
 
         $this->test_instance->handlePath('js', '', $options);
 
         // 2
-        $options             = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = 0;
-        $options['async']    = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/js';
+        $options['defer']        = 0;
+        $options['async']        = '';
 
         $this->test_instance->handlePath('js', '', $options);
 
         // 3
-        $options             = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = 0;
-        $options['async']    = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/js';
+        $options['defer']        = 0;
+        $options['async']        = '';
 
         $this->test_instance->handlePath('js', '', $options);
 
@@ -552,50 +553,50 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
         // String 1
         $row = new stdClass();
         $row->path_or_string
-                             = '$(document).ready(function () {
+                            = '$(document).ready(function () {
 
     function submitform() {
         document.Grid.submit();
     }
 });';
-        $row->priority       = '500';
-        $row->mimetype       = 'text/js';
-        $row->defer          = '';
-        $row->async          = '';
+        $row->priority      = '500';
+        $row->mimetype      = 'text/js';
+        $row->defer         = '';
+        $row->async         = '';
         $expected_results[] = $row;
 
         // input
-        $options             = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = '';
-        $options['async']    = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/js';
+        $options['defer']        = '';
+        $options['async']        = '';
 
         $this->test_instance->handlePath('js', '', $options);
 
         // String 2
         $row = new stdClass();
         $row->path_or_string
-                             = '$(document).ready(function () {
+                            = '$(document).ready(function () {
 
     function doesnotmatch() {
         document.Grid.submit();
     }
 });';
-        $row->priority       = '500';
-        $row->mimetype       = 'text/js';
-        $row->defer          = '';
-        $row->async          = '';
+        $row->priority      = '500';
+        $row->mimetype      = 'text/js';
+        $row->defer         = '';
+        $row->async         = '';
         $expected_results[] = $row;
 
         // input
-        $options             = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = '';
-        $options['async']    = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/js';
+        $options['defer']        = '';
+        $options['async']        = '';
 
         $this->test_instance->handlePath('js', '', $options);
 
@@ -670,50 +671,50 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
         // String 1
         $row = new stdClass();
         $row->path_or_string
-                             = '$(document).ready(function () {
+                            = '$(document).ready(function () {
 
     function submitform() {
         document.Grid.submit();
     }
 });';
-        $row->priority       = '500';
-        $row->mimetype       = 'text/js';
-        $row->defer          = 1;
-        $row->async          = '';
+        $row->priority      = '500';
+        $row->mimetype      = 'text/js';
+        $row->defer         = 1;
+        $row->async         = '';
         $expected_results[] = $row;
 
         // input
-        $options             = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = 1;
-        $options['async']    = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/js';
+        $options['defer']        = 1;
+        $options['async']        = '';
 
         $this->test_instance->handlePath('js', '', $options);
 
         // String 2
         $row = new stdClass();
         $row->path_or_string
-                             = '$(document).ready(function () {
+                            = '$(document).ready(function () {
 
     function doesnotmatch() {
         document.Grid.submit();
     }
 });';
-        $row->priority       = '500';
-        $row->mimetype       = 'text/js';
-        $row->defer          = '';
-        $row->async          = '';
+        $row->priority      = '500';
+        $row->mimetype      = 'text/js';
+        $row->defer         = '';
+        $row->async         = '';
         $expected_results[] = $row;
 
         // input
-        $options             = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = '';
-        $options['async']    = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/js';
+        $options['defer']        = '';
+        $options['async']        = '';
 
         $this->test_instance->handlePath('js', '', $options);
 

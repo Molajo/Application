@@ -8,8 +8,6 @@
  */
 namespace Molajo\Resource\Adapter;
 
-use stdClass;
-
 /**
  * Asset Collection Resource Adapter
  *
@@ -60,7 +58,7 @@ abstract class AssetCollection extends Assets
      */
     public function testCollectionRow($scheme, $priority, $defer, $row, $priority_order)
     {
-        if ((int) $row->priority === (int) $priority) {
+        if ((int)$row->priority === (int)$priority) {
         } else {
             return $priority_order;
         }
@@ -70,7 +68,7 @@ abstract class AssetCollection extends Assets
             return $priority_order;
         }
 
-        if ((int) $defer === (int) $row->defer) {
+        if ((int)$defer === (int)$row->defer) {
             $priority_order[] = $row;
         }
 
@@ -102,7 +100,7 @@ abstract class AssetCollection extends Assets
 
             } else {
 
-                if ((int) $defer === (int) $row->defer) {
+                if ((int)$defer === (int)$row->defer) {
                     $priorities[] = $row->priority;
                 }
             }
@@ -135,7 +133,7 @@ abstract class AssetCollection extends Assets
             return 0;
         }
 
-        if ((int) $options['defer'] === 1) {
+        if ((int)$options['defer'] === 1) {
             return 1;
         }
 

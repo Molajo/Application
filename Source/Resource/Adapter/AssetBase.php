@@ -1,6 +1,6 @@
 <?php
 /**
- * Assets Resource Adapter
+ * Asset Base Resource Adapter
  *
  * @package    Molajo
  * @copyright  2014-2015 Amy Stephen. All rights reserved.
@@ -8,10 +8,8 @@
  */
 namespace Molajo\Resource\Adapter;
 
-use stdClass;
-
 /**
- * Assets Resource Adapter
+ * Asset Base Resource Adapter
  *
  * @package    Molajo
  * @copyright  2014-2015 Amy Stephen. All rights reserved.

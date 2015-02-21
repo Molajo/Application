@@ -330,13 +330,13 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         // input
         $path = __DIR__ . '/TestMedia/Css';
 
-        $options                = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority']    = '500';
-        $options['mimetype']    = 'text/css';
-        $options['media']       = '';
-        $options['conditional'] = '';
-        $options['attributes']  = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/css';
+        $options['media']        = '';
+        $options['conditional']  = '';
+        $options['attributes']   = '';
 
         $this->test_instance->handlePath('css', '', $options);
 
@@ -447,13 +447,13 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         // input
         $path = __DIR__ . '/TestMedia/Css';
 
-        $options                = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority']    = '500';
-        $options['mimetype']    = 'text/css';
-        $options['media']       = '';
-        $options['conditional'] = '';
-        $options['attributes']  = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/css';
+        $options['media']        = '';
+        $options['conditional']  = '';
+        $options['attributes']   = '';
 
         $this->test_instance->handlePath('css', '', $options);
 
@@ -504,13 +504,13 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         // input
         $path = __DIR__ . '/TestMedia/Css';
 
-        $options                = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority']    = '500';
-        $options['mimetype']    = 'text/css';
-        $options['media']       = '';
-        $options['conditional'] = '';
-        $options['attributes']  = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/css';
+        $options['media']        = '';
+        $options['conditional']  = '';
+        $options['attributes']   = '';
 
         $this->test_instance->handlePath('css', '', $options);
 
@@ -605,13 +605,13 @@ summary {
         $expected_results[] = $row;
 
         // Call 1
-        $options                = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority']    = '500';
-        $options['mimetype']    = 'text/css';
-        $options['media']       = '';
-        $options['conditional'] = '';
-        $options['attributes']  = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '500';
+        $options['mimetype']     = 'text/css';
+        $options['media']        = '';
+        $options['conditional']  = '';
+        $options['attributes']   = '';
 
         $this->test_instance->handlePath('css', '', $options);
 
@@ -639,13 +639,13 @@ video {
         $expected_results[] = $row;
 
         // Call 2
-        $options                = array();
-        $options['asset_string']  = $row->path_or_string;
-        $options['priority']    = '1';
-        $options['mimetype']    = 'text/css';
-        $options['media']       = '';
-        $options['conditional'] = '';
-        $options['attributes']  = '';
+        $options                 = array();
+        $options['asset_string'] = $row->path_or_string;
+        $options['priority']     = '1';
+        $options['mimetype']     = 'text/css';
+        $options['media']        = '';
+        $options['conditional']  = '';
+        $options['attributes']   = '';
 
         $this->test_instance->handlePath('css', '', $options);
 
