@@ -37,7 +37,7 @@ class MenuItem extends Base implements ResourceInterface
             $resource_name = substr($resource_name, 0, $remove);
         }
 
-        $controller = $this->setQuery($resource_name, $page_type, $path);
+        $controller = $this->setQuery($page_type, $path);
 
         $this->resource->data = $this->runQuery($controller);
 

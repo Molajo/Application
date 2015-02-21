@@ -171,7 +171,7 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
             echo 'Failed Run.';
         }
 
-        exit(0);
+        return;
     }
 
     /**

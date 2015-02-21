@@ -284,7 +284,6 @@ class Site implements SiteInterface
         if (file_exists($this->base_path . '/installation/Index.html')) {
             $redirect = $this->host . '/installation/';
             header('Location: ' . $redirect);
-            exit();
         }
 
         return $this;
