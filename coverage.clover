@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1424538502">
-  <project timestamp="1424538502">
+<coverage generated="1424541306">
+  <project timestamp="1424541306">
     <file name="/Users/amystephen/Sites/git/Molajo/Application/.dev/Bootstrap.php">
       <line num="60" type="stmt" count="0"/>
       <line num="61" type="stmt" count="0"/>
@@ -35,9 +35,62 @@
       <metrics loc="46" ncloc="39" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="0" elements="23" coveredelements="0"/>
     </file>
     <package name="Molajo\Resource\Adapter">
+      <file name="/Users/amystephen/Sites/git/Molajo/Application/Source/Resource/Adapter/AssetCollection.php">
+        <class name="AssetCollection" namespace="Molajo\Resource\Adapter" fullPackage="Molajo" package="Molajo">
+          <metrics methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="43" coveredstatements="42" elements="47" coveredelements="46"/>
+        </class>
+        <line num="32" type="method" name="getCollection" crap="3" count="9"/>
+        <line num="34" type="stmt" count="9"/>
+        <line num="36" type="stmt" count="9"/>
+        <line num="38" type="stmt" count="9"/>
+        <line num="40" type="stmt" count="9"/>
+        <line num="41" type="stmt" count="8"/>
+        <line num="42" type="stmt" count="8"/>
+        <line num="43" type="stmt" count="8"/>
+        <line num="44" type="stmt" count="9"/>
+        <line num="46" type="stmt" count="9"/>
+        <line num="61" type="method" name="testCollectionRow" crap="4" count="8"/>
+        <line num="63" type="stmt" count="8"/>
+        <line num="64" type="stmt" count="8"/>
+        <line num="65" type="stmt" count="3"/>
+        <line num="68" type="stmt" count="8"/>
+        <line num="69" type="stmt" count="2"/>
+        <line num="70" type="stmt" count="2"/>
+        <line num="73" type="stmt" count="6"/>
+        <line num="74" type="stmt" count="6"/>
+        <line num="75" type="stmt" count="6"/>
+        <line num="77" type="stmt" count="6"/>
+        <line num="89" type="method" name="getAssetPriorities" crap="6" count="9"/>
+        <line num="91" type="stmt" count="9"/>
+        <line num="92" type="stmt" count="8"/>
+        <line num="93" type="stmt" count="1"/>
+        <line num="96" type="stmt" count="8"/>
+        <line num="98" type="stmt" count="8"/>
+        <line num="100" type="stmt" count="8"/>
+        <line num="101" type="stmt" count="2"/>
+        <line num="103" type="stmt" count="2"/>
+        <line num="105" type="stmt" count="6"/>
+        <line num="106" type="stmt" count="6"/>
+        <line num="107" type="stmt" count="6"/>
+        <line num="109" type="stmt" count="8"/>
+        <line num="111" type="stmt" count="8"/>
+        <line num="112" type="stmt" count="8"/>
+        <line num="114" type="stmt" count="8"/>
+        <line num="126" type="method" name="getDeferRequest" crap="4.02" count="9"/>
+        <line num="128" type="stmt" count="9"/>
+        <line num="129" type="stmt" count="7"/>
+        <line num="130" type="stmt" count="2"/>
+        <line num="133" type="stmt" count="7"/>
+        <line num="134" type="stmt" count="1"/>
+        <line num="135" type="stmt" count="7"/>
+        <line num="138" type="stmt" count="1"/>
+        <line num="139" type="stmt" count="1"/>
+        <line num="142" type="stmt" count="0"/>
+        <metrics loc="144" ncloc="90" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="43" coveredstatements="42" elements="47" coveredelements="45"/>
+      </file>
       <file name="/Users/amystephen/Sites/git/Molajo/Application/Source/Resource/Adapter/Assets.php">
         <class name="Assets" namespace="Molajo\Resource\Adapter" fullPackage="Molajo" package="Molajo">
-          <metrics methods="21" coveredmethods="19" conditionals="0" coveredconditionals="0" statements="153" coveredstatements="127" elements="174" coveredelements="146"/>
+          <metrics methods="17" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="110" coveredstatements="103" elements="127" coveredelements="120"/>
         </class>
         <line num="129" type="method" name="__construct" crap="1" count="19"/>
         <line num="137" type="stmt" count="19"/>
@@ -67,153 +120,106 @@
         <line num="193" type="stmt" count="4"/>
         <line num="194" type="stmt" count="8"/>
         <line num="197" type="stmt" count="15"/>
-        <line num="209" type="method" name="getCollection" crap="3" count="9"/>
-        <line num="211" type="stmt" count="9"/>
-        <line num="213" type="stmt" count="9"/>
-        <line num="215" type="stmt" count="9"/>
-        <line num="217" type="stmt" count="9"/>
-        <line num="218" type="stmt" count="8"/>
-        <line num="219" type="stmt" count="8"/>
-        <line num="220" type="stmt" count="8"/>
-        <line num="221" type="stmt" count="9"/>
-        <line num="223" type="stmt" count="9"/>
-        <line num="238" type="method" name="testCollectionRow" crap="20" count="0"/>
-        <line num="240" type="stmt" count="0"/>
-        <line num="241" type="stmt" count="0"/>
-        <line num="242" type="stmt" count="0"/>
-        <line num="245" type="stmt" count="0"/>
-        <line num="246" type="stmt" count="0"/>
-        <line num="247" type="stmt" count="0"/>
-        <line num="250" type="stmt" count="0"/>
-        <line num="251" type="stmt" count="0"/>
-        <line num="252" type="stmt" count="0"/>
-        <line num="254" type="stmt" count="0"/>
-        <line num="266" type="method" name="addAssetFolder" crap="3.03" count="3"/>
-        <line num="268" type="stmt" count="3"/>
-        <line num="270" type="stmt" count="3"/>
-        <line num="271" type="stmt" count="0"/>
-        <line num="274" type="stmt" count="3"/>
-        <line num="275" type="stmt" count="3"/>
-        <line num="276" type="stmt" count="3"/>
-        <line num="278" type="stmt" count="3"/>
-        <line num="290" type="method" name="addAssetFile" crap="4" count="7"/>
-        <line num="292" type="stmt" count="7"/>
-        <line num="293" type="stmt" count="3"/>
-        <line num="296" type="stmt" count="7"/>
-        <line num="297" type="stmt" count="3"/>
-        <line num="300" type="stmt" count="7"/>
-        <line num="301" type="stmt" count="2"/>
-        <line num="304" type="stmt" count="7"/>
-        <line num="306" type="stmt" count="7"/>
-        <line num="308" type="stmt" count="7"/>
-        <line num="319" type="method" name="addAssetString" crap="2" count="8"/>
-        <line num="321" type="stmt" count="8"/>
-        <line num="322" type="stmt" count="3"/>
-        <line num="325" type="stmt" count="7"/>
-        <line num="326" type="stmt" count="7"/>
-        <line num="328" type="stmt" count="7"/>
-        <line num="330" type="stmt" count="7"/>
-        <line num="332" type="stmt" count="7"/>
-        <line num="343" type="method" name="skipAssetString" crap="3.04" count="8"/>
-        <line num="345" type="stmt" count="8"/>
-        <line num="346" type="stmt" count="8"/>
-        <line num="347" type="stmt" count="0"/>
-        <line num="350" type="stmt" count="8"/>
-        <line num="351" type="stmt" count="1"/>
-        <line num="354" type="stmt" count="7"/>
-        <line num="366" type="method" name="skipFile" crap="3" count="7"/>
-        <line num="368" type="stmt" count="7"/>
-        <line num="370" type="stmt" count="7"/>
-        <line num="372" type="stmt" count="7"/>
-        <line num="373" type="stmt" count="3"/>
+        <line num="210" type="method" name="addAssetFolder" crap="3.03" count="3"/>
+        <line num="212" type="stmt" count="3"/>
+        <line num="214" type="stmt" count="3"/>
+        <line num="215" type="stmt" count="0"/>
+        <line num="218" type="stmt" count="3"/>
+        <line num="219" type="stmt" count="3"/>
+        <line num="220" type="stmt" count="3"/>
+        <line num="222" type="stmt" count="3"/>
+        <line num="234" type="method" name="addAssetFile" crap="4" count="7"/>
+        <line num="236" type="stmt" count="7"/>
+        <line num="237" type="stmt" count="3"/>
+        <line num="240" type="stmt" count="7"/>
+        <line num="241" type="stmt" count="3"/>
+        <line num="244" type="stmt" count="7"/>
+        <line num="245" type="stmt" count="2"/>
+        <line num="248" type="stmt" count="7"/>
+        <line num="250" type="stmt" count="7"/>
+        <line num="252" type="stmt" count="7"/>
+        <line num="263" type="method" name="addAssetString" crap="2" count="8"/>
+        <line num="265" type="stmt" count="8"/>
+        <line num="266" type="stmt" count="3"/>
+        <line num="269" type="stmt" count="7"/>
+        <line num="270" type="stmt" count="7"/>
+        <line num="272" type="stmt" count="7"/>
+        <line num="274" type="stmt" count="7"/>
+        <line num="276" type="stmt" count="7"/>
+        <line num="287" type="method" name="skipAssetString" crap="3.04" count="8"/>
+        <line num="289" type="stmt" count="8"/>
+        <line num="290" type="stmt" count="8"/>
+        <line num="291" type="stmt" count="0"/>
+        <line num="294" type="stmt" count="8"/>
+        <line num="295" type="stmt" count="1"/>
+        <line num="298" type="stmt" count="7"/>
+        <line num="310" type="method" name="skipFile" crap="3" count="7"/>
+        <line num="312" type="stmt" count="7"/>
+        <line num="314" type="stmt" count="7"/>
+        <line num="316" type="stmt" count="7"/>
+        <line num="317" type="stmt" count="3"/>
+        <line num="319" type="stmt" count="7"/>
+        <line num="321" type="stmt" count="7"/>
+        <line num="333" type="method" name="setMethodOptions" crap="1" count="7"/>
+        <line num="335" type="stmt" count="7"/>
+        <line num="337" type="stmt" count="7"/>
+        <line num="338" type="stmt" count="7"/>
+        <line num="339" type="stmt" count="7"/>
+        <line num="340" type="stmt" count="7"/>
+        <line num="341" type="stmt" count="7"/>
+        <line num="343" type="stmt" count="7"/>
+        <line num="354" type="method" name="verifyDotFile" crap="3.33" count="7"/>
+        <line num="356" type="stmt" count="7"/>
+        <line num="357" type="stmt" count="0"/>
+        <line num="360" type="stmt" count="7"/>
+        <line num="371" type="method" name="verifyLanguageDirectionalFile" crap="3" count="7"/>
+        <line num="373" type="stmt" count="7"/>
         <line num="375" type="stmt" count="7"/>
-        <line num="377" type="stmt" count="7"/>
-        <line num="389" type="method" name="setMethodOptions" crap="1" count="7"/>
-        <line num="391" type="stmt" count="7"/>
-        <line num="393" type="stmt" count="7"/>
-        <line num="394" type="stmt" count="7"/>
-        <line num="395" type="stmt" count="7"/>
+        <line num="377" type="stmt" count="5"/>
+        <line num="378" type="stmt" count="5"/>
+        <line num="379" type="stmt" count="3"/>
+        <line num="381" type="stmt" count="5"/>
+        <line num="383" type="stmt" count="7"/>
+        <line num="394" type="method" name="verifySkipFile" crap="2" count="7"/>
         <line num="396" type="stmt" count="7"/>
-        <line num="397" type="stmt" count="7"/>
-        <line num="399" type="stmt" count="7"/>
-        <line num="410" type="method" name="verifyDotFile" crap="3.33" count="7"/>
-        <line num="412" type="stmt" count="7"/>
-        <line num="413" type="stmt" count="0"/>
-        <line num="416" type="stmt" count="7"/>
-        <line num="427" type="method" name="verifyLanguageDirectionalFile" crap="3" count="7"/>
-        <line num="429" type="stmt" count="7"/>
+        <line num="397" type="stmt" count="3"/>
+        <line num="400" type="stmt" count="7"/>
+        <line num="411" type="method" name="verifyNotFile" crap="2.06" count="7"/>
+        <line num="413" type="stmt" count="7"/>
+        <line num="414" type="stmt" count="7"/>
+        <line num="415" type="stmt" count="0"/>
+        <line num="418" type="stmt" count="7"/>
+        <line num="429" type="method" name="verifyNotFileExtension" crap="2" count="7"/>
         <line num="431" type="stmt" count="7"/>
-        <line num="433" type="stmt" count="5"/>
-        <line num="434" type="stmt" count="5"/>
+        <line num="432" type="stmt" count="7"/>
         <line num="435" type="stmt" count="3"/>
-        <line num="437" type="stmt" count="5"/>
-        <line num="439" type="stmt" count="7"/>
-        <line num="450" type="method" name="verifySkipFile" crap="2" count="7"/>
-        <line num="452" type="stmt" count="7"/>
-        <line num="453" type="stmt" count="3"/>
-        <line num="456" type="stmt" count="7"/>
-        <line num="467" type="method" name="verifyNotFile" crap="2.06" count="7"/>
-        <line num="469" type="stmt" count="7"/>
-        <line num="470" type="stmt" count="7"/>
-        <line num="471" type="stmt" count="0"/>
-        <line num="474" type="stmt" count="7"/>
-        <line num="485" type="method" name="verifyNotFileExtension" crap="2" count="7"/>
-        <line num="487" type="stmt" count="7"/>
-        <line num="488" type="stmt" count="7"/>
-        <line num="491" type="stmt" count="3"/>
-        <line num="502" type="method" name="skipDuplicate" crap="4" count="14"/>
-        <line num="504" type="stmt" count="14"/>
-        <line num="505" type="stmt" count="14"/>
-        <line num="508" type="stmt" count="11"/>
-        <line num="509" type="stmt" count="11"/>
-        <line num="510" type="stmt" count="4"/>
-        <line num="512" type="stmt" count="8"/>
-        <line num="514" type="stmt" count="8"/>
-        <line num="526" type="method" name="setAssetRow" crap="3.01" count="14"/>
-        <line num="528" type="stmt" count="14"/>
-        <line num="529" type="stmt" count="14"/>
-        <line num="531" type="stmt" count="14"/>
-        <line num="533" type="stmt" count="14"/>
-        <line num="534" type="stmt" count="14"/>
-        <line num="535" type="stmt" count="14"/>
-        <line num="536" type="stmt" count="0"/>
-        <line num="539" type="stmt" count="14"/>
-        <line num="540" type="stmt" count="14"/>
-        <line num="542" type="stmt" count="14"/>
-        <line num="554" type="method" name="filterOptionValue" crap="3" count="14"/>
-        <line num="556" type="stmt" count="14"/>
-        <line num="558" type="stmt" count="7"/>
-        <line num="559" type="stmt" count="4"/>
-        <line num="560" type="stmt" count="4"/>
-        <line num="563" type="stmt" count="3"/>
-        <line num="567" type="stmt" count="14"/>
-        <line num="579" type="method" name="getAssetPriorities" crap="6" count="9"/>
-        <line num="581" type="stmt" count="9"/>
-        <line num="582" type="stmt" count="8"/>
-        <line num="583" type="stmt" count="1"/>
-        <line num="586" type="stmt" count="8"/>
-        <line num="588" type="stmt" count="8"/>
-        <line num="590" type="stmt" count="8"/>
-        <line num="591" type="stmt" count="2"/>
-        <line num="593" type="stmt" count="2"/>
-        <line num="595" type="stmt" count="6"/>
-        <line num="596" type="stmt" count="6"/>
-        <line num="597" type="stmt" count="6"/>
-        <line num="599" type="stmt" count="8"/>
-        <line num="601" type="stmt" count="8"/>
-        <line num="602" type="stmt" count="8"/>
-        <line num="604" type="stmt" count="8"/>
-        <line num="616" type="method" name="getDeferRequest" crap="20" count="0"/>
-        <line num="618" type="stmt" count="0"/>
-        <line num="619" type="stmt" count="0"/>
-        <line num="620" type="stmt" count="0"/>
-        <line num="623" type="stmt" count="0"/>
-        <line num="624" type="stmt" count="0"/>
-        <line num="625" type="stmt" count="0"/>
-        <line num="628" type="stmt" count="0"/>
-        <line num="629" type="stmt" count="0"/>
-        <line num="632" type="stmt" count="0"/>
-        <metrics loc="635" ncloc="379" classes="1" methods="21" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="153" coveredstatements="127" elements="174" coveredelements="140"/>
+        <line num="446" type="method" name="skipDuplicate" crap="4" count="14"/>
+        <line num="448" type="stmt" count="14"/>
+        <line num="449" type="stmt" count="14"/>
+        <line num="452" type="stmt" count="11"/>
+        <line num="453" type="stmt" count="11"/>
+        <line num="454" type="stmt" count="4"/>
+        <line num="456" type="stmt" count="8"/>
+        <line num="458" type="stmt" count="8"/>
+        <line num="470" type="method" name="setAssetRow" crap="3.01" count="14"/>
+        <line num="472" type="stmt" count="14"/>
+        <line num="473" type="stmt" count="14"/>
+        <line num="475" type="stmt" count="14"/>
+        <line num="477" type="stmt" count="14"/>
+        <line num="478" type="stmt" count="14"/>
+        <line num="479" type="stmt" count="14"/>
+        <line num="480" type="stmt" count="0"/>
+        <line num="483" type="stmt" count="14"/>
+        <line num="484" type="stmt" count="14"/>
+        <line num="486" type="stmt" count="14"/>
+        <line num="498" type="method" name="filterOptionValue" crap="3" count="14"/>
+        <line num="500" type="stmt" count="14"/>
+        <line num="502" type="stmt" count="7"/>
+        <line num="503" type="stmt" count="4"/>
+        <line num="504" type="stmt" count="4"/>
+        <line num="507" type="stmt" count="3"/>
+        <line num="511" type="stmt" count="14"/>
+        <metrics loc="513" ncloc="296" classes="1" methods="17" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="110" coveredstatements="103" elements="127" coveredelements="114"/>
       </file>
       <file name="/Users/amystephen/Sites/git/Molajo/Application/vendor/molajo/resource/Source/Adapter/AbstractAdapter.php">
         <class name="AbstractAdapter" namespace="Molajo\Resource\Adapter" fullPackage="Molajo" package="Molajo">
@@ -622,6 +628,6 @@
       <line num="51" type="stmt" count="0"/>
       <metrics loc="51" ncloc="49" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="0" elements="28" coveredelements="0"/>
     </file>
-    <metrics files="8" loc="1916" ncloc="1156" classes="6" methods="65" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="508" coveredstatements="135" elements="573" coveredelements="148"/>
+    <metrics files="9" loc="1938" ncloc="1163" classes="7" methods="65" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="508" coveredstatements="153" elements="573" coveredelements="167"/>
   </project>
 </coverage>

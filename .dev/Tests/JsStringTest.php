@@ -96,13 +96,17 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
+     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\Assets::__construct
      * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
      * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::getCollection
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
      * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::skipFile
      * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
      * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
@@ -112,9 +116,7 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
      * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
@@ -178,13 +180,17 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
+     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\Assets::__construct
      * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
      * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::getCollection
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
      * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::skipFile
      * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
      * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
@@ -194,9 +200,7 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
      * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
@@ -231,13 +235,17 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
+     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\Assets::__construct
      * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
      * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::getCollection
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
      * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::skipFile
      * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
      * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
@@ -247,9 +255,7 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
      * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
@@ -315,13 +321,17 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
+     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\Assets::__construct
      * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
      * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::getCollection
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
      * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::skipFile
      * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
      * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
@@ -331,9 +341,7 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
      * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
@@ -387,13 +395,17 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
+     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\Assets::__construct
      * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
      * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::getCollection
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
      * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::skipFile
      * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
      * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
@@ -403,9 +415,7 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
      * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
@@ -490,13 +500,17 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
+     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\Assets::__construct
      * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
      * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::getCollection
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
      * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::skipFile
      * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
      * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
@@ -506,9 +520,7 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
      * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
@@ -606,13 +618,17 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
+     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\Assets::__construct
      * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
      * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::getCollection
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
      * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
      * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::skipFile
      * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
      * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
@@ -622,9 +638,7 @@ class JsStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
      * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
