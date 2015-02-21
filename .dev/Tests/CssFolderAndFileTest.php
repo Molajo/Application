@@ -110,8 +110,9 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
      * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
@@ -191,8 +192,9 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
      * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
@@ -243,8 +245,9 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
      * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
@@ -353,8 +356,9 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
      * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
@@ -475,8 +479,9 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
      * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
@@ -553,8 +558,9 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
      * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache

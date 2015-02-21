@@ -1,6 +1,6 @@
 <?php
 /**
- * Js Folder and File Test
+ * Css String Test
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -11,14 +11,14 @@ namespace Molajo\Resource\Adapter;
 use stdClass;
 
 /**
- * Js Folder and File Test
+ * Css Folder and File Test
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
+class CssStringTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Get Cache Callback
@@ -161,9 +161,9 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
         $handler_options['language_direction'] = 'ltr';
         $handler_options['html5']              = 1;
         $handler_options['line_end']           = '/>';
-        $handler_options['mimetype']           = 'text/js';
+        $handler_options['mimetype']           = 'text/css';
 
-        $this->test_instance = new JsExtended(
+        $this->test_instance = new CssDeclarationsExtended(
             __DIR__,
             array(),
             array(),
@@ -225,7 +225,7 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('ltr', $this->test_instance->getTestValue('language_direction'));
         $this->assertEquals(1, $this->test_instance->getTestValue('html5'));
         $this->assertEquals('/>', $this->test_instance->getTestValue('line_end'));
-        $this->assertEquals('text/js', $this->test_instance->getTestValue('mimetype'));
+        $this->assertEquals('text/css', $this->test_instance->getTestValue('mimetype'));
 
         return $this;
     }
@@ -273,65 +273,75 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @return  $this
      * @since   1.0.0
      */
-    public function testFolder()
+    public function testString()
     {
         // Results
         $expected_results = array();
 
-        $row                 = new stdClass();
-        $row->path_or_string = __DIR__ . '/TestMedia/Js/form.js';
-        $row->priority       = '500';
-        $row->mimetype       = 'text/js';
-        $row->defer          = '';
-        $row->async          = '';
-        $expected_results[]  = $row;
+        $row = new stdClass();
+        $row->path_or_string
+                            = '/*! Customize.css v 1 | MIT License */
 
-        $row                 = new stdClass();
-        $row->path_or_string = __DIR__ . '/TestMedia/Js/jquery.js';
-        $row->priority       = '500';
-        $row->mimetype       = 'text/js';
-        $row->defer          = '';
-        $row->async          = '';
-        $expected_results[]  = $row;
+/*! Grid row */
+.odd {
+    background-color: #DBDBDB;
+    padding-top: .5em
+}
 
-        $row                 = new stdClass();
-        $row->path_or_string = __DIR__ . '/TestMedia/Js/ltr-include.js';
-        $row->priority       = '500';
-        $row->mimetype       = 'text/js';
-        $row->defer          = '';
-        $row->async          = '';
-        $expected_results[]  = $row;
+.even {
+    padding-top: .5em
+}
+
+.edit-title {
+}
+
+.edit-editor {
+}
+
+.edit-foooter {
+}
+
+.edit-sidebar1, .edit-sidebar2, .edit-sidebar3 {
+}
+
+.order-down, .order-up {
+    padding-right: 5px
+}
+
+.fi-star {
+    color: gold;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center
+}';
+        $row->priority      = '500';
+        $row->mimetype      = 'text/css';
+        $row->media         = '';
+        $row->conditional   = '';
+        $row->attributes    = '';
+        $expected_results[] = $row;
 
         // input
-        $path = __DIR__ . '/TestMedia/Js';
+        $path = __DIR__ . '/TestMedia/Css';
 
-        $options             = array();
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = '';
-        $options['async']    = '';
+        $options                = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority']    = '500';
+        $options['mimetype']    = 'text/css';
+        $options['media']       = '';
+        $options['conditional'] = '';
+        $options['attributes']  = '';
 
-        $this->test_instance->handlePath('js', $path, $options);
+        $this->test_instance->handlePath('css', '', $options);
 
         $actual_results = $this->test_instance->getTestValue('asset_array');
 
         $this->assertEquals($expected_results[0]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[0]->priority, $actual_results[0]->priority);
         $this->assertEquals($expected_results[0]->mimetype, $actual_results[0]->mimetype);
-        $this->assertEquals($expected_results[0]->defer, $actual_results[0]->defer);
-        $this->assertEquals($expected_results[0]->async, $actual_results[0]->async);
-
-        $this->assertEquals($expected_results[1]->path_or_string, $actual_results[1]->path_or_string);
-        $this->assertEquals($expected_results[1]->priority, $actual_results[1]->priority);
-        $this->assertEquals($expected_results[1]->mimetype, $actual_results[1]->mimetype);
-        $this->assertEquals($expected_results[1]->defer, $actual_results[1]->defer);
-        $this->assertEquals($expected_results[1]->async, $actual_results[1]->async);
-
-        $this->assertEquals($expected_results[2]->path_or_string, $actual_results[2]->path_or_string);
-        $this->assertEquals($expected_results[2]->priority, $actual_results[2]->priority);
-        $this->assertEquals($expected_results[2]->mimetype, $actual_results[2]->mimetype);
-        $this->assertEquals($expected_results[2]->defer, $actual_results[2]->defer);
-        $this->assertEquals($expected_results[2]->async, $actual_results[2]->async);
+        $this->assertEquals($expected_results[0]->media, $actual_results[0]->media);
+        $this->assertEquals($expected_results[0]->conditional, $actual_results[0]->conditional);
+        $this->assertEquals($expected_results[0]->attributes, $actual_results[0]->attributes);
     }
 
     /**
@@ -377,45 +387,133 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @return  $this
      * @since   1.0.0
      */
-    public function testDuplicateFiles()
+    public function testDuplicate()
     {
         // Results
         $expected_results = array();
 
         // 1
-        $row                 = new stdClass();
-        $row->path_or_string = __DIR__ . '/TestMedia/Js/form.js';
-        $row->priority       = '500';
-        $row->mimetype       = 'text/js';
-        $row->defer          = '';
-        $row->async          = '';
-        $expected_results[]  = $row;
+        $row = new stdClass();
+        $row->path_or_string
+                            = '/*! Customize.css v 1 | MIT License */
 
-        $options             = array();
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = '';
-        $options['async']    = '';
+/*! Grid row */
+.odd {
+    background-color: #DBDBDB;
+    padding-top: .5em
+}
 
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
+.even {
+    padding-top: .5em
+}
+
+.edit-title {
+}
+
+.edit-editor {
+}
+
+.edit-foooter {
+}
+
+.edit-sidebar1, .edit-sidebar2, .edit-sidebar3 {
+}
+
+.order-down, .order-up {
+    padding-right: 5px
+}
+
+.fi-star {
+    color: gold;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center
+}';
+        $row->priority      = '500';
+        $row->mimetype      = 'text/css';
+        $row->media         = '';
+        $row->conditional   = '';
+        $row->attributes    = '';
+        $expected_results[] = $row;
+
+        // input
+        $path = __DIR__ . '/TestMedia/Css';
+
+        $options                = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority']    = '500';
+        $options['mimetype']    = 'text/css';
+        $options['media']       = '';
+        $options['conditional'] = '';
+        $options['attributes']  = '';
+
+        $this->test_instance->handlePath('css', '', $options);
 
         // 2
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
+        $row = new stdClass();
+        $row->path_or_string
+                            = '/*! Customize.css v 1 | MIT License */
 
-        // 3
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
+/*! Grid row */
+.odd {
+    background-color: #DBDBDB;
+    padding-top: .5em
+}
 
+.even {
+    padding-top: .5em
+}
 
-        // Verify results
-        $actual_results = $this->test_instance->getCollection('js');
+.edit-title {
+}
 
-        $this->assertEquals(1, count($actual_results));
+.edit-editor {
+}
+
+.edit-foooter {
+}
+
+.edit-sidebar1, .edit-sidebar2, .edit-sidebar3 {
+}
+
+.order-down, .order-up {
+    padding-right: 5px
+}
+
+.fi-star {
+    color: gold;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center
+}';
+        $row->priority      = '500';
+        $row->mimetype      = 'text/css';
+        $row->media         = '';
+        $row->conditional   = '';
+        $row->attributes    = '';
+        $expected_results[] = $row;
+
+        // input
+        $path = __DIR__ . '/TestMedia/Css';
+
+        $options                = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority']    = '500';
+        $options['mimetype']    = 'text/css';
+        $options['media']       = '';
+        $options['conditional'] = '';
+        $options['attributes']  = '';
+
+        $this->test_instance->handlePath('css', '', $options);
+
+        $actual_results = $this->test_instance->getTestValue('asset_array');
 
         $this->assertEquals($expected_results[0]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[0]->priority, $actual_results[0]->priority);
         $this->assertEquals($expected_results[0]->mimetype, $actual_results[0]->mimetype);
-        $this->assertEquals($expected_results[0]->defer, $actual_results[0]->defer);
-        $this->assertEquals($expected_results[0]->async, $actual_results[0]->async);
+        $this->assertEquals($expected_results[0]->media, $actual_results[0]->media);
+        $this->assertEquals($expected_results[0]->conditional, $actual_results[0]->conditional);
+        $this->assertEquals($expected_results[0]->attributes, $actual_results[0]->attributes);
     }
 
     /**
@@ -461,82 +559,101 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @return  $this
      * @since   1.0.0
      */
-    public function testFiles()
+    public function testMultipleString()
     {
         // Results
         $expected_results = array();
 
-        // 1
-        $row                 = new stdClass();
-        $row->path_or_string = __DIR__ . '/TestMedia/Js/form.js';
-        $row->priority       = '500';
-        $row->mimetype       = 'text/js';
-        $row->defer          = '';
-        $row->async          = '';
-        $expected_results[]  = $row;
+        // ONE
+        $row = new stdClass();
+        $row->path_or_string
+                            = '/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
 
-        $options             = array();
-        $options['priority'] = '500';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = '';
-        $options['async']    = '';
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}';
+        $row->priority      = '500';
+        $row->mimetype      = 'text/css';
+        $row->media         = '';
+        $row->conditional   = '';
+        $row->attributes    = '';
+        $expected_results[] = $row;
 
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
+        // Call 1
+        $options                = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority']    = '500';
+        $options['mimetype']    = 'text/css';
+        $options['media']       = '';
+        $options['conditional'] = '';
+        $options['attributes']  = '';
 
-        // 2
-        $row                 = new stdClass();
-        $row->path_or_string = __DIR__ . '/TestMedia/Js/jquery.js';
-        $row->priority       = '1';
-        $row->mimetype       = 'text/js';
-        $row->defer          = '';
-        $row->async          = '';
-        $expected_results[]  = $row;
+        $this->test_instance->handlePath('css', '', $options);
 
-        $options             = array();
-        $options['priority'] = '1';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = '';
-        $options['async']    = '';
+        // TWO
+        $row = new stdClass();
+        $row->path_or_string
+                            = '
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
 
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
+audio,
+canvas,
+progress,
+video {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}';
+        $row->priority      = '1';
+        $row->mimetype      = 'text/css';
+        $row->media         = '';
+        $row->conditional   = '';
+        $row->attributes    = '';
+        $expected_results[] = $row;
 
-        // 3
-        $row                 = new stdClass();
-        $row->path_or_string = __DIR__ . '/TestMedia/Js/ltr-include.js';
-        $row->priority       = '1000';
-        $row->mimetype       = 'text/js';
-        $row->defer          = '';
-        $row->async          = '';
-        $expected_results[]  = $row;
+        // Call 2
+        $options                = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority']    = '1';
+        $options['mimetype']    = 'text/css';
+        $options['media']       = '';
+        $options['conditional'] = '';
+        $options['attributes']  = '';
 
-        $options             = array();
-        $options['priority'] = '1000';
-        $options['mimetype'] = 'text/js';
-        $options['defer']    = '';
-        $options['async']    = '';
+        $this->test_instance->handlePath('css', '', $options);
 
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
-
-        // Verify results
-        $actual_results = $this->test_instance->getCollection('js');
+        $actual_results = $this->test_instance->getCollection('css');
 
         $this->assertEquals($expected_results[1]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[1]->priority, $actual_results[0]->priority);
         $this->assertEquals($expected_results[1]->mimetype, $actual_results[0]->mimetype);
-        $this->assertEquals($expected_results[1]->defer, $actual_results[0]->defer);
-        $this->assertEquals($expected_results[1]->async, $actual_results[0]->async);
+        $this->assertEquals($expected_results[1]->media, $actual_results[0]->media);
+        $this->assertEquals($expected_results[1]->conditional, $actual_results[0]->conditional);
+        $this->assertEquals($expected_results[1]->attributes, $actual_results[0]->attributes);
 
         $this->assertEquals($expected_results[0]->path_or_string, $actual_results[1]->path_or_string);
         $this->assertEquals($expected_results[0]->priority, $actual_results[1]->priority);
         $this->assertEquals($expected_results[0]->mimetype, $actual_results[1]->mimetype);
-        $this->assertEquals($expected_results[0]->defer, $actual_results[1]->defer);
-        $this->assertEquals($expected_results[0]->async, $actual_results[1]->async);
-
-        $this->assertEquals($expected_results[2]->path_or_string, $actual_results[2]->path_or_string);
-        $this->assertEquals($expected_results[2]->priority, $actual_results[2]->priority);
-        $this->assertEquals($expected_results[2]->mimetype, $actual_results[2]->mimetype);
-        $this->assertEquals($expected_results[2]->defer, $actual_results[2]->defer);
-        $this->assertEquals($expected_results[2]->async, $actual_results[2]->async);
+        $this->assertEquals($expected_results[0]->media, $actual_results[1]->media);
+        $this->assertEquals($expected_results[0]->conditional, $actual_results[1]->conditional);
+        $this->assertEquals($expected_results[0]->attributes, $actual_results[1]->attributes);
     }
 }
 
@@ -548,14 +665,14 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class JsExtended extends Js
+class CssDeclarationsExtended extends CssDeclarations
 {
     public function forceType()
     {
-        $this->asset_type = 'js';
+        $this->asset_type = 'css';
 
-        if ($this->asset_type === 'js') {
-            $this->asset_options = $this->asset_options_by_type['js'];
+        if ($this->asset_type === 'css') {
+            $this->asset_options = $this->asset_options_by_type['css'];
         } else {
             $this->asset_options = $this->asset_options_by_type['js'];
         }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Css String Test
+ * Js String Test
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -11,14 +11,14 @@ namespace Molajo\Resource\Adapter;
 use stdClass;
 
 /**
- * Css Folder and File Test
+ * Js Folder and File Test
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class CssStringTest extends \PHPUnit_Framework_TestCase
+class JsStringTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Get Cache Callback
@@ -110,8 +110,9 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
      * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
@@ -162,7 +163,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $handler_options['line_end']           = '/>';
         $handler_options['mimetype']           = 'text/css';
 
-        $this->test_instance = new CssDeclarationsExtended(
+        $this->test_instance = new JsDeclarationsExtended(
             __DIR__,
             array(),
             array(),
@@ -191,8 +192,9 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
      * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
@@ -243,8 +245,9 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
      * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
@@ -277,68 +280,38 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
 
         $row = new stdClass();
         $row->path_or_string
-                            = '/*! Customize.css v 1 | MIT License */
+                            = '$(document).ready(function () {
 
-/*! Grid row */
-.odd {
-    background-color: #DBDBDB;
-    padding-top: .5em
-}
-
-.even {
-    padding-top: .5em
-}
-
-.edit-title {
-}
-
-.edit-editor {
-}
-
-.edit-foooter {
-}
-
-.edit-sidebar1, .edit-sidebar2, .edit-sidebar3 {
-}
-
-.order-down, .order-up {
-    padding-right: 5px
-}
-
-.fi-star {
-    color: gold;
-    font-weight: bold;
-    font-size: 1.5rem;
-    text-align: center
-}';
-        $row->priority      = '500';
-        $row->mimetype      = 'text/css';
-        $row->media         = '';
-        $row->conditional   = '';
-        $row->attributes    = '';
+    function submitform() {
+        document.Grid.submit();
+    }
+});';
+        $row->priority       = '500';
+        $row->mimetype       = 'text/js';
+        $row->defer          = '';
+        $row->async          = '';
         $expected_results[] = $row;
 
         // input
-        $path = __DIR__ . '/TestMedia/Css';
+        $options             = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority'] = '500';
+        $options['mimetype'] = 'text/js';
+        $options['defer']    = '';
+        $options['async']    = '';
 
-        $options                = array();
-        $options['css_string']  = $row->path_or_string;
-        $options['priority']    = '500';
-        $options['mimetype']    = 'text/css';
-        $options['media']       = '';
-        $options['conditional'] = '';
-        $options['attributes']  = '';
+        $this->test_instance->handlePath('js', '', $options);
 
-        $this->test_instance->handlePath('css', '', $options);
+        // Verify results
+        $actual_results = $this->test_instance->getCollection('js');
 
-        $actual_results = $this->test_instance->getTestValue('asset_array');
+        $this->assertEquals(1, count($actual_results));
 
         $this->assertEquals($expected_results[0]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[0]->priority, $actual_results[0]->priority);
         $this->assertEquals($expected_results[0]->mimetype, $actual_results[0]->mimetype);
-        $this->assertEquals($expected_results[0]->media, $actual_results[0]->media);
-        $this->assertEquals($expected_results[0]->conditional, $actual_results[0]->conditional);
-        $this->assertEquals($expected_results[0]->attributes, $actual_results[0]->attributes);
+        $this->assertEquals($expected_results[0]->defer, $actual_results[0]->defer);
+        $this->assertEquals($expected_results[0]->async, $actual_results[0]->async);
     }
 
     /**
@@ -356,8 +329,81 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
+     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
+     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::getCache
+     * @covers  Molajo\Resource\Adapter\Cache::setCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
+     * @covers  Molajo\Resource\Adapter\Cache::clearCache
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    public function testEmptyString()
+    {
+        // Results
+        $expected_results = array();
+
+        $row = new stdClass();
+        $row->path_or_string = '';
+        $row->priority       = '500';
+        $row->mimetype       = 'text/js';
+        $row->defer          = '';
+        $row->async          = '';
+        $expected_results[] = $row;
+
+        // input
+        $options             = array();
+        $options['asset_string']  = '';
+        $options['priority'] = '500';
+        $options['mimetype'] = 'text/js';
+        $options['defer']    = '';
+        $options['async']    = '';
+
+        $this->test_instance->handlePath('js', '', $options);
+
+        // Verify results
+        $actual_results = $this->test_instance->getCollection('js');
+
+        $this->assertEquals(0, count($actual_results));
+    }
+
+    /**
+     * @covers  Molajo\Resource\Adapter\Assets::__construct
+     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
+     * @covers  Molajo\Resource\Adapter\Assets::handlePath
+     * @covers  Molajo\Resource\Adapter\Assets::getCollection
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipFile
+     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
+     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
+     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
      * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
@@ -388,128 +434,59 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         // Results
         $expected_results = array();
 
-        // 1
         $row = new stdClass();
-        $row->path_or_string
-                            = '/*! Customize.css v 1 | MIT License */
+        $row->path_or_string = '$(document).ready(function () {
 
-/*! Grid row */
-.odd {
-    background-color: #DBDBDB;
-    padding-top: .5em
-}
-
-.even {
-    padding-top: .5em
-}
-
-.edit-title {
-}
-
-.edit-editor {
-}
-
-.edit-foooter {
-}
-
-.edit-sidebar1, .edit-sidebar2, .edit-sidebar3 {
-}
-
-.order-down, .order-up {
-    padding-right: 5px
-}
-
-.fi-star {
-    color: gold;
-    font-weight: bold;
-    font-size: 1.5rem;
-    text-align: center
-}';
-        $row->priority      = '500';
-        $row->mimetype      = 'text/css';
-        $row->media         = '';
-        $row->conditional   = '';
-        $row->attributes    = '';
+    function submitform() {
+        document.Grid.submit();
+    }
+});';
+        $row->priority       = '500';
+        $row->mimetype       = 'text/js';
+        $row->defer          = 0;
+        $row->async          = '';
         $expected_results[] = $row;
 
-        // input
-        $path = __DIR__ . '/TestMedia/Css';
+        // 1
+        $options             = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority'] = '500';
+        $options['mimetype'] = 'text/js';
+        $options['defer']    = 0;
+        $options['async']    = '';
 
-        $options                = array();
-        $options['css_string']  = $row->path_or_string;
-        $options['priority']    = '500';
-        $options['mimetype']    = 'text/css';
-        $options['media']       = '';
-        $options['conditional'] = '';
-        $options['attributes']  = '';
-
-        $this->test_instance->handlePath('css', '', $options);
+        $this->test_instance->handlePath('js', '', $options);
 
         // 2
-        $row = new stdClass();
-        $row->path_or_string
-                            = '/*! Customize.css v 1 | MIT License */
+        $options             = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority'] = '500';
+        $options['mimetype'] = 'text/js';
+        $options['defer']    = 0;
+        $options['async']    = '';
 
-/*! Grid row */
-.odd {
-    background-color: #DBDBDB;
-    padding-top: .5em
-}
+        $this->test_instance->handlePath('js', '', $options);
 
-.even {
-    padding-top: .5em
-}
+        // 3
+        $options             = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority'] = '500';
+        $options['mimetype'] = 'text/js';
+        $options['defer']    = 0;
+        $options['async']    = '';
 
-.edit-title {
-}
+        $this->test_instance->handlePath('js', '', $options);
 
-.edit-editor {
-}
+        // Verify results
+        $actual_results = $this->test_instance->getCollection('js', array('defer', 0));
 
-.edit-foooter {
-}
-
-.edit-sidebar1, .edit-sidebar2, .edit-sidebar3 {
-}
-
-.order-down, .order-up {
-    padding-right: 5px
-}
-
-.fi-star {
-    color: gold;
-    font-weight: bold;
-    font-size: 1.5rem;
-    text-align: center
-}';
-        $row->priority      = '500';
-        $row->mimetype      = 'text/css';
-        $row->media         = '';
-        $row->conditional   = '';
-        $row->attributes    = '';
-        $expected_results[] = $row;
-
-        // input
-        $path = __DIR__ . '/TestMedia/Css';
-
-        $options                = array();
-        $options['css_string']  = $row->path_or_string;
-        $options['priority']    = '500';
-        $options['mimetype']    = 'text/css';
-        $options['media']       = '';
-        $options['conditional'] = '';
-        $options['attributes']  = '';
-
-        $this->test_instance->handlePath('css', '', $options);
-
-        $actual_results = $this->test_instance->getTestValue('asset_array');
+        $this->assertEquals(1, count($actual_results));
 
         $this->assertEquals($expected_results[0]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[0]->priority, $actual_results[0]->priority);
         $this->assertEquals($expected_results[0]->mimetype, $actual_results[0]->mimetype);
-        $this->assertEquals($expected_results[0]->media, $actual_results[0]->media);
-        $this->assertEquals($expected_results[0]->conditional, $actual_results[0]->conditional);
-        $this->assertEquals($expected_results[0]->attributes, $actual_results[0]->attributes);
+        $this->assertEquals($expected_results[0]->defer, $actual_results[0]->defer);
+        $this->assertEquals($expected_results[0]->async, $actual_results[0]->async);
     }
 
     /**
@@ -527,8 +504,9 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
      * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
      * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
      * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
      * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
      * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
@@ -559,96 +537,194 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         // Results
         $expected_results = array();
 
-        // ONE
+        // String 1
         $row = new stdClass();
         $row->path_or_string
-                            = '/**
- * Correct `block` display not defined for any HTML5 element in IE 8/9.
- * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
- * Correct `block` display not defined for `main` in IE 11.
- */
+                             = '$(document).ready(function () {
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-nav,
-section,
-summary {
-  display: block;
-}';
-        $row->priority      = '500';
-        $row->mimetype      = 'text/css';
-        $row->media         = '';
-        $row->conditional   = '';
-        $row->attributes    = '';
+    function submitform() {
+        document.Grid.submit();
+    }
+});';
+        $row->priority       = '500';
+        $row->mimetype       = 'text/js';
+        $row->defer          = '';
+        $row->async          = '';
         $expected_results[] = $row;
 
-        // Call 1
-        $options                = array();
-        $options['css_string']  = $row->path_or_string;
-        $options['priority']    = '500';
-        $options['mimetype']    = 'text/css';
-        $options['media']       = '';
-        $options['conditional'] = '';
-        $options['attributes']  = '';
+        // input
+        $options             = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority'] = '500';
+        $options['mimetype'] = 'text/js';
+        $options['defer']    = '';
+        $options['async']    = '';
 
-        $this->test_instance->handlePath('css', '', $options);
+        $this->test_instance->handlePath('js', '', $options);
 
-        // TWO
+        // String 2
         $row = new stdClass();
         $row->path_or_string
-                            = '
-/**
- * 1. Correct `inline-block` display not defined in IE 8/9.
- * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
- */
+                             = '$(document).ready(function () {
 
-audio,
-canvas,
-progress,
-video {
-  display: inline-block; /* 1 */
-  vertical-align: baseline; /* 2 */
-}';
-        $row->priority      = '1';
-        $row->mimetype      = 'text/css';
-        $row->media         = '';
-        $row->conditional   = '';
-        $row->attributes    = '';
+    function doesnotmatch() {
+        document.Grid.submit();
+    }
+});';
+        $row->priority       = '500';
+        $row->mimetype       = 'text/js';
+        $row->defer          = '';
+        $row->async          = '';
         $expected_results[] = $row;
 
-        // Call 2
-        $options                = array();
-        $options['css_string']  = $row->path_or_string;
-        $options['priority']    = '1';
-        $options['mimetype']    = 'text/css';
-        $options['media']       = '';
-        $options['conditional'] = '';
-        $options['attributes']  = '';
+        // input
+        $options             = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority'] = '500';
+        $options['mimetype'] = 'text/js';
+        $options['defer']    = '';
+        $options['async']    = '';
 
-        $this->test_instance->handlePath('css', '', $options);
+        $this->test_instance->handlePath('js', '', $options);
 
-        $actual_results = $this->test_instance->getCollection('css');
+        // Verify results
+        $actual_results = $this->test_instance->getCollection('js');
+
+        $this->assertEquals(2, count($actual_results));
+
+        $this->assertEquals($expected_results[0]->path_or_string, $actual_results[0]->path_or_string);
+        $this->assertEquals($expected_results[0]->priority, $actual_results[0]->priority);
+        $this->assertEquals($expected_results[0]->mimetype, $actual_results[0]->mimetype);
+        $this->assertEquals($expected_results[0]->defer, $actual_results[0]->defer);
+        $this->assertEquals($expected_results[0]->async, $actual_results[0]->async);
+
+        $this->assertEquals($expected_results[1]->path_or_string, $actual_results[1]->path_or_string);
+        $this->assertEquals($expected_results[1]->priority, $actual_results[1]->priority);
+        $this->assertEquals($expected_results[1]->mimetype, $actual_results[1]->mimetype);
+        $this->assertEquals($expected_results[1]->defer, $actual_results[1]->defer);
+        $this->assertEquals($expected_results[1]->async, $actual_results[1]->async);
+    }
+
+    /**
+     * @covers  Molajo\Resource\Adapter\Assets::__construct
+     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
+     * @covers  Molajo\Resource\Adapter\Assets::handlePath
+     * @covers  Molajo\Resource\Adapter\Assets::getCollection
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipFile
+     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
+     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
+     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
+     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
+     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::getCache
+     * @covers  Molajo\Resource\Adapter\Cache::setCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
+     * @covers  Molajo\Resource\Adapter\Cache::clearCache
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    public function testDefer()
+    {
+        // Results
+        $expected_results = array();
+
+        // String 1
+        $row = new stdClass();
+        $row->path_or_string
+                             = '$(document).ready(function () {
+
+    function submitform() {
+        document.Grid.submit();
+    }
+});';
+        $row->priority       = '500';
+        $row->mimetype       = 'text/js';
+        $row->defer          = 1;
+        $row->async          = '';
+        $expected_results[] = $row;
+
+        // input
+        $options             = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority'] = '500';
+        $options['mimetype'] = 'text/js';
+        $options['defer']    = 1;
+        $options['async']    = '';
+
+        $this->test_instance->handlePath('js', '', $options);
+
+        // String 2
+        $row = new stdClass();
+        $row->path_or_string
+                             = '$(document).ready(function () {
+
+    function doesnotmatch() {
+        document.Grid.submit();
+    }
+});';
+        $row->priority       = '500';
+        $row->mimetype       = 'text/js';
+        $row->defer          = '';
+        $row->async          = '';
+        $expected_results[] = $row;
+
+        // input
+        $options             = array();
+        $options['asset_string']  = $row->path_or_string;
+        $options['priority'] = '500';
+        $options['mimetype'] = 'text/js';
+        $options['defer']    = '';
+        $options['async']    = '';
+
+        $this->test_instance->handlePath('js', '', $options);
+
+        // Verify results Defer Request
+        $actual_results = $this->test_instance->getCollection('js', array('defer' => 1));
+
+        $this->assertEquals(1, count($actual_results));
+
+        $this->assertEquals($expected_results[0]->path_or_string, $actual_results[0]->path_or_string);
+        $this->assertEquals($expected_results[0]->priority, $actual_results[0]->priority);
+        $this->assertEquals($expected_results[0]->mimetype, $actual_results[0]->mimetype);
+        $this->assertEquals($expected_results[0]->defer, $actual_results[0]->defer);
+        $this->assertEquals($expected_results[0]->async, $actual_results[0]->async);
+
+
+        // Verify results NO defer
+        $actual_results = $this->test_instance->getCollection('js');
+
+        $this->assertEquals(1, count($actual_results));
 
         $this->assertEquals($expected_results[1]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[1]->priority, $actual_results[0]->priority);
         $this->assertEquals($expected_results[1]->mimetype, $actual_results[0]->mimetype);
-        $this->assertEquals($expected_results[1]->media, $actual_results[0]->media);
-        $this->assertEquals($expected_results[1]->conditional, $actual_results[0]->conditional);
-        $this->assertEquals($expected_results[1]->attributes, $actual_results[0]->attributes);
-
-        $this->assertEquals($expected_results[0]->path_or_string, $actual_results[1]->path_or_string);
-        $this->assertEquals($expected_results[0]->priority, $actual_results[1]->priority);
-        $this->assertEquals($expected_results[0]->mimetype, $actual_results[1]->mimetype);
-        $this->assertEquals($expected_results[0]->media, $actual_results[1]->media);
-        $this->assertEquals($expected_results[0]->conditional, $actual_results[1]->conditional);
-        $this->assertEquals($expected_results[0]->attributes, $actual_results[1]->attributes);
+        $this->assertEquals($expected_results[1]->defer, $actual_results[0]->defer);
+        $this->assertEquals($expected_results[1]->async, $actual_results[0]->async);
     }
 }
 
@@ -660,11 +736,11 @@ video {
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class CssDeclarationsExtended extends CssDeclarations
+class JsDeclarationsExtended extends JsDeclarations
 {
     public function forceType()
     {
-        $this->asset_type = 'css';
+        $this->asset_type = 'js';
 
         if ($this->asset_type === 'css') {
             $this->asset_options = $this->asset_options_by_type['css'];

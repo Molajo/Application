@@ -54,7 +54,7 @@ abstract class Assets extends AbstractAdapter
             'js'  => array(
                 'priority' => FILTER_SANITIZE_NUMBER_INT,
                 'mimetype' => FILTER_SANITIZE_STRING,
-                'defer'    => FILTER_SANITIZE_STRING,
+                'defer'    => FILTER_SANITIZE_NUMBER_INT,
                 'async'    => FILTER_SANITIZE_STRING
             )
         );
@@ -208,16 +208,47 @@ abstract class Assets extends AbstractAdapter
      */
     public function getCollection($scheme, array $options = array())
     {
-        $priorities = $this->getAssetPriorities();
+        $defer = $this->getDeferRequest($scheme, $options);
+
+        $priorities = $this->getAssetPriorities($scheme, $defer);
 
         $priority_order = array();
 
         foreach ($priorities as $priority) {
             foreach ($this->asset_array as $row) {
-                if ($row->priority === $priority) {
-                    $priority_order[] = $row;
-                }
+                $priority_order = $this->testCollectionRow($scheme, $priority, $defer, $row, $priority_order);
             }
+        }
+
+        return $priority_order;
+    }
+
+    /**
+     * Test for inclusion in Collection
+     *
+     * @param   string  $scheme
+     * @param   string  $priority
+     * @param   boolean $defer
+     * @param   object  $row
+     * @param   array   $priority_order
+     *
+     * @return  array
+     * @since   1.0.0
+     */
+    public function testCollectionRow($scheme, $priority, $defer, $row, $priority_order)
+    {
+        if ((int) $row->priority === (int) $priority) {
+        } else {
+            return $priority_order;
+        }
+
+        if (strtolower($scheme) === 'css') {
+            $priority_order[] = $row;
+            return $priority_order;
+        }
+
+        if ((int) $defer === (int) $row->defer) {
+            $priority_order[] = $row;
         }
 
         return $priority_order;
@@ -266,7 +297,7 @@ abstract class Assets extends AbstractAdapter
             return $this;
         }
 
-        if ($this->skipDuplicateFile($file_path) === true) {
+        if ($this->skipDuplicate($file_path) === true) {
             return $this;
         }
 
@@ -287,19 +318,40 @@ abstract class Assets extends AbstractAdapter
      */
     protected function addAssetString(array $options = array())
     {
-        if (isset($options['css_string'])) {
-        } else {
+        if ($this->skipAssetString($options) === true) {
             return $this;
         }
 
-        $css_string = $options['css_string'];
-        unset($options['css_string']);
+        $asset_string = $options['asset_string'];
+        unset($options['asset_string']);
 
-        $row = $this->setAssetRow($css_string, $options);
+        $row = $this->setAssetRow($asset_string, $options);
 
         $this->asset_array[] = $row;
 
         return $this;
+    }
+
+    /**
+     * Test Asset String to see if it should be added to page array
+     *
+     * @param   array $options
+     *
+     * @return  boolean
+     * @since   1.0.0
+     */
+    protected function skipAssetString(array $options = array())
+    {
+        if (isset($options['asset_string'])) {
+        } else {
+            return true;
+        }
+
+        if (trim($options['asset_string']) === '') {
+            return true;
+        }
+
+        return $this->skipDuplicate($options['asset_string']);
     }
 
     /**
@@ -440,21 +492,21 @@ abstract class Assets extends AbstractAdapter
     }
 
     /**
-     * Skip file if it has already been defined to page array
+     * Skip if it has already been defined to page array
      *
-     * @param   string $file_path
+     * @param   string $path_or_string
      *
      * @return  boolean
      * @since   1.0.0
      */
-    protected function skipDuplicateFile($file_path)
+    protected function skipDuplicate($path_or_string)
     {
         if (count($this->asset_array) === 0) {
             return false;
         }
 
         foreach ($this->asset_array as $existing) {
-            if ($existing->path_or_string === $file_path) {
+            if ($existing->path_or_string === $path_or_string) {
                 return true;
             }
         }
@@ -518,10 +570,13 @@ abstract class Assets extends AbstractAdapter
     /**
      * Develop a unique list of priorities in priority order
      *
+     * @param   string $scheme
+     * @param   string $defer
+     *
      * @return  array
      * @since   1.0.0
      */
-    protected function getAssetPriorities()
+    protected function getAssetPriorities($scheme, $defer = 0)
     {
         if (is_array($this->asset_array) && count($this->asset_array) > 0) {
         } else {
@@ -531,13 +586,50 @@ abstract class Assets extends AbstractAdapter
         $priorities = array();
 
         foreach ($this->asset_array as $row) {
-            $priorities[] = $row->priority;
+
+            if (strtolower($scheme) === 'css') {
+                $priorities[] = $row->priority;
+
+            } else {
+
+                if ((int) $defer === (int) $row->defer) {
+                    $priorities[] = $row->priority;
+                }
+            }
         }
 
-        array_unique($priorities);
-
+        $priorities = array_unique($priorities);
         sort($priorities);
 
         return $priorities;
     }
+
+    /**
+     * For JS collections, determine if defer is requested
+     *
+     * @param   string $scheme
+     * @param   array  $options
+     *
+     * @return  array
+     * @since   1.0.0
+     */
+    protected function getDeferRequest($scheme, $options)
+    {
+        if (strtolower($scheme) === 'js') {
+        } else {
+            return 0;
+        }
+
+        if (isset($options['defer'])) {
+        } else {
+            return 0;
+        }
+
+        if ((int) $options['defer'] === 1) {
+            return 1;
+        }
+
+        return 0;
+    }
 }
+
