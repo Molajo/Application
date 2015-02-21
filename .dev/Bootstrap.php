@@ -35,6 +35,9 @@ $classmap = array_merge($classmap, $results);
 $results  = createClassMap($base . '/vendor/commonapi/resource', 'CommonApi\\Resource\\');
 $classmap = array_merge($classmap, $results);
 
+$results  = createClassMap($base . '/Source/Controller/Application', 'Molajo\\Controller\\Application\\');
+$classmap = array_merge($classmap, $results);
+
 $results  = createClassMap($base . '/Source/Controller/FrontController', 'Molajo\\Controller\\FrontController\\');
 $classmap = array_merge($classmap, $results);
 
@@ -62,4 +65,7 @@ spl_autoload_register(
         }
     }
 );
+
+include_once __DIR__ . '/Tests/Mocks/FieldhandlerMock.php';
+include_once __DIR__ . '/Tests/Mocks/QueryMock.php';
 //include_once __DIR__ . '/' . 'Reflection.php';

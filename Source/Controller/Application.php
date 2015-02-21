@@ -36,6 +36,7 @@ class Application extends Configuration implements ApplicationInterface
     public function setApplication()
     {
         $application_test = $this->setApplicationPath();
+
         $app              = $this->getApplicationArrayEntry($application_test);
         $this->id         = $app->id;
         $this->name       = $app->name;

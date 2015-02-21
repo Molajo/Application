@@ -146,7 +146,7 @@ class Configuration extends Set
     /**
      * Get Customfield Group Data
      *
-     * @param   object $customfield
+     * @param   array  $customfield
      * @param   string $key
      *
      * @return  mixed|stdClass
