@@ -16,6 +16,25 @@ if (function_exists('CreateClassMap')) {
 
 $classmap = array();
 
+$results  = createClassMap($base . '/vendor/commonapi/cache', 'CommonApi\\Cache\\');
+$classmap = array_merge($classmap, $results);
+$results  = createClassMap($base . '/vendor/commonapi/controller', 'CommonApi\\Controller\\');
+$classmap = array_merge($classmap, $results);
+$results  = createClassMap($base . '/vendor/commonapi/event', 'CommonApi\\Event\\');
+$classmap = array_merge($classmap, $results);
+$results  = createClassMap($base . '/vendor/commonapi/exception', 'CommonApi\\Exception\\');
+$classmap = array_merge($classmap, $results);
+$results  = createClassMap($base . '/vendor/commonapi/ioc', 'CommonApi\\IoC\\');
+$classmap = array_merge($classmap, $results);
+$results  = createClassMap($base . '/vendor/commonapi/language', 'CommonApi\\Language\\');
+$classmap = array_merge($classmap, $results);
+$results  = createClassMap($base . '/vendor/commonapi/model', 'CommonApi\\Model\\');
+$classmap = array_merge($classmap, $results);
+$results  = createClassMap($base . '/vendor/commonapi/query', 'CommonApi\\Query\\');
+$classmap = array_merge($classmap, $results);
+$results  = createClassMap($base . '/vendor/commonapi/resource', 'CommonApi\\Resource\\');
+$classmap = array_merge($classmap, $results);
+
 $results  = createClassMap($base . '/Source/Controller/FrontController', 'Molajo\\Controller\\FrontController\\');
 $classmap = array_merge($classmap, $results);
 
@@ -43,3 +62,4 @@ spl_autoload_register(
         }
     }
 );
+//include_once __DIR__ . '/' . 'Reflection.php';

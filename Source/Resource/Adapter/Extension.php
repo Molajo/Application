@@ -353,9 +353,12 @@ class Extension extends AbstractAdapter implements AdapterInterface
         $options             = array();
         $options['priority'] = $this->catalog_type_priority;
 
+        $this->setExtensionAsset('Css', $located_path . '/Css', $options);
+
         $this->setExtensionAsset('Js', $located_path . '/Js', $options);
 
-        $this->setExtensionAsset('Css', $located_path . '/Css', $options);
+        $options['defer'] = 'defer';
+        $this->setExtensionAsset('Js', $located_path . '/Jsdefer', $options);
 
         return $this->extension;
     }
