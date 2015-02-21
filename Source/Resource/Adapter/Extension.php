@@ -106,31 +106,31 @@ class Extension extends AbstractAdapter implements AdapterInterface
                 'catalog_type_id'       => 11000,
                 'catalog_type_priority' => 200,
                 'default_partial_path'  => 'Source/Menuitem',
-                'file_name'            => 'Configuration.phtml'
+                'file_name'             => 'Configuration.phtml'
             ),
-            'Page' => array(
+            'Page'     => array(
                 'catalog_type_id'       => 8000,
                 'catalog_type_priority' => 200,
                 'default_partial_path'  => 'Source/Views/Pages',
-                'file_name'            => 'Index.phtml'
+                'file_name'             => 'Index.phtml'
             ),
             'Template' => array(
                 'catalog_type_id'       => 9000,
                 'catalog_type_priority' => 200,
                 'default_partial_path'  => 'Source/Views/Templates',
-                'file_name'            => ''
+                'file_name'             => ''
             ),
-            'Theme' => array(
+            'Theme'    => array(
                 'catalog_type_id'       => 7000,
                 'catalog_type_priority' => 200,
                 'default_partial_path'  => 'Source/Themes',
-                'file_name'            => 'Index.phtml'
+                'file_name'             => 'Index.phtml'
             ),
-            'Wraps' => array(
+            'Wraps'    => array(
                 'catalog_type_id'       => 10000,
                 'catalog_type_priority' => 600,
                 'default_partial_path'  => 'Source/Views/Wraps',
-                'file_name'            => ''
+                'file_name'             => ''
             )
         );
 

@@ -92,8 +92,8 @@ class ResourcecssFactoryMethod extends FactoryMethodBase implements FactoryInter
         $handler_options['html5']
                          = $this->dependencies['Runtimedata']->application->parameters->application_html5;
         $handler_options['line_end']
-                         = $this->dependencies['Runtimedata']->application->parameters->application_line_end;
-        $handler_options['mimetype'] = 'text/css';
+                                               = $this->dependencies['Runtimedata']->application->parameters->application_line_end;
+        $handler_options['mimetype']           = 'text/css';
         $this->dependencies['handler_options'] = $handler_options;
 
         return $this->dependencies;

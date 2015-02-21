@@ -81,13 +81,13 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
         $page_view_id     = $this->dependencies['Runtimedata']->resource->parameters->page_view_id;
         $template_view_id = $this->dependencies['Runtimedata']->resource->parameters->template_view_id;
         $wrap_view_id     = $this->dependencies['Runtimedata']->resource->parameters->wrap_view_id;
-/**
-        echo 'In ExecuteFactoryMethod';
-        echo ' Theme: ' . $theme_id . '<br>';
-        echo ' Page: ' . $page_view_id . '<br>';
-        echo ' Template: ' . $template_view_id . '<br>';
-        echo ' Wrap: ' . $wrap_view_id . '<br>';
-*/
+        /**
+         * echo 'In ExecuteFactoryMethod';
+         * echo ' Theme: ' . $theme_id . '<br>';
+         * echo ' Page: ' . $page_view_id . '<br>';
+         * echo ' Template: ' . $template_view_id . '<br>';
+         * echo ' Wrap: ' . $wrap_view_id . '<br>';
+         */
         $this->dependencies['Runtimedata']->resource->extensions = new stdClass();
 
         $scheme = 'theme:///';

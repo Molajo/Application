@@ -258,6 +258,10 @@ abstract class Assets extends AbstractAdapter
      */
     protected function addAssetFile($file_path, array $options = array())
     {
+        if (is_file($file_path) === false) {
+            return $this;
+        }
+
         if ($this->skipFile($file_path, $this->language_direction) === true) {
             return $this;
         }
@@ -450,7 +454,7 @@ abstract class Assets extends AbstractAdapter
         }
 
         foreach ($this->asset_array as $existing) {
-            if ($existing->css_path_or_string === $file_path) {
+            if ($existing->path_or_string === $file_path) {
                 return true;
             }
         }
@@ -461,16 +465,16 @@ abstract class Assets extends AbstractAdapter
     /**
      * Create a row containing the CSS information
      *
-     * @param   string $css_path_or_string
+     * @param   string $path_or_string
      * @param   array  $options
      *
      * @return  stdClass
      * @since   1.0.0
      */
-    protected function setAssetRow($css_path_or_string, array $options = array())
+    protected function setAssetRow($path_or_string, array $options = array())
     {
-        $row                     = new stdClass();
-        $row->css_path_or_string = $css_path_or_string;
+        $row                 = new stdClass();
+        $row->path_or_string = $path_or_string;
 
         foreach ($this->asset_options as $name => $filter) {
 

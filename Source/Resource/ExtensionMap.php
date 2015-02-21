@@ -217,10 +217,10 @@ class ExtensionMap implements ExtensionsInterface
 
         foreach ($this->temp_ids as $id => $alias) {
 
-            $alias              = ucfirst(strtolower($alias));
+            $alias = ucfirst(strtolower($alias));
 
             if (in_array($catalog_type_model_name, array('Resources', 'System'))) {
-                $model_name         = $this->setExtensionModelNameResource($alias, $catalog_type_model_name);
+                $model_name = $this->setExtensionModelNameResource($alias, $catalog_type_model_name);
 
             } elseif ($catalog_type_id == $this->runtime_data->reference_data->catalog_type_menuitem_id) {
                 $model_name = $this->setExtensionModelNameMenuitem($this->temp_page_types, $id);

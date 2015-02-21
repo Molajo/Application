@@ -4,25 +4,25 @@
         table_name="#__extension_instances"
         extends="Extensioninstances">
 
-        <customfields>
-            <customfield name="customfields">
-                <include field="name"/>
-                <include field="type"/>
-                <include field="length"/>
-                <include field="null"/>
-                <include field="default"/>
-                <include field="unique"/>
-                <include field="identity"/>
-                <include field="values"/>
-                <include field="display"/>
-                <include field="cols"/>
-                <include field="rows"/>
-                <include field="hidden"/>
-                <include field="datalist"/>
-                <include field="multiple"/>
-                <include field="size"/>
-                <include field="locked"/>
-            </customfield>
-        </customfields>
+    <customfields>
+        <customfield name="customfields">
+            <include field="name"/>
+            <include field="type"/>
+            <include field="length"/>
+            <include field="null"/>
+            <include field="default"/>
+            <include field="unique"/>
+            <include field="identity"/>
+            <include field="values"/>
+            <include field="display"/>
+            <include field="cols"/>
+            <include field="rows"/>
+            <include field="hidden"/>
+            <include field="datalist"/>
+            <include field="multiple"/>
+            <include field="size"/>
+            <include field="locked"/>
+        </customfield>
+    </customfields>
 
 </model>

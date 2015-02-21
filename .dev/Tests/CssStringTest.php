@@ -276,7 +276,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $expected_results = array();
 
         $row = new stdClass();
-        $row->css_path_or_string
+        $row->path_or_string
                             = '/*! Customize.css v 1 | MIT License */
 
 /*! Grid row */
@@ -322,7 +322,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $path = __DIR__ . '/TestMedia/Css';
 
         $options                = array();
-        $options['css_string']  = $row->css_path_or_string;
+        $options['css_string']  = $row->path_or_string;
         $options['priority']    = '500';
         $options['mimetype']    = 'text/css';
         $options['media']       = '';
@@ -333,7 +333,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
 
         $actual_results = $this->test_instance->getTestValue('asset_array');
 
-        $this->assertEquals($expected_results[0]->css_path_or_string, $actual_results[0]->css_path_or_string);
+        $this->assertEquals($expected_results[0]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[0]->priority, $actual_results[0]->priority);
         $this->assertEquals($expected_results[0]->mimetype, $actual_results[0]->mimetype);
         $this->assertEquals($expected_results[0]->media, $actual_results[0]->media);
@@ -390,7 +390,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
 
         // 1
         $row = new stdClass();
-        $row->css_path_or_string
+        $row->path_or_string
                             = '/*! Customize.css v 1 | MIT License */
 
 /*! Grid row */
@@ -436,7 +436,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $path = __DIR__ . '/TestMedia/Css';
 
         $options                = array();
-        $options['css_string']  = $row->css_path_or_string;
+        $options['css_string']  = $row->path_or_string;
         $options['priority']    = '500';
         $options['mimetype']    = 'text/css';
         $options['media']       = '';
@@ -447,7 +447,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
 
         // 2
         $row = new stdClass();
-        $row->css_path_or_string
+        $row->path_or_string
                             = '/*! Customize.css v 1 | MIT License */
 
 /*! Grid row */
@@ -493,7 +493,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $path = __DIR__ . '/TestMedia/Css';
 
         $options                = array();
-        $options['css_string']  = $row->css_path_or_string;
+        $options['css_string']  = $row->path_or_string;
         $options['priority']    = '500';
         $options['mimetype']    = 'text/css';
         $options['media']       = '';
@@ -504,7 +504,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
 
         $actual_results = $this->test_instance->getTestValue('asset_array');
 
-        $this->assertEquals($expected_results[0]->css_path_or_string, $actual_results[0]->css_path_or_string);
+        $this->assertEquals($expected_results[0]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[0]->priority, $actual_results[0]->priority);
         $this->assertEquals($expected_results[0]->mimetype, $actual_results[0]->mimetype);
         $this->assertEquals($expected_results[0]->media, $actual_results[0]->media);
@@ -561,7 +561,8 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
 
         // ONE
         $row = new stdClass();
-        $row->css_path_or_string = '/**
+        $row->path_or_string
+                            = '/**
  * Correct `block` display not defined for any HTML5 element in IE 8/9.
  * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
@@ -590,7 +591,7 @@ summary {
 
         // Call 1
         $options                = array();
-        $options['css_string']  = $row->css_path_or_string;
+        $options['css_string']  = $row->path_or_string;
         $options['priority']    = '500';
         $options['mimetype']    = 'text/css';
         $options['media']       = '';
@@ -601,7 +602,8 @@ summary {
 
         // TWO
         $row = new stdClass();
-        $row->css_path_or_string = '
+        $row->path_or_string
+                            = '
 /**
  * 1. Correct `inline-block` display not defined in IE 8/9.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
@@ -623,7 +625,7 @@ video {
 
         // Call 2
         $options                = array();
-        $options['css_string']  = $row->css_path_or_string;
+        $options['css_string']  = $row->path_or_string;
         $options['priority']    = '1';
         $options['mimetype']    = 'text/css';
         $options['media']       = '';
@@ -634,14 +636,14 @@ video {
 
         $actual_results = $this->test_instance->getCollection('css');
 
-        $this->assertEquals($expected_results[1]->css_path_or_string, $actual_results[0]->css_path_or_string);
+        $this->assertEquals($expected_results[1]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[1]->priority, $actual_results[0]->priority);
         $this->assertEquals($expected_results[1]->mimetype, $actual_results[0]->mimetype);
         $this->assertEquals($expected_results[1]->media, $actual_results[0]->media);
         $this->assertEquals($expected_results[1]->conditional, $actual_results[0]->conditional);
         $this->assertEquals($expected_results[1]->attributes, $actual_results[0]->attributes);
 
-        $this->assertEquals($expected_results[0]->css_path_or_string, $actual_results[1]->css_path_or_string);
+        $this->assertEquals($expected_results[0]->path_or_string, $actual_results[1]->path_or_string);
         $this->assertEquals($expected_results[0]->priority, $actual_results[1]->priority);
         $this->assertEquals($expected_results[0]->mimetype, $actual_results[1]->mimetype);
         $this->assertEquals($expected_results[0]->media, $actual_results[1]->media);

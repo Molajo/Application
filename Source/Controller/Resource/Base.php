@@ -173,9 +173,9 @@ abstract class Base
     /**
      * Get Resource Data for Content
      *
-     * @param   integer  $extension_instance_id
-     * @param   integer  $extension_instance_id
-     * @param   integer  $extension_instance_id
+     * @param   integer $extension_instance_id
+     * @param   integer $extension_instance_id
+     * @param   integer $extension_instance_id
      *
      * @return  object
      * @since   1.0.0
