@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1424553604">
-  <project timestamp="1424553604">
+<coverage generated="1424555800">
+  <project timestamp="1424555800">
     <file name="/Users/amystephen/Sites/git/Molajo/Application/.dev/Bootstrap.php">
       <line num="63" type="stmt" count="0"/>
       <line num="64" type="stmt" count="0"/>
       <line num="65" type="stmt" count="0"/>
       <line num="66" type="stmt" count="0"/>
-      <metrics loc="71" ncloc="62" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="4" coveredelements="0"/>
+      <metrics loc="69" ncloc="60" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="4" coveredelements="0"/>
     </file>
     <file name="/Users/amystephen/Sites/git/Molajo/Application/.dev/CreateClassMap.php">
       <line num="12" type="stmt" count="0"/>
@@ -35,31 +35,30 @@
       <metrics loc="46" ncloc="39" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="0" elements="23" coveredelements="0"/>
     </file>
     <package name="Molajo\Model">
-      <file name="/Users/amystephen/Sites/git/Molajo/Application/.dev/Tests/Mocks/FieldhandlerMock.php">
-        <class name="FieldhandlerMock" namespace="Molajo\Model">
-          <metrics methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="7" coveredelements="0"/>
+      <file name="/Users/amystephen/Sites/git/Molajo/Application/.dev/Tests/Application/Mocks/AppFieldhandlerMock.php">
+        <class name="AppFieldhandlerMock" namespace="Molajo\Model">
+          <metrics methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="6" coveredelements="0"/>
         </class>
-        <class name="Item" namespace="Molajo\Model" fullPackage="Molajo" package="Molajo">
+        <class name="AppItem" namespace="Molajo\Model" fullPackage="Molajo" package="Molajo">
           <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
         </class>
         <line num="15" type="method" name="validate" crap="2" count="0"/>
         <line num="18" type="stmt" count="0"/>
         <line num="20" type="method" name="sanitize" crap="2" count="0"/>
         <line num="22" type="stmt" count="0"/>
-        <line num="23" type="stmt" count="0"/>
-        <line num="27" type="method" name="format" crap="2" count="0"/>
-        <line num="30" type="stmt" count="0"/>
-        <line num="57" type="method" name="__construct" crap="2" count="0"/>
-        <line num="60" type="stmt" count="0"/>
-        <line num="61" type="stmt" count="0"/>
-        <line num="63" type="method" name="getFieldValue" crap="2" count="0"/>
-        <line num="65" type="stmt" count="0"/>
-        <metrics loc="67" ncloc="40" classes="2" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="12" coveredelements="0"/>
+        <line num="25" type="method" name="format" crap="2" count="0"/>
+        <line num="28" type="stmt" count="0"/>
+        <line num="55" type="method" name="__construct" crap="2" count="0"/>
+        <line num="58" type="stmt" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <line num="61" type="method" name="getFieldValue" crap="2" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <metrics loc="65" ncloc="38" classes="2" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="11" coveredelements="0"/>
       </file>
     </package>
     <package name="Molajo\Query">
-      <file name="/Users/amystephen/Sites/git/Molajo/Application/.dev/Tests/Mocks/QueryMock.php">
-        <class name="QueryMock" namespace="Molajo\Query">
+      <file name="/Users/amystephen/Sites/git/Molajo/Application/.dev/Tests/Application/Mocks/AppQueryMock.php">
+        <class name="AppQueryMock" namespace="Molajo\Query">
           <metrics methods="19" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="0" elements="48" coveredelements="0"/>
         </class>
         <line num="32" type="method" name="getSql" crap="2" count="0"/>
@@ -975,6 +974,6 @@
       <line num="51" type="stmt" count="0"/>
       <metrics loc="51" ncloc="49" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="0" elements="28" coveredelements="0"/>
     </file>
-    <metrics files="18" loc="3332" ncloc="1860" classes="16" methods="115" coveredmethods="20" conditionals="0" coveredconditionals="0" statements="741" coveredstatements="224" elements="856" coveredelements="244"/>
+    <metrics files="18" loc="3328" ncloc="1856" classes="16" methods="115" coveredmethods="20" conditionals="0" coveredconditionals="0" statements="740" coveredstatements="224" elements="855" coveredelements="244"/>
   </project>
 </coverage>

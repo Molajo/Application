@@ -6,7 +6,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
-namespace Molajo\Controller\Test;
+namespace Molajo\Controller;
 
 include_once __DIR__ . '/' . 'Mocks/Dispatcher.php';
 include_once __DIR__ . '/' . 'Mocks/Event.php';
@@ -106,14 +106,31 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers  Molajo\Controller\FrontController::__construct
      * @covers  Molajo\Controller\FrontController::process
+     * @covers  Molajo\Controller\FrontController::shutdown
      * @covers  Molajo\Controller\FrontController::runStep
      * @covers  Molajo\Controller\FrontController::initialise
      * @covers  Molajo\Controller\FrontController::scheduleEvent
-     * @covers  Molajo\Controller\FrontController::scheduleFactoryMethod
+     * @covers  Molajo\Controller\FrontController::setError
+     * @covers  Molajo\Controller\FrontController::setException
+     * @covers  Molajo\Controller\FrontController::setDebug
+     * @covers  Molajo\Controller\FrontController::getCache
+     * @covers  Molajo\Controller\FrontController::setCache
+     * @covers  Molajo\Controller\FrontController::deleteCache
+     * @covers  Molajo\Controller\FrontController::createCacheCallbacksOn
+     * @covers  Molajo\Controller\FrontController::createCacheCallbacksOff
+     * @covers  Molajo\Controller\FrontController::setContainerCacheCallbacks
+     * @covers  Molajo\Controller\FrontController::scheduleCacheService
+     * @covers  Molajo\Controller\FrontController::verifyCacheKey
+     * @covers  Molajo\Controller\FrontController::setDebugHandler
+     * @covers  Molajo\Controller\FrontController::setDebugCallback
+     * @covers  Molajo\Controller\FrontController::setDebugMethodCall
+     * @covers  Molajo\Controller\FrontController::setErrorHandler
+     * @covers  Molajo\Controller\FrontController::setDebugMessageScheduleEvent
+     * @covers  Molajo\Controller\FrontController::createEventCallback
+     * @covers  Molajo\Controller\FrontController::setExceptionHandler
      * @covers  Molajo\Controller\FrontController::setContainerEntry
-     * @covers  Molajo\Controller\FrontController::handleErrors
-     * @covers  Molajo\Controller\FrontController::shutdown
-     * @covers  Molajo\Controller\FrontController::createScheduleEventCallback
+     * @covers  Molajo\Controller\FrontController::scheduleFactoryMethod
+     * @covers  Molajo\Controller\FrontController::setDebugMessageFactoryMethod
      *
      * @since   1.0.0
      */
@@ -136,14 +153,31 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers  Molajo\Controller\FrontController::__construct
      * @covers  Molajo\Controller\FrontController::process
+     * @covers  Molajo\Controller\FrontController::shutdown
      * @covers  Molajo\Controller\FrontController::runStep
      * @covers  Molajo\Controller\FrontController::initialise
      * @covers  Molajo\Controller\FrontController::scheduleEvent
-     * @covers  Molajo\Controller\FrontController::scheduleFactoryMethod
+     * @covers  Molajo\Controller\FrontController::setError
+     * @covers  Molajo\Controller\FrontController::setException
+     * @covers  Molajo\Controller\FrontController::setDebug
+     * @covers  Molajo\Controller\FrontController::getCache
+     * @covers  Molajo\Controller\FrontController::setCache
+     * @covers  Molajo\Controller\FrontController::deleteCache
+     * @covers  Molajo\Controller\FrontController::createCacheCallbacksOn
+     * @covers  Molajo\Controller\FrontController::createCacheCallbacksOff
+     * @covers  Molajo\Controller\FrontController::setContainerCacheCallbacks
+     * @covers  Molajo\Controller\FrontController::scheduleCacheService
+     * @covers  Molajo\Controller\FrontController::verifyCacheKey
+     * @covers  Molajo\Controller\FrontController::setDebugHandler
+     * @covers  Molajo\Controller\FrontController::setDebugCallback
+     * @covers  Molajo\Controller\FrontController::setDebugMethodCall
+     * @covers  Molajo\Controller\FrontController::setErrorHandler
+     * @covers  Molajo\Controller\FrontController::setDebugMessageScheduleEvent
+     * @covers  Molajo\Controller\FrontController::createEventCallback
+     * @covers  Molajo\Controller\FrontController::setExceptionHandler
      * @covers  Molajo\Controller\FrontController::setContainerEntry
-     * @covers  Molajo\Controller\FrontController::handleErrors
-     * @covers  Molajo\Controller\FrontController::shutdown
-     * @covers  Molajo\Controller\FrontController::createScheduleEventCallback
+     * @covers  Molajo\Controller\FrontController::scheduleFactoryMethod
+     * @covers  Molajo\Controller\FrontController::setDebugMessageFactoryMethod
      *
      * @since   1.0.0
      */
@@ -195,14 +229,31 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers  Molajo\Controller\FrontController::__construct
      * @covers  Molajo\Controller\FrontController::process
+     * @covers  Molajo\Controller\FrontController::shutdown
      * @covers  Molajo\Controller\FrontController::runStep
      * @covers  Molajo\Controller\FrontController::initialise
      * @covers  Molajo\Controller\FrontController::scheduleEvent
-     * @covers  Molajo\Controller\FrontController::scheduleFactoryMethod
+     * @covers  Molajo\Controller\FrontController::setError
+     * @covers  Molajo\Controller\FrontController::setException
+     * @covers  Molajo\Controller\FrontController::setDebug
+     * @covers  Molajo\Controller\FrontController::getCache
+     * @covers  Molajo\Controller\FrontController::setCache
+     * @covers  Molajo\Controller\FrontController::deleteCache
+     * @covers  Molajo\Controller\FrontController::createCacheCallbacksOn
+     * @covers  Molajo\Controller\FrontController::createCacheCallbacksOff
+     * @covers  Molajo\Controller\FrontController::setContainerCacheCallbacks
+     * @covers  Molajo\Controller\FrontController::scheduleCacheService
+     * @covers  Molajo\Controller\FrontController::verifyCacheKey
+     * @covers  Molajo\Controller\FrontController::setDebugHandler
+     * @covers  Molajo\Controller\FrontController::setDebugCallback
+     * @covers  Molajo\Controller\FrontController::setDebugMethodCall
+     * @covers  Molajo\Controller\FrontController::setErrorHandler
+     * @covers  Molajo\Controller\FrontController::setDebugMessageScheduleEvent
+     * @covers  Molajo\Controller\FrontController::createEventCallback
+     * @covers  Molajo\Controller\FrontController::setExceptionHandler
      * @covers  Molajo\Controller\FrontController::setContainerEntry
-     * @covers  Molajo\Controller\FrontController::handleErrors
-     * @covers  Molajo\Controller\FrontController::shutdown
-     * @covers  Molajo\Controller\FrontController::createScheduleEventCallback
+     * @covers  Molajo\Controller\FrontController::scheduleFactoryMethod
+     * @covers  Molajo\Controller\FrontController::setDebugMessageFactoryMethod
      *
      * @since   1.0.0
      */

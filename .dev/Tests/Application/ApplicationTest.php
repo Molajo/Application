@@ -8,9 +8,12 @@
  */
 namespace Molajo\Controller;
 
+require_once __DIR__ . '/Mocks/AppFieldhandlerMock.php';
+require_once __DIR__ . '/Mocks/AppQueryMock.php';
+
 use CommonApi\Controller\ApplicationInterface;
-use Molajo\Query\QueryMock;
-use Molajo\Model\FieldhandlerMock;
+use Molajo\Query\AppQueryMock;
+use Molajo\Model\AppFieldhandlerMock;
 use stdClass;
 
 /**
@@ -172,8 +175,8 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
     public function testSetApplicationDefault()
     {
         // SETUP
-        $query          = new QueryMock();
-        $fieldhandler   = new FieldhandlerMock();
+        $query          = new AppQueryMock();
+        $fieldhandler   = new AppFieldhandlerMock();
         $base_path      = 'articles';
         $applications   = $this->getApplications();
         $model_registry = $this->getModelRegistry();
@@ -222,8 +225,8 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
     public function testSetApplicationAdmin()
     {
         // SETUP
-        $query          = new QueryMock();
-        $fieldhandler   = new FieldhandlerMock();
+        $query          = new AppQueryMock();
+        $fieldhandler   = new AppFieldhandlerMock();
         $base_path      = 'admin/articles';
         $applications   = $this->getApplications();
         $model_registry = $this->getModelRegistry();
@@ -272,8 +275,8 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
     public function testSetApplicationInstallation()
     {
         // SETUP
-        $query          = new QueryMock();
-        $fieldhandler   = new FieldhandlerMock();
+        $query          = new AppQueryMock();
+        $fieldhandler   = new AppFieldhandlerMock();
         $base_path      = 'installation';
         $applications   = $this->getApplications();
         $model_registry = $this->getModelRegistry();
@@ -322,8 +325,8 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
     public function testGetConfiguration()
     {
         // SETUP
-        $query          = new QueryMock();
-        $fieldhandler   = new FieldhandlerMock();
+        $query          = new AppQueryMock();
+        $fieldhandler   = new AppFieldhandlerMock();
         $base_path      = 'admin/articles';
         $applications   = $this->getApplications();
         $model_registry = $this->getModelRegistry();

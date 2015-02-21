@@ -66,6 +66,4 @@ spl_autoload_register(
     }
 );
 
-include_once __DIR__ . '/Tests/Mocks/FieldhandlerMock.php';
-include_once __DIR__ . '/Tests/Mocks/QueryMock.php';
 //include_once __DIR__ . '/' . 'Reflection.php';
