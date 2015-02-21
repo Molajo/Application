@@ -139,4 +139,27 @@ trait DebugHandlerTrait
 
         return $this;
     }
+
+    /**
+     * Store Product in the Inversion of Control Container
+     *
+     * @param   string $product_name
+     * @param   mixed  $value
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    abstract protected function setContainerEntry($product_name, $value);
+
+    /**
+     * Schedule Factory recursively resolving dependencies
+     *
+     * @param   string $product_name
+     * @param   string $debug_type
+     * @param   array  $options
+     *
+     * @return  object
+     * @since   1.0.0
+     */
+    abstract protected function scheduleFactoryMethod($product_name, $debug_type, array $options = array());
 }

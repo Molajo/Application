@@ -195,6 +195,7 @@ trait CacheHandlerTrait
 
         return $key;
     }
+
     /**
      * Store Product in the Inversion of Control Container
      *

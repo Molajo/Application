@@ -106,4 +106,18 @@ trait FactoryHandlerTrait
         . ' Type: ' . $debug_type
         . ' Product: ' . $product_name;
     }
+
+    /**
+     * Set Debug Method Call
+     *
+     * @param  string  $message
+     * @param  string  $debug_type
+     * @param  string  $file
+     * @param  integer $line
+     * @param  array   $context
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    abstract protected function setDebugMethodCall($message, $debug_type, $file, $line, array $context = array());
 }

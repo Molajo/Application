@@ -72,8 +72,7 @@ trait EventHandlerTrait
     /**
      * Set Debug Message for Schedule Event
      *
-     * @param   string $product_name
-     * @param   string $debug_type
+     * @param   string $event_name
      *
      * @return  object
      * @since   1.0.0
@@ -102,4 +101,41 @@ trait EventHandlerTrait
 
         return $this;
     }
+
+    /**
+     * Store Product in the Inversion of Control Container
+     *
+     * @param   string $product_name
+     * @param   mixed  $value
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    abstract protected function setContainerEntry($product_name, $value);
+
+    /**
+     * Schedule Factory recursively resolving dependencies
+     *
+     * @param   string $product_name
+     * @param   string $debug_type
+     * @param   array  $options
+     *
+     * @return  object
+     * @since   1.0.0
+     */
+    abstract protected function scheduleFactoryMethod($product_name, $debug_type, array $options = array());
+
+    /**
+     * Set Debug Method Call
+     *
+     * @param  string  $message
+     * @param  string  $debug_type
+     * @param  string  $file
+     * @param  integer $line
+     * @param  array   $context
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    abstract protected function setDebugMethodCall($message, $debug_type, $file, $line, array $context = array());
 }
