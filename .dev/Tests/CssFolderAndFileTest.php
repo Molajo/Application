@@ -1,6 +1,6 @@
 <?php
 /**
- * Css Test
+ * Css Folder and File Test
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -11,14 +11,14 @@ namespace Molajo\Resource\Adapter;
 use stdClass;
 
 /**
- * Utilities Test
+ * Css Folder and File Test
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class CssTest extends \PHPUnit_Framework_TestCase
+class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Get Cache Callback
@@ -98,6 +98,41 @@ class CssTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers  Molajo\Resource\Adapter\Assets::__construct
      * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
+     * @covers  Molajo\Resource\Adapter\Assets::handlePath
+     * @covers  Molajo\Resource\Adapter\Assets::getCollection
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipFile
+     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
+     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
+     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
+     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::getCache
+     * @covers  Molajo\Resource\Adapter\Cache::setCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
+     * @covers  Molajo\Resource\Adapter\Cache::clearCache
      *
      * @return  $this
      * @since   1.0.0
@@ -127,7 +162,7 @@ class CssTest extends \PHPUnit_Framework_TestCase
         $handler_options['line_end']           = '/>';
         $handler_options['mimetype']           = 'text/css';
 
-        $this->test_instance = new cssExtended(
+        $this->test_instance = new CssExtended(
             __DIR__,
             array(),
             array(),
@@ -142,6 +177,43 @@ class CssTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\Assets::__construct
+     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
+     * @covers  Molajo\Resource\Adapter\Assets::handlePath
+     * @covers  Molajo\Resource\Adapter\Assets::getCollection
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipFile
+     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
+     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
+     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
+     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::getCache
+     * @covers  Molajo\Resource\Adapter\Cache::setCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
+     * @covers  Molajo\Resource\Adapter\Cache::clearCache
      *
      * @return  $this
      * @since   1.0.0
@@ -157,6 +229,44 @@ class CssTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\Assets::__construct
+     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
+     * @covers  Molajo\Resource\Adapter\Assets::handlePath
+     * @covers  Molajo\Resource\Adapter\Assets::getCollection
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipFile
+     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
+     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
+     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
+     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::getCache
+     * @covers  Molajo\Resource\Adapter\Cache::setCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
+     * @covers  Molajo\Resource\Adapter\Cache::clearCache
+     *
      * @return  $this
      * @since   1.0.0
      */
@@ -229,6 +339,44 @@ class CssTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\Assets::__construct
+     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
+     * @covers  Molajo\Resource\Adapter\Assets::handlePath
+     * @covers  Molajo\Resource\Adapter\Assets::getCollection
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipFile
+     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
+     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
+     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
+     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::getCache
+     * @covers  Molajo\Resource\Adapter\Cache::setCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
+     * @covers  Molajo\Resource\Adapter\Cache::clearCache
+     *
      * @return  $this
      * @since   1.0.0
      */
@@ -276,7 +424,6 @@ class CssTest extends \PHPUnit_Framework_TestCase
 
         $this->test_instance->handlePath('css', $path, $options);
 
-
         // input
         $path = __DIR__ . '/TestMedia/Css';
 
@@ -314,6 +461,44 @@ class CssTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\Assets::__construct
+     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
+     * @covers  Molajo\Resource\Adapter\Assets::handlePath
+     * @covers  Molajo\Resource\Adapter\Assets::getCollection
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipFile
+     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
+     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
+     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
+     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::getCache
+     * @covers  Molajo\Resource\Adapter\Cache::setCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
+     * @covers  Molajo\Resource\Adapter\Cache::clearCache
+     *
      * @return  $this
      * @since   1.0.0
      */
@@ -354,6 +539,44 @@ class CssTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers  Molajo\Resource\Adapter\Assets::__construct
+     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
+     * @covers  Molajo\Resource\Adapter\Assets::handlePath
+     * @covers  Molajo\Resource\Adapter\Assets::getCollection
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
+     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
+     * @covers  Molajo\Resource\Adapter\Assets::skipFile
+     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
+     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
+     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
+     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicateFile
+     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
+     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
+     * @covers  Molajo\Resource\Adapter\Assets::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
+     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
+     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
+     * @covers  Molajo\Resource\Adapter\Cache::getCache
+     * @covers  Molajo\Resource\Adapter\Cache::setCache
+     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
+     * @covers  Molajo\Resource\Adapter\Cache::clearCache
+     *
      * @return  $this
      * @since   1.0.0
      */
@@ -458,7 +681,7 @@ class CssTest extends \PHPUnit_Framework_TestCase
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class cssExtended extends Css
+class CssExtended extends Css
 {
     public function forceType()
     {

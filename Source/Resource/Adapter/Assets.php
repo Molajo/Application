@@ -274,10 +274,9 @@ abstract class Assets extends AbstractAdapter
     }
 
     /**
-     * add Asset Filename to the page array
+     * Add Asset Filename to the page array
      *
-     * @param   string $file_path
-     * @param   array  $options
+     * @param   array $options
      *
      * @return  $this
      * @since   1.0.0
@@ -292,9 +291,7 @@ abstract class Assets extends AbstractAdapter
         $css_string = $options['css_string'];
         unset($options['css_string']);
 
-        $method = get_called_class();
-
-        $row = $this->setAssetRow($string, $options);
+        $row = $this->setAssetRow($css_string, $options);
 
         $this->asset_array[] = $row;
 
@@ -442,7 +439,6 @@ abstract class Assets extends AbstractAdapter
      * Skip file if it has already been defined to page array
      *
      * @param   string $file_path
-     * @param   array  $existing_files
      *
      * @return  boolean
      * @since   1.0.0
