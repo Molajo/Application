@@ -1,5 +1,5 @@
 <?php
-$class   = new ReflectionClass('Molajo\Controller\Application');
+$class   = new ReflectionClass('Molajo\Controller\Site');
 $methods = $class->getMethods();
 var_dump($methods);
 foreach ($methods as $method) {

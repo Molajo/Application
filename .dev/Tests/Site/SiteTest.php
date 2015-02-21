@@ -83,7 +83,7 @@ class SiteTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $host = 'site2';
+        $host = 'site1';
         $path = 'admin';
 
         $sites                = array();
@@ -91,14 +91,14 @@ class SiteTest extends \PHPUnit_Framework_TestCase
         $site->id             = 1;
         $site->name           = 'Site 1';
         $site->site_base_url  = 'site1';
-        $site->site_base_path = '1';
+        $site->site_base_path = '/Sites/1';
         $sites[]              = $site;
 
         $site                 = new stdClass();
         $site->id             = 2;
         $site->name           = 'Site 2';
-        $site->site_base_url  = 'site2';
-        $site->site_base_path = '2';
+        $site->site_base_url  = 'site1';
+        $site->site_base_path = '/Sites/2';
         $sites[]              = $site;
 
         $this->fc = new Site($host, $path, $sites);
@@ -119,9 +119,9 @@ class SiteTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetBase()
     {
-        $this->fc->setBase('site2', 'admin');
+        $this->fc->setBase('site1', 'admin');
 
-        $this->assertEquals('site2', $this->fc->get('base_url'));
+        $this->assertEquals('site1', $this->fc->get('base_url'));
         $this->assertEquals('admin', $this->fc->get('base_path'));
 
         return $this;
@@ -140,7 +140,7 @@ class SiteTest extends \PHPUnit_Framework_TestCase
      */
     public function testGet()
     {
-        $this->assertEquals('site2', $this->fc->get('host'));
+        $this->assertEquals('site1', $this->fc->get('host'));
         $this->assertEquals('admin', $this->fc->get('path'));
 
         return $this;
@@ -159,15 +159,13 @@ class SiteTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetSitePaths()
     {
-        $this->fc->setBase('site2', 'admin');
+        $this->fc->setBase('site1', 'admin');
         $this->fc->identifySite();
 
-        $base = __DIR__;
-        $this->assertEquals($base . '/Sites/2', $this->fc->get('site_base_path'));
-        $this->assertEquals($base . '/Sites/Public/Media', $this->fc->get('sites_media_folder'));
-        $this->assertEquals($base . '/Media', $this->fc->get('sites_media_url'));
-        $this->assertEquals($base . '/Sites/Public/Media/', $this->fc->get('site_media_folder'));
-        $this->assertEquals($base . 'Media/', $this->fc->get('site_base_path'));
+        $this->assertEquals('admin/Sites/1', $this->fc->get('site_base_path'));
+        $this->assertEquals('admin/Sites/Public/Media', $this->fc->get('sites_media_folder'));
+        $this->assertEquals('admin/Sites/Public/Media/1', $this->fc->get('site_media_folder'));
+        $this->assertEquals('admin/Sites/1', $this->fc->get('site_base_path'));
 
         return $this;
     }
