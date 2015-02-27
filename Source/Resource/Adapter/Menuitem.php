@@ -8,7 +8,7 @@
  */
 namespace Molajo\Resource\Adapter;
 
-use CommonApi\Resource\AdapterInterface;
+use CommonApi\Resource\ResourceInterface;
 
 /**
  * Menuitem Resources
@@ -18,7 +18,7 @@ use CommonApi\Resource\AdapterInterface;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0.0
  */
-class Menuitem extends Extension implements AdapterInterface
+class Menuitem extends Extension implements ResourceInterface
 {
 
 }

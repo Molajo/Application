@@ -10,7 +10,7 @@ namespace Molajo\Resource;
 
 use Exception;
 use CommonApi\Exception\RuntimeException;
-use CommonApi\Resource\ExtensionsInterface;
+use CommonApi\Resource\MapInterface;
 use stdClass;
 
 /**
@@ -21,7 +21,7 @@ use stdClass;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0.0
  */
-class ExtensionMap implements ExtensionsInterface
+class ExtensionMap implements MapInterface
 {
     /**
      * Stores an array of key/value runtime_data settings
@@ -133,7 +133,7 @@ class ExtensionMap implements ExtensionsInterface
      * @return  stdClass
      * @since   1.0.0
      */
-    public function getCatalogTypes()
+    protected function getCatalogTypes()
     {
         $controller = $this->setCatalogTypesQuery();
         $results    = $this->runQuery($controller);
@@ -534,7 +534,7 @@ class ExtensionMap implements ExtensionsInterface
      * @return  object
      * @since   1.0.0
      */
-    public function setCatalogTypesQuery()
+    protected function setCatalogTypesQuery()
     {
         $controller = $this->resource->get(
             'query:///Molajo//Model//Datasource//CatalogTypes.xml',

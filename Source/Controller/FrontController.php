@@ -145,7 +145,9 @@ class FrontController implements FrontControllerInterface, ErrorHandlingInterfac
         foreach ($this->steps as $step) {
             $this->scheduleEvent($event_name = 'onBefore' . ucfirst(strtolower($step)));
             $this->runStep($step);
+            echo $step . '<br>';
             $this->scheduleEvent($event_name = 'onAfter' . ucfirst(strtolower($step)));
+            echo $event_name . '<br>';
         }
 
         $this->normal_ending = true;

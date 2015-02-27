@@ -8,7 +8,7 @@
  */
 namespace Molajo\Resource\Adapter;
 
-use CommonApi\Resource\AdapterInterface;
+use CommonApi\Resource\ResourceInterface;
 
 /**
  * Css Declarations Resource Adapter
@@ -18,7 +18,7 @@ use CommonApi\Resource\AdapterInterface;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class CssDeclarations extends AssetCollection implements AdapterInterface
+class CssDeclarations extends AssetCollection implements ResourceInterface
 {
 
 }

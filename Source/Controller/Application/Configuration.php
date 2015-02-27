@@ -123,21 +123,18 @@ class Configuration extends Set
 
         $fields = array();
 
-        foreach ($this->model_registry[$group] as $customfield) {
+        foreach ($this->model_registry[$group] as $name => $field) {
 
-            foreach ($customfield as $name => $field) {
+            $key       = $this->getCustomfieldsDataElement($field, 'name');
+            $default   = $this->getCustomfieldsDataElement($field, 'default');
+            $value     = $this->setCustomFieldValue($group_data, $key, $default);
+            $data_type = $this->getCustomfieldsDataElement($field, 'type');
 
-                $key       = $this->getCustomfieldsDataElement($field, 'name');
-                $default   = $this->getCustomfieldsDataElement($field, 'default');
-                $value     = $this->setCustomFieldValue($group_data, $key, $default);
-                $data_type = $this->getCustomfieldsDataElement($field, 'type');
-
-                if ($data_type === null) {
-                    $data_type = 'string';
-                }
-
-                $fields[$key] = $this->sanitize($key, $value, $data_type);
+            if ($data_type === null) {
+                $data_type = 'string';
             }
+
+            $fields[$key] = $this->sanitize($key, $value, $data_type);
         }
 
         return $this->createCustomFieldGroup($fields);
@@ -146,15 +143,15 @@ class Configuration extends Set
     /**
      * Get Customfield Group Data
      *
-     * @param   array  $customfield
+     * @param   array  $field
      * @param   string $key
      *
      * @return  mixed|stdClass
      */
-    protected function getCustomfieldsDataElement($customfield, $key)
+    protected function getCustomfieldsDataElement($field, $key)
     {
-        if (isset($customfield[$key])) {
-            $value = $customfield[$key];
+        if (isset($field[$key])) {
+            $value = $field[$key];
         } else {
             $value = null;
         }

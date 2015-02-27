@@ -8,7 +8,7 @@
  */
 namespace Molajo\Resource\Adapter;
 
-use CommonApi\Resource\AdapterInterface;
+use CommonApi\Resource\ResourceInterface;
 use CommonApi\Exception\RuntimeException;
 use Exception;
 
@@ -20,7 +20,7 @@ use Exception;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0.0
  */
-class Extension extends AbstractAdapter implements AdapterInterface
+class Extension extends AbstractAdapter implements ResourceInterface
 {
     /**
      * Rendering Extensions
@@ -179,6 +179,7 @@ class Extension extends AbstractAdapter implements AdapterInterface
         $this->resource   = $handler_options['resource'];
 
         $class = get_called_class();
+        $class = substr($class, (strrpos($class, '\\') + 1), 9999);
 
         $this->catalog_type_id       = $this->class_properties[$class]['catalog_type_id'];
         $this->catalog_type_priority = $this->class_properties[$class]['catalog_type_priority'];
@@ -206,7 +207,7 @@ class Extension extends AbstractAdapter implements AdapterInterface
 
         $this->extension = $this->extensions->extensions[$this->catalog_type_id]->extensions[$extension];
 
-        return $this->get($namespace);
+        return parent::get($namespace);
     }
 
     /**

@@ -1,12 +1,12 @@
 <?php
 /**
- * Resourcecss Factory Method
+ * Resourcebase Factory Method
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
-namespace Molajo\Factories\Resourcecss;
+namespace Molajo\Factories\Resourcebase;
 
 use Exception;
 use CommonApi\Exception\RuntimeException;
@@ -15,14 +15,14 @@ use CommonApi\IoC\FactoryBatchInterface;
 use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
 
 /**
- * Resourcecss Factory Method
+ * Resourcebase Factory Method
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0
  */
-class ResourcecssFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
+class ResourcebaseFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
 {
     /**
      * Constructor

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1424555800">
-  <project timestamp="1424555800">
+<coverage generated="1424557898">
+  <project timestamp="1424557898">
     <file name="/Users/amystephen/Sites/git/Molajo/Application/.dev/Bootstrap.php">
       <line num="63" type="stmt" count="0"/>
       <line num="64" type="stmt" count="0"/>
@@ -208,9 +208,9 @@
         <line num="285" type="stmt" count="0"/>
         <line num="286" type="stmt" count="0"/>
         <line num="287" type="stmt" count="0"/>
-        <line num="290" type="stmt" count="1"/>
-        <line num="293" type="stmt" count="0"/>
-        <metrics loc="292" ncloc="144" classes="1" methods="7" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="46" coveredstatements="32" elements="53" coveredelements="35"/>
+        <line num="289" type="stmt" count="1"/>
+        <line num="292" type="stmt" count="0"/>
+        <metrics loc="291" ncloc="143" classes="1" methods="7" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="46" coveredstatements="32" elements="53" coveredelements="35"/>
       </file>
     </package>
     <package name="Molajo\Controller\Application">
@@ -974,6 +974,6 @@
       <line num="51" type="stmt" count="0"/>
       <metrics loc="51" ncloc="49" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="0" elements="28" coveredelements="0"/>
     </file>
-    <metrics files="18" loc="3328" ncloc="1856" classes="16" methods="115" coveredmethods="20" conditionals="0" coveredconditionals="0" statements="740" coveredstatements="224" elements="855" coveredelements="244"/>
+    <metrics files="18" loc="3327" ncloc="1855" classes="16" methods="115" coveredmethods="20" conditionals="0" coveredconditionals="0" statements="740" coveredstatements="224" elements="855" coveredelements="244"/>
   </project>
 </coverage>

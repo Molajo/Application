@@ -33,7 +33,7 @@ class ResourceFactoryMethod extends FactoryMethodBase implements FactoryInterfac
      */
     public function __construct(array $options = array())
     {
-        $options['product_namespace']        = 'Molajo\\Resource\\Driver';
+        $options['product_namespace']        = 'Molajo\\Resource\\Proxy';
         $options['store_instance_indicator'] = true;
         $options['product_name']             = basename(__DIR__);
 
@@ -95,16 +95,6 @@ class ResourceFactoryMethod extends FactoryMethodBase implements FactoryInterfac
          *  Css, CssDeclarations, JsDeclarations, and Js loaded in Application Factory
          *  QueryHandler loaded following Database Factory Method
          */
-        $adapter_instance['Asset']
-            = $this->createAdapter(
-            'Asset',
-            $this->base_path,
-            $resource_map,
-            array(),
-            $this->dependencies['Scheme']->getScheme('Asset')->include_file_extensions,
-            $cache_callbacks,
-            $empty_handler_options
-        );
         $adapter_instance['ClassLoader']
             = $this->createAdapter(
             'ClassLoader',
@@ -145,16 +135,6 @@ class ResourceFactoryMethod extends FactoryMethodBase implements FactoryInterfac
             $cache_callbacks,
             $empty_handler_options
         );
-        $adapter_instance['Head']
-            = $this->createAdapter(
-            'Head',
-            $this->base_path,
-            $resource_map,
-            array(),
-            $this->dependencies['Scheme']->getScheme('Head')->include_file_extensions,
-            $cache_callbacks,
-            $empty_handler_options
-        );
         $adapter_instance['Xml']
             = $this->createAdapter(
             'Xml',
@@ -180,9 +160,7 @@ class ResourceFactoryMethod extends FactoryMethodBase implements FactoryInterfac
      */
     public function instantiateClass()
     {
-        $class = 'Molajo\\Resource\\Driver';
-
-        $this->product_result = new $class(
+        $this->product_result = new $this->product_namespace(
             $this->dependencies['Scheme'],
             $this->dependencies['adapter_instance_array']
         );

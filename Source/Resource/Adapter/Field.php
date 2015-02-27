@@ -9,7 +9,7 @@
 namespace Molajo\Resource\Adapter;
 
 use CommonApi\Exception\RuntimeException;
-use CommonApi\Resource\AdapterInterface;
+use CommonApi\Resource\ResourceInterface;
 
 /**
  * Field Handler
@@ -19,7 +19,7 @@ use CommonApi\Resource\AdapterInterface;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0.0
  */
-class Field extends AbstractAdapter implements AdapterInterface
+class Field extends AbstractAdapter implements ResourceInterface
 {
     /**
      * Fields
