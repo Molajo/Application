@@ -20,7 +20,7 @@ use Exception;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0.0
  */
-class Extension extends AbstractAdapter implements ResourceInterface
+class Extension extends NamespaceHandler implements ResourceInterface
 {
     /**
      * Rendering Extensions
@@ -193,12 +193,12 @@ class Extension extends AbstractAdapter implements ResourceInterface
      * Locates resource for extension
      *
      * @param   string $resource_namespace
-     * @param   bool   $multiple
+     * @param   array  $options
      *
      * @return  string
      * @since   1.0.0
      */
-    public function get($resource_namespace, $multiple = false)
+    public function get($resource_namespace, array $options = array())
     {
         $extension = $this->getExtensionId($resource_namespace);
         $temp      = substr($resource_namespace, 0, strrpos($resource_namespace, '/') - 1);
@@ -340,14 +340,13 @@ class Extension extends AbstractAdapter implements ResourceInterface
     /**
      * Handle located folder/file associated with URI Namespace for Resource
      *
-     * @param   string $scheme
      * @param   string $located_path
      * @param   array  $options
      *
      * @return  object
      * @since   1.0.0
      */
-    public function handlePath($scheme, $located_path, array $options = array())
+    public function handlePath($located_path, array $options = array())
     {
         $this->checkFileExists($located_path);
 

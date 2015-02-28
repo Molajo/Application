@@ -1,5 +1,5 @@
 <?php
-$class   = new ReflectionClass('Molajo\Controller\FrontController');
+$class   = new ReflectionClass('Molajo\Resource\Adapter\Css');
 $methods = $class->getMethods();
 var_dump($methods);
 foreach ($methods as $method) {

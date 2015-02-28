@@ -18,7 +18,6 @@ use CommonApi\Resource\ResourceInterface;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class Css extends AssetCollection implements ResourceInterface
+class Css extends Assets implements ResourceInterface
 {
-
 }

@@ -20,5 +20,4 @@ use CommonApi\Resource\ResourceInterface;
  */
 class Menuitem extends Extension implements ResourceInterface
 {
-
 }

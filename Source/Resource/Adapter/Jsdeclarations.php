@@ -18,7 +18,6 @@ use CommonApi\Resource\ResourceInterface;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class JsDeclarations extends AssetCollection implements ResourceInterface
+class JsDeclarations extends Assets implements ResourceInterface
 {
-
 }

@@ -18,19 +18,18 @@ use stdClass;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-abstract class Assets extends AssetBase
+abstract class Assets extends AssetCollection
 {
     /**
      * Handle located folder/file associated with URI Namespace for Resource
      *
-     * @param   string $scheme
      * @param   string $located_path
      * @param   array  $options
      *
      * @return  mixed
      * @since   1.0.0
      */
-    public function handlePath($scheme, $located_path, array $options = array())
+    public function handlePath($located_path, array $options = array())
     {
         if (is_dir($located_path)) {
             $this->addAssetFolder($located_path, $options);
@@ -44,7 +43,6 @@ abstract class Assets extends AssetBase
 
         return $this;
     }
-
 
     /**
      * addAssetFolder - Loads the CSS files located within the identified folder
@@ -241,7 +239,7 @@ abstract class Assets extends AssetBase
      */
     protected function verifySkipFile(array $options = array())
     {
-        if (strtolower(substr($options['filename'], 0, 4)) == 'hold') {
+        if (strtolower(substr($options['filename'], 0, 4)) === 'hold') {
             return true;
         }
 
@@ -276,7 +274,7 @@ abstract class Assets extends AssetBase
      */
     protected function verifyNotFileExtension(array $options = array())
     {
-        if ($options['extension'] === $this->asset_type) {
+        if (strtolower($options['extension']) === strtolower($this->scheme_name)) {
             return false;
         }
 
@@ -298,6 +296,7 @@ abstract class Assets extends AssetBase
         }
 
         foreach ($this->asset_array as $existing) {
+
             if ($existing->path_or_string === $path_or_string) {
                 return true;
             }
@@ -317,6 +316,8 @@ abstract class Assets extends AssetBase
      */
     protected function setAssetRow($path_or_string, array $options = array())
     {
+        $this->setAssetOptions();
+
         $row                 = new stdClass();
         $row->path_or_string = $path_or_string;
 
@@ -332,6 +333,23 @@ abstract class Assets extends AssetBase
         }
 
         return $row;
+    }
+
+    /**
+     * Set Asset Options based on type
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function setAssetOptions()
+    {
+        if (strtolower(substr($this->scheme_name, 0, 3)) === 'css') {
+            $this->asset_options = $this->asset_options_by_type['css'];
+        } else {
+            $this->asset_options = $this->asset_options_by_type['js'];
+        }
+
+        return $this;
     }
 
     /**

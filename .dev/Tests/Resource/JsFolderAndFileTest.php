@@ -8,6 +8,7 @@
  */
 namespace Molajo\Resource\Adapter;
 
+use CommonApi\Resource\ResourceInterface;
 use stdClass;
 
 /**
@@ -45,12 +46,20 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
     protected $delete_cache_callback;
 
     /**
-     * Focus of test
+     * Proxy
      *
      * @var    object
      * @since  1.0.0
      */
-    protected $test_instance;
+    protected $proxy_instance;
+
+    /**
+     * Adapter
+     *
+     * @var    object
+     * @since  1.0.0
+     */
+    protected $adapter_instance;
 
     /**
      * Get Cache Value
@@ -63,7 +72,7 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
      */
     public function getCache($cache_key, $options)
     {
-
+        return $this;
     }
 
     /**
@@ -77,7 +86,6 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
      */
     public function setCache($cache_key, $options)
     {
-
         return $this;
     }
 
@@ -96,46 +104,6 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
-     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
-     * @covers  Molajo\Resource\Adapter\Assets::__construct
-     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
-     * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipFile
-     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
-     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
-     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
-     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::getCache
-     * @covers  Molajo\Resource\Adapter\Cache::setCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
-     * @covers  Molajo\Resource\Adapter\Cache::clearCache
      *
      * @return  $this
      * @since   1.0.0
@@ -165,7 +133,7 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
         $handler_options['line_end']           = '/>';
         $handler_options['mimetype']           = 'text/js';
 
-        $this->test_instance = new JsExtended(
+        $this->adapter_instance = new JsExtended(
             __DIR__,
             array(),
             array(),
@@ -174,107 +142,34 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
             $handler_options
         );
 
-        $this->test_instance->forceType();
+        $class  = 'Molajo\\Resource\\Scheme';
+        $scheme = new $class();
+
+        $class                = 'Molajo\\Resource\\Proxy';
+        $this->proxy_instance = new $class($scheme);
+
+        $this->proxy_instance->setScheme('Js', $this->adapter_instance, array());
+
+        $this->proxy_instance->setNamespace('Molajo\\', 'TestMedia/');
 
         return $this;
     }
 
     /**
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
-     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
-     * @covers  Molajo\Resource\Adapter\Assets::__construct
-     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
-     * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipFile
-     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
-     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
-     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
-     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::getCache
-     * @covers  Molajo\Resource\Adapter\Cache::setCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
-     * @covers  Molajo\Resource\Adapter\Cache::clearCache
-     *
      * @return  $this
      * @since   1.0.0
      */
     public function testSetClassProperties()
     {
-        $this->assertEquals('ltr', $this->test_instance->getTestValue('language_direction'));
-        $this->assertEquals(1, $this->test_instance->getTestValue('html5'));
-        $this->assertEquals('/>', $this->test_instance->getTestValue('line_end'));
-        $this->assertEquals('text/js', $this->test_instance->getTestValue('mimetype'));
+        $this->assertEquals('ltr', $this->adapter_instance->getTestValue('language_direction'));
+        $this->assertEquals(1, $this->adapter_instance->getTestValue('html5'));
+        $this->assertEquals('/>', $this->adapter_instance->getTestValue('line_end'));
+        $this->assertEquals('text/js', $this->adapter_instance->getTestValue('mimetype'));
 
         return $this;
     }
 
     /**
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
-     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
-     * @covers  Molajo\Resource\Adapter\Assets::__construct
-     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
-     * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipFile
-     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
-     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
-     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
-     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::getCache
-     * @covers  Molajo\Resource\Adapter\Cache::setCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
-     * @covers  Molajo\Resource\Adapter\Cache::clearCache
      *
      * @return  $this
      * @since   1.0.0
@@ -317,9 +212,9 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
         $options['defer']    = '';
         $options['async']    = '';
 
-        $this->test_instance->handlePath('js', $path, $options);
+        $this->proxy_instance->get('Js:\\\Molajo\\Js', $options);
 
-        $actual_results = $this->test_instance->getTestValue('asset_array');
+        $actual_results = $this->proxy_instance->getCollection('Js', $options);
 
         $this->assertEquals($expected_results[0]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[0]->priority, $actual_results[0]->priority);
@@ -341,46 +236,6 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
-     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
-     * @covers  Molajo\Resource\Adapter\Assets::__construct
-     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
-     * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipFile
-     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
-     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
-     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
-     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::getCache
-     * @covers  Molajo\Resource\Adapter\Cache::setCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
-     * @covers  Molajo\Resource\Adapter\Cache::clearCache
      *
      * @return  $this
      * @since   1.0.0
@@ -405,17 +260,16 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
         $options['defer']    = '';
         $options['async']    = '';
 
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
+        $this->proxy_instance->get('Js:\\\Molajo\\Js\form.js', $options);
 
         // 2
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
+        $this->proxy_instance->get('Js:\\\Molajo\\Js\form.js', $options);
 
         // 3
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
-
+        $this->proxy_instance->get('Js:\\\Molajo\\Js\form.js', $options);
 
         // Verify results
-        $actual_results = $this->test_instance->getCollection('js');
+        $actual_results = $this->proxy_instance->getCollection('Js', $options);
 
         $this->assertEquals(1, count($actual_results));
 
@@ -427,46 +281,6 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
-     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
-     * @covers  Molajo\Resource\Adapter\Assets::__construct
-     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
-     * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipFile
-     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
-     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
-     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
-     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::getCache
-     * @covers  Molajo\Resource\Adapter\Cache::setCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
-     * @covers  Molajo\Resource\Adapter\Cache::clearCache
      *
      * @return  $this
      * @since   1.0.0
@@ -491,7 +305,7 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
         $options['defer']    = '';
         $options['async']    = '';
 
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
+        $this->proxy_instance->get('Js:\\\Molajo\\Js\form.js', $options);
 
         // 2
         $row                 = new stdClass();
@@ -508,7 +322,7 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
         $options['defer']    = '';
         $options['async']    = '';
 
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
+        $this->proxy_instance->get('Js:\\\Molajo\\Js\jquery.js', $options);
 
         // 3
         $row                 = new stdClass();
@@ -525,10 +339,10 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
         $options['defer']    = '';
         $options['async']    = '';
 
-        $this->test_instance->handlePath('js', $row->path_or_string, $options);
+        $this->proxy_instance->get('Js:\\\Molajo\\Js\ltr-include.js', $options);
 
         // Verify results
-        $actual_results = $this->test_instance->getCollection('js');
+        $actual_results = $this->proxy_instance->getCollection('Js', $options);
 
         $this->assertEquals($expected_results[1]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[1]->priority, $actual_results[0]->priority);
@@ -558,19 +372,8 @@ class JsFolderAndFileTest extends \PHPUnit_Framework_TestCase
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class JsExtended extends Js
+class JsExtended extends Js implements ResourceInterface
 {
-    public function forceType()
-    {
-        $this->asset_type = 'js';
-
-        if ($this->asset_type === 'js') {
-            $this->asset_options = $this->asset_options_by_type['js'];
-        } else {
-            $this->asset_options = $this->asset_options_by_type['js'];
-        }
-    }
-
     /**
      * Support Testing
      *

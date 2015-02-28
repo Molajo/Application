@@ -16,7 +16,7 @@ namespace Molajo\Resource\Adapter;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-abstract class AssetCollection extends Assets
+abstract class AssetCollection extends AssetBase
 {
     /**
      * Retrieve a collection of a specific handler
@@ -63,7 +63,7 @@ abstract class AssetCollection extends Assets
             return $priority_order;
         }
 
-        if (strtolower($scheme) === 'css') {
+        if (strtolower(substr($scheme, 0, 3)) === 'css') {
             $priority_order[] = $row;
             return $priority_order;
         }
@@ -95,7 +95,7 @@ abstract class AssetCollection extends Assets
 
         foreach ($this->asset_array as $row) {
 
-            if (strtolower($scheme) === 'css') {
+            if (strtolower(substr($scheme, 0, 3)) === 'css') {
                 $priorities[] = $row->priority;
 
             } else {
@@ -123,8 +123,7 @@ abstract class AssetCollection extends Assets
      */
     protected function getDeferRequest($scheme, $options)
     {
-        if (strtolower($scheme) === 'js') {
-        } else {
+        if (strtolower(substr($scheme, 0, 3)) === 'css') {
             return 0;
         }
 
@@ -133,7 +132,7 @@ abstract class AssetCollection extends Assets
             return 0;
         }
 
-        if ((int)$options['defer'] === 1) {
+        if ((int)$options['defer'] == 1) {
             return 1;
         }
 

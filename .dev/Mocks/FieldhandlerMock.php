@@ -19,8 +19,6 @@ class FieldhandlerMock implements FieldhandlerInterface
 
     public function sanitize($field_name, $field_value = null, $constraint, array $options = array())
     {
-        echo $field_value;
-        die;
         return new Item($field_value);
     }
 

@@ -19,7 +19,7 @@ use CommonApi\Resource\ResourceInterface;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0.0
  */
-class Field extends AbstractAdapter implements ResourceInterface
+class Field extends NamespaceHandler implements ResourceInterface
 {
     /**
      * Fields
@@ -64,13 +64,13 @@ class Field extends AbstractAdapter implements ResourceInterface
      * Locates resource associated with Namespace
      *
      * @param   string $resource_namespace
-     * @param   bool   $multiple
+     * @param   array  $options
      *
      * @return  object
      * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function get($resource_namespace, $multiple = false)
+    public function get($resource_namespace, array $options = array())
     {
         $resource_namespace = strtolower($resource_namespace);
 

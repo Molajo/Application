@@ -16,7 +16,7 @@ namespace Molajo\Resource\Adapter;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-abstract class AssetBase extends AbstractAdapter
+abstract class AssetBase extends NamespaceHandler
 {
     /**
      * Asset Array
@@ -152,16 +152,6 @@ abstract class AssetBase extends AbstractAdapter
      */
     protected function setClassProperties(array $handler_options = array())
     {
-        $method = get_called_class();
-
-        $this->asset_type = substr(strtolower($method), 0, 3);
-
-        if ($this->asset_type === 'css') {
-            $this->asset_options = $this->asset_options_by_type['css'];
-        } else {
-            $this->asset_options = $this->asset_options_by_type['js'];
-        }
-
         $this->language_direction = $handler_options['language_direction'];
         $this->html5              = $handler_options['html5'];
         $this->line_end           = $handler_options['line_end'];

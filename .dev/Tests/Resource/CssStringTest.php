@@ -8,10 +8,11 @@
  */
 namespace Molajo\Resource\Adapter;
 
+use CommonApi\Resource\ResourceInterface;
 use stdClass;
 
 /**
- * Css Folder and File Test
+ * Css String Test
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -45,12 +46,20 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
     protected $delete_cache_callback;
 
     /**
-     * Focus of test
+     * Proxy
      *
      * @var    object
      * @since  1.0.0
      */
-    protected $test_instance;
+    protected $proxy_instance;
+
+    /**
+     * Adapter
+     *
+     * @var    object
+     * @since  1.0.0
+     */
+    protected $adapter_instance;
 
     /**
      * Get Cache Value
@@ -63,7 +72,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
      */
     public function getCache($cache_key, $options)
     {
-
+        return $this;
     }
 
     /**
@@ -77,7 +86,6 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
      */
     public function setCache($cache_key, $options)
     {
-
         return $this;
     }
 
@@ -96,46 +104,6 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
-     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
-     * @covers  Molajo\Resource\Adapter\Assets::__construct
-     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
-     * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipFile
-     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
-     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
-     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
-     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::getCache
-     * @covers  Molajo\Resource\Adapter\Cache::setCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
-     * @covers  Molajo\Resource\Adapter\Cache::clearCache
      *
      * @return  $this
      * @since   1.0.0
@@ -165,7 +133,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $handler_options['line_end']           = '/>';
         $handler_options['mimetype']           = 'text/css';
 
-        $this->test_instance = new CssDeclarationsExtended(
+        $this->adapter_instance = new CssDeclarationsExtended(
             __DIR__,
             array(),
             array(),
@@ -174,107 +142,33 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
             $handler_options
         );
 
-        $this->test_instance->forceType();
+        $class  = 'Molajo\\Resource\\Scheme';
+        $scheme = new $class();
+
+        $class                = 'Molajo\\Resource\\Proxy';
+        $this->proxy_instance = new $class($scheme);
+
+        $this->proxy_instance->setScheme('Cssdeclarations', $this->adapter_instance, array());
 
         return $this;
     }
 
     /**
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
-     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
-     * @covers  Molajo\Resource\Adapter\Assets::__construct
-     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
-     * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipFile
-     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
-     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
-     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
-     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::getCache
-     * @covers  Molajo\Resource\Adapter\Cache::setCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
-     * @covers  Molajo\Resource\Adapter\Cache::clearCache
      *
      * @return  $this
      * @since   1.0.0
      */
     public function testSetClassProperties()
     {
-        $this->assertEquals('ltr', $this->test_instance->getTestValue('language_direction'));
-        $this->assertEquals(1, $this->test_instance->getTestValue('html5'));
-        $this->assertEquals('/>', $this->test_instance->getTestValue('line_end'));
-        $this->assertEquals('text/css', $this->test_instance->getTestValue('mimetype'));
+        $this->assertEquals('ltr', $this->adapter_instance->getTestValue('language_direction'));
+        $this->assertEquals(1, $this->adapter_instance->getTestValue('html5'));
+        $this->assertEquals('/>', $this->adapter_instance->getTestValue('line_end'));
+        $this->assertEquals('text/css', $this->adapter_instance->getTestValue('mimetype'));
 
         return $this;
     }
 
     /**
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
-     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
-     * @covers  Molajo\Resource\Adapter\Assets::__construct
-     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
-     * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipFile
-     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
-     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
-     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
-     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::getCache
-     * @covers  Molajo\Resource\Adapter\Cache::setCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
-     * @covers  Molajo\Resource\Adapter\Cache::clearCache
      *
      * @return  $this
      * @since   1.0.0
@@ -328,8 +222,6 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $expected_results[] = $row;
 
         // input
-        $path = __DIR__ . '/TestMedia/Css';
-
         $options                 = array();
         $options['asset_string'] = $row->path_or_string;
         $options['priority']     = '500';
@@ -338,9 +230,9 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $options['conditional']  = '';
         $options['attributes']   = '';
 
-        $this->test_instance->handlePath('css', '', $options);
+        $this->proxy_instance->get('Cssdeclarations:\\', $options);
 
-        $actual_results = $this->test_instance->getTestValue('asset_array');
+        $actual_results = $this->proxy_instance->getCollection('Cssdeclarations', $options);
 
         $this->assertEquals($expected_results[0]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[0]->priority, $actual_results[0]->priority);
@@ -351,46 +243,6 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
-     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
-     * @covers  Molajo\Resource\Adapter\Assets::__construct
-     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
-     * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipFile
-     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
-     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
-     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
-     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::getCache
-     * @covers  Molajo\Resource\Adapter\Cache::setCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
-     * @covers  Molajo\Resource\Adapter\Cache::clearCache
      *
      * @return  $this
      * @since   1.0.0
@@ -400,7 +252,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         // Results
         $expected_results = array();
 
-        // 1
+        // Request String
         $row = new stdClass();
         $row->path_or_string
                             = '/*! Customize.css v 1 | MIT License */
@@ -444,9 +296,7 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $row->attributes    = '';
         $expected_results[] = $row;
 
-        // input
-        $path = __DIR__ . '/TestMedia/Css';
-
+        // Request String 1st time
         $options                 = array();
         $options['asset_string'] = $row->path_or_string;
         $options['priority']     = '500';
@@ -455,9 +305,9 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $options['conditional']  = '';
         $options['attributes']   = '';
 
-        $this->test_instance->handlePath('css', '', $options);
+        $this->proxy_instance->get('Cssdeclarations:\\', $options);
 
-        // 2
+        // Request String 2nd time
         $row = new stdClass();
         $row->path_or_string
                             = '/*! Customize.css v 1 | MIT License */
@@ -499,11 +349,10 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $row->media         = '';
         $row->conditional   = '';
         $row->attributes    = '';
+
         $expected_results[] = $row;
 
-        // input
-        $path = __DIR__ . '/TestMedia/Css';
-
+        // Request String 2nd time
         $options                 = array();
         $options['asset_string'] = $row->path_or_string;
         $options['priority']     = '500';
@@ -512,9 +361,9 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
         $options['conditional']  = '';
         $options['attributes']   = '';
 
-        $this->test_instance->handlePath('css', '', $options);
+        $this->proxy_instance->get('Cssdeclarations:\\', $options);
 
-        $actual_results = $this->test_instance->getTestValue('asset_array');
+        $actual_results = $this->proxy_instance->getCollection('Cssdeclarations', $options);
 
         $this->assertEquals($expected_results[0]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[0]->priority, $actual_results[0]->priority);
@@ -525,46 +374,6 @@ class CssStringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
-     * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
-     * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
-     * @covers  Molajo\Resource\Adapter\Assets::__construct
-     * @covers  Molajo\Resource\Adapter\Assets::setClassProperties
-     * @covers  Molajo\Resource\Adapter\Assets::handlePath
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFolder
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetFile
-     * @covers  Molajo\Resource\Adapter\Assets::addAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipAssetString
-     * @covers  Molajo\Resource\Adapter\Assets::skipFile
-     * @covers  Molajo\Resource\Adapter\Assets::setMethodOptions
-     * @covers  Molajo\Resource\Adapter\Assets::verifyDotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyLanguageDirectionalFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifySkipFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFile
-     * @covers  Molajo\Resource\Adapter\Assets::verifyNotFileExtension
-     * @covers  Molajo\Resource\Adapter\Assets::skipDuplicate
-     * @covers  Molajo\Resource\Adapter\Assets::setAssetRow
-     * @covers  Molajo\Resource\Adapter\Assets::filterOptionValue
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::instantiateCache
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::setNamespaceExists
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::appendNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::prependNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::get
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefixes
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchNamespacePrefix
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::searchResourceMap
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyNamespace
-     * @covers  Molajo\Resource\Adapter\AbstractAdapter::verifyFileExists
-     * @covers  Molajo\Resource\Adapter\Cache::getConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::setConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::useConfigurationCache
-     * @covers  Molajo\Resource\Adapter\Cache::getCache
-     * @covers  Molajo\Resource\Adapter\Cache::setCache
-     * @covers  Molajo\Resource\Adapter\Cache::deleteCache
-     * @covers  Molajo\Resource\Adapter\Cache::clearCache
      *
      * @return  $this
      * @since   1.0.0
@@ -604,7 +413,7 @@ summary {
         $row->attributes    = '';
         $expected_results[] = $row;
 
-        // Call 1
+        // Request string 1
         $options                 = array();
         $options['asset_string'] = $row->path_or_string;
         $options['priority']     = '500';
@@ -613,9 +422,9 @@ summary {
         $options['conditional']  = '';
         $options['attributes']   = '';
 
-        $this->test_instance->handlePath('css', '', $options);
+        $this->proxy_instance->get('Cssdeclarations:\\', $options);
 
-        // TWO
+        // Request string 2
         $row = new stdClass();
         $row->path_or_string
                             = '
@@ -647,9 +456,10 @@ video {
         $options['conditional']  = '';
         $options['attributes']   = '';
 
-        $this->test_instance->handlePath('css', '', $options);
+        $this->proxy_instance->get('Cssdeclarations:\\', $options);
 
-        $actual_results = $this->test_instance->getCollection('css');
+        // Request collection
+        $actual_results = $this->proxy_instance->getCollection('Cssdeclarations', $options);
 
         $this->assertEquals($expected_results[1]->path_or_string, $actual_results[0]->path_or_string);
         $this->assertEquals($expected_results[1]->priority, $actual_results[0]->priority);
@@ -675,19 +485,8 @@ video {
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @since      1.0
  */
-class CssDeclarationsExtended extends CssDeclarations
+class CssDeclarationsExtended extends Cssdeclarations implements ResourceInterface
 {
-    public function forceType()
-    {
-        $this->asset_type = 'css';
-
-        if ($this->asset_type === 'css') {
-            $this->asset_options = $this->asset_options_by_type['css'];
-        } else {
-            $this->asset_options = $this->asset_options_by_type['js'];
-        }
-    }
-
     /**
      * Support Testing
      *

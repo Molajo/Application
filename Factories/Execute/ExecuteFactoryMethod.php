@@ -134,9 +134,6 @@ class ExecuteFactoryMethod extends FactoryMethodBase implements FactoryInterface
      */
     public function scheduleFactories()
     {
-        echo 'yes';
-        die;
-
         if ($this->dependencies['Runtimedata']->route->method === 'GET') {
             $this->schedule_factory_methods['Render'] = array();
         }
