@@ -304,7 +304,7 @@ abstract class Queries
 
         return $this;
     }
-    
+
     /**
      * Run Query
      *
