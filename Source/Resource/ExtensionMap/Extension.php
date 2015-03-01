@@ -20,7 +20,7 @@ use stdClass;
  */
 class Extension extends ModelName
 {
-     /**
+    /**
      * Retrieve Extensions for a specific Catalog Type
      *
      * @param   int    $catalog_type_id
@@ -188,7 +188,7 @@ class Extension extends ModelName
     {
         $controller = $this->setExtensionQuery($id, $model_name);
 
-        $data       = $this->runQuery($controller);
+        $data = $this->runQuery($controller);
         if ($data === null) {
             return new stdClass();
         }
@@ -211,11 +211,9 @@ class Extension extends ModelName
     {
         $custom_field_types = $this->processExtensionCustomFieldTypes($model_registry);
 
-        if (count($custom_field_types) > 0) {
-            if (is_array($custom_field_types) && count($custom_field_types) > 0) {
-                foreach ($custom_field_types as $group) {
-                    $data->$group = $this->processCustomfieldGroup($group, $data, $model_registry);
-                }
+        if (is_array($custom_field_types) && count($custom_field_types) > 0) {
+            foreach ($custom_field_types as $group) {
+                $data->$group = $this->processCustomfieldGroup($group, $data, $model_registry);
             }
         }
 
@@ -225,7 +223,7 @@ class Extension extends ModelName
     /**
      * Process Extension Custom Field Types
      *
-     * @param   array  $model_registry
+     * @param   array $model_registry
      *
      * @return  array
      * @since   1.0.0

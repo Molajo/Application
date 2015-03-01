@@ -117,28 +117,69 @@ abstract class Queries
             array('Runtimedata' => $this->runtime_data)
         );
 
+        $this->setCatalogTypesQueryValues($controller);
+
+        $this->setCatalogTypesSql($controller);
+
+        return $controller;
+    }
+
+    /**
+     * Set Catalog Types Query Values
+     *
+     * @param   object $controller
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function setCatalogTypesQueryValues($controller)
+    {
         $controller->setModelRegistry('check_view_level_access', 0);
         $controller->setModelRegistry('process_events', 0);
         $controller->setModelRegistry('query_object', 'list');
         $controller->setModelRegistry('use_pagination', 0);
         $controller->setModelRegistry('process_events', 0);
 
+        return $this;
+    }
+
+    /**
+     * Set Catalog Types Query Sql
+     *
+     * @param   object $controller
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function setCatalogTypesSql($controller)
+    {
         $prefix = $controller->getModelRegistry('prefix', 'a');
 
-        $catalog_id_list = (int)$this->runtime_data->reference_data->catalog_type_plugin_id . ', '
-            . (int)$this->runtime_data->reference_data->catalog_type_theme_id . ', '
-            . (int)$this->runtime_data->reference_data->catalog_type_page_view_id . ', '
-            . (int)$this->runtime_data->reference_data->catalog_type_template_view_id . ', '
-            . (int)$this->runtime_data->reference_data->catalog_type_wrap_view_id . ', '
-            . (int)$this->runtime_data->reference_data->catalog_type_menuitem_id . ', '
-            . (int)$this->runtime_data->reference_data->catalog_type_resource_id;
+        $catalog_id_list = $this->setCatalogTypesQueryString();
 
         $controller->select('*');
         $controller->from('#__catalog_types', 'a');
         $controller->where('column', $prefix . '.id', 'IN', 'integer', $catalog_id_list, 'OR');
         $controller->where('column', $prefix . '.model_type', '=', 'string', 'Resource', 'OR');
 
-        return $controller;
+        return $this;
+    }
+
+    /**
+     * Set Catalog Types Query String
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function setCatalogTypesQueryString()
+    {
+        return (int)$this->runtime_data->reference_data->catalog_type_plugin_id . ', '
+        . (int)$this->runtime_data->reference_data->catalog_type_theme_id . ', '
+        . (int)$this->runtime_data->reference_data->catalog_type_page_view_id . ', '
+        . (int)$this->runtime_data->reference_data->catalog_type_template_view_id . ', '
+        . (int)$this->runtime_data->reference_data->catalog_type_wrap_view_id . ', '
+        . (int)$this->runtime_data->reference_data->catalog_type_menuitem_id . ', '
+        . (int)$this->runtime_data->reference_data->catalog_type_resource_id;
     }
 
     /**
@@ -156,6 +197,23 @@ abstract class Queries
             array('Runtimedata' => $this->runtime_data)
         );
 
+        $this->setExtensionsQueryValues($controller);
+
+        $this->setExtensionsSql($controller, $catalog_type_id);
+
+        return $controller;
+    }
+
+    /**
+     * Set Extensions Query Values
+     *
+     * @param   object $controller
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function setExtensionsQueryValues($controller)
+    {
         $application_id = $this->runtime_data->application->id;
         $site_id        = $this->runtime_data->site->id;
 
@@ -168,6 +226,20 @@ abstract class Queries
         $controller->setModelRegistry('query_object', 'list');
         $controller->setModelRegistry('use_pagination', 0);
 
+        return $this;
+    }
+
+    /**
+     * Set Extensions Query Sql
+     *
+     * @param   object  $controller
+     * @param   integer $catalog_type_id
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function setExtensionsSql($controller, $catalog_type_id)
+    {
         $prefix = $controller->getModelRegistry('primary_prefix', 'a');
         $cat_id = $prefix . '.' . 'catalog_type_id';
 
@@ -183,7 +255,7 @@ abstract class Queries
 
         $controller->orderBy($prefix . '.' . 'alias');
 
-        return $controller;
+        return $this;
     }
 
     /**
@@ -202,11 +274,44 @@ abstract class Queries
             array('Runtimedata' => $this->runtime_data)
         );
 
+        $this->setExtensionQueryValues($controller, $id);
+
+        $this->setExtensionSql($controller, $id);
+
+        return $controller;
+    }
+
+    /**
+     * Set Extension Query Values
+     *
+     * @param   object  $controller
+     * @param   integer $id
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function setExtensionQueryValues($controller, $id)
+    {
         $controller->setModelRegistry('check_view_level_access', 0);
         $controller->setModelRegistry('process_events', 0);
         $controller->setModelRegistry('get_customfields', 1);
         $controller->setModelRegistry('primary_key_value', $id);
         $controller->setModelRegistry('query_object', 'item');
+
+        return $this;
+    }
+
+    /**
+     * Set Extension Query Sql
+     *
+     * @param   object  $controller
+     * @param   integer $id
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function setExtensionSql($controller, $id)
+    {
 
         $application_id = $this->runtime_data->application->id;
         $site_id        = $this->runtime_data->site->id;
@@ -217,7 +322,7 @@ abstract class Queries
 
         $controller->where('column', $prefix . '.' . 'id', '=', 'integer', (int)$id);
 
-        return $controller;
+        return $this;
     }
 
     /**
