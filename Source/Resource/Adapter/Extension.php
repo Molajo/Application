@@ -178,9 +178,7 @@ class Extension extends NamespaceHandler implements ResourceInterface
         $this->extensions = $handler_options['extensions'];
         $this->resource   = $handler_options['resource'];
 
-        $class = get_called_class();
-        $class = substr($class, (strrpos($class, '\\') + 1), 9999);
-
+        $class = strtolower($this->scheme_name);
         $this->catalog_type_id       = $this->class_properties[$class]['catalog_type_id'];
         $this->catalog_type_priority = $this->class_properties[$class]['catalog_type_priority'];
         $this->default_partial_path  = $this->class_properties[$class]['default_partial_path'];

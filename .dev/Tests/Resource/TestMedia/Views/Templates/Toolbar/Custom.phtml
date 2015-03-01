@@ -1,0 +1,19 @@
+<?
+/**
+ * @package    Molajo
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
+ * @license    http://www.opensource.org/licenses/mit-license.html MIT License
+ */
+$page_type = strtolower($this->runtime_data->route->page_type);
+
+if ($page_type == 'grid') :
+    include __DIR__ . '/Grid.phtml';
+elseif ($page_type == 'item') :
+    include __DIR__ . '/Item.phtml';
+elseif ($page_type == 'edit') :
+    include __DIR__ . '/Edit.phtml';
+elseif ($page_type == 'configuration') :
+    include __DIR__ . '/Configuration.phtml';
+else :
+
+endif;

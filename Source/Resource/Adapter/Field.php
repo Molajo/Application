@@ -72,15 +72,25 @@ class Field extends NamespaceHandler implements ResourceInterface
      */
     public function get($resource_namespace, array $options = array())
     {
-        $resource_namespace = strtolower($resource_namespace);
+        return $resource_namespace;
+    }
 
-        if (isset($this->fields[$resource_namespace])) {
-            return $this->buildAttributeArray($this->fields[$resource_namespace]);
+    /**
+     * Handle located folder/file associated with URI Namespace for Resource
+     *
+     * @param   string $located_path
+     * @param   array  $options
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    public function handlePath($located_path, array $options = array())
+    {
+        if (isset($this->fields[$located_path])) {
+            return $this->buildAttributeArray($this->fields[$located_path]);
         }
 
-        $message = ' SCHEME: field' . ' NAMESPACE: ' . $resource_namespace;
-
-        throw new RuntimeException('Resource FieldHandler Failure: ' . $message);
+        return null;
     }
 
     /**
@@ -114,6 +124,6 @@ class Field extends NamespaceHandler implements ResourceInterface
      */
     public function getCollection($scheme, array $options = array())
     {
-        return null;
+        return $this->fields;
     }
 }

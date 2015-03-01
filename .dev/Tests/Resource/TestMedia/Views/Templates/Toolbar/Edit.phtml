@@ -1,0 +1,48 @@
+<?
+/**
+ * @package    Molajo
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
+ * @license    http://www.opensource.org/licenses/mit-license.html MIT License
+ */
+$page_url   = $this->plugin_data->page->urls['page'];
+$home_url   = $this->plugin_data->page->urls['home'];
+$model_name = $this->runtime_data->resource->parameters->model_name;
+$id         = $this->runtime_data->resource->data->id;
+?>
+<nav class="row">
+    <div class="large-12 columns">
+        <ul class="button-group right">
+            <li>
+                <span data-tooltip class="has-tip" title="{T Save T}">
+                    <a id="grid-copy-button" href="<?= $page_url; ?>/save"
+                       class="radius small button">
+                        {T Save T}
+                    </a>
+                </span>
+            </li>
+            <li>
+                <span data-tooltip class="has-tip" title="{T Save as T}">
+                    <a id="grid-copy-button" href="<?= $page_url; ?>/saveas/<?= $id; ?>"
+                       class="radius small button">
+                        {T Save as T}
+                    </a>
+                </span>
+            </li>
+            <li>
+                <span data-tooltip class="has-tip" title="{T Reset T}">
+                    <a id="grid-reset-button" href="<?= $page_url; ?>"
+                       class="radius small button">
+                        {T Reset T}
+                    </a>
+                </span>
+            </li>
+            <li>
+                <span data-tooltip class="has-tip" title="{T Delete T}">
+                    <a id="grid-copy-button" href="<?= $page_url; ?>/delete" class="radius small button alert">
+                        {T Delete T}
+                    </a>
+                </span>
+            </li>
+        </ul>
+    </div>
+</nav>
