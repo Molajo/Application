@@ -117,30 +117,11 @@ abstract class Queries
             array('Runtimedata' => $this->runtime_data)
         );
 
-        $this->setCatalogTypesQueryValues($controller);
+        $this->setStandardQueryValues($controller);
 
         $this->setCatalogTypesSql($controller);
 
         return $controller;
-    }
-
-    /**
-     * Set Catalog Types Query Values
-     *
-     * @param   object $controller
-     *
-     * @return  $this
-     * @since   1.0.0
-     */
-    protected function setCatalogTypesQueryValues($controller)
-    {
-        $controller->setModelRegistry('check_view_level_access', 0);
-        $controller->setModelRegistry('process_events', 0);
-        $controller->setModelRegistry('query_object', 'list');
-        $controller->setModelRegistry('use_pagination', 0);
-        $controller->setModelRegistry('process_events', 0);
-
-        return $this;
     }
 
     /**
@@ -217,14 +198,10 @@ abstract class Queries
         $application_id = $this->runtime_data->application->id;
         $site_id        = $this->runtime_data->site->id;
 
+        $this->setStandardQueryValues($controller);
         $controller->setModelRegistry('application_id', $application_id);
         $controller->setModelRegistry('site_id', $site_id);
-        $controller->setModelRegistry('check_view_level_access', 0);
-        $controller->setModelRegistry('process_events', 0);
-        $controller->setModelRegistry('get_customfields', 0);
         $controller->setModelRegistry('use_special_joins', 1);
-        $controller->setModelRegistry('query_object', 'list');
-        $controller->setModelRegistry('use_pagination', 0);
 
         return $this;
     }
@@ -274,31 +251,14 @@ abstract class Queries
             array('Runtimedata' => $this->runtime_data)
         );
 
-        $this->setExtensionQueryValues($controller, $id);
-
-        $this->setExtensionSql($controller, $id);
-
-        return $controller;
-    }
-
-    /**
-     * Set Extension Query Values
-     *
-     * @param   object  $controller
-     * @param   integer $id
-     *
-     * @return  $this
-     * @since   1.0.0
-     */
-    protected function setExtensionQueryValues($controller, $id)
-    {
-        $controller->setModelRegistry('check_view_level_access', 0);
-        $controller->setModelRegistry('process_events', 0);
+        $this->setStandardQueryValues($controller);
         $controller->setModelRegistry('get_customfields', 1);
         $controller->setModelRegistry('primary_key_value', $id);
         $controller->setModelRegistry('query_object', 'item');
 
-        return $this;
+        $this->setExtensionSql($controller, $id);
+
+        return $controller;
     }
 
     /**
@@ -325,6 +285,26 @@ abstract class Queries
         return $this;
     }
 
+    /**
+     * Set Standard Query Values
+     *
+     * @param   object $controller
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function setStandardQueryValues($controller)
+    {
+        $controller->setModelRegistry('check_view_level_access', 0);
+        $controller->setModelRegistry('process_events', 0);
+        $controller->setModelRegistry('query_object', 'list');
+        $controller->setModelRegistry('use_pagination', 0);
+        $controller->setModelRegistry('process_events', 0);
+        $controller->setModelRegistry('get_customfields', 0);
+
+        return $this;
+    }
+    
     /**
      * Run Query
      *
