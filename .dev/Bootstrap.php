@@ -56,6 +56,12 @@ $classmap = array_merge($classmap, $results);
 $results  = createClassMap($base . '/Source/Resource', 'Molajo\\Resource\\');
 $classmap = array_merge($classmap, $results);
 
+$results  = createClassMap($base . '/Source/Resource/Adapter', 'Molajo\\Resource\\Adapter\\');
+$classmap = array_merge($classmap, $results);
+
+$results  = createClassMap($base . '/Source/Resource/ExtensionMap', 'Molajo\\Resource\\ExtensionMap\\');
+$classmap = array_merge($classmap, $results);
+
 ksort($classmap);
 
 spl_autoload_register(
