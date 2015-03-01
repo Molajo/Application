@@ -25,7 +25,7 @@ abstract class Customfields extends Queries
      *
      * @param   string $group
      * @param   object $data
-     * @param   object $model_registry
+     * @param   array  $model_registry
      *
      * @return  stdClass
      * @since   1.0.0

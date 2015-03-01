@@ -123,6 +123,7 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
      * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
      * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::processAssetArrayForPriorities
      * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\AssetBase::__construct
      * @covers  Molajo\Resource\Adapter\AssetBase::setClassProperties
@@ -241,6 +242,7 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
      * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
      * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::processAssetArrayForPriorities
      * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\AssetBase::__construct
      * @covers  Molajo\Resource\Adapter\AssetBase::setClassProperties
@@ -322,6 +324,7 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
      * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
      * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::processAssetArrayForPriorities
      * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\AssetBase::__construct
      * @covers  Molajo\Resource\Adapter\AssetBase::setClassProperties
@@ -460,6 +463,7 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
      * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
      * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::processAssetArrayForPriorities
      * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\AssetBase::__construct
      * @covers  Molajo\Resource\Adapter\AssetBase::setClassProperties
@@ -607,6 +611,7 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
      * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
      * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::processAssetArrayForPriorities
      * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\AssetBase::__construct
      * @covers  Molajo\Resource\Adapter\AssetBase::setClassProperties
@@ -713,6 +718,7 @@ class CssFolderAndFileTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Resource\Adapter\AssetCollection::getCollection
      * @covers  Molajo\Resource\Adapter\AssetCollection::testCollectionRow
      * @covers  Molajo\Resource\Adapter\AssetCollection::getAssetPriorities
+     * @covers  Molajo\Resource\Adapter\AssetCollection::processAssetArrayForPriorities
      * @covers  Molajo\Resource\Adapter\AssetCollection::getDeferRequest
      * @covers  Molajo\Resource\Adapter\AssetBase::__construct
      * @covers  Molajo\Resource\Adapter\AssetBase::setClassProperties

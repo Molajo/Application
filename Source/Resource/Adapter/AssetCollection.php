@@ -91,6 +91,25 @@ abstract class AssetCollection extends AssetBase
             return array();
         }
 
+        $priorities = $this->processAssetArrayForPriorities($scheme, $defer);
+
+        $priorities = array_unique($priorities);
+        sort($priorities);
+
+        return $priorities;
+    }
+
+    /**
+     * Process Asset Array for Priorities
+     *
+     * @param   string  $scheme
+     * @param   string  $defer
+     *
+     * @return  array
+     * @since   1.0.0
+     */
+    protected function processAssetArrayForPriorities($scheme, $defer)
+    {
         $priorities = array();
 
         foreach ($this->asset_array as $row) {
@@ -105,9 +124,6 @@ abstract class AssetCollection extends AssetBase
                 }
             }
         }
-
-        $priorities = array_unique($priorities);
-        sort($priorities);
 
         return $priorities;
     }
