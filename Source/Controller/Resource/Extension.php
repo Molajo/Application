@@ -1,73 +1,61 @@
 <?php
 /**
- * Dispatcher
+ * Extension Resource Query for New, Create, and List Page Types
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Controller\Resource;
 
-use CommonApi\Exception\UnexpectedValueException;
+use CommonApi\Application\ResourceInterface;
 
 /**
- * Dispatcher
+ * Extension Resource Query for New, Create, and List Page Types
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class Extension extends Base
+abstract class Extension extends Base implements ResourceInterface
 {
     /**
-     * Retrieve Resource Extension Item
-     *
-     * @return  $this
-     * @since   1.0
-     * @throws  \CommonApi\Exception\UnexpectedValueException
-     */
-    protected function getResourceExtension()
-    {
-        $controller = $this->setExtensionItemQuery();
-
-        $data = $this->runQuery($controller);
-
-        $parameters = $data->parameters;
-        unset($data->parameters);
-
-        $model_registry = $controller->getModelRegistry('*');
-
-        $this->setResourceMenuitemParameters($model_registry, $parameters);
-
-        $this->resource->data                     = $data;
-        $this->resource->parameters               = $parameters;
-        $this->resource->model_registry           = $model_registry;
-        $this->resource->catalog_type_id          = $data->catalog_type_id;
-        $this->resource->criteria_catalog_type_id = $data->catalog_type_id;
-        $this->resource->resource_model_name      = ucfirst($this->resource->menuitem->data->path);
-
-        return $this;
-    }
-
-    /**
-     * Set Resource Menu Query
+     * Get Resource Data for Extension
      *
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      */
-    protected function setExtensionItemQuery()
+    public function getResource()
     {
-        $resource_model_name = ucfirst($this->resource->menuitem->data->path);
-        $model               = 'Molajo//' . $resource_model_name . '//Extension.xml';
-        $controller          = $this->resource_instance->get('query:///' . $model);
+        $model = 'Molajo//' . $this->model_type . '//' . $this->model_name . '//Extension.xml';
 
-        $controller->setModelRegistry('check_view_level_access', 1);
-        $controller->setModelRegistry('process_events', 1);
-        $controller->setModelRegistry('query_object', 'item');
-        $controller->setModelRegistry('get_customfields', 1);
-        $controller->setModelRegistry('use_special_joins', 1);
+        $this->setQueryController($model);
 
-        return $controller;
+        $this->setQueryControllerDefaults(
+            $process_events = 1,
+            $query_object = 'item',
+            $get_customfields = 1,
+            $use_special_joins = 1,
+            $use_pagination = 0,
+            $check_view_level_access = 1,
+            $get_item_children = 0
+        );
+
+        $catalog_type_id = (int)$this->query->getModelRegistry('criteria_catalog_type_id', 0);
+        $id              = (int)$this->query->getModelRegistry('primary_key_value', 0);
+
+        $prefix = $this->query->getModelRegistry('primary_prefix', 'a');
+
+        $this->query->where('column', $prefix . '.catalog_type_id', '=', 'integer', $catalog_type_id);
+        $this->query->where('column', $prefix . '.id', '=', 'integer', $id);
+
+        $this->getResourceData(
+            $this->resource_output->data->id,
+            $this->resource_output->data->catalog_type_id,
+            $this->model_name
+        );
+
+        return parent::getResource();
     }
 }

@@ -14,21 +14,21 @@
     <table>
 
         <fields>
-            <include field="id_pk"/>
+            <include field="id"/>
             <include field="sef_request"/>
         </fields>
 
         <joins>
-            <join model="Applicationextensioninstances"
+            <join table_name="#__application_extension_instances"
                   alias="application_extension_instances"
                   select=""
-                  jointo="application_id,extension_instance_id"
-                  joinwith="APPLICATION_ID,extension_instance_id"/>
-            <join model="SiteExtensionInstances"
+                  join_to="application_id,extension_instance_id"
+                  join_with="application_id,extension_instance_id"/>
+            <join table_name="#__site_extension_instances"
                   alias="site_extension_instances"
                   select=""
-                  jointo="site_id,extension_instance_id"
-                  joinwith="SITE_ID,extension_instance_id"/>
+                  join_to="site_id,extension_instance_id"
+                  join_with="SITE_ID,extension_instance_id"/>
         </joins>
 
         <criteria>

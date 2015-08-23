@@ -3,24 +3,24 @@
  * Image Controller
  *
  * @package    Molajo
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
 namespace Molajo\Controller;
 
 use stdClass;
-use CommonApi\Controller\ImageInterface;
+use CommonApi\Application\ImageInterface;
 use CommonApi\Exception\RuntimeException;
 
 /**
  * Image Controller
  *
  * @package     Molajo
- * @copyright   2014 Amy Stephen. All rights reserved.
+ * @copyright   2014-2015 Amy Stephen. All rights reserved.
  * @license     http://www.opensource.org/licenses/mit-license.html MIT License
  * @since       1.0
  */
-class ImageController implements ImageInterface
+final class ImageController implements ImageInterface
 {
     /**
      * Default Media Folder
@@ -115,44 +115,91 @@ class ImageController implements ImageInterface
      * @param   bool        $base64_encode
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function getImage($filename, $type = null, $size = null, $base64_encode = true)
     {
-        /** Step 1: Validate Filename */
+        $this->validateFileName($filename);
+        $type  = $this->verifyType($type);
+        $size  = $this->setSize($size);
+        $image = $this->setImageObject($filename, $type, $size);
+        $image = $this->createImage($image);
+        $this->addBase64Encoded($base64_encode, $image);
+
+        return $image;
+    }
+
+    /**
+     * @param $filename
+     *
+     * @throws RuntimeException
+     */
+    protected function validateFileName($filename)
+    {
         if (file_exists($filename)) {
         } else {
             throw new RuntimeException('ImageController: Filename: ' . $filename . ' Does Not Exist.');
         }
+    }
 
-        /** Step 2: Type */
+    /**
+     * @param $type
+     *
+     * @return array|string
+     */
+    protected function verifyType($type)
+    {
         if ($type === null) {
             $type = $this->default_type;
         }
         if (in_array($type, $this->standard_type)) {
         } else {
             $type = $this->default_type;
+            return $type;
         }
+        return $type;
+    }
 
-        /** Step 3: Size (all) */
+    /**
+     * @param $size
+     *
+     * @return string
+     */
+    protected function setSize($size)
+    {
         if ($size === null) {
             $size = $this->default_size;
         }
         if (in_array($size, $this->standard_size)) {
             $size = $this->default_size;
+            return $size;
         }
+        return $size;
+    }
 
-        /** Step 4: Create Image Object */
-        $image = $this->setImageObject($filename, $type, $size);
-
-        /** Step 5: Create Image, if needed*/
+    /**
+     * @param $image
+     *
+     * @return stdClass
+     * @throws RuntimeException
+     */
+    protected function createImage($image)
+    {
         if (file_exists($image->filename)) {
         } else {
             $image = $this->resizeImage($image, $image_quality = 100);
+            return $image;
         }
+        return $image;
+    }
 
-        /** Step 7: Add Base 64 Encoded Image Property, if requested */
+    /**
+     * @param $base64_encode
+     * @param $image
+     */
+    protected function addBase64Encoded($base64_encode, $image)
+    {
         unset($image->original_source);
         unset($image->source);
 
@@ -162,8 +209,6 @@ class ImageController implements ImageInterface
                 . ';base64,'
                 . base64_encode(fread(fopen($image->filename, 'r'), filesize($image->filename)));
         }
-
-        return $image;
     }
 
     /**
@@ -173,7 +218,7 @@ class ImageController implements ImageInterface
      * @param   string $color
      *
      * @return  ImageController
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function getImagePlaceholder($size, $color)
@@ -189,7 +234,7 @@ class ImageController implements ImageInterface
      * @param   string $size
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function setImageObject($filename, $type, $size)
@@ -269,7 +314,7 @@ class ImageController implements ImageInterface
      * @param   stdClass $image
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function setImageSize($type, $size, $image)
@@ -326,7 +371,7 @@ class ImageController implements ImageInterface
      * Resize the image and save it to a file
      *
      * @param   stdClass $image
-     * @param   int    $image_quality
+     * @param   int      $image_quality
      *
      * @return  stdClass
      * @throws  \CommonApi\Exception\RuntimeException

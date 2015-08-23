@@ -3,13 +3,13 @@
  * Url Controller
  *
  * @package    Molajo
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
 namespace Molajo\Controller;
 
 use Exception;
-use CommonApi\Controller\UrlInterface;
+use CommonApi\Application\UrlInterface;
 use CommonApi\Exception\RuntimeException;
 
 /**
@@ -19,7 +19,7 @@ use CommonApi\Exception\RuntimeException;
  * @subpackage  Service
  * @since       1.0
  */
-class UrlController implements UrlInterface
+final class UrlController implements UrlInterface
 {
     /**
      * Resource
@@ -56,7 +56,7 @@ class UrlController implements UrlInterface
     /**
      * Application Base
      *
-     * @var    int
+     * @var    string
      * @since  1.0
      */
     protected $application_base;
@@ -72,7 +72,7 @@ class UrlController implements UrlInterface
     /**
      * Url SEF Option
      *
-     * @var    boolean
+     * @var    integer
      * @since  1.0
      */
     protected $url_sef = 1;
@@ -114,12 +114,12 @@ class UrlController implements UrlInterface
      * @param   null|int $url_sef_request
      *
      * @return  mixed
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function get($request_type = 1, $catalog_type_id = null, $source_id = null, $url_sef_request = null)
     {
-        $query = $this->resource->get('query:///Molajo/Datasource/Catalog');
+        $query = $this->resource->get('query://Molajo/Datasource/Catalog');
 
         $query->setModelRegistry('check_view_level_access', 0);
         $query->setModelRegistry('process_events', 0);
@@ -200,6 +200,8 @@ class UrlController implements UrlInterface
             . $this->application_id
         );
 
+        $query->query->setSql();
+
         try {
             $results = $query->getData();
         } catch (Exception $e) {
@@ -215,7 +217,7 @@ class UrlController implements UrlInterface
      * @param   string $url
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function addTrailingSlash($url)
     {
@@ -228,7 +230,7 @@ class UrlController implements UrlInterface
      * @param   string $url
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function removeTrailingSlash($url)
     {
@@ -241,7 +243,7 @@ class UrlController implements UrlInterface
      * @param   string $path
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getApplicationURL($path = '')
     {
@@ -254,7 +256,7 @@ class UrlController implements UrlInterface
      * @param   string $url
      *
      * @return  boolean
-     * @since   1.0
+     * @since   1.0.0
      */
     public function checkURLExternal($url)
     {
@@ -281,13 +283,14 @@ class UrlController implements UrlInterface
      * 3 Local
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function urlShortener($url, $type = 2)
     {
-        if ($type === '1') {
+        if ($type === 1) {
             return (implode('', file('http://tinyurl.com/api-create.php?url=' . urlencode($url))));
-        } elseif ($type === '2') {
+
+        } elseif ($type === 2) {
             return (implode('', file('http://is.gd/api.php?longurl=' . urlencode($url))));
         }
 

@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Factories\Image;
 
@@ -18,7 +18,7 @@ use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class ImageFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
@@ -28,7 +28,7 @@ class ImageFactoryMethod extends FactoryMethodBase implements FactoryInterface, 
      *
      * @param   $options
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(array $options = array())
     {
@@ -43,7 +43,7 @@ class ImageFactoryMethod extends FactoryMethodBase implements FactoryInterface, 
      * Identify Class Dependencies for Constructor Injection
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = array())
@@ -59,7 +59,7 @@ class ImageFactoryMethod extends FactoryMethodBase implements FactoryInterface, 
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()

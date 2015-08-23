@@ -21,26 +21,26 @@
             <include field="title"/>
         </fields>
         <joins>
-            <join model="CatalogTypes"
+            <join table_name="#__catalog_types"
                   alias="catalog_types"
                   select=""
-                  jointo="id"
-                  joinwith="catalog_type_id"/>
-            <join model="ExtensionInstances"
+                  join_to="id"
+                  join_with="catalog_type_id"/>
+            <join table_name="#__extension_instances"
                   alias="extension_instances"
                   select=""
-                  jointo="id"
-                  joinwith="extension_instance_id"/>
-            <join model="Applicationextensioninstances"
+                  join_to="id"
+                  join_with="extension_instance_id"/>
+            <join table_name="#__application_extension_instances"
                   alias="application_extension_instances"
                   select=""
-                  jointo="extension_instance_id,application_id"
-                  joinwith="extension_instances.id,APPLICATION_ID"/>
-            <join model="SiteExtensionInstances"
+                  join_to="extension_instance_id,application_id"
+                  join_with="extension_instances.id,APPLICATION_ID"/>
+            <join table_name="#__site_extension_instances"
                   alias="site_extension_instances"
                   select=""
-                  jointo="extension_instance_id,site_id"
-                  joinwith="extension_instances.id,SITE_ID"/>
+                  join_to="extension_instance_id,site_id"
+                  join_with="extension_instances.id,SITE_ID"/>
         </joins>
         <plugins>
             <plugin name="Publishedstatus"/>

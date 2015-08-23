@@ -4,11 +4,10 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Factories\Runtimedata;
 
-use CommonApi\Exception\RuntimeException;
 use CommonApi\IoC\FactoryInterface;
 use CommonApi\IoC\FactoryBatchInterface;
 use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
@@ -19,7 +18,7 @@ use stdClass;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
@@ -44,30 +43,18 @@ class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInter
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()
     {
-        $event_option_keys   = array();
-        $event_option_keys[] = 'exclude_tokens';
-        $event_option_keys[] = 'model_registry';
-        $event_option_keys[] = 'parameters';
-        $event_option_keys[] = 'plugin_data';
-        $event_option_keys[] = 'query_results';
-        $event_option_keys[] = 'query';
-        $event_option_keys[] = 'rendered_page';
-        $event_option_keys[] = 'rendered_view';
-        $event_option_keys[] = 'row';
-        $event_option_keys[] = 'runtime_data';
-        $event_option_keys[] = 'token_objects';
-        $event_option_keys[] = 'user';
+        $folders = readJsonFile($this->base_path . '/Bootstrap/Files/Output/ExtensionFolders.json');
 
         $runtime_data                             = new stdClass();
         $runtime_data->error_code                 = 0;
         $runtime_data->redirect_to_id             = 0;
         $runtime_data->base_path                  = $this->base_path;
-        $runtime_data->event_options_keys         = $event_option_keys;
+        $runtime_data->extension_folders          = $folders;
         $runtime_data->request                    = new stdClass();
         $runtime_data->request->data              = new stdClass();
         $runtime_data->request->client            = new stdClass();
@@ -82,7 +69,6 @@ class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInter
         $runtime_data->resource->data             = new stdClass();
         $runtime_data->resource->parameters       = new stdClass();
         $runtime_data->resource->model_registry   = new stdClass();
-        $runtime_data->render                     = new stdClass();
 
         $this->product_result = $runtime_data;
 
@@ -93,7 +79,7 @@ class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInter
      * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setContainerEntries()
     {
@@ -106,12 +92,11 @@ class RuntimedataFactoryMethod extends FactoryMethodBase implements FactoryInter
      * Request for array of Factory Methods to be Scheduled
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function scheduleFactories()
     {
         $options                                      = array();
-        $options['base_path']                         = $this->base_path;
         $this->schedule_factory_methods['Plugindata'] = $options;
 
         return $this->schedule_factory_methods;

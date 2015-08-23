@@ -3,22 +3,22 @@
  * Random String Controller
  *
  * @package    Molajo
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
 namespace Molajo\Controller;
 
-use CommonApi\Controller\RandomStringInterface;
+use CommonApi\Application\RandomStringInterface;
 
 /**
  * Random String Controller
  *
  * @package     Molajo
- * @copyright   2014 Amy Stephen. All rights reserved.
+ * @copyright   2014-2015 Amy Stephen. All rights reserved.
  * @license     http://www.opensource.org/licenses/mit-license.html MIT License
  * @since       1.0
  */
-class RandomString implements RandomStringInterface
+final class RandomString implements RandomStringInterface
 {
     /**
      * Length of String
@@ -44,7 +44,7 @@ class RandomString implements RandomStringInterface
      * @since  1.0
      */
     public function __construct(
-        $length = 15,
+        $length = 30,
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     ) {
         if ((int)$length < 5) {
@@ -65,7 +65,7 @@ class RandomString implements RandomStringInterface
      * @param   null|string $characters
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function generateString($length = null, $characters = null)
     {
@@ -81,7 +81,7 @@ class RandomString implements RandomStringInterface
 
         $random_string = '';
 
-        for ($i = 0; $i < $this->length; $i ++) {
+        for ($i = 0; $i < $this->length; $i++) {
             $random_string .= $this->characters[rand(0, strlen($this->characters) - 1)];
         }
 

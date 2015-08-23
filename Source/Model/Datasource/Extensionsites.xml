@@ -10,7 +10,7 @@
         data_object="Database">
     <table>
         <fields>
-            <include field="id_pk"/>
+            <include field="id"/>
             <include name="name"/>
             <include name="enabled"/>
             <include name="location"/>

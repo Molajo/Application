@@ -4,8 +4,8 @@
         table_name="#__language_strings"
         primary_key="id"
         name_key="title"
-        criteria_catalog_type_id="6250"
-        criteria_extension_instance_id="6250"
+        criteria_catalog_type_id="6500"
+        criteria_extension_instance_id="6500"
         primary_prefix="a"
         get_customfields="1"
         get_item_children="0"
@@ -18,9 +18,9 @@
 
     <table>
         <fields>
-            <include field="id_pk"/>
-            <include field="extension_instance_id_single"/>
-            <include field="catalog_type_id_single"/>
+            <include field="id"/>
+            <include field="extension_instance_id"/>
+            <include field="catalog_type_id"/>
             <include field="title"/>
             <include field="subtitle"/>
             <include field="path"/>
@@ -29,7 +29,7 @@
             <include field="protected"/>
             <include field="featured"/>
             <include field="stickied"/>
-            <include field="statussingle"/>
+            <include field="status"/>
             <include field="start_publishing_datetime"/>
             <include field="stop_publishing_datetime"/>
             <include field="version"/>
@@ -60,26 +60,26 @@
         </plugins>
 
         <joins>
-            <join model="Catalog"
+            <join table_name="#__catalog"
                   alias="catalog"
                   select="sef_request,primary_category_id,view_group_id,catalog_type_id,extension_instance_id"
-                  jointo="application_id,source_id,catalog_type_id,redirect_to_id,enabled"
-                  joinwith="APPLICATION_ID,id,catalog_type_id,0,1"/>
-            <join model="ExtensionInstances"
+                  join_to="application_id,source_id,catalog_type_id,redirect_to_id,enabled"
+                  join_with="APPLICATION_ID,id,catalog_type_id,0,1"/>
+            <join table_name="#__extension_instances"
                   alias="extension_instances"
                   select="id,title,catalog_type_id"
-                  jointo="id"
-                  joinwith="extension_instance_id"/>
-            <join model="User"
+                  join_to="id"
+                  join_with="extension_instance_id"/>
+            <join table_name="#__users"
                   alias="created_by"
                   select="full_name,username"
-                  jointo="id"
-                  joinwith="created_by"/>
-            <join model="User"
+                  join_to="id"
+                  join_with="created_by"/>
+            <join table_name="#__users"
                   alias="modified_by"
                   select="full_name,username"
-                  jointo="id"
-                  joinwith="modified_by"/>
+                  join_to="id"
+                  join_with="modified_by"/>
         </joins>
 
         <foreignkeys>
@@ -89,12 +89,6 @@
             <foreignkey name="extension_instance_id" source_id="id" source_model="ExtensionInstances" required="1"/>
             <foreignkey name="version_id" source_id="id" source_model="Content" required="1"/>
         </foreignkeys>
-
-        <criteria>
-            <where name="a.protected"
-                   connector="&lt;&gt;"
-                   value="2"/>
-        </criteria>
 
     </table>
 

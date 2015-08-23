@@ -8,7 +8,7 @@
         get_customfields="0"
         get_item_children="0"
         use_special_joins="0"
-        check_view_level_access="0"
+        check_view_level_access="1"
         process_events="0"
         use_pagination="1"
         extends="root"
@@ -16,10 +16,10 @@
 
     <table>
         <fields>
-            <include field="id_pk"/>
+            <include field="id"/>
             <include field="site_id"/>
-            <include field="extension_instance_id_single"/>
-            <include field="catalog_type_id_single"/>
+            <include field="extension_instance_id"/>
+            <include field="catalog_type_id"/>
             <include field="title"/>
             <include field="subtitle"/>
             <include field="path"/>
@@ -55,16 +55,21 @@
         </fields>
 
         <joins>
-            <join model="User"
+            <join table_name="#__catalog"
+                  alias="catalog"
+                  select="sef_request,primary_category_id,view_group_id,catalog_type_id,extension_instance_id"
+                  join_to="application_id,source_id,catalog_type_id,extension_instance_id,redirect_to_id,enabled"
+                  join_with="APPLICATION_ID,id,catalog_type_id,extension_instance_id,0,1"/>
+            <join table_name="#__users"
                   alias="created_by"
                   select="full_name,username"
-                  jointo="id"
-                  joinwith="created_by"/>
-            <join model="User"
+                  join_to="id"
+                  join_with="created_by"/>
+            <join table_name="#__users"
                   alias="modified_by"
                   select="full_name,username"
-                  jointo="id"
-                  joinwith="modified_by"/>
+                  join_to="id"
+                  join_with="modified_by"/>
         </joins>
 
         <foreignkeys>

@@ -4,11 +4,11 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Controller;
 
-use CommonApi\Controller\DateInterface;
+use CommonApi\Application\DateInterface;
 use DateTime;
 use DateTimeZone;
 use stdClass;
@@ -18,10 +18,10 @@ use stdClass;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class DateController extends DateTime implements DateInterface
+final class DateController extends DateTime implements DateInterface
 {
     /**
      * Offset for User Time zone
@@ -46,8 +46,7 @@ class DateController extends DateTime implements DateInterface
      * @since  1.0
      */
     protected $date_translate_array
-        = array
-        (
+        = array(
             'AGO'                  => 'ago',
             'DATE_MINUTE_SINGULAR' => 'minute',
             'DATE_MINUTE_PLURAL'   => 'minutes',
@@ -140,7 +139,6 @@ class DateController extends DateTime implements DateInterface
             7 => array('abbreviation' => 'SUN', 'name' => 'SUNDAY')
         );
 
-
     /**
      * Second Constants
      *
@@ -148,11 +146,11 @@ class DateController extends DateTime implements DateInterface
      * @since  1.0
      */
     const MINUTE = 60;
-    const HOUR   = 3600;
-    const DAY    = 86400;
-    const WEEK   = 604800;
-    const MONTH  = 2629800;
-    const YEAR   = 31557600;
+    const HOUR = 3600;
+    const DAY = 86400;
+    const WEEK = 604800;
+    const MONTH = 2629800;
+    const YEAR = 31557600;
 
     /**
      * Constructor
@@ -190,7 +188,7 @@ class DateController extends DateTime implements DateInterface
      * @param   mixed  $default
      *
      * @return  mixed
-     * @since   1.0
+     * @since   1.0.0
      */
     public function get($key = null, $default = null)
     {
@@ -210,8 +208,7 @@ class DateController extends DateTime implements DateInterface
      * @param   mixed  $value
      *
      * @return  mixed
-     * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
+     * @since   1.0.0
      */
     public function set($key, $value = null)
     {
@@ -231,7 +228,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $date_format
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getDate(
         $time = 'now',
@@ -249,7 +246,9 @@ class DateController extends DateTime implements DateInterface
         $date_time = new DateTime($time);
         $date_time->setTimezone($tz);
 
-        return $this->getDateFormatDate($date_time, $date_format);
+        $date = $this->getDateFormatDate($date_time, $date_format);
+
+        return $date;
     }
 
     /**
@@ -302,7 +301,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $date
      *
      * @return  string CCYY-MM-DD
-     * @since   1.0
+     * @since   1.0.0
      */
     public function convertCCYYMMDD($date = null)
     {
@@ -314,12 +313,25 @@ class DateController extends DateTime implements DateInterface
      *
      * @param   string $date
      *
-     * @return  string CCYY-MM-DD
-     * @since   1.0
+     * @return  string
+     * @since   1.0.0
      */
     public function convertCCYYdashMMdashDD($date = null)
     {
         return substr($date, 0, 4) . '-' . substr($date, 5, 2) . '-' . substr($date, 8, 2);
+    }
+
+    /**
+     * Converts standard MYSQL date (ex. 2011-11-11 11:11:11) to MM/DD/CCYYY format (ex. 11-11-2011)
+     *
+     * @param   string $date
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    public function convertMMslashDDslashCCYY($date = null)
+    {
+        return substr($date, 5, 2) . '/' . substr($date, 8, 2) . '/' . substr($date, 0, 4);
     }
 
     /**
@@ -328,7 +340,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $date1
      * @param   string $date2
      *
-     * @since   1.0
+     * @since   1.0.0
      * @return  integer
      */
     public function getNumberofDaysAgo($date1, $date2 = null)
@@ -348,14 +360,16 @@ class DateController extends DateTime implements DateInterface
     /**
      * Format Date
      *
-     * @param   string $date
+     * @param   string $date -- formatted as ccyymmdd
      *
      * @return  DateTime
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function formatDate($date)
     {
-        return new DateTime(substr($date, 5, 2) . '/' . substr($date, 8, 2) . '/' . substr($date, 0, 4));
+        $formatted = substr($date, 4, 2) . '/' . substr($date, 6, 2) . '/' . substr($date, 0, 4);
+
+        return new DateTime($formatted);
     }
 
     /**
@@ -365,7 +379,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $compare_to_date
      *
      * @return  string formatted pretty date
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getPrettyDate($date, $compare_to_date = null)
     {
@@ -392,10 +406,10 @@ class DateController extends DateTime implements DateInterface
     /**
      * Provides day number
      *
-     * @param   string  $ccyymmdd
+     * @param   string $ccyymmdd
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getDayNumber($ccyymmdd)
     {
@@ -409,7 +423,7 @@ class DateController extends DateTime implements DateInterface
      * @param   boolean $abbreviation
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getDayName($ccyymmdd, $abbreviation = false)
     {
@@ -427,7 +441,7 @@ class DateController extends DateTime implements DateInterface
      * @param   boolean $abbreviation
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getMonthName($month_number, $abbreviation = false)
     {
@@ -442,7 +456,7 @@ class DateController extends DateTime implements DateInterface
      * @param   boolean $abbreviation
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function getNameTranslated($type, $index, $abbreviation)
     {
@@ -471,8 +485,8 @@ class DateController extends DateTime implements DateInterface
      * @param   string $month
      * @param   string $year
      *
-     * @return  stdClass[] CCYY-MM-DD
-     * @since   1.0
+     * @return  array
+     * @since   1.0.0
      */
     public function buildCalendar($month, $year)
     {
@@ -494,7 +508,7 @@ class DateController extends DateTime implements DateInterface
      * @param   object $interval
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getPrettyDateToday($interval)
     {
@@ -521,7 +535,7 @@ class DateController extends DateTime implements DateInterface
      * @param   object $interval
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getPrettyDateNotToday($interval)
     {
@@ -549,7 +563,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string  $type
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function translatePrettyDate($numeric_value, $type)
     {
@@ -570,7 +584,7 @@ class DateController extends DateTime implements DateInterface
      * @param   string $string
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function translate($string)
     {

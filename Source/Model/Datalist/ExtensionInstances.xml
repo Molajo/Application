@@ -14,8 +14,8 @@
         data_object="Database">
     <table>
         <fields>
-            <field name="id" type="integer"/>
-            <field name="title" type="string"/>
+            <include field="id"/>
+            <include field="title"/>
         </fields>
     </table>
 </model>

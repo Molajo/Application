@@ -16,11 +16,12 @@
 
     <table>
         <fields>
-            <include field="id_pk"/>
+            <include field="id"/>
             <include field="extension_id"/>
             <include field="catalog_type_id"/>
             <include field="title"/>
             <include field="subtitle"/>
+            <include field="namespace"/>
             <include field="path"/>
             <include field="alias"/>
             <include field="menu"/>
@@ -30,6 +31,7 @@
             <include field="featured"/>
             <include field="stickied"/>
             <include field="status"/>
+            <include field="author_id"/>
             <include field="start_publishing_datetime"/>
             <include field="stop_publishing_datetime"/>
             <include field="version"/>
@@ -56,38 +58,32 @@
         </fields>
 
         <joins>
-            <join model="Catalog"
+            <join table_name="#__catalog"
                   alias="catalog"
                   select="application_id,id,sef_request,primary_category_id,view_group_id"
-                  jointo="application_id,source_id,catalog_type_id,redirect_to_id"
-                  joinwith="APPLICATION_ID,id,catalog_type_id,0"/>
-            <join model="Extensions"
+                  join_to="application_id,source_id,catalog_type_id,redirect_to_id"
+                  join_with="APPLICATION_ID,id,catalog_type_id,0"/>
+            <join table_name="#__extensions"
                   alias="extensions"
-                  select="id,name"
-                  jointo="id"
-                  joinwith="extension_id"/>
-            <join model="Applicationextensioninstances"
+                  select="id,title,namespace"
+                  join_to="id"
+                  join_with="extension_id"/>
+            <join table_name="#__application_extension_instances"
                   alias="application_extension_instances"
                   select=""
-                  jointo="application_id,extension_instance_id"
-                  joinwith="APPLICATION_ID,id"/>
-            <join model="SiteExtensionInstances"
+                  join_to="application_id,extension_instance_id"
+                  join_with="APPLICATION_ID,id"/>
+            <join table_name="#__site_extension_instances"
                   alias="site_extension_instances"
                   select=""
-                  jointo="site_id,extension_instance_id"
-                  joinwith="SITE_ID,id"/>
-            <join model="CatalogTypes"
+                  join_to="site_id,extension_instance_id"
+                  join_with="SITE_ID,id"/>
+            <join table_name="#__catalog_types"
                   alias="catalog_types"
                   select="title"
-                  jointo="id"
-                  joinwith="catalog_type_id"/>
+                  join_to="id"
+                  join_with="catalog_type_id"/>
         </joins>
-
-        <criteria>
-            <where name="catalog.application_id"
-                   connector="="
-                   name2="application_extension_instances.application_id"/>
-        </criteria>
 
         <foreignkeys>
             <foreignkey name="extension_id" source_id="id" source_model="Extensions" required="1"/>

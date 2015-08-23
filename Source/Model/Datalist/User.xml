@@ -13,8 +13,8 @@
         data_object="Database">
     <table>
         <fields>
-            <include field="Id"/>
-            <include field="Full_name"/>
+            <include field="id"/>
+            <include field="full_name"/>
         </fields>
     </table>
 </model>

@@ -3,7 +3,11 @@
     "description": "Molajo Application for use in developing Molajo Distributions",
     "version": "1.0.0",
     "type": "molajo-package",
-    "keywords": ["application", "commonapi", "molajo"],
+    "keywords": [
+        "application",
+        "commonapi",
+        "molajo"
+    ],
     "homepage": "http://github.com/Molajo/Application",
     "license": "MIT",
     "authors": [
@@ -24,15 +28,26 @@
 
     "require": {
         "php": ">=5.4",
-        "molajo/framework": "dev-master"
+        "commonapi/cache": "dev-master",
+        "commonapi/controller": "dev-master",
+        "commonapi/exception": "dev-master",
+        "commonapi/event": "dev-master",
+        "commonapi/ioc": "dev-master",
+        "commonapi/language": "dev-master",
+        "commonapi/model": "dev-master",
+        "commonapi/query": "dev-master",
+        "commonapi/resource": "dev-master",
+        "molajo/resource": "dev-master"
     },
 
     "autoload": {
         "psr-4": {
-            "Molajo\\": "Source/Extensions/",
             "Molajo\\Controller\\": "Source/Controller/",
+            "Molajo\\Factories\\": "Factories/",
+            "Molajo\\System\\": "Source/Extensions/",
             "Molajo\\Model\\": "Source/Model/",
-            "Molajo\\Factories\\": "Factories/"
+            "Molajo\\Resource\\": "Source/Resource/",
+            "Molajo\\Resources\\": "Source/Resources/"
         }
     },
 

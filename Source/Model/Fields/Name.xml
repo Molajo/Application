@@ -1,7 +1,0 @@
-<field name="name"
-       type="string"
-       null="0"
-       unique="1"
-       default=" "
-       width="50"
-        />

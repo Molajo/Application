@@ -10,6 +10,7 @@
 <include field="configuration_protection"/>
 <include field="configuration_response"/>
 <include field="configuration_system"/>
+<include field="configuration_form"/>
 <include field="configuration_views"/>
 <include field="configuration_item"/>
 <include field="configuration_list"/>

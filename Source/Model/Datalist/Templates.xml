@@ -15,26 +15,25 @@
         data_object="Database">
     <table>
         <fields>
-            <include field="id_pk"/>
-            <field name="title" type="string" null="0" default="" unique="1"/>
+            <include field="id"/>
+            <include field="title"/>
         </fields>
-        >
         <joins>
-            <join model="Extensions"
+            <join table_name="#__extensions"
                   alias="extensions"
                   select=""
-                  jointo="id"
-                  joinwith="extension_id"/>
-            <join model="Applicationextensioninstances"
+                  join_to="id"
+                  join_with="extension_id"/>
+            <join table_name="#__application_extension_instances"
                   alias="application_extension_instances"
                   select=""
-                  jointo="extension_instance_id,application_id"
-                  joinwith="id,APPLICATION_ID"/>
-            <join model="SiteExtensionInstances"
+                  join_to="extension_instance_id,application_id"
+                  join_with="id,APPLICATION_ID"/>
+            <join table_name="#__site_extension_instances"
                   alias="site_extension_instances"
                   select=""
-                  jointo="extension_instance_id,site_id"
-                  joinwith="id,SITE_ID"/>
+                  join_to="extension_instance_id,site_id"
+                  join_with="id,SITE_ID"/>
         </joins>
         <plugins>
             <plugin name="Publishedstatus"/>

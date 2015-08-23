@@ -4,12 +4,12 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Controller;
 
 use stdClass;
-use CommonApi\Controller\SiteInterface;
+use CommonApi\Application\SiteInterface;
 use CommonApi\Exception\RuntimeException;
 
 /**
@@ -17,10 +17,10 @@ use CommonApi\Exception\RuntimeException;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
-class Site implements SiteInterface
+final class Site implements SiteInterface
 {
     /**
      * Host
@@ -41,7 +41,7 @@ class Site implements SiteInterface
     /**
      * Data identifying sites for this implementation
      *
-     * @var    object
+     * @var    array
      * @since  1.0
      */
     protected $sites = null;
@@ -149,7 +149,7 @@ class Site implements SiteInterface
     public function __construct(
         $host,
         $path,
-        $sites
+        array $sites = array()
     ) {
         $this->host  = $host;
         $this->path  = $path;
@@ -163,7 +163,7 @@ class Site implements SiteInterface
      * @param   mixed  $default
      *
      * @return  mixed
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function get($key = null, $default = null)
@@ -205,7 +205,7 @@ class Site implements SiteInterface
      * @param   string $base_path
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setBase($base_url, $base_path)
     {
@@ -219,7 +219,7 @@ class Site implements SiteInterface
      * Identifies the specific site and sets site paths for use in the application
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function identifySite()
@@ -273,20 +273,19 @@ class Site implements SiteInterface
      */
     public function installCheck()
     {
-        if (substr($this->path, 0, strlen('installation')) === 'installation') {
+        if (strtolower(substr($this->path, -12, 12)) === 'installation') {
             return $this;
         }
 
-        if (defined('SKIP_INSTALL_CHECK')) {
+        if (defined('SKIP_MOLAJO_INSTALL_CHECK')) {
             return $this;
         }
 
-        if (file_exists($this->site_base_path . '/Temp/Index.html')) {
-            return $this;
+        if (file_exists($this->base_path . '/installation/Index.html')) {
+            $redirect = $this->host . '/installation/';
+            header('Location: ' . $redirect);
         }
 
-        $redirect = $this->host . 'installation/';
-        header('Location: ' . $redirect);
-        exit();
+        return $this;
     }
 }

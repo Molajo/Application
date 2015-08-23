@@ -1,6 +1,0 @@
-<field name="subtitle"
-       type="string"
-       null="0"
-       default=" "
-       width="50"
-        />

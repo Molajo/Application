@@ -17,14 +17,11 @@
 
     <customfields>
         <customfield name="parameters">
-            <field name="name" type="string" default="English (United Kingdom)" null="0"/>
-            <field name="tag" type="string" default="en-GB" null="0"/>
-            <field name="rtl" type="boolean" default="0" null="0"/>
-            <field name="locale"
-                   type="string"
-                   default="en_GB.utf8, en_GB.UTF-8, en_GB, eng_GB, en, english, english-uk, uk, gbr, britain, england, great britain, uk, united kingdom, united-kingdom"
-                   null="0"/>
-            <field name="first_day" type="integer" default="0" null="0" values="1,2,3,4,5,6,7"/>
+            <include field="name"/>
+            <include field="tag"/>
+            <include field="rtl"/>
+            <include field="locale"/>
+            <include field="first_day"/>
         </customfield>
     </customfields>
 </model>

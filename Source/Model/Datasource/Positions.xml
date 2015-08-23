@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model
+        name="Positions"
+        table_name="#__extension_instances"
+        extends="Extensioninstances">
+
+    <customfields>
+        <customfield name="customfields">
+            <include field="template_views"/>
+        </customfield>
+    </customfields>
+
+</model>

@@ -3,7 +3,7 @@
  * en-GB Translation
  *
  * @package    Molajo
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
 namespace Molajo\Controller\NumberToText;
@@ -15,7 +15,7 @@ namespace Molajo\Controller\NumberToText;
  * @subpackage  NumberToText
  * @since       1.0
  */
-class Engb
+final class Engb
 {
     /**
      * Translation Strings for Numbers
@@ -24,8 +24,7 @@ class Engb
      * @since  1.0
      */
     protected $number_translate_array
-        = array
-        (
+        = array(
             'number_negative'          => '-',
             'number_point'             => '.',
             'number_zero'              => 'zero',
@@ -80,7 +79,7 @@ class Engb
      * Returns the translation array
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function loadTranslation()
     {

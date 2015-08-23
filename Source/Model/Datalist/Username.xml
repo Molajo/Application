@@ -12,8 +12,8 @@
         data_object="Database">
     <table>
         <fields>
-            <include field="ID"/>
-            <include field="Username"/>
+            <include field="id"/>
+            <include field="username"/>
         </fields>
     </table>
 </model>

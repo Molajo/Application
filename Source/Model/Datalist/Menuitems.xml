@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<datalist name="Menuitems">
-    <model
-            name="Menuitems"
-            registry_entry="Menuitems"/>
-</datalist>
+<model
+        name="Menuitems"
+        table_name="#__extension_instances"
+        primary_key="id"
+        name_key="title"
+        primary_prefix="a"
+        get_customfields="0"
+        get_item_children="0"
+        use_special_joins="1"
+        check_view_level_access="0"
+        process_events="0"
+        criteria_catalog_type_id="11000"
+        published_status="1"
+        data_object="Database">
+    <table>
+        <fields>
+            <include field="id"/>
+            <include field="title"/>
+        </fields>
+        >
+        <joins>
+            <join table_name="#__extensions"
+                  alias="extensions"
+                  select=""
+                  join_to="id"
+                  join_with="extension_id"/>
+            <join table_name="#__application_extension_instances"
+                  alias="application_extension_instances"
+                  select=""
+                  join_to="extension_instance_id,application_id"
+                  join_with="id,APPLICATION_ID"/>
+            <join table_name="#__site_extension_instances"
+                  alias="site_extension_instances"
+                  select=""
+                  join_to="extension_instance_id,site_id"
+                  join_with="id,SITE_ID"/>
+        </joins>
+        <plugins>
+            <plugin name="Publishedstatus"/>
+        </plugins>
+    </table>
+</model>

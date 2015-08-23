@@ -15,8 +15,8 @@
         data_object="Database">
     <table>
         <fields>
-            <include field="id_pk"/>
-            <field name="name" type="string" null="0" default="" unique="1"/>
+            <include field="id"/>
+            <include field="name"/>
         </fields>
     </table>
 </model>

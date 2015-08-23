@@ -1,5 +1,5 @@
 <?php
-$class   = new ReflectionClass('Molajo\Controller\NumberToText');
+$class   = new ReflectionClass('Molajo\Resource\Proxy');
 $methods = $class->getMethods();
 var_dump($methods);
 foreach ($methods as $method) {

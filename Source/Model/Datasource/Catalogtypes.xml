@@ -13,7 +13,7 @@
 
     <table>
         <fields>
-            <include field="id_pk"/>
+            <include field="id"/>
             <include field="primary_category_id"/>
             <include field="title"/>
             <include field="alias"/>

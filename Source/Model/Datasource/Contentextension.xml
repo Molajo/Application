@@ -6,6 +6,7 @@
     <customfields>
         <customfield name="parameters">
             <include name="ParametersAccess"/>
+            <include name="ParametersConfiguration"/>
             <include name="ParametersEnable"/>
             <include name="ParametersForm"/>
             <include name="ParametersFormModel"/>

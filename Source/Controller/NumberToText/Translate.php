@@ -3,7 +3,7 @@
  * Translation
  *
  * @package    Molajo
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
 namespace Molajo\Controller\NumberToText;
@@ -36,10 +36,6 @@ class Translate implements TranslateInterface
      */
     public function __construct($locale = 'en-GB')
     {
-        if ($locale === '') {
-            $locale = 'Engb';
-        }
-
         $locale                       = str_replace('-', '', $locale);
         $locale                       = ucfirst(strtolower($locale));
         $class                        = 'Molajo\\Controller\\NumberToText\\' . $locale;
@@ -53,7 +49,7 @@ class Translate implements TranslateInterface
      * @param   string $string
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function translateString($string)
     {

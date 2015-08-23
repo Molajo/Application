@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Factories\Date;
 
@@ -18,7 +18,7 @@ use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
@@ -28,7 +28,7 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      *
      * @param   $options
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(array $options = array())
     {
@@ -43,15 +43,15 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      * Identify Class Dependencies for Constructor Injection
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = array())
     {
         $reflection = null;
 
-        $this->dependencies['User']        = array('if_exists' => true);
-        $this->dependencies['Language']    = array('if_exists' => true);
+        $this->dependencies['User']        = array();
+        $this->dependencies['Language']    = array();
         $this->dependencies['Runtimedata'] = array();
 
         return $this->dependencies;
@@ -61,7 +61,7 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()
@@ -113,28 +113,14 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
     }
 
     /**
-     * Request for array of Factory Methods to be Scheduled
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function scheduleFactories()
-    {
-        $options                                    = array();
-        $this->schedule_factory_methods['Language'] = $options;
-
-        return $this->schedule_factory_methods;
-    }
-
-    /**
      * Get Default Date Translations
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getDefaultDateTranslations()
     {
-        return array(
+        $x = array(
             'AGO'                  => 'ago',
             'DATE_MINUTE_SINGULAR' => 'minute',
             'DATE_MINUTE_PLURAL'   => 'minutes',
@@ -187,5 +173,12 @@ class DateFactoryMethod extends FactoryMethodBase implements FactoryInterface, F
             'DATE_DECEMBER'        => 'December',
             'YESTERDAY'            => 'Yesterday'
         );
+
+        $translated = array();
+        foreach ($x as $key => $value) {
+            $translated[$key] = $this->dependencies['Language']->translateString($key);
+        }
+
+        return $translated;
     }
 }

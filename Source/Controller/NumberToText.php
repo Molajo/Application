@@ -3,12 +3,12 @@
  * Number To Text Controller
  *
  * @package    Molajo
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
 namespace Molajo\Controller;
 
-use CommonApi\Controller\NumberToTextInterface;
+use CommonApi\Application\NumberToTextInterface;
 use CommonApi\Language\TranslateInterface;
 
 /**
@@ -18,7 +18,7 @@ use CommonApi\Language\TranslateInterface;
  * @subpackage  NumberToText
  * @since       1.0
  */
-class NumberToText implements NumberToTextInterface
+final class NumberToText implements NumberToTextInterface
 {
     /**
      * Translation Strings for Numbers
@@ -117,7 +117,7 @@ class NumberToText implements NumberToTextInterface
      * @param   string $number
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     public function convert($number)
     {
@@ -234,7 +234,7 @@ class NumberToText implements NumberToTextInterface
                 $word_value = $this->processGroupDigits($digits, $i, $word_value);
             }
 
-            $i ++;
+            $i++;
         }
 
         if (trim($word_value) === '') {
@@ -318,7 +318,7 @@ class NumberToText implements NumberToTextInterface
      * @param   string $ones_word
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setWordTens($tens_digit, $ones_digit, $ones_word)
     {
@@ -342,7 +342,7 @@ class NumberToText implements NumberToTextInterface
      * @param   string $tens_word
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setWordHundreds($hundreds_digit, $tens_word)
     {
@@ -363,7 +363,7 @@ class NumberToText implements NumberToTextInterface
      * @param   integer $digit_position
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setWord($digit, $digit_position = 0)
     {
@@ -384,7 +384,7 @@ class NumberToText implements NumberToTextInterface
      * @param   integer $number
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function convertGrouping($number = 0)
     {
@@ -422,7 +422,7 @@ class NumberToText implements NumberToTextInterface
      * @param   string $word_value
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setSign($sign, $word_value)
     {

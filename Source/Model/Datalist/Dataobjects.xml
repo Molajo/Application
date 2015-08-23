@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<datalist name="Dataobjects">
+<datalist name="data_objects">
     <model
-            name="Dataobjects"
-            registry_entry="Dataobjects"/>
+            name="data_objects"
+            registry_entry="data_objects"/>
 </datalist>

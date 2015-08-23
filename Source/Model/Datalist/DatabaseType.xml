@@ -4,7 +4,8 @@
         data_object="Datalist">
     <table>
         <values>
-            <value id="mysqli" value="MySQLi"/>
+            <value id="mysqli" value="MySqli"/>
+            <value id="sqlserver" value="SQL Server"/>
         </values>
     </table>
 </model>

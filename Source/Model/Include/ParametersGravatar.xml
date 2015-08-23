@@ -1,4 +1,4 @@
-<include field="gravatar"/>
+<include field="display_gravatar"/>
 <include field="gravatar_size"/>
 <include field="gravatar_type"/>
 <include field="gravatar_rating"/>

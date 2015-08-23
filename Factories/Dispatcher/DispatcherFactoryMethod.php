@@ -1,10 +1,10 @@
 <?php
 /**
- * Resource Controller Factory Method
+ * Dispatcher Factory Method
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Factories\Dispatcher;
 
@@ -16,11 +16,11 @@ use CommonApi\IoC\FactoryBatchInterface;
 use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
 
 /**
- * Resource Factory Method
+ * Dispatcher Factory Method
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
@@ -30,7 +30,7 @@ class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterf
      *
      * @param   $options
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(array $options = array())
     {
@@ -45,16 +45,17 @@ class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Identify Class Dependencies for Constructor Injection
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = array())
     {
         parent::setDependencies($reflection);
 
-        $options                           = array();
-        $this->dependencies['Resource']    = $options;
-        $this->dependencies['Runtimedata'] = $options;
+        $options                            = array();
+        $this->dependencies['Fieldhandler'] = $options;
+        $this->dependencies['Resource']     = $options;
+        $this->dependencies['Runtimedata']  = $options;
 
         return $this->dependencies;
     }
@@ -63,28 +64,24 @@ class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()
     {
-        $resource = new stdClass();
+        $route = $this->dependencies['Runtimedata']->route;
 
-        $resource->default_theme_id
+        $route->default_theme_id
             = $this->dependencies['Runtimedata']->application->parameters->application_default_theme_id;
-
-        $resource->page_type        = $this->dependencies['Runtimedata']->route->page_type;
-        $resource->model_type       = $this->dependencies['Runtimedata']->route->b_model_type;
-        $resource->model_name       = $this->dependencies['Runtimedata']->route->b_model_name;
-        $resource->sef_request      = $this->dependencies['Runtimedata']->route->sef_request;
-        $resource->source_id        = $this->dependencies['Runtimedata']->route->source_id;
 
         try {
             $class = $this->product_namespace;
 
             $this->product_result = new $class(
                 $this->dependencies['Resource'],
-                $resource
+                $this->dependencies['Fieldhandler'],
+                $this->dependencies['Runtimedata'],
+                $route
             );
 
         } catch (Exception $e) {
@@ -102,7 +99,7 @@ class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Follows the completion of the instantiate method
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function onAfterInstantiation()
     {
@@ -115,7 +112,7 @@ class DispatcherFactoryMethod extends FactoryMethodBase implements FactoryInterf
      * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setContainerEntries()
     {

@@ -15,11 +15,12 @@
 
     <table>
         <fields>
-            <include field="id_pk"/>
+            <include field="id"/>
             <include field="extension_site_id"/>
             <include field="catalog_type_id"/>
-            <include field="name"/>
+            <include field="title"/>
             <include field="subtitle"/>
+            <include field="namespace"/>
             <include field="language"/>
             <include field="translation_of_id"/>
             <include field="ordering"/>
