@@ -29,12 +29,10 @@
     "require": {
         "php": ">=5.4",
         "commonapi/cache": "dev-master",
-        "commonapi/controller": "dev-master",
         "commonapi/exception": "dev-master",
         "commonapi/event": "dev-master",
         "commonapi/ioc": "dev-master",
         "commonapi/language": "dev-master",
-        "commonapi/model": "dev-master",
         "commonapi/query": "dev-master",
         "commonapi/resource": "dev-master",
         "molajo/resource": "dev-master"
