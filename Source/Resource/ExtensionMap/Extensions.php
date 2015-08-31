@@ -43,7 +43,6 @@ abstract class Extensions extends Extension
         return $this->processExtensions($items, $catalog_type_id);
     }
 
-
     /**
      * Retrieve System Extensions for a specific Catalog Type
      *

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="Pageview" version="1.0">
+    <name>{name}</name>
+    <model name="{name}" extends="Pageview">
+        {customfields}
+    </model>
+</extension>

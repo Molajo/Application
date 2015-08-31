@@ -122,7 +122,7 @@ abstract class Extension extends NamespaceHandler implements ResourceInterface
                 'default_partial_path'  => 'Source/Views/Pages',
                 'file_name'             => 'Index.phtml'
             ),
-            'Plugin'     => array(
+            'Plugin'   => array(
                 'catalog_type_id'       => 5000,
                 'catalog_type_priority' => 600,
                 'default_partial_path'  => 'Source/Plugins',
@@ -222,12 +222,11 @@ abstract class Extension extends NamespaceHandler implements ResourceInterface
         if ($alias === $node) {
             $id = $this->getExtensionId($alias);
         } else {
-            $id    = $node;
+            $id = $node;
         }
 
-        $catalog_type_id = $this->catalog_type_id;
-        $this->extension = $this->extensions->extensions[$catalog_type_id]->extensions[$id];
-
+        $catalog_type_id          = $this->catalog_type_id;
+        $this->extension          = $this->extensions->extensions[$catalog_type_id]->extensions[$id];
         $this->resource_namespace = $this->extensions->extensions[$catalog_type_id]->namespaces[$id];
 
         return parent::get($this->resource_namespace, $options);
@@ -276,10 +275,11 @@ abstract class Extension extends NamespaceHandler implements ResourceInterface
         $id_array = $this->extensions->extensions[$catalog_type_id]->names[$alias];
 
         if (count($id_array) === 1) {
-            return (int) $id_array[0];
+            return (int)$id_array[0];
         }
 
-echo 'Finish code for Multiple IDs for same Alias: ' . $alias;
+//todo multiple IDs for same alias + using full namespace
+        echo 'Finish code for Multiple IDs for same Alias: ' . $alias;
         echo '<pre>';
         var_dump($id_array);
         echo '</pre>';
@@ -302,16 +302,16 @@ echo 'Finish code for Multiple IDs for same Alias: ' . $alias;
     public function handlePath($located_path, array $options = array())
     {
         $this->checkFileExists($located_path);
-/**
-        $asset_options             = array();
-        $asset_options['priority'] = $this->catalog_type_priority;
-        $this->setExtensionAsset('Css', $this->resource_namespace . '\Css', $asset_options);
-
-        $this->setExtensionAsset('Js', $this->resource_namespace . '\Js', $asset_options);
-
-        $options['defer'] = 'defer';
-        $this->setExtensionAsset('Js', $this->resource_namespace . '\Jsdefer', $asset_options);
-*/
+        /**
+         * $asset_options             = array();
+         * $asset_options['priority'] = $this->catalog_type_priority;
+         * $this->setExtensionAsset('Css', $this->resource_namespace . '\Css', $asset_options);
+         *
+         * $this->setExtensionAsset('Js', $this->resource_namespace . '\Js', $asset_options);
+         *
+         * $options['defer'] = 'defer';
+         * $this->setExtensionAsset('Js', $this->resource_namespace . '\Jsdefer', $asset_options);
+         */
         $this->extension->path = $located_path;
 
         return $this->extension;
@@ -332,7 +332,7 @@ echo 'Finish code for Multiple IDs for same Alias: ' . $alias;
             return $this;
         }
 
-        throw new RuntimeException('Resource Extension File Does Not Exist for Path: ' . $located_path);
+        throw new RuntimeException('Resource Extension File Does Not Exist for Path: ' . $this->resource_namespace);
     }
 
     /**

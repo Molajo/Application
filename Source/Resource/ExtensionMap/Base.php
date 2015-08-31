@@ -70,7 +70,7 @@ abstract class Base
     protected $temp_namespaces = array();
 
     /**
-     * Extensions Filename
+     * Extensions
      *
      * @var    array
      * @since  1.0.0
@@ -78,7 +78,7 @@ abstract class Base
     protected $temp_extensions = array();
 
     /**
-     * Extensions Filename
+     * Menus
      *
      * @var    array
      * @since  1.0.0
@@ -86,7 +86,7 @@ abstract class Base
     protected $temp_menus = array();
 
     /**
-     * Extensions Filename
+     * Page Types
      *
      * @var    array
      * @since  1.0.0

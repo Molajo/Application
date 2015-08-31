@@ -86,7 +86,7 @@ abstract class CatalogTypes extends Extensions
      * @return  stdClass
      * @since   1.0.0
      */
-    protected function processCatalogTypes(array $catalog_types)
+    protected function processCatalogTypes(array $catalog_types = array())
     {
         $names       = array();
         $ids         = array();
@@ -116,7 +116,7 @@ abstract class CatalogTypes extends Extensions
      * @return  stdClass
      * @since   1.0.0
      */
-    protected function setCatalogTypeObject(array $ids, array $names, array $extensions)
+    protected function setCatalogTypeObject(array $ids = array(), array $names = array(), array $extensions = array())
     {
         $catalog_type             = new stdClass();
         $catalog_type->ids        = $ids;

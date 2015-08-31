@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="System" version="1.0">
+<name>{name}</name>
+<model
+        name="{name}"
+        primary_key_value="{content_catalog_type_id}"
+        criteria_catalog_type_id="{content_catalog_type_id}"
+        criteria_extension_instance_id="{extension_catalog_type_id}"
+        get_customfields="1"
+        get_item_children="0"
+        use_special_joins="1"
+        check_view_level_access="1"
+        process_events="1"
+        use_pagination="0"
+        extends="Contentextension"
+        data_object="Database">
+    {customfields}
+</model>
+</extension>

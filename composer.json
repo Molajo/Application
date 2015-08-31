@@ -44,8 +44,7 @@
             "Molajo\\Factories\\": "Factories/",
             "Molajo\\System\\": "Source/Extensions/",
             "Molajo\\Model\\": "Source/Model/",
-            "Molajo\\Resource\\": "Source/Resource/",
-            "Molajo\\Resources\\": "Source/Resources/"
+            "Molajo\\Resource\\": "Source/Resource/"
         }
     },
 

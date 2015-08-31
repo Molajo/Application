@@ -49,6 +49,7 @@
             <include field="rgt"/>
             <include field="lvl"/>
             <include field="home"/>
+            <include field="contentfields"/>
             <include field="customfields"/>
             <include field="parameters"/>
             <include field="metadata"/>

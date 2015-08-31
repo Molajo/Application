@@ -98,8 +98,8 @@ final class MenuItem extends Base implements ResourceInterface
         }
 
         $this->resource_output->catalog_type_id = $this->resource_output->parameters->criteria_catalog_type_id;
-        $this->resource_output->extension_instance_id
-                                                = $this->resource_output->parameters->criteria_extension_instance_id;
+//        $this->resource_output->extension_instance_id
+//                                                = $this->resource_output->parameters->criteria_extension_instance_id;
         $this->resource_output->model_name      = $resource_name;
 
         return parent::getResource();
